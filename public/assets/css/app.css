@@ -1,0 +1,25 @@
+:root {
+    --main-color: #3AB990;
+}
+
+.active .page-link {
+    /* background-color:  #; */
+    background: radial-gradient(370px circle at 80% 50%, rgba(42, 165, 193, 0.6) 0, #129aba 100%);
+    color: white !important;
+    border-color: #fff;
+}
+
+.bg-main-color {
+    background: var(--main-color) !important;
+}
+
+.text-main-color {
+    color: #3AB990;
+}
+
+.square {
+    aspect-ratio: 1 / 1;
+}
+
+
+
