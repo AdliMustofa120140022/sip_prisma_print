@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\admin\HomeController as AdminHomeController;
+use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,21 +19,15 @@ Route::middleware('auth')->group(function () {
 
 
     Route::prefix('/super')->middleware('superadmin')->group(function () {
-        Route::get('/', function () {
-            return view('dashboard');
-        })->name('super.dashboard');
+        Route::get('/', [AdminHomeController::class, 'index'])->name('super.dashboard');
     });
 
     Route::prefix('/admin')->middleware('admin')->group(function () {
-        Route::get('/', function () {
-            return view('dashboard');
-        })->name('admin.dashboard');
+        Route::get('/', [AdminHomeController::class, 'index'] )->name('admin.dashboard');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {
-        Route::get('/', function () {
-            return view('dashboard');
-        })->name('user.dashboard');
+        Route::get('/', [HomeController::class, 'index'])->name('user.dashboard');
     });
 });
 

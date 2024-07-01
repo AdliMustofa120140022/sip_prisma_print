@@ -130,8 +130,10 @@
         <div class="hidden md:flex gap-5">
             <div class="flex gap-5 items-center">
                 <form action="">
-                    <input type="text" id="search" name="search" class="rounded-3xl" placeholder="cari produck">
-                    <button type="submit">cari</button>
+                    <input type="text" id="search" name="search"
+                        class="rounded-3xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-700"
+                        placeholder="cari produck">
+                    {{-- <button type="submit">cari</button> --}}
                 </form>
 
                 <a href="" class="text-orange-600">
@@ -152,7 +154,7 @@
             </ul>
         </div>
     </div>
-    <ul x-show='true' x-data='{openMenu : null}'
+    <ul x-show='isMobileOpen' x-data='{openMenu : null}'
         class="text-text-color font-semibold z-10 absolute md:hidden bg-white w-full px-4 block shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
 
         <li class='py-5 '>
@@ -270,7 +272,7 @@
                 profil</a>
         </li>
     </ul>
-    {{-- <div class="md:hidden absolute z-0 bg-opacity-30 bg-black w-full min-h-screen block">
-
-    </div> --}}
+    <div x-show='isMobileOpen' class="md:hidden absolute z-0 bg-opacity-30 bg-black w-full min-h-screen block"
+        @click=' isMobileOpen = false'>
+    </div>
 </nav>
