@@ -29,3 +29,7 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.css?v=1.0.7') }}" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+
+
+{{-- aplin js --}}
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\utils;
+namespace App\View\Components\layouts;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class scripts-x-demo extends Component
+class user-navbar extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class scripts-x-demo extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.utils.scripts-x-demo');
+        return view('components.layouts.user-navbar');
     }
 }

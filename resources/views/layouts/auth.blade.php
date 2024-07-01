@@ -9,6 +9,9 @@
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title>{{ $title }} - Sistem Informasi Kelurahan Bakung</title>
     <x-utils.metas-x-demo />
+
+    {{-- <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
 <body class="g-sidenav-show  bg-gray-100" style="min-height: 100vh">
