@@ -30,17 +30,16 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen bg-gray-100">
+<body class="min-h-screen bg-gray-100 flex flex-1 flex-col">
     @if (session('success') || session('error'))
         <x-user-toaster type="{{ session('success') ? 'success' : 'error' }}" :message="session('success') ?? session('error')" />
     @endif
-
 
     <x-wa-toas />
 
     <x-layouts.user-navbar />
 
-    <main class='container mx-auto pt-4'>
+    <main class='container mx-auto pt-4 flex flex-1 justify-center '>
         {{ $slot }}
     </main>
 

@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+//route tanpa middleware
+Route::get('/', [HomeController::class, 'index'])->name('guest.dashboard');
 
 Route::middleware('auth')->group(function () {
     
@@ -30,5 +31,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('user.dashboard');
     });
 });
+
 
 
