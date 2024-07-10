@@ -32,42 +32,15 @@
                     </button>
 
                     <ul x-show='isProduckOpen'
-                        class="p-2 translate-y-9 text-sm text-gray-600 grid grid-cols-5 gap-x-5 z-20 top-10 absolute bg-white divide-y divide-gray-100 rounded-lg border border-gray-400 shadow ">
-                        <li class="py-0">
-                            <a href="" class="block  rounded-lg hover:bg-gray-100  ">
-                                <span>Pantai</span>
-                            </a>
-                        </li>
-                        <li class="py-0">
-                            <a href="" class="block  rounded-lg hover:bg-gray-100  ">
-                                <span>Pantai</span>
-                            </a>
-                        </li>
-                        <li class="py-0">
-                            <a href="" class="block  rounded-lg hover:bg-gray-100  ">
-                                <span>Pantai</span>
-                            </a>
-                        </li>
-                        <li class="py-0">
-                            <a href="" class="block  rounded-lg hover:bg-gray-100  ">
-                                <span>Pantai</span>
-                            </a>
-                        </li>
-                        <li class="py-0">
-                            <a href="" class="block  rounded-lg hover:bg-gray-100  ">
-                                <span>Pantai</span>
-                            </a>
-                        </li>
-                        <li class="py-0">
-                            <a href="" class="block  rounded-lg hover:bg-gray-100  ">
-                                <span>Pantai</span>
-                            </a>
-                        </li>
-                        <li class="py-0">
-                            <a href="" class="block  rounded-lg hover:bg-gray-100  ">
-                                <span>Pantai</span>
-                            </a>
-                        </li>
+                        class="p-2 translate-y-9 text-sm text-gray-600 grid grid-cols-4 gap-x-5 z-20 top-10 absolute bg-white divide-y divide-gray-100 rounded-lg border border-gray-400 shadow ">
+                        @foreach ($produck as $produk)
+                            <li class="py-0 border-0">
+                                <a href="#" class=" rounded-lg hover:bg-gray-100  ">
+                                    <span>{{ $produk->name }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+
                     </ul>
                 </li>
                 <li x-data='{}'>
@@ -80,19 +53,18 @@
                     <ul x-show='iskatagoriOpen'
                         class="p-2 translate-y-9 text-sm text-gray-600 flex gap-x-5 z-20 top-10 absolute bg-white divide-y divide-gray-100 rounded-lg border border-gray-400 shadow ">
 
-                        <div class="card">
-                            <span class="font-bold text-lg">Kantor</span>
-                            <li class="py-0">
-                                <a href="" class="rounded-lg hover:bg-gray-100  ">
-                                    <span>Pantai</span>
-                                </a>
-                            </li>
-                            <li class="py-0">
-                                <a href="" class="rounded-lg hover:bg-gray-100  ">
-                                    <span>Pantai</span>
-                                </a>
-                            </li>
-                        </div>
+                        @foreach ($katagori as $katagoris)
+                            <div class="card">
+                                <span class="font-bold text-lg">{{ $katagoris->nama }}</span>
+                                @foreach ($katagoris->producks as $item)
+                                    <li class="py-0">
+                                        <a href="" class="rounded-lg hover:bg-gray-100  ">
+                                            <span>{{ $item->name }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </div>
+                        @endforeach
 
                     </ul>
                 </li>
@@ -167,26 +139,14 @@
             <ul x-show='openMenu === "product"' x-transition
                 class="py- text-smtext-gray-200 top-10 w-full mt-3 bg-white divide-y divide-gray-100
                 rounded-lg border border-gray-400 shadow grid grid-cols-3 justify-start ">
-                <li>
-                    <a href={'/'} class="block p-2 rounded-lg hover:bg-gray-100  ">
-                        <span>Pantai</span>
-                    </a>
-                </li>
-                <li>
-                    <a href={'/'} class="block p-2 rounded-lg hover:bg-gray-100  ">
-                        <span>hutan</span>
-                    </a>
-                </li>
-                <li>
-                    <a href={'/'} class="block p-2 rounded-lg hover:bg-gray-100  ">
-                        <span>gunung</span>
-                    </a>
-                </li>
-                <li>
-                    <a href={'/'} class="block p-2 rounded-lg hover:bg-gray-100  ">
-                        <span>taman</span>
-                    </a>
-                </li>
+                @foreach ($produck as $item)
+                    <li>
+                        <a href="#" class=" hover:bg-gray-100  ">
+                            <span>{{ $item->name }}</span>
+                        </a>
+                    </li>
+                @endforeach
+
             </ul>
 
         </li>
@@ -200,32 +160,18 @@
             <ul x-show='openMenu === "katagori"' x-transition
                 class="p-2 text-smtext-gray-200 top-10 w-full mt-3 bg-white divide-y divide-gray-100
                 rounded-lg border border-gray-400 shadow grid grid-cols-2 justify-start ">
-                <div class="card">
-                    <span class="font-bold text-lg">Kantor</span>
-                    <li class="py-0">
-                        <a href="" class="rounded-lg hover:bg-gray-100  ">
-                            <span>Pantai</span>
-                        </a>
-                    </li>
-                    <li class="py-0">
-                        <a href="" class="rounded-lg hover:bg-gray-100  ">
-                            <span>Pantai</span>
-                        </a>
-                    </li>
-                </div>
-                <div class="card">
-                    <span class="font-bold text-lg">Kantor</span>
-                    <li class="py-0">
-                        <a href="" class="rounded-lg hover:bg-gray-100  ">
-                            <span>Pantai</span>
-                        </a>
-                    </li>
-                    <li class="py-0">
-                        <a href="" class="rounded-lg hover:bg-gray-100  ">
-                            <span>Pantai</span>
-                        </a>
-                    </li>
-                </div>
+                @foreach ($katagori as $katagoris)
+                    <div class="card">
+                        <span class="font-bold text-lg">{{ $katagoris->nama }}</span>
+                        @foreach ($katagoris->producks as $item)
+                            <li class="py-0">
+                                <a href="" class="rounded-lg hover:bg-gray-100  ">
+                                    <span>{{ $item->name }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </div>
+                @endforeach
             </ul>
 
         </li>
