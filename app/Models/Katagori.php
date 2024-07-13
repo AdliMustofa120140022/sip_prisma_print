@@ -14,8 +14,8 @@ class Katagori extends Model
 
     public $timestamps = false;
 
-    public function producks()
+    public function sub_katagori()
     {
-        return $this->hasMany(Produck::class, 'category_id', 'id');
+        return $this->hasMany(SubKatagori::class, 'category_id', 'id');
     }
 }

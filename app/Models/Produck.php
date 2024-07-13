@@ -14,13 +14,15 @@ class Produck extends Model
     protected $fillable = [
         'name',
         'description',
-        'category_id',
+        'sub_kategori_id',
     ];
 
     public $timestamps = false;
 
-    public function category()
-    {
-        return $this->belongsTo(Katagori::class, 'category_id', 'id');
-    }
+    // public function sub_katagori()
+    // {
+    //     return $this->belongsTo(SubKatagori::class, 'sub_kategori_id', 'id');
+    // }
+
+
 }

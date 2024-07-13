@@ -14,6 +14,15 @@ class ProduckSeeder extends Seeder
     public function run(): void
     {
            //
+        $produk_promosi = [
+            ['name' => 'Kartu Nama', 'description' => 'Tingkatkan nilai produk Anda dengan Kartu Nama custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1],
+            ['name' => 'Brosur', 'description' => 'Tingkatkan nilai produk Anda dengan Brosur custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1],
+            ['name' => 'Banner', 'description' => 'Tingkatkan nilai produk Anda dengan Banner custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1],
+        ];
+
+        foreach ($produk_promosi as $produk) {
+            Produck::create($produk);
+        }
         $produk_kantor = [
             ['name' => 'Meja', 'description' => 'Tingkatkan nilai produk Anda dengan Kartu Nama custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1],
             ['name' => 'Kursi', 'description' => 'Tingkatkan nilai produk Anda dengan Kartu Nama custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1],

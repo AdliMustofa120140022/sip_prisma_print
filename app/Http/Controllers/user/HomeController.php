@@ -15,15 +15,15 @@ class HomeController extends Controller
 
         // dd($param);
         
-        $katagoris = Katagori::all();
+        $katagoris = Katagori::all()->sortBy('id');
 
-        if( $param == 'promosi' )
-        {
-            $producks = Produck::paginate(9);
-            return view('guest.home', compact('katagoris', 'producks'));
-        }
+        // if( $param == 'promosi' )
+        // {
+        //     $producks = Produck::paginate(9);
+        //     return view('guest.home', compact('katagoris', 'producks'));
+        // }
 
-        $producks = Katagori::where('nama', $param)->first()->producks;
+        $producks = Katagori::where('nama', $param)->first()->sub_katagori;
 
         return view('guest.home', compact('katagoris', 'producks'));
     }

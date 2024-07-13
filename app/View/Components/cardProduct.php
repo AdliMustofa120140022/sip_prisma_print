@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use App\Models\Produck;
+use App\Models\SubKatagori;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -13,7 +14,7 @@ class cardProduct extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(Produck $produck)
+    public function __construct(SubKatagori $produck)
     {
         $this->produck = $produck;
     }

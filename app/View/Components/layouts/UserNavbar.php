@@ -4,6 +4,7 @@ namespace App\View\Components\layouts;
 
 use App\Models\Katagori;
 use App\Models\Produck;
+use App\Models\SubKatagori;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Log;
@@ -21,7 +22,7 @@ class UserNavbar extends Component
     
     public function __construct()
     {
-        $this->produck = Produck::all();
+        $this->produck = SubKatagori::paginate(10);
         $this->katagori = Katagori::all();
     }
 

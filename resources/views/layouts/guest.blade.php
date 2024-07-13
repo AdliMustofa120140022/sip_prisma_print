@@ -39,7 +39,7 @@
 
     <x-layouts.user-navbar />
 
-    <main class='container mx-auto pt-4 flex flex-1 justify-center '>
+    <main class='container mx-auto pt-4 flex flex-1 flex-col justify-center '>
         {{ $slot }}
     </main>
 

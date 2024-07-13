@@ -40,6 +40,9 @@
                                 </a>
                             </li>
                         @endforeach
+                        <div class="col-span-4 justify-center text-center py-3">
+                            <a class="text-center font-bold text-blue-500" href="">Lihat Semua Produk ></a>
+                        </div>
 
                     </ul>
                 </li>
@@ -56,7 +59,7 @@
                         @foreach ($katagori as $katagoris)
                             <div class="card">
                                 <span class="font-bold text-lg">{{ $katagoris->nama }}</span>
-                                @foreach ($katagoris->producks as $item)
+                                @foreach ($katagoris->sub_katagori as $item)
                                     <li class="py-0">
                                         <a href="" class="rounded-lg hover:bg-gray-100  ">
                                             <span>{{ $item->name }}</span>
@@ -163,7 +166,7 @@
                 @foreach ($katagori as $katagoris)
                     <div class="card">
                         <span class="font-bold text-lg">{{ $katagoris->nama }}</span>
-                        @foreach ($katagoris->producks as $item)
+                        @foreach ($katagoris->sub_katagori as $item)
                             <li class="py-0">
                                 <a href="" class="rounded-lg hover:bg-gray-100  ">
                                     <span>{{ $item->name }}</span>
