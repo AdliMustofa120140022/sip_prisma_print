@@ -14,7 +14,7 @@ class SubKatagoriController extends Controller
     {
         $file = $request->file($name);
         $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->move($path, $fileName);
+        $file->storeAs($path, $fileName);
         return $fileName;
     }
     //
@@ -49,7 +49,7 @@ class SubKatagoriController extends Controller
             'name' => $request->name,
             'category_id' => $request->katagori_id,
             'description' => $request->description,
-            'image' => $this->fileUpload($request, 'image', 'public/sub/sub-katagori'),
+            'image' => $this->fileUpload($request, 'image', 'public/img/sub-katagori'),
         ]);
 
         return redirect()->route('admin.sub-kategori.index')->with('success', 'Sub Katagori berhasil ditambahkan');
@@ -73,7 +73,7 @@ class SubKatagoriController extends Controller
             'name' => $request->name,
             'category_id' => $request->katagori_id,
             'description' => $request->description,
-            'image' => $request->image ? $this->fileUpload($request, 'image', 'public/sub/sub-katagori') : SubKatagori::find($id)->image
+            'image' => $request->image ? $this->fileUpload($request, 'image', 'public/img/sub-katagori') : SubKatagori::find($id)->image
         ]);
 
         return redirect()->route('admin.sub-kategori.index')->with('success', 'Sub Katagori berhasil diubah');
