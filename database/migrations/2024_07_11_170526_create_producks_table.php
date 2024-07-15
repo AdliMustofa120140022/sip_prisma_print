@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('producks', function (Blueprint $table) {
             $table->id();
+            $table->string('prduck_code');
             $table->string('name');
             $table->text('description');
             $table->foreignId('sub_kategori_id')->references('id')->on('sub_katagoris');
-            // $table->timestamps();
         });
     }
 

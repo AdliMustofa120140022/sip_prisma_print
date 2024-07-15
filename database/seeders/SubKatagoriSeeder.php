@@ -14,7 +14,10 @@ class SubKatagoriSeeder extends Seeder
     public function run(): void
     {
         $produk_promosi = [
-            ['name' => 'Kartu Nama', 'description' => 'Tingkatkan nilai produk Anda dengan Kartu Nama custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1],
+            [
+                'name' => 'Kartu Nama',
+                'description' => 'Tingkatkan nilai produk Anda dengan Kartu Nama custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1
+            ],
             ['name' => 'Brosur', 'description' => 'Tingkatkan nilai produk Anda dengan Brosur custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1],
             ['name' => 'Banner', 'description' => 'Tingkatkan nilai produk Anda dengan Banner custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 1],
         ];
@@ -37,7 +40,7 @@ class SubKatagoriSeeder extends Seeder
             ['name' => 'Kursi Lipat', 'description' => 'Tingkatkan nilai produk Anda dengan Kartu Nama custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 2],
             ['name' => 'Meja Lipat', 'description' => 'Tingkatkan nilai produk Anda dengan Kartu Nama custom yang elegan dan premium. Cetak logo dan desain Anda untuk menciptakan kesan eksklusif dan meningkatkan brand awarness', 'category_id' => 2],
         ];
-        
+
         foreach ($produk_acara as $produk) {
             SubKatagori::create($produk);
         }
@@ -71,6 +74,5 @@ class SubKatagoriSeeder extends Seeder
         foreach ($produk_personal as $produk) {
             SubKatagori::create($produk);
         }
-
     }
 }

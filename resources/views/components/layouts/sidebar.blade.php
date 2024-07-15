@@ -24,20 +24,102 @@
             <li class="nav-item">
                 <a class="nav-link rounded-3  {{ Request::routeIs('admin.dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
                     href={{ route('admin.dashboard') }}>
-                    <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
                 <i class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('admin.dashboard') ? 'text-primary' : 'text-white ' }}"></i>
                     </div>
                     <span class="nav-link-text ms-1 {{ Request::routeIs('admin.dashboard') ? 'text-white ' : ' text-black' }}">Dashboard</span>
                 </a>
             </li>
 
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Produk</h6>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('admin.sub-kategori*') ? 'bg-gradient-dark    text-white ' : '' }} "
+                    href={{ route('admin.sub-kategori.index') }}>
+                    <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.sub-kategori*') ? 'bg-white' : 'bg-gradient-dark' }}" ">
+                        <i
+                            class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('admin.sub-kategori*') ? 'text-primary' : 'text-white ' }}"></i>
+                    </div>
+                    <span
+                        class="nav-link-text ms-1 {{ Request::routeIs('admin.sub-kategori*') ? 'text-white ' : ' text-black' }}">Katagori
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('admin.product*') ? 'bg-gradient-dark    text-white ' : '' }} "
+                    href={{ route('admin.product.index') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.product*') ? 'bg-white' : 'bg-gradient-dark' }}" ">
+                        <i
+                            class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('admin.product*') ? 'text-primary' : 'text-white ' }}"></i>
+                    </div>
+                    <span
+                        class="nav-link-text ms-1 {{ Request::routeIs('admin.product*') ? 'text-white ' : ' text-black' }}">Kelola
+                        Produk</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Transaksi</h6>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
                     href={{ route('admin.dashboard') }}>
-                    <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
-                <i class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
+                        <i
+                            class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
                     </div>
-                    <span class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola Produk</span>
+                    <span
+                        class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola
+                        Pesanan</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
+                    href={{ route('admin.dashboard') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
+                        <i
+                            class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
+                    </div>
+                    <span
+                        class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola
+                        Pembayaran</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
+                    href={{ route('admin.dashboard') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
+                        <i
+                            class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
+                    </div>
+                    <span
+                        class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola
+                        pengiriman</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
+                    href={{ route('admin.dashboard') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
+                        <i
+                            class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
+                    </div>
+                    <span
+                        class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola
+                        Admin</span>
                 </a>
             </li>
 
@@ -45,65 +127,29 @@
                 <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
                     href={{ route('admin.dashboard') }}>
                     <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
-                <i class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
+                        <i
+                            class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
                     </div>
-                    <span class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola Pesanan</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
-                    href={{ route('admin.dashboard') }}>
-                    <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
-                <i class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
-                    </div>
-                    <span class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola Pembayaran</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
-                    href={{ route('admin.dashboard') }}>
-                    <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
-                <i class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
-                    </div>
-                    <span class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola pengiriman</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
-                    href={{ route('admin.dashboard') }}>
-                    <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
-                <i class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
-                    </div>
-                    <span class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola Admin</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-dark    text-white ' : '' }} "
-                    href={{ route('admin.dashboard') }}>
-                    <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-dark' }}" ">
-                <i class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-primary' : 'text-white ' }}"></i>
-                    </div>
-                    <span class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola Lamporan</span>
+                    <span
+                        class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Kelola
+                        Lamporan</span>
                 </a>
             </li>
 
             <li class="nav-item mt-3">
-            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
 
 
-        <li  class="nav-item">
-            
-            <a type="submit" class="nav-link rounded-3 "  href={{ route('logout') }}  >
-                <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center bg-white ">
-                <i class="fa-solid fa-right-from-bracket fs-5 text-danger"></i>
-                </div>
-                <span class="nav-link-text ms-1 text-dark">Logout</span>
-            </a>
+            <li class="nav-item">
+
+                <a type="submit" class="nav-link rounded-3 " href={{ route('logout') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center bg-white ">
+                        <i class="fa-solid fa-right-from-bracket fs-5 text-danger"></i>
+                    </div>
+                    <span class="nav-link-text ms-1 text-dark">Logout</span>
+                </a>
             </li>
         </ul>
     </div>
