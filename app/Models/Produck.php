@@ -29,6 +29,11 @@ class Produck extends Model
 
     public $timestamps = false;
 
+    public function img_produck()
+    {
+        return $this->hasMany(ImgProduck::class, 'prduck_id', 'id');
+    }
+
     public function data_produck()
     {
         return $this->hasOne(DataProduck::class, 'prduck_id', 'id');

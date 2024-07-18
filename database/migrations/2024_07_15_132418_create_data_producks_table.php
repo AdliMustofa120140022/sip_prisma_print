@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('data_producks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('prduck_id')->constrained('producks');
+            $table->foreignId('prduck_id')->references('id')->on('producks');
             $table->integer('stok');
-            $table->integer('harga');
             $table->integer('lebar');
             $table->integer('panjang');
             $table->integer('tinggi');
             $table->integer('berat');
+            $table->string('bahan');
             $table->string('warna');
-            $table->string('jensi_cetak');
+            $table->string('jenis_cetak');
             $table->string('resolusi');
             $table->string('finishing');
             $table->string('kertas');
+            $table->float('ketebalan_kertas');
             $table->string('tinta');
             $table->integer('harga_satuan');
             $table->integer('harga_grosir')->nullable();
@@ -34,6 +35,13 @@ return new class extends Migration
             $table->string('lokasi');
             $table->string('supplier');
             // $table->timestamps();
+        });
+
+        Schema::create('img_producks', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('prduck_id')->references('id')->on('producks');
+            $table->string('img');
+            $table->timestamps();
         });
     }
 

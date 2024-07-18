@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');
         Route::get('/product/create', [ProductController::class, 'create'])->name('admin.product.create');
+        Route::post('/product', [ProductController::class, 'store'])->name('admin.product.store');
+        Route::get('/product/{id}/show', [ProductController::class, 'show'])->name('admin.product.show');
+        Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
+        Route::put('/product/{id}', [ProductController::class, 'update'])->name('admin.product.update');
 
         Route::get('sub-kategori', [SubKatagoriController::class, 'index'])->name('admin.sub-kategori.index');
         Route::post('sub-kategori', [SubKatagoriController::class, 'store'])->name('admin.sub-kategori.store');

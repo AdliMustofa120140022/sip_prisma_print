@@ -1,5 +1,12 @@
 <x-app-layout>
     <x-slot name="title">Produk</x-slot>
+    <x-slot name="metas">
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+            integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+
+        <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    </x-slot>
 
     <section class="m-3">
         <div class="row">
@@ -11,7 +18,8 @@
                         </div>
                         <div class="d-flex gap-2">
 
-                            <a href="#" class="btn bg-gradient-primary mt-4 mb-0 px-5 text-white me-3">Tambah
+                            <a href="{{ route('admin.product.create') }}"
+                                class="btn bg-gradient-primary mt-4 mb-0 px-5 text-white me-3">Tambah
                                 Produk</a>
                             <button class="btn bg-gradient-info mt-4 mb-0 px-5 text-white me-3">Import
                                 Produk</button>
@@ -24,7 +32,7 @@
                     </div> --}}
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
+                            <table id="dataTabel" class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-info  font-weight-bolder opacity-7">NO</th>
@@ -124,6 +132,12 @@
             </div>
         </div>
     </section>
+
+    <x-slot name="scripts">
+        <script>
+            // new DataTable('#dataTabel');
+        </script>
+    </x-slot>
 
 
 </x-app-layout>

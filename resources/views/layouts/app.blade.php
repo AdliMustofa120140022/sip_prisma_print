@@ -9,6 +9,10 @@
     <title>{{ $title }} - SIP prisma Printing</title>
     <x-utils.metas-x-demo />
 
+    @if (isset($metas))
+        {{ $metas }}
+    @endif
+
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
