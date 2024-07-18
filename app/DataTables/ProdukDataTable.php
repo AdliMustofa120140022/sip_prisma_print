@@ -74,7 +74,6 @@ class ProdukDataTable extends DataTable
             Column::make('updated_at'),
         ];
     }
-
     /**
      * Get the filename for export.
      */

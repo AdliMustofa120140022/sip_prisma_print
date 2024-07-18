@@ -21,7 +21,7 @@
                 this.isProduckOpen = false
                 this.iskatagoriOpen = false
             }}'
-                x-init='{isProduckOpen: false, iskatagoriOpen: false, 
+                x-init='{isProduckOpen: false, iskatagoriOpen: false,
             }'
                 class=' hidden md:flex gap-10 items-center  font-semibold'>
                 <li>
@@ -117,12 +117,13 @@
             </div>
             <ul class=" flex gap-5 items-center  font-semibold text-gray-600">
                 <li class=' drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]'>
-                    <a href="" class="rounded-lg hover:bg-gray-100  ">
+                    <a href=" {{ route('login') }}" class="rounded-lg  ">
                         <span>Masuk</span>
                     </a>
                 </li>
-                <li class=' rounded-3xl bg-cyan-500 py-2 px-6 text-white'>
-                    <a href="" class="rounded-lg hover:bg-gray-100  ">
+                <li class='
+                    rounded-3xl bg-cyan-500 py-2 px-6 text-white hover:bg-gray-100'>
+                    <a href="" class="rounded-lg  ">
                         <span>Daftar</span>
                     </a>
                 </li>

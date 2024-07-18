@@ -91,14 +91,12 @@
                                             </td>
                                             <td class="align-middle">
                                                 <div class="d-flex">
-
-
-                                                    <a href="#"
+                                                    <a href="{{ route('admin.product.edit', $produck->id) }}"
                                                         class="text-secondary font-weight-bold text-decoration-underline pe-3"
                                                         data-toggle="tooltip" data-original-title="Edit user">
                                                         Edit
                                                     </a>
-                                                    <a href=""
+                                                    <a href="{{ route('admin.product.show', $produck->id) }}"
                                                         class="text-secondary font-weight-bold text-decoration-underline  pe-3"
                                                         data-toggle="tooltip" data-original-title="Edit user">
                                                         detail

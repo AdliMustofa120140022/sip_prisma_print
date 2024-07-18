@@ -7,8 +7,9 @@
                 <h3 class="font-weight-bolder text-info text-gradient">Permohonan Bantuan Sosial</h3>
                 <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p>
             </div>
-            <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.product.update', $produck->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="row align-items-center">
                     <h6 class="ps-4 mt-2 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
                         Data Produk</h6>
@@ -17,7 +18,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="name">Nama Produk<span class="text-danger">*</span></label>
                             <input name="name" id="name" type="text" class="form-control"
-                                placeholder="Nama Produk" aria-label="name" value="{{ old('name') }}">
+                                placeholder="Nama Produk" aria-label="name" value="{{ $produck->name, old('name') }}">
                             @error('name')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -26,7 +27,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="description">Deskirpsi<span class="text-danger">*</span></label>
                             <textarea name="description" id="description" type="text" class="form-control" placeholder="Deskripsi"
-                                aria-label="description">{{ old('description') }}</textarea>
+                                aria-label="description">{{ $produck->description, old('description') }}</textarea>
                             @error('description')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -39,7 +40,7 @@
                                 <option value="">Pilih Katagori</option>
                                 @foreach ($sub_katagoris as $sub_katagori)
                                     <option value="{{ $sub_katagori->id }}"
-                                        {{ old('sub_kategori_id') == $sub_katagori->id ? 'selected' : '' }}>
+                                        {{ $produck->sub_katagori->id == $sub_katagori->id ? 'selected' : '' }}>
                                         {{ $sub_katagori->name }}</option>
                                 @endforeach
                             </select>
@@ -57,7 +58,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="stok">Jumlah Stok<span class="text-danger">*</span></label>
                             <input name="stok" id="stok" type="number" class="form-control"
-                                placeholder="Jumlah Stok" aria-label="stok" value="{{ old('stok') }}">
+                                placeholder="Jumlah Stok" aria-label="stok"
+                                value="{{ $produck->data_produck->stok, old('stok') }}">
                             @error('stok')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -65,7 +67,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="lebar">Ukuran lebar (mm)<span class="text-danger">*</span></label>
                             <input name="lebar" id="lebar" type="number" class="form-control"
-                                placeholder="Ukuran lebar (mm)" aria-label="lebar" value="{{ old('lebar') }}">
+                                placeholder="Ukuran lebar (mm)" aria-label="lebar"
+                                value="{{ $produck->data_produck->lebar, old('lebar') }}">
                             @error('lebar')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -73,7 +76,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="panjang">Ukuran Panjang (mm)<span class="text-danger">*</span></label>
                             <input name="panjang" id="panjang" type="number" class="form-control"
-                                placeholder="Ukuran Panjang (mm)" aria-label="panjang" value="{{ old('panjang') }}">
+                                placeholder="Ukuran Panjang (mm)" aria-label="panjang"
+                                value="{{ $produck->data_produck->panjang, old('panjang') }}">
                             @error('panjang')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -81,7 +85,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="tinggi">Ukuran Tinggi (mm)<span class="text-danger">*</span></label>
                             <input name="tinggi" id="tinggi" type="number" class="form-control"
-                                placeholder="Ukuran Tinggi (mm)" aria-label="tinggi" value="{{ old('tinggi') }}">
+                                placeholder="Ukuran Tinggi (mm)" aria-label="tinggi"
+                                value="{{ $produck->data_produck->tinggi, old('tinggi') }}">
                             @error('tinggi')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -89,7 +94,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="berat">Berat per Satuan <span class="text-danger">*</span></label>
                             <input name="berat" id="berat" type="number" class="form-control"
-                                placeholder="Berat per Satuan " aria-label="berat" value="{{ old('berat') }}">
+                                placeholder="Berat per Satuan " aria-label="berat"
+                                value="{{ $produck->data_produck->berat, old('berat') }}">
                             @error('berat')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -106,7 +112,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="bahan">Bahan<span class="text-danger">*</span></label>
                             <input name="bahan" id="bahan" type="text" class="form-control"
-                                placeholder="Bahan" aria-label="bahan" value="{{ old('bahan') }}">
+                                placeholder="Bahan" aria-label="bahan"
+                                value="{{ $produck->data_produck->bahan, old('bahan') }}">
                             @error('bahan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -114,7 +121,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="warna">warna<span class="text-danger">*</span></label>
                             <input name="warna" id="warna" type="text" class="form-control"
-                                placeholder="warna" aria-label="warna" value="{{ old('warna') }}">
+                                placeholder="warna" aria-label="warna"
+                                value="{{ $produck->data_produck->warna, old('warna') }}">
                             @error('warna')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -123,7 +131,7 @@
                             <label for="jenis_cetak">Jenis Cetakan<span class="text-danger">*</span></label>
                             <input name="jenis_cetak" id="jenis_cetak" type="text" class="form-control"
                                 placeholder="Jenis Cetakan" aria-label="jenis_cetak"
-                                value="{{ old('jenis_cetak') }}">
+                                value="{{ $produck->data_produck->jenis_cetak, old('jenis_cetak') }}">
                             @error('jenis_cetak')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -131,7 +139,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="resolusi">Resolusi Cetakan<span class="text-danger">*</span></label>
                             <input name="resolusi" id="resolusi" type="text" class="form-control"
-                                placeholder="Resolusi Cetakan" aria-label="resolusi" value="{{ old('resolusi') }}">
+                                placeholder="Resolusi Cetakan" aria-label="resolusi"
+                                value="{{ $produck->data_produck->resolusi, old('resolusi') }}">
                             @error('resolusi')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -139,7 +148,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="finishing">Finishing<span class="text-danger">*</span></label>
                             <input name="finishing" id="finishing" type="text" class="form-control"
-                                placeholder="Finishing" aria-label="finishing" value="{{ old('finishing') }}">
+                                placeholder="Finishing" aria-label="finishing"
+                                value="{{ $produck->data_produck->finishing, old('finishing') }}">
                             @error('finishing')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -147,7 +157,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="kertas">Jenis Kertas<span class="text-danger">*</span></label>
                             <input name="kertas" id="kertas" type="text" class="form-control"
-                                placeholder="Jenis kertas" aria-label="kertas" value="{{ old('kertas') }}">
+                                placeholder="Jenis kertas" aria-label="kertas"
+                                value="{{ $produck->data_produck->kertas, old('kertas') }}">
                             @error('kertas')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -156,7 +167,7 @@
                             <label for="ketebalan_kertas">Ketebalan Kertas<span class="text-danger">*</span></label>
                             <input name="ketebalan_kertas" id="ketebalan_kertas" type="number" class="form-control"
                                 placeholder="Ketebalan Kertas" aria-label="ketebalan_kertas"
-                                value="{{ old('ketebalan_kertas') }}">
+                                value="{{ $produck->data_produck->ketebalan_kertas, old('ketebalan_kertas') }}">
                             @error('ketebalan_kertas')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -164,7 +175,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="tinta">Tinta yang Digunakan<span class="text-danger">*</span></label>
                             <input name="tinta" id="tinta" type="text" class="form-control"
-                                placeholder="Tinta yang Digunakan" aria-label="tinta" value="{{ old('tinta') }}">
+                                placeholder="Tinta yang Digunakan" aria-label="tinta"
+                                value="{{ $produck->data_produck->tinta, old('tinta') }}">
                             @error('tinta')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -181,7 +193,7 @@
                             <label for="harga_satuan">Harga Satuan<span class="text-danger">*</span></label>
                             <input name="harga_satuan" id="harga_satuan" type="number" class="form-control"
                                 placeholder="Harga Satuan" aria-label="harga_satuan"
-                                value="{{ old('harga_satuan') }}">
+                                value="{{ $produck->data_produck->harga_satuan, old('harga_satuan') }}">
                             @error('harga_satuan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -190,7 +202,7 @@
                             <label for="harga_grosir">Harga Grosir</label>
                             <input name="harga_grosir" id="harga_grosir" type="number" class="form-control"
                                 placeholder="Harga Grosir" aria-label="harga_grosir"
-                                value="{{ old('harga_grosir') }}">
+                                value="{{ $produck->data_produck->harga_grosir, old('harga_grosir') }}">
                             @error('harga_grosir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -199,7 +211,7 @@
                             <label for="minimal_grosir">Minimal cetakan (untuk harga grosir)</label>
                             <input name="minimal_grosir" id="minimal_grosir" type="number" class="form-control"
                                 placeholder="Minimal cetakan (untuk harga grosir)" aria-label="minimal_grosir"
-                                value="{{ old('minimal_grosir') }}">
+                                value="{{ $produck->data_produck->minimal_grosir, old('minimal_grosir') }}">
                             @error('minimal_grosir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -217,7 +229,7 @@
                             <label for="tanggal_masuk">Tanggal Masuk<span class="text-danger">*</span></label>
                             <input name="tanggal_masuk" id="tanggal_masuk" type="date" class="form-control"
                                 placeholder="Tanggal Masuk" aria-label="tanggal_masuk"
-                                value="{{ old('tanggal_masuk') }}">
+                                value="{{ $produck->data_produck->tanggal_masuk, old('tanggal_masuk') }}">
                             @error('tanggal_masuk')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -226,7 +238,7 @@
                             <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa</label>
                             <input name="tanggal_kadaluarsa" id="tanggal_kadaluarsa" type="date"
                                 class="form-control" placeholder="Tanggal Kadaluarsa" aria-label="tanggal_kadaluarsa"
-                                value="{{ old('tanggal_kadaluarsa') }}">
+                                value="{{ $produck->data_produck->tanggal_kadaluarsa, old('tanggal_kadaluarsa') }}">
                             @error('tanggal_kadaluarsa')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -234,7 +246,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="lokasi">Lokasi Penyimpanan<span class="text-danger">*</span></label>
                             <input name="lokasi" id="lokasi" type="text" class="form-control"
-                                placeholder="Lokasi Penyimpanan" aria-label="lokasi" value="{{ old('lokasi') }}">
+                                placeholder="Lokasi Penyimpanan" aria-label="lokasi"
+                                value="{{ $produck->data_produck->lokasi, old('lokasi') }}">
                             @error('lokasi')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -242,7 +255,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="supplier">Supplier<span class="text-danger">*</span></label>
                             <input name="supplier" id="supplier" type="text" class="form-control"
-                                placeholder="Supplier" aria-label="supplier" value="{{ old('supplier') }}">
+                                placeholder="Supplier" aria-label="supplier"
+                                value="{{ $produck->data_produck->supplier, old('supplier') }}">
                             @error('supplier')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
