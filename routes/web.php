@@ -3,6 +3,8 @@
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SubKatagoriController;
+use App\Http\Controllers\guest\HomeController as GuestHomeController;
+use App\Http\Controllers\guest\ProdukController as GuestProdukController;
 use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 //route tanpa middleware
-Route::get('/', [HomeController::class, 'index'])->name('guest.dashboard');
+Route::get('/', [GuestHomeController::class, 'index'])->name('guest.dashboard');
+Route::get('/product', [GuestProdukController::class, 'index'])->name('guest.product');
+
 
 //faq
 Route::get('/faq', function () {

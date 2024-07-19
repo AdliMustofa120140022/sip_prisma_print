@@ -26,9 +26,9 @@
                 class=' hidden md:flex gap-10 items-center  font-semibold'>
                 <li>
                     <button @click=' showProduct() '
-                        class='flex items-center gap-4 drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]'>
-                        <span class='whitespace-nowrap'>Produk</span>
-                        <i class="fa-solid  text-black" :class="isProduckOpen ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                        class='hover:text-blue-500 flex items-center gap-4 drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]'>
+                        <span class='whitespace-nowrap' :class="isProduckOpen ? 'text-blue-600' : ''">Produk</span>
+                        <i class="fa-solid " :class="isProduckOpen ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </button>
 
                     <ul x-show='isProduckOpen'
@@ -48,9 +48,9 @@
                 </li>
                 <li x-data='{}'>
                     <button @click=' showKatagori() '
-                        class='flex items-center gap-4 drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]'>
-                        <span class='whitespace-nowrap'>Katagori</span>
-                        <i class="fa-solid  text-black" :class="iskatagoriOpen ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                        class='hover:text-blue-500 flex items-center gap-4 drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]'>
+                        <span class='whitespace-nowrap' :class="iskatagoriOpen ? 'text-blue-600' : ''">Katagori</span>
+                        <i class="fa-solid " :class="iskatagoriOpen ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </button>
 
                     <ul x-show='iskatagoriOpen'
@@ -73,9 +73,9 @@
                 </li>
                 <li x-data='{}'>
                     <button @click=' showPesanan() '
-                        class='flex items-center gap-4 drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]'>
-                        <span class='whitespace-nowrap'>Pesanan</span>
-                        <i class="fa-solid text-black" :class="isPesananOpen ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                        class='hover:text-blue-500 flex items-center gap-4 drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]'>
+                        <span class='whitespace-nowrap' :class="isPesananOpen ? 'text-blue-600' : ''">Pesanan</span>
+                        <i class="fa-solid " :class="isPesananOpen ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </button>
 
                     <ul x-show='isPesananOpen'
@@ -92,7 +92,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="items-center gap-4 drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
+                <li class="hover:text-blue-500 items-center gap-4 drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
                     <a href="" class="whitespace-nowrap">Profile</a>
                 </li>
             </ul>

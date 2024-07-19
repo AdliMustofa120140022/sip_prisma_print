@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Katagori;
-use App\Models\Produck;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    //
     public function index(Request $request)
     {
         $param = $request->query('p', 'kantor');

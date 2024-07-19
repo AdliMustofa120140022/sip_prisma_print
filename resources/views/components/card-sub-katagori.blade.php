@@ -4,11 +4,11 @@
             src="{{ asset('static/dummy/dummy.png') }}" />
 
         <div class="text text-center">
-            <p class="uppercase font-bold text-black pb-3">{{ $produck->name }}</p>
-            <p class="pb-3">{{ $produck->description }}</p>
+            <p class="uppercase font-bold text-black pb-3">{{ $subKatagori->name }}</p>
+            <p class="pb-3">{{ $subKatagori->description }}</p>
             <a href="#" class="inline group-hover:hidden text-blue-500 font-bold my-3">Selengkapnya >></a>
             <a href="#" class="hidden group-hover:inline text-blue-500 font-bold my-3">Lihat Semua
-                {{ $produck->name }} >></a>
+                {{ $subKatagori->name }} >></a>
         </div>
     </div>
 
