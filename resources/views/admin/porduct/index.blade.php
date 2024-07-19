@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="title">Produk</x-slot>
     <x-slot name="metas">
+        {{-- datatables --}}
         <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
             integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-
         <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     </x-slot>
 
@@ -27,9 +27,6 @@
                                 Produk</a>
                         </div>
                     </div>
-                    {{-- <div class="card-header pb-0">
-                        <h6>Produk</h6>
-                    </div> --}}
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
                             <table id="dataTabel" class="table align-items-center mb-0">
@@ -61,7 +58,7 @@
                                         <tr>
                                             <td>
                                                 <p class=" ps-3 text-secondary  font-weight-bold">
-                                                    {{ ($producks->currentPage() - 1) * $producks->perPage() + $loop->iteration }}
+                                                    {{ $loop->iteration }}
                                                 </p>
                                             </td>
                                             <td>
@@ -120,9 +117,8 @@
 
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-end px-3">
-                                {{ $producks->links() }}
-                            </div>
+
+
 
                         </div>
                     </div>
@@ -133,7 +129,9 @@
 
     <x-slot name="scripts">
         <script>
-            // new DataTable('#dataTabel');
+            $(document).ready(function() {
+                $('#dataTabel').DataTable();
+            });
         </script>
     </x-slot>
 

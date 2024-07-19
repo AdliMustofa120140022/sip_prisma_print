@@ -22,7 +22,7 @@ class SubKatagoriController extends Controller
     {
         $katagoris = Katagori::all();
 
-        $sub_katagoris = SubKatagori::paginate(10);
+        $sub_katagoris = SubKatagori::all();
         return view('admin.subKatagori.index', compact('sub_katagoris', 'katagoris'));
     }
 

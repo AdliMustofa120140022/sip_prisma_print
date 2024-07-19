@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\DataTables\ProdukDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Produck;
 use App\Models\SubKatagori;
@@ -17,9 +18,10 @@ class ProductController extends Controller
         return $fileName;
     }
 
-    public function index()
+    public function index(ProdukDataTable $dataTable)
+
     {
-        $producks = Produck::paginate(10);
+        $producks = Produck::all();
 
         // dd($producks);
         return view('admin.porduct.index', compact('producks'));

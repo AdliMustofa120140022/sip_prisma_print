@@ -22,9 +22,40 @@ class ProdukDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        dd($query);
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'produk.action')
-            ->setRowId('id');
+            ->eloquent($query)
+            ->addColumn('action', function ($row) {
+                $editUrl = route('admin.product.edit', $row->id);
+                $showUrl = route('admin.product.show', $row->id);
+                $csrfToken = csrf_token();
+
+                return "<div class='d-flex'>
+                        <a href='{$editUrl}' class='text-secondary font-weight-bold text-decoration-underline pe-3'>Edit</a>
+                        <a href='{$showUrl}' class='text-secondary font-weight-bold text-decoration-underline pe-3'>Detail</a>
+                        <form action='#' method='POST' class='p-0'>
+                            <input type='hidden' name='_token' value='{$csrfToken}'>
+                            <input type='hidden' name='_method' value='DELETE'>
+                            <button type='submit' class='border-0 bg-transparent text-secondary font-weight-bold text-decoration-underline'>Hapus</button>
+                        </form>
+                    </div>";
+            })
+            ->editColumn('kode_produk', function ($row) {
+                return $row->produck_code ?? '-';
+            })
+            ->editColumn('katagori_produk', function ($row) {
+                return $row->sub_katagori->katagori->nama ?? '-';
+            })
+            ->editColumn('sub_katagori_produk', function ($row) {
+                return $row->sub_katagori->name ?? '-';
+            })
+            ->editColumn('nama_produk', function ($row) {
+                return $row->name ?? '-';
+            })
+            ->editColumn('stock', function ($row) {
+                return $row->data_produck->stok ?? '-';
+            })
+            ->rawColumns(['action']);
     }
 
     /**
@@ -32,7 +63,7 @@ class ProdukDataTable extends DataTable
      */
     public function query(Produck $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->with(['sub_katagori.katagori', 'data_produck'])->select('producks.*');
     }
 
     /**
@@ -41,20 +72,14 @@ class ProdukDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('produk-table')
+            ->setTableId('dataTabel')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            //->dom('Bfrtip')
-            ->orderBy(1)
-            ->selectStyleSingle();
-        // ->buttons([
-        //     Button::make('excel'),
-        //     Button::make('csv'),
-        //     Button::make('pdf'),
-        //     Button::make('print'),
-        //     Button::make('reset'),
-        //     Button::make('reload')
-        // ]);
+            ->addAction(['width' => '80px'])
+            ->parameters([
+                'dom' => 'Bfrtip',
+                'buttons' => ['excel', 'csv', 'pdf'],
+            ]);
     }
 
     /**
@@ -63,15 +88,20 @@ class ProdukDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::computed('DT_RowIndex')
+                ->title('NO')
+                ->searchable(false)
+                ->orderable(false),
+            Column::make('produck_code')->title('Kode Produk'),
+            Column::make('katagori_produk')->title('Katagori Produk'),
+            Column::make('sub_katagori_produk')->title('Sub Katagori Produk'),
+            Column::make('name')->title('Nama Produk'),
+            Column::make('data_produck.stok')->title('Stock'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
-            Column::make('id'),
-            Column::make(''),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
     /**
@@ -79,6 +109,6 @@ class ProdukDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Produk_' . date('YmdHis');
+        return 'Produck_' . date('YmdHis');
     }
 }
