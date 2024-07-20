@@ -25,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Paginator::useBootstrap();
-        Blade::component('components.layouts.user-navbar.', UserNavbar::class);
+        Blade::component('layouts.user-navbar.', UserNavbar::class);
     }
 }
