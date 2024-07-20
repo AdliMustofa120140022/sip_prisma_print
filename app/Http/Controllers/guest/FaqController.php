@@ -10,7 +10,7 @@ class FaqController extends Controller
     //\
     public function index(Request $request)
     {
-        $param = $request->query('q', null);
+        $param = $request->query('q', '');
 
         return view('guest.faq', compact('param'));
     }

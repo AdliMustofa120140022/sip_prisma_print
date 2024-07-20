@@ -10,12 +10,13 @@ class faqSidebar extends Component
 {
 
     public $menus;
+    public $param;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($param)
     {
-        //
+        $this->param = $param;
         $this->menus = [
             [
                 "section" => "Pemesanan",
