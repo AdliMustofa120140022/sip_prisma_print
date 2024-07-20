@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SubKatagoriController;
+use App\Http\Controllers\guest\FaqController;
 use App\Http\Controllers\guest\HomeController as GuestHomeController;
 use App\Http\Controllers\guest\ProdukController as GuestProdukController;
 use App\Http\Controllers\user\HomeController;
@@ -18,9 +19,9 @@ Route::get('/product', [GuestProdukController::class, 'index'])->name('guest.pro
 
 
 //faq
-Route::get('/faq', function () {
-    return view('guest.faq');
-})->name('faq');
+Route::get('/faq', [FaqController::class, 'index'])->name('guest.faq');
+
+
 
 Route::middleware('auth')->group(function () {
 
