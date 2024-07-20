@@ -19,10 +19,10 @@ class UserNavbar extends Component
 
     public $produck;
     public $katagori;
-    
+
     public function __construct()
     {
-        $this->produck = SubKatagori::paginate(10);
+        $this->produck = SubKatagori::limit(5)->get();
         $this->katagori = Katagori::all();
     }
 
