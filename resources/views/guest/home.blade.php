@@ -50,7 +50,7 @@
 
         <div class="felx justify-center items-center text-center">
             @foreach ($katagoris as $katagori)
-                <a href=" {{ route('guest.dashboard', ['p' => $katagori->nama]) }}"z
+                <a href=" {{ route('guest.dashboard', ['p' => $katagori->nama]) }}"
                     class="hover:bg-blue-600 hover:text-white px-5 py-2 mx-4 rounded-3xl border border-1  text-balance font-bold inline-block {{ request('p') == $katagori->nama ? 'border-black text-black' : 'text-gray-500' }}">{{ $katagori->nama }}</a>
             @endforeach
 
