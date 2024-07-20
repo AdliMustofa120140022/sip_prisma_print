@@ -2,7 +2,7 @@
     <div class=" container mx-auto flex  justify-between items-center py-3 px-4">
         <div class="flex gap-5 items-center">
 
-            <a href='#'>
+            <a href='{{ route('guest.dashboard') }}'>
                 <img src='{{ asset('static/img/prima_logo.png') }}' alt='logo'
                     class='drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]  w-[50px] h-[50px] ' />
             </a>

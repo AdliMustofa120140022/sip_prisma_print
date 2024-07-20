@@ -14,7 +14,7 @@ class cardProduct extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(SubKatagori $produck)
+    public function __construct(Produck $produck)
     {
         $this->produck = $produck;
     }

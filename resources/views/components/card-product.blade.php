@@ -1,6 +1,6 @@
-<div class="group relative w-[400px] m-3">
+<div class="group relative w-[370px] m-3">
     <div class="group-hover:shadow-2xl ease-in-out shadow-md bg-white rounded-xl mt-20 p-5 h-full pt-[125px]">
-        <img class="group-hover:scale-105 ease-in-out absolute top-0 w-[360px] h-[188px] mx-auto   rounded-xl"
+        <img class="group-hover:scale-105 ease-in-out absolute top-0 w-[330px] h-[188px] mx-auto   rounded-xl"
             src="{{ asset('static/dummy/dummy.png') }}" />
 
         <div class="text text-center">

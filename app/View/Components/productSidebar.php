@@ -11,12 +11,16 @@ class productSidebar extends Component
 {
 
     public $katagoris;
+    public $param;
+
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($param)
     {
         //
+        $this->param = $param;
         $this->katagoris = Katagori::all()->sortBy('id');
     }
 
