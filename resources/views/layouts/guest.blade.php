@@ -37,7 +37,7 @@
 
     <x-wa-toas />
 
-    <x-layouts.user-navbar />
+    <x-user-navbar />
 
     <main class='container mx-auto pt-4 flex flex-1 flex-col  '>
         {{ $slot }}
