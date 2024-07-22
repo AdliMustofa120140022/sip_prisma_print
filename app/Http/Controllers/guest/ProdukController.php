@@ -18,4 +18,10 @@ class ProdukController extends Controller
         $producks = $sub_katagori->produck;
         return view('guest.product.index', compact('producks', 'sub_katagori', 'params'));
     }
+
+    public function show($id)
+    {
+        $produck = Produck::find($id);
+        return view('guest.product.show', compact('produck'));
+    }
 }

@@ -6,8 +6,10 @@
         <div class="text text-center">
             <p class="uppercase font-bold text-black pb-3">{{ $produck->name }}</p>
             <p class="pb-3">{{ $produck->description }}</p>
-            <a href="#" class="inline group-hover:hidden text-blue-500 font-bold my-3">Selengkapnya >></a>
-            <a href="#" class="hidden group-hover:inline text-blue-500 font-bold my-3">Lihat Semua
+            <a href="{{ route('guest.product.show', $produck->id) }}"
+                class="inline group-hover:hidden text-blue-500 font-bold my-3">Selengkapnya >></a>
+            <a href="{{ route('guest.product.show', $produck->id) }}"
+                class="hidden group-hover:inline text-blue-500 font-bold my-3">Lihat Semua
                 {{ $produck->name }} >></a>
         </div>
     </div>

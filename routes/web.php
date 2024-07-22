@@ -16,6 +16,7 @@ require __DIR__ . '/auth.php';
 //route tanpa middleware
 Route::get('/', [GuestHomeController::class, 'index'])->name('guest.dashboard');
 Route::get('/product', [GuestProdukController::class, 'index'])->name('guest.product');
+Route::get('/product/{id}/show', [GuestProdukController::class, 'show'])->name('guest.product.show');
 
 
 //faq

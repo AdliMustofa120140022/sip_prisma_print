@@ -13,9 +13,6 @@
                     <x-card-product :produck="$produck" />
                 @endforeach
             </div>
-
         </div>
-
-
     </section>
 </x-guest-layout>

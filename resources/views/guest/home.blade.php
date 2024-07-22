@@ -8,7 +8,7 @@
                 <div class="overflow-hidden relative">
                     <div id="carousel" x-ref="carousel"" class="flex transition-transform duration-500 ease-in-out ">
                         {{-- carousel item --}}
-                        <div class="min-w-full min-h-full rounded-2xl border-3 border py-10 md:px-20">
+                        <div class="min-w-full rounded-2xl border-3 border py-10 md:px-20">
                             <p class="uppercase font-bold">Promosi</p>
                             <div class="flex justify-center">
                                 <div class="">
@@ -73,7 +73,6 @@
                     items: CarouselLength.children.length,
                     autoSlideInterval: null,
                     startAutoSlide() {
-                        console.log('start');
                         this.autoSlideInterval = setInterval(() => {
                             this.next();
                         }, 3000); // Change slides every 3 seconds
