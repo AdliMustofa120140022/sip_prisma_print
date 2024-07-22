@@ -69,10 +69,17 @@
         </div>
 
         <div class="col-span-4">
+            <div class="flex items-start justify-between">
+                <div class="">
+                    <p class="text-xl font-semibold py-3">{{ $produck->name }}</p>
 
-            <p class="text-xl font-semibold py-3">{{ $produck->name }}</p>
+                    <p class="text-blue-400">Harga Mulai Rp{{ $produck->data_produck->harga_satuan }}</p>
+                </div>
+                <a href=""
+                    class="py-2 px-4 rounded-full font-medium bg-[#FFC20E] text-white hover:border-[#FFC20E] hover:border-2 hover:text-[#FFC20E] hover:bg-transparent">Pesan
+                    Sekarang</a>
+            </div>
 
-            <p class="text-blue-400">Harga Mulai Rp{{ $produck->data_produck->harga_satuan }}</p>
             <!-- Add your content here -->
 
             <div class="border border-gray-300 rounded-lg p-5 my-3">
