@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Produck;
+use App\Models\SubKatagori;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProduckFactory extends Factory
@@ -16,10 +17,12 @@ class ProduckFactory extends Factory
      */
     public function definition()
     {
+
+        $subKategoriIds = SubKatagori::pluck('id')->toArray();
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'sub_kategori_id' => 1, // Adjust as necessary
+            'sub_kategori_id' => $this->faker->randomElement($subKategoriIds),
         ];
     }
 
@@ -29,6 +32,7 @@ class ProduckFactory extends Factory
             return [];
         })->afterCreating(function (Produck $produck) {
             $produck->data_produck()->create([
+                'sepesifiksai' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit voluptate velit esse cillum dolore fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum',
                 'stok' => 100,
                 'lebar' => 10,
                 'panjang' => 10,

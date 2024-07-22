@@ -13,6 +13,7 @@ class DataProduck extends Model
 
     protected $fillable = [
         'prduck_id',
+        'sepesifiksai',
         'stok',
         'lebar',
         'panjang',

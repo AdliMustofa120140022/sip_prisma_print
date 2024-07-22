@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('data_producks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('prduck_id')->references('id')->on('producks');
+            $table->longText('sepesifiksai');
             $table->integer('stok');
             $table->integer('lebar');
             $table->integer('panjang');

@@ -44,10 +44,8 @@ class Produck extends Model
         return $this->belongsTo(SubKatagori::class, 'sub_kategori_id', 'id');
     }
 
-    // public function sub_katagori()
-    // {
-    //     return $this->belongsTo(SubKatagori::class, 'sub_kategori_id', 'id');
-    // }
-
-
+    public function produk_transaksi()
+    {
+        return $this->hasMany(ProdukTransaksi::class, 'produk_id', 'id');
+    }
 }

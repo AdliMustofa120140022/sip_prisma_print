@@ -49,7 +49,7 @@
                     </button>
 
 
-                    <section class="flex mt-4 gap-4 justify-around items-center w-full">
+                    <div class="flex mt-4 gap-4 justify-around items-center w-full">
                         <div @click="toImg(0)" class="rounded-2xl border-3 border">
                             <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
                                 class="aspect-square rounded-2xl h-32">
@@ -62,7 +62,7 @@
                             <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
                                 class="aspect-square rounded-2xl h-32">
                         </div>
-                    </section>
+                    </div>
                 </div>
             </section>
 
