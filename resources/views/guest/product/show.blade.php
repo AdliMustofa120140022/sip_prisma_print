@@ -65,7 +65,6 @@
                     </div>
                 </div>
             </section>
-
         </div>
 
         <div class="col-span-4">
