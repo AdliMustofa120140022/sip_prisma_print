@@ -8,6 +8,7 @@ use App\Http\Controllers\guest\HomeController as GuestHomeController;
 use App\Http\Controllers\guest\ProdukController as GuestProdukController;
 use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\CartController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,5 +57,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('/user')->middleware('user')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('user.dashboard');
+
+        Route::get('/cart', [CartController::class, 'index'])->name('user.cart.index');
     });
 });

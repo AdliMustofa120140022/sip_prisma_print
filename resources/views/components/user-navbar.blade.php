@@ -113,7 +113,7 @@
                     {{-- <button type="submit">cari</button> --}}
                 </form>
 
-                <a href="" class="text-orange-600">
+                <a href="{{ route('user.cart.index') }}" class="text-orange-600">
                     <i class="fa-solid fa-cart-shopping text-3xl"></i>
                 </a>
             </div>
