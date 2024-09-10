@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -50,5 +52,10 @@ class User extends Authenticatable
     public function transaksi()
     {
         return $this->hasMany(Transaksi::class, 'user_id', 'id');
+    }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'user_id', 'id');
     }
 }

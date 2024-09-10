@@ -235,7 +235,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             foreach ($Produck->img_produck as $img) {
-                unlink(storage_path('app/public/img/produck/' . $img->img));
+                // unlink(storage_path('app/public/img/produck/' . $img->img));
                 $img->delete();
             }
 

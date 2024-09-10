@@ -74,10 +74,75 @@
 
                     <p class="text-blue-400">Harga Mulai Rp{{ $produck->data_produck->harga_satuan }}</p>
                 </div>
-                <a href=""
-                    class="py-2 px-4 rounded-full font-medium bg-[#FFC20E] text-white hover:border-[#FFC20E] hover:border-2 hover:text-[#FFC20E] hover:bg-transparent">Pesan
-                    Sekarang</a>
+                <div class="flex items-center gap-4">
+
+                    <div x-data="{ open: false }">
+                        <button type="button" @click= "open = true"
+                            class="py-2 px-4 rounded-full font-medium bg-[#FFC20E] text-white hover:border-[#FFC20E] border-2 hover:text-[#FFC20E] hover:bg-transparent">Pesan
+                            Sekarang</button>
+
+                        <!-- Modal -->
+                        <div x-show="open"
+                            class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+                            <div @click.away='open = false' class="bg-white w-1/3 p-6 rounded-xl shadow-lg">
+                                <h2 class="text-xl font-semibold mb-4">Pesan Produk</h2>
+                                <form action="{{ route('user.cart.store') }}" method="POST" class="">
+                                    @csrf
+                                    <input type="hidden" name="product_id" id="product_id"
+                                        value="{{ $produck->id }}">
+
+                                    <label for="qty" class="text-gray-500 font-medium text-base">Jumlah</label>
+                                    <input type="number" name="qty" id="qty" value="1"
+                                        class="border border-gray-300 rounded-lg p-2 w-full">
+
+                                    <div class="flex gap-5 py-4">
+                                        <button type="submit"
+                                            class="px-4 py-2 bg-[#FFC20E] hover:bg-yellow-500 text-base font-medium text-white rounded-full">Pesan
+                                            Sekarang</button>
+                                        <button @click="open = false"
+                                            class="px-4 py-2 bg-red-400 hover:bg-red-500 text-base font-medium text-white rounded-full">cencel</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div x-data="modalHandler()" x-init="checkModalStatus()">
+                        <button type="button" @click="openModal()"
+                            class="py-2 px-4 rounded-full font-medium hover:bg-[#FFC20E] hover:text-white border-[#FFC20E] border-2 text-[#FFC20E] hover:bg-transparent">Masukan
+                            Keranjang </button>
+
+                        <!-- Modal -->
+                        <div x-show="open"
+                            class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+                            <div @click.away='closeModal()' class="bg-white w-1/3 p-6 rounded shadow-lg">
+                                <h2 class="text-xl font-semibold mb-4">Modal Title</h2>
+                                <form action="{{ route('user.cart.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="product_id" id="product_id"
+                                        value="{{ $produck->id }}">
+
+                                    <label for="qty" class="text-gray-500 font-medium text-base">Jumlah</label>
+                                    <input type="number" name="qty" id="qty" value="1"
+                                        class="border border-gray-300 rounded-lg p-2 w-full">
+
+                                    <div class="flex gap-5 py-4">
+                                        <button type="submit"
+                                            class="px-4 py-2 bg-[#FFC20E] hover:bg-yellow-500 text-base font-medium text-white rounded-full">Pesan
+                                            Sekarang</button>
+                                        <button type="button" @click="closeModal()"
+                                            class="px-4 py-2 bg-red-400 hover:bg-red-500 text-base font-medium text-white rounded-full">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+
 
             <!-- Add your content here -->
 
@@ -126,7 +191,8 @@
 
 
                 <p class="text-lg font-semibold mt-5">Informasi Harga</p>
-                <p class="text-gray-500">Tanggal Kadaluarsa : {{ $produck->data_produck->tanggal_kadaluarsa ?? ' - ' }}
+                <p class="text-gray-500">Tanggal Kadaluarsa :
+                    {{ $produck->data_produck->tanggal_kadaluarsa ?? ' - ' }}
                 </p>
                 <p class="text-gray-500">Supplier : {{ $produck->data_produck->supplier }} </p>
 
@@ -165,6 +231,27 @@
 
             function presImage($src) {
                 console.log($src);
+            }
+
+
+            function modalHandler() {
+                return {
+                    open: false,
+                    openModal() {
+                        this.open = true;
+                        localStorage.setItem('modalOpen', true);
+                    },
+                    closeModal() {
+                        this.open = false;
+                        localStorage.setItem('modalOpen', false);
+                    },
+                    checkModalStatus() {
+                        const success = "{{ session('success') }}";
+                        if (success) {
+                            this.closeModal();
+                        }
+                    }
+                }
             }
         </script>
     </x-slot>

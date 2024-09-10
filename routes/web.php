@@ -9,6 +9,7 @@ use App\Http\Controllers\guest\ProdukController as GuestProdukController;
 use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\CartController;
+use App\Http\Controllers\user\CheckOutController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -59,5 +60,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('user.dashboard');
 
         Route::get('/cart', [CartController::class, 'index'])->name('user.cart.index');
+        Route::get('/cart/{id}/delete', [CartController::class, 'destroy'])->name('user.cart.delete');
+        Route::post('/cart', [CartController::class, 'store'])->name('user.cart.store');
+
+
+
+        Route::get('/checkout', [CheckOutController::class, 'index'])->name('user.checkout.index');
     });
 });

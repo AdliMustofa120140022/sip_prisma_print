@@ -48,4 +48,9 @@ class Produck extends Model
     {
         return $this->hasMany(ProdukTransaksi::class, 'produk_id', 'id');
     }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'product_id', 'id');
+    }
 }

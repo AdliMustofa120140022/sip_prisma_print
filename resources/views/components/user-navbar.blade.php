@@ -71,26 +71,10 @@
                     </ul>
                 </li>
 
-                <!-- Order Dropdown -->
-                <li>
-                    <button @click="toggleMenu('isOrderOpen')" class="hover:text-blue-500 flex items-center gap-4">
-                        <span :class="isOrderOpen ? 'text-blue-600' : ''">Pesanan</span>
-                        <i class="fa-solid" :class="isOrderOpen ? 'fa-angle-down' : 'fa-angle-up'"></i>
-                    </button>
-                    <ul x-show="isOrderOpen"
-                        class="p-2 translate-y-9 text-sm text-gray-600 absolute bg-white rounded-lg border border-gray-400 shadow">
-                        <li class="py-0">
-                            <a href="" class="rounded-lg hover:bg-gray-100">Pantai</a>
-                        </li>
-                        <li class="py-0">
-                            <a href="" class="rounded-lg hover:bg-gray-100">Pantai</a>
-                        </li>
-                    </ul>
-                </li>
 
                 <!-- Profile -->
                 <li class="hover:text-blue-500">
-                    <a href="" class="whitespace-nowrap">Profil</a>
+                    <a href="" class="whitespace-nowrap">Tentang Kami</a>
                 </li>
             </ul>
         </div>
@@ -103,22 +87,54 @@
         <!-- Desktop Actions -->
         <div class="hidden md:flex gap-5">
             <div class="flex gap-5 items-center">
-                <form action="">
-                    <input type="text" id="search" name="search" placeholder="Cari produk"
-                        class="rounded-3xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-700">
-                </form>
+
                 <a href="{{ route('user.cart.index') }}" class="text-orange-600">
                     <i class="fa-solid fa-cart-shopping text-3xl"></i>
                 </a>
             </div>
-            <ul class="flex gap-5 items-center font-semibold text-gray-600">
-                <li class="drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
-                    <a href="{{ route('login') }}" class="rounded-lg">Masuk</a>
-                </li>
-                <li class="rounded-3xl bg-cyan-500 py-2 px-6 text-white hover:bg-gray-100">
-                    <a href="" class="rounded-lg">Daftar</a>
-                </li>
-            </ul>
+            @if (Auth()->user())
+                <div x-data='{accountInfo: false}'>
+                    <button type="button" @click="accountInfo = !accountInfo"
+                        class="flex gap-3 justify-center items-center rounded-3xl bg-cyan-500 py-2 px-6 text-white hover:bg-gray-100">
+                        <span class="text-base font-medium">{{ Auth()->user()->name }}</span>
+                        <i class="fa-solid fa-user text-base"></i>
+                    </button>
+                    <div x-show="accountInfo"
+                        class="p-3 translate-y-4 -translate-x-10 w-64 text-sm text-gray-600 absolute bg-gray-200 rounded-xl border border-gray-300 shadow text-center">
+                        <div
+                            class="profile bg-white rounded-full text-center border-gray-400 aspect-square p-4 inline-block">
+                            <i class="fa-solid fa-user text-lg aspect-square text-gray-500"></i>
+
+                        </div>
+                        <p class="text-base font-light">halo {{ Auth()->user()->name }}</p>
+
+                        <div class="py-4">
+                            <a href=""
+                                class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Kelola
+                                Akun</a>
+                            <a href=""
+                                class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Alamat
+                                Pengiriman
+                            </a>
+                            <a href=""
+                                class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Riwayat
+                                Pesanan</a>
+                            <a href="{{ route('logout') }}"
+                                class=" inline-block text-white font-semibold my-4 py-2 px-4 bg-red-400 rounded-full hover:bg-red-500">Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <ul class="flex gap-5 items-center font-semibold text-gray-600">
+                    <li class="drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
+                        <a href="{{ route('login') }}" class="rounded-lg">Masuk</a>
+                    </li>
+                    <li class="rounded-3xl bg-cyan-500 py-2 px-6 text-white hover:bg-gray-100">
+                        <a href="" class="rounded-lg">Daftar</a>
+                    </li>
+                </ul>
+            @endif
         </div>
     </div>
 
@@ -165,23 +181,48 @@
         </li>
 
         <li class="py-5">
-            <button @click="openMenu === 'pesanan' ? openMenu = null : openMenu = 'pesanan'"
-                class="flex w-full justify-between items-center gap-4">
-                <span>Pesanan</span>
-                <i class="fa-solid" :class="openMenu === 'pesanan' ? 'fa-angle-down' : 'fa-angle-up'"></i>
-            </button>
-            <ul x-show="openMenu === 'pesanan'"
-                class="grid grid-cols-2 mt-3 p-3 bg-white divide-y divide-gray-100 rounded-lg border border-gray-400 shadow">
-                <li><a href="" class="hover:bg-gray-100">Pantai</a></li>
-                <li><a href="" class="hover:bg-gray-100">Pantai</a></li>
+            <a href="{{ route('login') }}" class="block">Tentang Kami</a>
+        </li>
+        @if (Auth()->user())
+            <div x-data='{accountInfo: false} ' class="pb-4 ">
+                <div class="flex gap-3 justify-center items-center">
+                    <button type="button" @click="accountInfo = !accountInfo"
+                        class="flex gap-3  justify-center items-center rounded-3xl bg-cyan-500 py-2 px-6 text-white hover:bg-gray-100">
+                        <span class="text-base font-medium">{{ Auth()->user()->name }}</span>
+                        <i class="fa-solid fa-user text-base"></i>
+                    </button>
+                    <a href="{{ route('logout') }}"
+                        class=" text-white font-semibold my-4 py-2 px-4 bg-red-400 rounded-full hover:bg-red-500">Logout
+                    </a>
+                </div>
+                <div x-show="accountInfo" class="text-sm text-gray-600   text-center">
+                    <div class="py-4">
+                        <a href=""
+                            class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Keranjang
+                            saya
+                        </a>
+                        <a href=""
+                            class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Kelola
+                            Akun</a>
+                        <a href=""
+                            class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Alamat
+                            Pengiriman
+                        </a>
+                        <a href=""
+                            class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Riwayat
+                            Pesanan</a>
+                    </div>
+                </div>
+            </div>
+        @else
+            <ul class="flex gap-5 items-center font-semibold text-gray-600 pb-4">
+                <li class="drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
+                    <a href="{{ route('login') }}" class="rounded-lg">Masuk</a>
+                </li>
+                <li class="rounded-3xl bg-cyan-500 py-2 px-6 text-white hover:bg-gray-100">
+                    <a href="" class="rounded-lg">Daftar</a>
+                </li>
             </ul>
-        </li>
-
-        <li class="py-5">
-            <a href="{{ route('login') }}" class="block">Masuk</a>
-        </li>
-        <li class="py-5">
-            <a href="" class="block">Daftar</a>
-        </li>
+        @endif
     </ul>
 </nav>
