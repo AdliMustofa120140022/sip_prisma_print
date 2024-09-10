@@ -1,17 +1,17 @@
-<div class="group relative w-[370px] m-3">
-    <div class="group-hover:shadow-2xl ease-in-out shadow-md bg-white rounded-xl mt-20 p-5 h-full pt-[125px]">
-        <img class="group-hover:scale-105 ease-in-out absolute top-0 w-[330px] h-[188px] mx-auto   rounded-xl"
-            src="{{ asset('static/dummy/dummy.png') }}" />
-
-        <div class="text text-center">
-            <p class="uppercase font-bold text-black pb-3">{{ $produck->name }}</p>
-            <p class="pb-3">{{ $produck->description }}</p>
-            <a href="{{ route('guest.product.show', $produck->id) }}"
-                class="inline group-hover:hidden text-blue-500 font-bold my-3">Selengkapnya >></a>
-            <a href="{{ route('guest.product.show', $produck->id) }}"
-                class="hidden group-hover:inline text-blue-500 font-bold my-3">Lihat Semua
-                {{ $produck->name }} >></a>
+<a href="{{ route('guest.product.show', $produck->id) }}" class="w-[315px] h-[412px] relative">
+    <div class="w-[315px] h-[412px] left-0 top-0 absolute">
+        <div class="w-[315px] h-[153px] left-0 top-[259px] absolute bg-white rounded-xl border border-[#d9d9d9]">
+            <div class="w-[285px] left-[19px] top-[63px] absolute text-[#5f6368] text-sm font-normal  leading-none">
+                {{ $produck->description }} </div>
+            <div
+                class="left-[19px] top-[32px] absolute text-[#1d1d1f] text-base font-semibold  leading-normal tracking-widest">
+                {{ $produck->name }}</div>
+            <div class="w-[177px] left-[19px] top-[121px] absolute text-[#0056b3] text-sm font-semibold  leading-none">
+                Harga Rp 5.000,-</div>
+        </div>
+        <div class="w-[315px] h-[286px] left-0 top-0 absolute bg-white rounded-xl">
+            <img class="w-[315px] h-[286px] left-0 top-0 rounded-xl absolute"
+                src="{{ asset('static/dummy/dummy.png') }}" />
         </div>
     </div>
-
-</div>
+</a>
