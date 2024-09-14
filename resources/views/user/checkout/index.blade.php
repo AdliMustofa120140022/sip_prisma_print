@@ -10,7 +10,7 @@
             </a>
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Check Out Pesanan</h2>
         </div>
-        <div class="p-3 border rounded-md w-full">
+        <div class="p-3 mx-3 border rounded-md w-full">
             <p class="font-semibold">Apakah saya bisa melihat contoh produk sebelum memesan dalam jumlah besar?
             </p>
             <div class=" ps-4 py-2 w-full text-gray-600">
@@ -23,6 +23,10 @@
             </div>
         </div>
     </div>
+
+
+
+
 
 
 </x-guest-layout>

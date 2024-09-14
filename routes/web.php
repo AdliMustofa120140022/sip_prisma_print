@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SubKatagoriController;
+use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\guest\FaqController;
 use App\Http\Controllers\guest\HomeController as GuestHomeController;
 use App\Http\Controllers\guest\ProdukController as GuestProdukController;
@@ -26,7 +27,7 @@ Route::get('/faq', [FaqController::class, 'index'])->name('guest.faq');
 
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -66,5 +67,10 @@ Route::middleware('auth')->group(function () {
 
 
         Route::get('/checkout', [CheckOutController::class, 'index'])->name('user.checkout.index');
+
+        //alamat
+        Route::get('/alamat', [AlamatController::class, 'index'])->name('user.alamat.index');
+        Route::get('/alamat/create', [AlamatController::class, 'create'])->name('user.alamat.create');
+        Route::post('/alamat', [AlamatController::class, 'store'])->name('user.alamat.store');
     });
 });
