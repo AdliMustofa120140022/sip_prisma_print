@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('/checkout', [CheckOutController::class, 'index'])->name('user.checkout.index');
+        Route::get('/checkout/{id}/product_detail', [CheckOutController::class, 'product_detail'])->name('user.checkout.product_detail');
 
         //alamat
         Route::get('/alamat', [AlamatController::class, 'index'])->name('user.alamat.index');

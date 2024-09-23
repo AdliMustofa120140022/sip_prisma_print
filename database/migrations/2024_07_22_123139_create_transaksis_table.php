@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->string('transaksi_code')->unique();
-            $table->enum('status', ['cart', 'make',  'payment', 'desain', 'cetak', 'kirim', 'selesai']);
+            $table->enum('status', ['make', 'payment', 'payment-done', 'desain', 'cetak', 'kirim', 'selesai']);
             $table->integer('total_harga')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
@@ -23,28 +23,27 @@ return new class extends Migration
         Schema::create('transaksi_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaksi_id')->constrained('transaksis');
-            $table->string('nama_penerima')->nullable();
             $table->string('metode_pengiriman')->nullable();
-            $table->string('alamat_pengiriman')->nullable();
+            $table->foreignId('alamat_id')->references('id')->on('alamats');
             $table->string('resi')->nullable();
-            $table->string('no_hp')->nullable();
             $table->string('metode_pembayaran')->nullable();
             $table->string('bukti_pembayaran')->nullable();
-            $table->string('catatan')->nullable();
-        });
-
-        Schema::create('doc_pendukung', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('transaksi_data_id')->constrained('transaksi_data');
-            $table->string('doc');
         });
 
         schema::create('produk_transaksi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaksi_id')->constrained('transaksis');
+            $table->integer('jumlah');
             $table->foreignId('produk_id')->references('id')->on('producks');
         });
 
+        Schema::create('doc_pendukung', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('produk_transaksi_id')->constrained('transaksi_data');
+            $table->string('doc')->nullable();
+            $table->string('link')->nullable();
+            $table->string('catatan')->nullable();
+        });
         Schema::create('desain_produk_transaksi', function (Blueprint $table) {
             $table->foreignId('transaksi_id')->constrained('transaksis');
             $table->string('desain')->nullable();
@@ -59,8 +58,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('transaksis');
-        Schema::dropIfExists('transaksi_data');
         Schema::dropIfExists('produk_transaksi');
+        Schema::dropIfExists('transaksi_data');
         Schema::dropIfExists('desain_produk_transaksi');
     }
 };

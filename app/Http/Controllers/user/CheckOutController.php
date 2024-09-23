@@ -13,6 +13,11 @@ class CheckOutController extends Controller
         return view('user.checkout.index');
     }
 
+    public function product_detail($id)
+    {
+        return view('user.checkout.product_detail');
+    }
+
     //buatkah function store untuk menyimpan data checkout?
     public function store(Request $request)
     {
