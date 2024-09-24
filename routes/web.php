@@ -11,6 +11,7 @@ use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckOutController;
+use App\Http\Controllers\user\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -73,5 +74,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/alamat', [AlamatController::class, 'index'])->name('user.alamat.index');
         Route::get('/alamat/create', [AlamatController::class, 'create'])->name('user.alamat.create');
         Route::post('/alamat', [AlamatController::class, 'store'])->name('user.alamat.store');
+
+        //transaksi
+        Route::get('/transaksi', [TransaksiController::class, 'index'])->name('user.transaksi.index');
+        Route::get('/transaksi/show', [TransaksiController::class, 'show'])->name('user.transaksi.show');
     });
 });

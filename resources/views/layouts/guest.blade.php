@@ -12,6 +12,10 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+
+    @if (isset($head))
+        {{ $head }}
+    @endif
     <x-utils.user-metas-x-demo />
 
 </head>
@@ -32,6 +36,8 @@
     <x-layouts.user-footer />
 
     <x-utils.user-scripts-x-demo />
+
+    <script src="{{ asset('assets/js/jquery-3.7.1.slim.min.js') }}"></script>
 
     @if (isset($scripts))
         {{ $scripts }}
