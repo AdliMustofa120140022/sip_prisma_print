@@ -44,7 +44,7 @@ class Transaksi extends Model
 
     public function produk_transaksi()
     {
-        return $this->hasOne(ProdukTransaksi::class, 'transaksi_id', 'id');
+        return $this->hasMany(ProdukTransaksi::class, 'transaksi_id', 'id');
     }
 
     public function desain_produk_transaksi()

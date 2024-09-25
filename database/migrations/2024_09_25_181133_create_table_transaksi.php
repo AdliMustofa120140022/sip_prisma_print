@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->string('transaksi_code')->unique();
-            $table->enum('status', ['make', 'payment', 'payment-done', 'desain', 'cetak', 'kirim', 'selesai']);
+            $table->enum('status', ['make', 'payment', 'payment-done', 'desain', 'cetak', 'kirim', 'selesai'])->default('make');
             $table->integer('total_harga')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();

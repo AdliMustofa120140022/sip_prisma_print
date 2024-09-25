@@ -1,6 +1,10 @@
 <x-guest-layout>
     <x-slot name="title">Cart</x-slot>
 
+    <x-slot name="head">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+    </x-slot>
+
     <div class="mx-auto  w-full px-1 2xl:px-0">
         <div class="flex gap-3 items-center">
             <a href="{{ url()->previous() }}">
@@ -160,9 +164,14 @@
         </div>
     </div>
 
+    <form id="checkout-form" action="{{ route('user.checkout.store') }}" method="POST" class="hidden">
+        @csrf
+        <input type="hidden" id="item-details" name="items">
+    </form>
+
 
     <x-slot name="scripts">
-
+        <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
         <script>
             var itemSelected = [];
             const totalHargaElement = document.getElementById('total_Harga');
@@ -195,7 +204,7 @@
             var paramCartid = @json(request()->query('cart_id'));
 
             if (paramCartid) {
-                console.log(paramCartid);
+
 
                 carts.forEach(cart => {
                     if (cart.id == paramCartid) {
@@ -214,12 +223,32 @@
 
             // fungsi untu checout
             function checkOut() {
-                console.log(itemSelected);
-                const itemDetails = itemSelected.map(item => `(ID: ${item.id}, totalHarga: ${item.totalHarga})`).join(', ');
-                alert('Check Out ' + itemDetails);
+                // Pastikan itemSelected terdefinisi dan berisi data
+                if (Array.isArray(itemSelected) && itemSelected.length > 0) {
+                    const itemDetails = itemSelected.map(item => ({
+                        id: item.id,
+                    }));
 
-                // buat request ke server untuk check out barang
-                // fetch('url', { method: 'POST', body: JSON.stringify(itemSelected) })
+                    // Cek apakah elemen dengan id 'item-details' ada
+                    const itemDetailsInput = document.getElementById('item-details');
+                    if (itemDetailsInput) {
+                        // Masukkan data ke input form tersembunyi
+                        itemDetailsInput.value = JSON.stringify(itemDetails);
+
+                        // Cek apakah form dengan id 'checkout-form' ada sebelum submit
+                        const checkoutForm = document.getElementById('checkout-form');
+                        if (checkoutForm) {
+                            // Submit form
+                            checkoutForm.submit();
+                        } else {
+                            console.error('Checkout form not found!');
+                        }
+                    } else {
+                        console.error('Item details input not found!');
+                    }
+                } else {
+                    console.error('No items selected!');
+                }
             }
         </script>
 

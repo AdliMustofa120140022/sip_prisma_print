@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckOutController extends Controller
 {
     //
-    public function index()
+    public function index($transaksi_code)
     {
-        return view('user.checkout.index');
+        // dd($transaksi_code);
+        $transaksi = Transaksi::where('transaksi_code', $transaksi_code)->where('user_id', Auth::id())->first();
+        if (!$transaksi) {
+            return redirect()->route('user.dashboard')->with('error', 'Transaksi tidak ditemukan');
+        }
+        return view('user.checkout.index', compact('transaksi'));
     }
 
     public function product_detail($id)
@@ -21,39 +29,31 @@ class CheckOutController extends Controller
     //buatkah function store untuk menyimpan data checkout?
     public function store(Request $request)
     {
-        //validasi data
-        $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'postal_code' => 'required',
-            'payment_method' => 'required'
+        $items = json_decode($request->input('items'), true);
+
+        $totalharga = 0;
+        $transaksi = Transaksi::create([
+            'user_id' => Auth::id(),
         ]);
 
-        //simpan data ke database
-        // $checkout = Checkout::create([
-        //     'user_id' => auth()->id(),
-        //     'name' => $request->name,
-        //     'phone' => $request->phone,
-        //     'address' => $request->address,
-        //     'city' => $request->city,
-        //     'postal_code' => $request->postal_code,
-        //     'payment_method' => $request->payment_method,
-        //     'status' => 'pending'
-        // ]);
+        foreach ($items as $item) {
 
-        // //simpan data ke database
-        // foreach (Cart::where('user_id', auth()->id())->get() as $cart) {
-        //     Order::create([
-        //         'checkout_id' => $checkout->id,
-        //         'product_id' => $cart->product_id,
-        //         'quantity' => $cart->quantity,
-        //         'price' => $cart->product->price
-        //     ]);
-        //     $cart->delete();
-        // }
+            //ambil semua data yang ada di cart dengan id yang ada di items
+            $cart = Cart::find($item['id']);
+            $totalharga += $cart->product->data_produck->harga_satuan * $cart->quantity;
+            $transaksi->produk_transaksi()->create([
+                'jumlah' => $cart->quantity,
+                'produk_id' => $cart->product_id,
+            ]);
+            $cart->delete();
+        };
 
-        // return redirect()->route('user.dashboard')->with('success', 'Checkout successfully');
+        $transaksi->update([
+            'total_harga' => $totalharga
+        ]);
+
+        // dd('Checkout processed.', $totalharga);
+
+        return redirect()->route('user.checkout.index', $transaksi->transaksi_code);
     }
 }
