@@ -11,7 +11,7 @@
             </a>
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Alamat Pengiriman</h2>
         </div>
-        <div class="p-3 mx-3 border rounded-lg w-full bg-white shadow">
+        <div class=" max-w-5xl mx-auto p-3 border rounded-lg w-full bg-white shadow">
             {{-- <div class="max-w-2xl mx-auto p-6 bg-white shadow rounded-lg"> --}}
             <h2 class="text-xl text-center font-semibold mb-6">Tambah Alamat Pengiriman</h2>
             <form action="{{ route('user.alamat.store') }}" method="POST">
@@ -119,7 +119,7 @@
                 <!-- Tandai Sebagai -->
                 <div class="mb-6">
                     <h3 class="text-lg font-semibold mb-2">Tandai Sebagai</h3>
-                    <div x-data="{ selected: 'rumah' }" class="flex space-x-4">
+                    <div x-data="{ selected: 'lainnya' }" class="flex space-x-4">
                         <!-- Radio Button for Kantor -->
                         <label :class="selected === 'kantor' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'"
                             class="px-6 py-2 rounded-lg cursor-pointer">
