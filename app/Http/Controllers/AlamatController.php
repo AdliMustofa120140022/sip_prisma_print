@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AlamatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
+        if ($request->query('origin')) {
+            // clear previous_url session
+            $request->session()->forget('previous_url');
+            $request->session()->put('previous_url', $request->query('origin'));
+        }
         $alamats = Alamat::where('user_id', Auth::id())->get();
         return view('user.alamat.index', compact('alamats'));
     }
@@ -97,19 +101,19 @@ class AlamatController extends Controller
             'is_default' => $request->is_default ? true : false,
         ]);
 
-        return redirect()->route('user.alamat.index')->with('success', 'Alamat berhasil diubah');
+        return redirect()->back()->with('success', 'Alamat berhasil diubah');
     }
 
     public function destroy($id)
     {
         Alamat::find($id)->delete();
-        return redirect()->route('user.alamat.index')->with('success', 'Alamat berhasil dihapus');
+        return redirect()->back()->with('success', 'Alamat berhasil dihapus');
     }
 
     public function setDefault($id)
     {
         Alamat::where('user_id', Auth::id())->update(['is_default' => false]);
         Alamat::find($id)->update(['is_default' => true]);
-        return redirect()->route('user.alamat.index')->with('success', 'Alamat berhasil dijadikan default');
+        return redirect()->back()->with('success', 'Alamat berhasil dijadikan default');
     }
 }

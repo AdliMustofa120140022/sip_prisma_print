@@ -17,13 +17,13 @@
                 }'
                 class="hidden md:flex gap-10 items-center font-semibold">
                 <li>
-                    <a href=""
+                    <a href="{{ route('guest.dashboard') }}"
                         class="hover:text-blue-500 flex items-center gap-4  {{ Request::routeIs('guest.dashboard') ? 'text-blue-500' : '' }} ">
                         <span class="">Beranda</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="hover:text-blue-500 flex items-center gap-4">
+                    <a href="{{ route('guest.product') }}" class="hover:text-blue-500 flex items-center gap-4">
                         <span class="">Produk</span>
                     </a>
                 </li>
@@ -59,7 +59,7 @@
                     <i class="fa-solid fa-bag-shopping text-3xl"></i>
                     <span
                         class="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-cyan-500 text-gray-100 border-2 border-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
-                        4
+                        {{ $count_cart }}
                     </span>
                 </a>
             </div>
@@ -87,7 +87,7 @@
                             <a href=""
                                 class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Kelola
                                 Akun</a>
-                            <a href=""
+                            <a href="{{ route('user.alamat.index', ['origin' => request()->fullUrl()]) }}"
                                 class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Alamat
                                 Pengiriman
                             </a>
@@ -120,12 +120,12 @@
         x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition transform ease-in duration-200"
         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
         <li class="py-5">
-            <a href="" class="flex w-full justify-between items-center gap-4">
-                <span>Home</span>
+            <a href="{{ route('guest.dashboard') }}" class="flex w-full justify-between items-center gap-4">
+                <span>Beranda</span>
             </a>
         </li>
         <li class="py-5">
-            <a href="" class="flex w-full justify-between items-center gap-4">
+            <a href="{{ route('guest.product') }}" class="flex w-full justify-between items-center gap-4">
                 <span>Produk</span>
             </a>
         </li>
@@ -167,7 +167,7 @@
                         <a href=""
                             class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Kelola
                             Akun</a>
-                        <a href=""
+                        <a href="{{ route('user.alamat.index', ['origin' => request()->fullUrl()]) }}"
                             class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Alamat
                             Pengiriman
                         </a>

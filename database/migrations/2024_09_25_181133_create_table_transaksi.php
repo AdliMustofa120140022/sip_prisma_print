@@ -24,7 +24,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('transaksi_id')->constrained('transaksis');
             $table->string('metode_pengiriman')->nullable();
-            $table->foreignId('alamat_id')->references('id')->on('alamats');
+            $table->foreignId('alamat_id')->constrained('alamats');
             $table->string('resi')->nullable();
             $table->string('metode_pembayaran')->nullable();
             $table->string('bukti_pembayaran')->nullable();

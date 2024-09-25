@@ -13,12 +13,17 @@
             <div class="mx-auto w-full flex-none lg:max-w-[70%] xl:max-w-[70%]">
                 <div class="space-y-6">
 
+                    {{ request()->query('cart_id') }}
+
                     @foreach ($carts as $cart)
                         <div x-data="{ counter: @json($cart->quantity), hargaBarang: @json($cart->product->data_produck->harga_satuan) }"
                             class="rounded-xl border border-gray-200 bg-white md:px-6 px-3 py-3 shadow-sm">
                             <div class="flex  items-start justify-between md:gap-6 gap-3 space-y-0">
 
-                                <button x-data='{selected: false}' type="button"
+                                {{-- <button x-data="{ selected: @json(request()->query('cart_id')) === @json($cart->id) ? true : false }" type="button" --}}
+                                <button x-data="{
+                                    selected: {{ request()->query('cart_id') == $cart->id ? 'true' : 'false' }}
+                                }" type="button"
                                     class=" h-6 aspect-square border rounded-sm"
                                     @click="
                                 selected = !selected;
@@ -183,9 +188,20 @@
                         totalHarga: total * harga
                     });
                 }
-
                 renderTotalHarga();
+            }
 
+            var carts = @json($carts);
+            var paramCartid = @json(request()->query('cart_id'));
+
+            if (paramCartid) {
+                console.log(paramCartid);
+
+                carts.forEach(cart => {
+                    if (cart.id == paramCartid) {
+                        addSelected(cart.quantity, cart.product.data_produck.harga_satuan, cart.id)
+                    }
+                });
             }
 
             function removeSelected(id) {
@@ -204,8 +220,6 @@
 
                 // buat request ke server untuk check out barang
                 // fetch('url', { method: 'POST', body: JSON.stringify(itemSelected) })
-
-
             }
         </script>
 
