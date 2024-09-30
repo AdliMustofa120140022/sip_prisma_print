@@ -30,7 +30,11 @@ class getOngkirController extends Controller
         $listCity = $data['rajaongkir']['results'];
 
         $filteredCity = array_filter($listCity, function ($city) use ($alamat) {
-            $kabupatenName = str_replace('Kabupaten', '', $alamat->kabupaten);
+            if ($city['type'] == 'Kabupaten') {
+                $kabupatenName = str_replace('Kabupaten', '', $alamat->kabupaten);
+            } else {
+                $kabupatenName = str_replace('Kota', '', $alamat->kabupaten);
+            }
             return strtolower($city['city_name']) == strtolower(trim($kabupatenName));
         });
 

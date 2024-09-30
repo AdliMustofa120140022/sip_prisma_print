@@ -40,8 +40,8 @@ class ProdukTransaksi extends Model
         return $this->hasOne(DesainProdukTransaksi::class, 'produk_transaksi_id', 'id');
     }
 
-    public function cart()
-    {
-        return $this->belongsTo(Cart::class, 'cart_id', 'id');
-    }
+    // public function cart()
+    // {
+    //     return $this->belongsTo(Cart::class, 'cart_id', 'id');
+    // }
 }

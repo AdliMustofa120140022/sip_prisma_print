@@ -149,7 +149,7 @@
                             <span class="ml-2">Transfer Bank</span>
                         </label>
                         <div x-show="paymentMetode === 'transfer_bank'" class="ml-6 mt-2">
-                            <select name="transfer_via_id" class="border px-4 py-2 w-full rounded-md">
+                            <select name="via_id" class="border px-4 py-2 w-full rounded-md">
                                 <option value="BCA">BCA</option>
                                 <option value="BRI">BRI</option>
                                 <option value="mandiri">Mandiri</option>
@@ -164,7 +164,7 @@
                             <span class="ml-2">Ewallet</span>
                         </label>
                         <div x-show="paymentMetode === 'walet'" class="ml-6 mt-2">
-                            <select name="walet_via_id" class="border px-4 py-2 w-full rounded-md">
+                            <select name="via_id" class="border px-4 py-2 w-full rounded-md">
                                 <option>Pilih Ewallet untuk pembayaran</option>
                                 <option>Dana</option>
                                 <option>Gopay</option>
@@ -193,6 +193,7 @@
                     </div>
                     <div class="flex justify-between">
                         <span>Biaya Pengiriman</span>
+                        <input type="text" id="shiping_cost_input" name="shiping_cost" class="hidden">
                         <span>Rp <span id="pengiriman"></span></span>
                     </div>
                     <div class="flex justify-between">
@@ -223,7 +224,7 @@
         <script>
             var shipingCost = @json($shippingCosts);
             var price
-            var pengirimanPrice = 1000;
+            var pengirimanPrice = 0;
             var adminPrice = 1000;
 
             var subTotalPrice = document.getElementById('subTotalPrice');
@@ -231,8 +232,10 @@
             var pengiriman = document.getElementById('pengiriman');
             var admin = document.getElementById('admin').innerText = adminPrice.toLocaleString('id-ID');
             var pengirimanMetode = document.querySelectorAll('input[name="pengiriman"]');
+            var shipingCostInput = document.getElementById('shiping_cost_input');
 
             pengiriman.innerText = pengirimanPrice.toLocaleString('id-ID');
+            shipingCostInput.value = pengirimanPrice;
             var pembayaranMetodeValue = ''
 
             document.addEventListener('alpine:init', () => {
@@ -289,8 +292,6 @@
                 totalPrice.innerText = (parseInt(subTotalPrice.innerText.replace(/\./g, '')) + parseInt(pengiriman.innerText
                     .replace(/\./g, '')) + adminPrice).toLocaleString('id-ID');
             }
-
-
             pengirimanMetode.forEach((element) => {
                 pembayaranMetodeValue = element.value;
                 console.log(pembayaranMetodeValue);
@@ -298,16 +299,19 @@
                     if (element.value === 'kuri_toko') {
                         pengirimanPrice = 10000;
                         pengiriman.innerText = pengirimanPrice.toLocaleString('id-ID');
+                        shipingCostInput.value = pengirimanPrice;
                         document.getElementById('pay_toko').innerHTML = ""
                         calculateTotalPriceTransaktion();
                     } else if (element.value === 'jnt') {
                         pengirimanPrice = shipingCost;
                         pengiriman.innerText = pengirimanPrice.toLocaleString('id-ID');
+                        shipingCostInput.value = pengirimanPrice;
                         document.getElementById('pay_toko').innerHTML = ""
                         calculateTotalPriceTransaktion();
                     } else {
                         pengirimanPrice = 0;
                         pengiriman.innerText = pengirimanPrice.toLocaleString('id-ID');
+                        shipingCostInput.value = pengirimanPrice;
                         calculateTotalPriceTransaktion();
                     }
                     if (element.value === 'ambil_toko') {

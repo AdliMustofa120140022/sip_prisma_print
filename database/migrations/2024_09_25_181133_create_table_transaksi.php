@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->string('transaksi_code')->unique();
-            $table->enum('status', ['make', 'payment', 'payment_reject', 'payment-done', 'desain', 'cetak', 'kirim', 'selesai', 'gagal'])->default('make');
+            $table->enum('status', ['make', 'payment', 'payment_reject', 'payment_konfirm', 'payment-done', 'desain', 'cetak', 'kirim', 'selesai', 'gagal'])->default('make');
             $table->integer('total_harga')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->foreignId('transaksi_id')->constrained('transaksis');
             $table->integer('jumlah');
             $table->foreignId('produk_id')->references('id')->on('producks');
-            $table->foreignId('cart_id')->references('id')->on('carts');
+            $table->foreignId('cart_id');
         });
 
         Schema::create('doc_pendukung', function (Blueprint $table) {

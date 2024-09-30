@@ -22,7 +22,6 @@ class ProdukDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        dd($query);
         return (new EloquentDataTable($query))
             ->eloquent($query)
             ->addColumn('action', function ($row) {

@@ -34,10 +34,13 @@ class CheckOutController extends Controller
             $listCity = $data['rajaongkir']['results'];
 
             $filteredCity = array_filter($listCity, function ($city) use ($alamat) {
-                $kabupatenName = str_replace('Kabupaten', '', $alamat->kabupaten);
+                if ($city['type'] == 'Kabupaten') {
+                    $kabupatenName = str_replace('Kabupaten', '', $alamat->kabupaten);
+                } else {
+                    $kabupatenName = str_replace('Kota', '', $alamat->kabupaten);
+                }
                 return strtolower($city['city_name']) == strtolower(trim($kabupatenName));
             });
-
 
             $cityId = null;
 
@@ -45,6 +48,13 @@ class CheckOutController extends Controller
                 $city = reset($filteredCity);
                 $cityId = $city['city_id'];
             }
+
+            $total_weight = 0;
+            foreach ($transaksi->produk_transaksi as $produk_transaksi) {
+                $produck_weight = $produk_transaksi->produck->data_produck->berat * $produk_transaksi->jumlah;
+                $total_weight += $produck_weight;
+            }
+
             $responseCost = Http::withHeaders([
                 'key' => config('app.rajaongkir.api_key'),
             ])->post('https://api.rajaongkir.com/starter/cost', [
@@ -78,19 +88,40 @@ class CheckOutController extends Controller
 
     public function update_produck_transaksi($id, Request $request)
     {
+
+        $request->validate([
+            'catatan' => 'required',
+        ]);
         $produk_transaksi = ProdukTransaksi::findOrFail($id);
 
-        // dd($request->all());
+        if ($request->hasFile('doc_pendukung')) {
+            // Jika file ada, lakukan upload
+            $doc_name = FileHelper::uploadFile($request->file('doc_pendukung'), 'doc_pendukung');
+        } else {
+            $doc_name = $produk_transaksi->doc_pendukung->doc ?? null;
+        }
 
-        $doc_name = FileHelper::uploadFile($request->file('doc_pendukung'), 'doc_pendukung');
+        $existingDoc = $produk_transaksi->doc_pendukung()->first();
 
-        $produk_transaksi->doc_pendukung()->create([
-            'doc' => $doc_name,
-            'link' => $request->link,
-            'catatan' => $request->catatan
-        ]);
+        if ($existingDoc) {
+            $existingDoc->update([
+                'doc' => $doc_name,
+                'link' => $request->link,
+                'catatan' => $request->catatan,
+            ]);
+        } else {
+            $produk_transaksi->doc_pendukung()->create([
+                'doc' => $doc_name,
+                'link' => $request->link,
+                'catatan' => $request->catatan,
+            ]);
+        };
 
-        return redirect()->back()->with('success', 'Produk berhasil diupdate');
+        $url = $request->session()->get('prev_url') ?? route('user.dashboard');
+
+        return redirect($url)->with('success', 'Produk berhasil diupdate');
+
+        // return redirect()->->with('success', 'Produk berhasil diupdate');
     }
 
     //buatkah function store untuk menyimpan data checkout?
@@ -105,7 +136,6 @@ class CheckOutController extends Controller
 
         foreach ($items as $item) {
 
-            //ambil semua data yang ada di cart dengan id yang ada di items
             $cart = Cart::findOrFail($item['id']);
             $totalharga += $cart->product->data_produck->harga_satuan * $cart->quantity;
             $transaksi->produk_transaksi()->create([
@@ -119,8 +149,6 @@ class CheckOutController extends Controller
         $transaksi->update([
             'total_harga' => $totalharga
         ]);
-
-        // dd('Checkout processed.', $totalharga);
 
         return redirect()->route('user.checkout.index', $transaksi->transaksi_code);
     }
@@ -152,32 +180,43 @@ class CheckOutController extends Controller
 
     function checkout(Request $request, $transaksi_code)
     {
+        $shiping_cost = $request->shiping_cost;
 
+        $payment_metode = $request->pembayaran;
+
+        if ($request->pembayaran == 'walet' || $request->pembayaran == 'transfer_bank') {
+            $payment_metode = $request->via_id;
+        }
         $transaksi = Transaksi::where('transaksi_code', $transaksi_code)->where('user_id', Auth::id())->first();
 
         if (!$transaksi) {
             return redirect()->route('guest.dashboard')->whit('error', 'Transaksi tidak ditemukan');
         }
 
-        $transaksi->update([
-            'status' => 'make'
-        ]);
+        $total_pice = 0;
+        $admin_price = 1000;
 
         foreach ($transaksi->produk_transaksi as $produk_transaksi) {
-            $produk_transaksi->produk->update([
-                'stok' => $produk_transaksi->produk->stok - $produk_transaksi->jumlah
+            $produk_transaksi->produck->data_produck->update([
+                'stok' => $produk_transaksi->produck->data_produck->stok - $produk_transaksi->jumlah
             ]);
-            $produk_transaksi->cart->delete();
+            $price = $produk_transaksi->produck->data_produck->harga_satuan * $produk_transaksi->jumlah;
+            $total_pice += $price;
+
+            Cart::destroy($produk_transaksi->cart_id);
         }
+
+        $transaksi->update([
+            'status' => 'payment',
+            'total_harga' => $shiping_cost + $admin_price + $total_pice,
+        ]);
 
         $transaksi->transaksi_data()->create([
             'alamat_id' => $request->alamat_id,
-            'metode_pengiriman' => $request->metode_pengiriman,
-            'metode_pembayaran' => $request->metode_pembayaran,
+            'metode_pengiriman' => $request->pengiriman,
+            'metode_pembayaran' => $payment_metode,
         ]);
 
-
-
-        dd($request->all(), $transaksi);
+        return redirect()->route('user.transaksi.index')->with('success', 'Transaksi berhasil');
     }
 }

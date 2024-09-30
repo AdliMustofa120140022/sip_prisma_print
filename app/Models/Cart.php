@@ -23,8 +23,8 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function produk_transaksi()
-    {
-        return $this->hasOne(ProdukTransaksi::class, 'cart_id', 'id');
-    }
+    // public function produk_transaksi()
+    // {
+    //     return $this->hasOne(ProdukTransaksi::class, 'cart_id', 'id');
+    // }
 }

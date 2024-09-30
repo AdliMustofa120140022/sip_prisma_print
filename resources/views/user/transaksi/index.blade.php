@@ -2,7 +2,8 @@
     <x-slot name="title">Riwayat transaksi</x-slot>
 
     <x-slot name="head">
-        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css" />
+        {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css" /> --}}
+        <link rel="stylesheet" href="{{ asset('assets/css/datatbel.tailwind.css') }}" />
     </x-slot>
 
     <div class="mx-auto w-full px-1 2xl:px-0">
@@ -13,55 +14,106 @@
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Riwayat Transaksi</h2>
         </div>
 
-        <div class="container mx-auto p-4">
+        <div class="container mx-auto p-4 hidden md:block">
+            <div class="flex ">
+                <div class=" justify-self-start"></div>
+                <div class="justify-self-end"></div>
+            </div>
 
-
-            <table id="TransaksiTable" class="min-w-full bg-white border border-gray-300">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">No</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nomor Pesanan</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Tanggal Pemesanan</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Pesanan</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Status</th>
-                        <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Aksi</th>
+            <table id="TransaksiTable" class="min-w-ful  border-collapse overflow-x-scroll rounded-t-lg">
+                <thead class="bg-gray-200">
+                    <tr class="rounded-t-lg">
+                        <th class="py-3 px-4 text-left rounded-tl-lg">No</th>
+                        <th class="py-3 px-4 text-left">Nomor Pesanan</th>
+                        <th class="py-3 px-4 text-left">Tanggal Pemesanan</th>
+                        <th class="py-3 px-4 text-left">Pesanan</th>
+                        <th class="py-3 px-4 text-left">Status</th>
+                        <th class="py-3 px-4 text-left rounded-tr-lg"></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($transaksis as $transaksi)
                         <tr class="border-t border-gray-300">
-                            <td class="px-6 py-4 text-sm text-gray-500">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-4 text-sm text-gray-500">{{ $transaksi->transaksi_code }}</td>
-                            <td class="px-6 py-4 text-sm text-gray-500">{{ $transaksi->created_at }}</td>
-                            <td class="px-6 py-4 text-sm text-gray-500">
+                            <td class="px-6 py-6 text-sm text-gray-500">{{ $loop->iteration }}</td>
+                            <td class="px-6 py-6 text-sm text-gray-500">{{ $transaksi->transaksi_code }}</td>
+                            <td class="px-6 py-6 text-sm text-gray-500">{{ $transaksi->created_at }}</td>
+                            <td class="px-6 py-6 text-sm text-gray-500">
                                 @foreach ($transaksi->produk_transaksi as $produk_transaksi)
                                     {{ $produk_transaksi->produck->name }} ({{ $produk_transaksi->jumlah }}),
                                 @endforeach
                             </td>
-                            <td class="px-6 py-4">
+                            @if ($transaksi->status == 'make')
+                                <td class="px-6 py-6">
+                                    <span
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
+                                        Pesanan belum selesai
+                                    </span>
+                                </td>
+                                <td class="px-6 py-6">
+                                    <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-md">lanjutkan transaksi</a>
+                                @elseif($transaksi->status == 'payment')
+                                <td class="px-6 py-6">
+                                    <span
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-600">
+                                        Menunggu Pembayaran
+                                    </span>
+                                </td>
+                                <td class="px-6 py-6">
+                                    <a href=""
+                                        class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Lanjutkan
+                                        Pembayaran</a>
+                            @endif
+                            <a href="" class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</a>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="container mx-auto p-4 md:hidden">
+            <div class="flex ">
+                <div class=" justify-self-start"></div>
+                <div class="justify-self-end"></div>
+            </div>
+
+            <table id="TransaksiTableMobile" class="min-w-ful  border-collapse overflow-x-scroll rounded-t-lg">
+                <thead class="bg-gray-200">
+                    <tr class="rounded-t-lg">
+                        <th class="text-left rounded-tl-lg">No</th>
+                        <th class="py-3 px-4 text-left">Nomor Pesanan</th>
+                        <th class="py-3 px-4 text-left rounded-tr-lg"></th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($transaksis as $transaksi)
+                        <tr class="border-t border-gray-300">
+                            <td class="text-sm text-gray-500">{{ $loop->iteration }}</td>
+                            <td class="px-6 py-6 flex flex-col text-sm text-gray-500">
+                                <p>{{ $transaksi->transaksi_code }}</p>
                                 @if ($transaksi->status == 'make')
                                     <span
-                                        class="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
-                                        {{ $transaksi->status }}
+                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
+                                        Pesanan belum selesai
                                     </span>
-                                    {{-- <span class="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
-                                {{ $transaksi->status }}
-                            </span> --}}
-                                @else
+                                    <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-wrap">lanjutkan
+                                        transaksi</a>
+                                @elseif($transaksi->status == 'payment')
+                                    <span
+                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-600">
+                                        Menunggu Pembayaran
+                                    </span>
+                                    <a href=""
+                                        class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Lanjutkan
+                                        Pembayaran</a>
                                 @endif
-                                <span class="px-3 py-1 rounded-full text-sm font-semibold "
-                                    :class="{
-                                        'bg-blue-100 text-blue-600': order.status === 'Dalam Proses',
-                                        'bg-green-100 text-green-600': order.status === 'Selesai',
-                                        'bg-red-100 text-red-600': order.status === 'Gagal'
-                                    }">
-                                    {{ $transaksi->status }}
-                                </span>
                             </td>
-                            <td class="px-6 py-4">
-                                <button class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</button>
-                                <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
-                                    class="bg-blue-500 text-white px-4 py-2 rounded-md">lanjutkan transaksi</a>
+                            <td class="px-6 py-6 ">
+                                <a href="" class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</a>
                             </td>
                         </tr>
                     @endforeach
@@ -73,16 +125,29 @@
 
     <x-slot name="scripts">
         <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+        <script src="{{ asset('assets/js/datatable.tailwind.js') }}"></script>
         <script>
-            if (!$.fn.DataTable.isDataTable('#TransaksiTable')) {
-                this.dataTableInstance = new DataTable('#TransaksiTable', {
+            $(document).ready(function() {
+                $('#TransaksiTable').DataTable({
                     responsive: true,
                     paging: true,
                     lengthChange: false, // Menyembunyikan "entries per page" control
                     columnDefs: [{
+                        orderable: false,
+                        searching: false,
+                        targets: 5
+                    }]
+                });
+            });
+            if (!$.fn.DataTable.isDataTable('#TransaksiTableMobile')) {
+                this.dataTableInstance = new DataTable('#TransaksiTableMobile', {
+                    paging: false,
+                    lengthChange: false, // Menyembunyikan "entries per page" control
+                    info: false,
+                    columnDefs: [{
                             orderable: false,
                             searching: false,
-                            targets: 5
+                            targets: 2
                         } // Kolom ke-6 (Aksi) tidak bisa diurutkan
                     ]
                 });
