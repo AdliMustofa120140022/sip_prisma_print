@@ -12,14 +12,17 @@ class DocPendukung extends Model
     protected $table = 'doc_pendukung';
 
     protected $fillable = [
-        'transaksi_data_id',
+        'produk_transaksi_id',
         'doc',
+        'link',
+        'catatan',
     ];
 
     public $timestamps = false;
 
-    public function transaksi_data()
+
+    public function produk_transaksi()
     {
-        return $this->belongsTo(TransaksiData::class, 'transaksi_data_id', 'id');
+        return $this->belongsTo(ProdukTransaksi::class, 'produk_transaksi_id', 'id');
     }
 }

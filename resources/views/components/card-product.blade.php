@@ -22,5 +22,6 @@
         <!-- Product Price -->
         <p class="mt-2 font-semibold text-blue-500">Harga Rp.
             {{ number_format($produck->data_produck->harga_satuan, 0, ',', '.') }}-</p>
+
     </div>
 </a>

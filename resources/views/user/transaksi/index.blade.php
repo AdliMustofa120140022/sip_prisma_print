@@ -28,26 +28,43 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr class="border-t border-gray-300">
-                        <td class="px-6 py-4 text-sm text-gray-500">data here</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">data here</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">data here</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">data here</td>
-                        <td class="px-6 py-4">
-                            <span class="px-3 py-1 rounded-full text-sm font-semibold"
-                                :class="{
-                                    'bg-blue-100 text-blue-600': order.status === 'Dalam Proses',
-                                    'bg-green-100 text-green-600': order.status === 'Selesai',
-                                    'bg-red-100 text-red-600': order.status === 'Gagal'
-                                }">
-                                data here
-                            </span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</button>
-                        </td>
-                    </tr>
+                    @foreach ($transaksis as $transaksi)
+                        <tr class="border-t border-gray-300">
+                            <td class="px-6 py-4 text-sm text-gray-500">{{ $loop->iteration }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">{{ $transaksi->transaksi_code }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">{{ $transaksi->created_at }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">
+                                @foreach ($transaksi->produk_transaksi as $produk_transaksi)
+                                    {{ $produk_transaksi->produck->name }} ({{ $produk_transaksi->jumlah }}),
+                                @endforeach
+                            </td>
+                            <td class="px-6 py-4">
+                                @if ($transaksi->status == 'make')
+                                    <span
+                                        class="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
+                                        {{ $transaksi->status }}
+                                    </span>
+                                    {{-- <span class="px-3 py-1 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
+                                {{ $transaksi->status }}
+                            </span> --}}
+                                @else
+                                @endif
+                                <span class="px-3 py-1 rounded-full text-sm font-semibold "
+                                    :class="{
+                                        'bg-blue-100 text-blue-600': order.status === 'Dalam Proses',
+                                        'bg-green-100 text-green-600': order.status === 'Selesai',
+                                        'bg-red-100 text-red-600': order.status === 'Gagal'
+                                    }">
+                                    {{ $transaksi->status }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</button>
+                                <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-md">lanjutkan transaksi</a>
+                            </td>
+                        </tr>
+                    @endforeach
 
                 </tbody>
             </table>

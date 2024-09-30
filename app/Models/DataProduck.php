@@ -15,6 +15,7 @@ class DataProduck extends Model
         'prduck_id',
         'sepesifiksai',
         'stok',
+        'satuan',
         'lebar',
         'panjang',
         'tinggi',

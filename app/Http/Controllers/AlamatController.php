@@ -101,7 +101,7 @@ class AlamatController extends Controller
             'is_default' => $request->is_default ? true : false,
         ]);
 
-        return redirect()->back()->with('success', 'Alamat berhasil diubah');
+        return redirect()->route('user.alamat.index')->with('success', 'Alamat berhasil diubah');
     }
 
     public function destroy($id)

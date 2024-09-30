@@ -47,8 +47,8 @@ class Transaksi extends Model
         return $this->hasMany(ProdukTransaksi::class, 'transaksi_id', 'id');
     }
 
-    public function desain_produk_transaksi()
-    {
-        return $this->hasOne(DesainProdukTransaksi::class, 'transaksi_id', 'id');
-    }
+    // public function desain_produk_transaksi()
+    // {
+    //     return $this->hasOne(DesainProdukTransaksi::class, 'transaksi_id', 'id');
+    // }
 }

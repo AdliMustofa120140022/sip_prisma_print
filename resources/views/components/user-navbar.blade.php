@@ -91,7 +91,7 @@
                                 class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Alamat
                                 Pengiriman
                             </a>
-                            <a href=""
+                            <a href="{{ route('user.transaksi.index') }}"
                                 class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Riwayat
                                 Pesanan</a>
                             <a href="{{ route('logout') }}"
@@ -171,7 +171,7 @@
                             class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Alamat
                             Pengiriman
                         </a>
-                        <a href=""
+                        <a href="{{ route('user.transaksi.index') }}"
                             class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Riwayat
                             Pesanan</a>
                     </div>

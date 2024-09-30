@@ -13,14 +13,12 @@ class TransaksiData extends Model
 
     protected $fillable = [
         'transaksi_id',
-        'nama_penerima',
         'metode_pengiriman',
-        'alamat_pengiriman',
+        'alamat_id',
         'resi',
-        'no_hp',
         'metode_pembayaran',
         'bukti_pembayaran',
-        'catatan',
+        'payment_note',
     ];
 
     public $timestamps = false;
@@ -28,5 +26,10 @@ class TransaksiData extends Model
     public function transaksi()
     {
         return $this->belongsTo(Transaksi::class, 'transaksi_id', 'id');
+    }
+
+    public function alamat()
+    {
+        return $this->belongsTo(Alamat::class, 'alamat_id', 'id');
     }
 }

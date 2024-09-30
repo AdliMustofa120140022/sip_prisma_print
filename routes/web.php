@@ -11,6 +11,7 @@ use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckOutController;
+use App\Http\Controllers\user\ProduckFavController;
 use App\Http\Controllers\user\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,10 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/user')->middleware('user')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('user.dashboard');
 
+        //love product
+        Route::get('/love/add', [ProduckFavController::class, 'addLove'])->name('user.love.add');
+        Route::get('/love/remove', [ProduckFavController::class, 'removeLove'])->name('user.love.remove');
+
         Route::get('/cart', [CartController::class, 'index'])->name('user.cart.index');
         Route::get('/cart/{id}/delete', [CartController::class, 'destroy'])->name('user.cart.delete');
         Route::post('/cart', [CartController::class, 'store'])->name('user.cart.store');
@@ -68,8 +73,12 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('/checkout/{transaksi_code}', [CheckOutController::class, 'index'])->name('user.checkout.index');
+        Route::post('/checkout/{transaksi_code}/checkout', [CheckOutController::class, 'checkout'])->name('user.checkout.make');
         Route::post('/checkout', [CheckOutController::class, 'store'])->name('user.checkout.store');
         Route::get('/checkout/{id}/product_detail', [CheckOutController::class, 'product_detail'])->name('user.checkout.product_detail');
+        Route::post('/checkout/{id}/update_produck_transaksi', [CheckOutController::class, 'update_produck_transaksi'])->name('user.checkout.update_produck_transaksi');
+        Route::post('/checkout/update-quantity', [CheckOutController::class, 'updateQuantity'])->name('user.checkout.update-quantity');
+
 
         //alamat
         Route::get('/alamat', [AlamatController::class, 'index'])->name('user.alamat.index');
@@ -85,4 +94,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('user.transaksi.index');
         Route::get('/transaksi/show', [TransaksiController::class, 'show'])->name('user.transaksi.show');
     });
+});
+
+Route::prefix('/helper')->group(function () {
+    Route::get('/ongkir', [App\Http\Controllers\helper\getOngkirController::class, 'index'])->name('helper.ongkir');
 });

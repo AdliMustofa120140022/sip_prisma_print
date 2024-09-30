@@ -15,6 +15,7 @@ class ProdukTransaksi extends Model
         'transaksi_id',
         'jumlah',
         'produk_id',
+        'cart_id',
     ];
 
     public $timestamps = false;
@@ -24,8 +25,23 @@ class ProdukTransaksi extends Model
         return $this->belongsTo(Transaksi::class, 'transaksi_id', 'id');
     }
 
-    public function produk()
+    public function produck()
     {
         return $this->belongsTo(Produck::class, 'produk_id', 'id');
+    }
+
+    public function doc_pendukung()
+    {
+        return $this->hasOne(DocPendukung::class, 'produk_transaksi_id', 'id');
+    }
+
+    public function desain_produk_transaksi()
+    {
+        return $this->hasOne(DesainProdukTransaksi::class, 'produk_transaksi_id', 'id');
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class, 'cart_id', 'id');
     }
 }

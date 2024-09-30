@@ -30,4 +30,9 @@ class Alamat extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function transaksi_data()
+    {
+        return $this->hasMany(TransaksiData::class, 'alamat_id', 'id');
+    }
 }

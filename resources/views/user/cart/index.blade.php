@@ -16,9 +16,6 @@
         <div class="mt-2 sm:mt-4 md:gap-3 lg:flex lg:items-start xl:gap-3">
             <div class="mx-auto w-full flex-none lg:max-w-[70%] xl:max-w-[70%]">
                 <div class="space-y-6">
-
-                    {{ request()->query('cart_id') }}
-
                     @foreach ($carts as $cart)
                         <div x-data="{ counter: @json($cart->quantity), hargaBarang: @json($cart->product->data_produck->harga_satuan) }"
                             class="rounded-xl border border-gray-200 bg-white md:px-6 px-3 py-3 shadow-sm">

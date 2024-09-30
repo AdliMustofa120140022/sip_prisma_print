@@ -149,7 +149,7 @@
                     @enderror
 
                     <div class="mt-4 flex items-center">
-                        <input name="is_default" type="checkbox" class="mr-2">
+                        <input name="is_default" type="checkbox" checked class="mr-2">
                         <label class="text-gray-700">Atur Sebagai Alamat Utama</label>
                     </div>
                 </div>
@@ -206,6 +206,8 @@
             function getKecamatan() {
                 let kabupatenElement = document.getElementById('kabupaten');
                 let kabupatenId = kabupatenElement.options[kabupatenElement.selectedIndex].dataset.id;
+                console.log(kabupatenId);
+
                 let kecamatan = document.getElementById('kecamatan');
                 kecamatan.innerHTML = '<option value="">Loading...</option>';
 

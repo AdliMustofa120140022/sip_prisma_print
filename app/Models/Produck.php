@@ -21,7 +21,6 @@ class Produck extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            // Get the highest product ID and increment it
             $maxId = static::max('id') + 1;
             $model->prduck_code = 'U-' . str_pad($maxId, 3, '0', STR_PAD_LEFT);
         });
@@ -52,5 +51,10 @@ class Produck extends Model
     public function cart()
     {
         return $this->hasMany(Cart::class, 'product_id', 'id');
+    }
+
+    public function produck_fav()
+    {
+        return $this->hasMany(ProduckFav::class, 'produk_id', 'id');
     }
 }

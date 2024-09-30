@@ -12,7 +12,7 @@ class DesainProdukTransaksi extends Model
     protected $table = 'desain_produk_transaksi';
 
     protected $fillable = [
-        'transaksi_id',
+        'produk_transaksi_id',
         'desain',
         'status', // 'pending', 'approved', 'rejected'
         'catatan',
@@ -20,8 +20,8 @@ class DesainProdukTransaksi extends Model
 
     public $timestamps = false;
 
-    public function transaksi()
+    public function produk_transaksi()
     {
-        return $this->belongsTo(Transaksi::class, 'transaksi_id', 'id');
+        return $this->belongsTo(ProdukTransaksi::class, 'produk_transaksi_id', 'id');
     }
 }

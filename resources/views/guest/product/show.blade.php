@@ -14,28 +14,30 @@
             <div class="col-span-2 ">
                 <section class="relative w-full">
                     <div x-data="carousel()" x-init="startAutoSlide()" class="relative overflow-hidden  m-3">
-                        <div class="relative border rounded-2xl">
+                        <div class="relative border rounded-2xl shadow-sm">
                             <div class="overflow-hidden relative">
                                 <div id="carousel" x-ref="carousel"
                                     class="flex transition-transform duration-500 ease-in-out">
 
-                                    <div class="rounded-2xl border-3 border min-w-full aspect-square ">
+                                    <div
+                                        class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
                                         <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                            class="object-cover  w-full h-full rounded-2xl">
+                                            class="object-cover w-full h-full rounded-2xl shadow-lg">
                                     </div>
-                                    <div class="rounded-2xl border-3 border min-w-full aspect-square ">
+                                    <div
+                                        class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
                                         <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                            class="object-cover  w-full h-full rounded-2xl">
+                                            class="object-cover w-full h-full rounded-2xl shadow-lg">
                                     </div>
-                                    <div class="rounded-2xl border-3 border min-w-full aspect-square ">
+                                    <div
+                                        class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
                                         <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                            class="object-cover  w-full h-full rounded-2xl">
+                                            class="object-cover w-full h-full rounded-2xl shadow-lg">
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-
                         <!-- Navigation Buttons -->
                         <button @click="prev"
                             class="hover:bg-gray-200 absolute left-2 top-1/4 transform translate-y-1/2 border-2 text-gray-200 px-3 py-1 rounded-full">
@@ -47,20 +49,24 @@
                         </button>
 
                         <p class="pt-4 pb-2 text-gray-800 font-semibold">Gambar Lainnya</p>
-                        <div class="flex gap-4 justify-around items-center w-full overflow-hidden">
-                            <div @click="toImg(0)" class="rounded-2xl border-3 min-w-20 aspect-square border">
+                        <div class="flex gap-3 justify-around items-center w-full overflow-hidden">
+                            <div @click="toImg(0)"
+                                class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
                                 <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
                                     class="rounded-2xl w-full h-full object-cover">
                             </div>
-                            <div @click="toImg(0)" class="rounded-2xl border-3 min-w-20 aspect-square border">
+                            <div @click="toImg(0)"
+                                class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
                                 <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
                                     class="rounded-2xl w-full h-full object-cover">
                             </div>
-                            <div @click="toImg(0)" class="rounded-2xl border-3 min-w-20 aspect-square border">
+                            <div @click="toImg(0)"
+                                class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
                                 <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
                                     class="rounded-2xl w-full h-full object-cover">
                             </div>
-                            <div @click="toImg(0)" class="rounded-2xl border-3 min-w-20 aspect-square border">
+                            <div @click="toImg(0)"
+                                class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
                                 <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
                                     class="rounded-2xl w-full h-full object-cover">
                             </div>
@@ -72,13 +78,29 @@
 
             <div class="col-span-3">
                 <div class="p-6 mt-2" x-data="{ open: false }">
-                    <h1 class="text-xl font-bold text-gray-900">{{ $produck->name }}</h1>
+                    <div class="flex justify-between">
+                        <h1 class="text-xl font-bold text-gray-900">{{ $produck->name }}</h1>
+                        @if (Auth::check() && count($produck->produck_fav ?? []) > 0)
+                            <a href="{{ route('user.love.remove', ['produkc_id' => $produck->id]) }}">
+                                <i class=" fa-solid text-red-400 fa-heart text-3xl"></i>
+                            </a>
+                        @else
+                            <a href="{{ route('user.love.add', ['produkc_id' => $produck->id]) }}">
+                                <i class="fa-regular fa-heart text-3xl"></i>
+                            </a>
+                        @endif
+
+
+                        {{-- <i class="fa-solid fa-heart"></i> --}}
+
+                    </div>
 
                     <!-- Price and Stock -->
                     <div class="flex items-center justify-between mt-2">
                         <p class="text-lg text-blue-500 font-semibold">Harga: Rp.
                             {{ number_format($produck->data_produck->harga_satuan, 0, ',', '.') }}</p>
-                        <p class="text-gray-600">Stok : {{ $produck->data_produck->stok > 0 ? 'Tersedia' : 'Kosong' }}
+                        <p class="text-gray-600">Stok : {{ $produck->data_produck->stok }}
+                            {{-- <p class="text-gray-600">Stok : {{ $produck->data_produck->stok > 0 ? 'Tersedia' : 'Kosong' }} --}}
                         </p>
                     </div>
 
