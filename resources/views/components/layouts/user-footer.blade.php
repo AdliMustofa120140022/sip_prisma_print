@@ -77,13 +77,14 @@
             <Span class="font-bold border-s-4 border-black px-3">Tentang Kami</Span>
 
             <div class="py-6">
-                <a href="" class="block">Tentang Perusahaan</a>
-                <a href="" class="block">Cara Pemesanan</a>
-                <a href="" class="block">Kontak Kami</a>
-                <a href="" class="block">Pengiriman</a>
-                <a href="" class="block">FAQ</a>
+                <a href="{{ route('guest.about') }}" class="block">Tentang Perusahaan</a>
+                <a href="{{ route('guest.faq', ['q' => 'cara_pemesanan']) }}" class="block">Cara Pemesanan</a>
+                <a href="{{ route('guest.about') }}#contak" class="block">Kontak Kami</a>
+                <a href="{{ route('guest.faq', ['q' => 'waktu_cetak']) }}" class="block">Pengiriman</a>
+                <a href="{{ route('guest.faq') }}" class="block">FAQ</a>
             </div>
         </div>
     </div>
-    <p class="text-center py-3 bg-blue-950 text-gray-200">© 2023 Loer Group. All rights reserved.</p>
+    <p class="text-center py-3 bg-blue-950 text-gray-200">&copy; {{ date('Y') }} Percetakan Prima Printing. All
+        rights reserved.</p>
 </footer>

@@ -32,11 +32,11 @@ class faqSidebar extends Component
                     [
                         "question" => "Apakah saya bisa membuat desain sendiri untuk produk yang saya pesan?",
                         "param" => "desain_sendiri"
-                    ],
-                    [
-                        "question" => "Apakah ada diskon untuk pemesanan dalam jumlah besar?",
-                        "param" => "diskon_jumlah_besar"
                     ]
+                    // [
+                    //     "question" => "Apakah ada diskon untuk pemesanan dalam jumlah besar?",
+                    //     "param" => "diskon_jumlah_besar"
+                    // ]
                 ]
             ],
             [

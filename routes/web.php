@@ -26,15 +26,15 @@ Route::get('/product', [GuestProdukController::class, 'index'])->name('guest.pro
 Route::get('/katagori', [GuestkatagoriController::class, 'index'])->name('guest.katagori');
 Route::get('/product/{id}/show', [GuestProdukController::class, 'show'])->name('guest.product.show');
 
+// about
+Route::get('/about', [GuestHomeController::class, 'about'])->name('guest.about');
 
 //faq
 Route::get('/faq', [FaqController::class, 'index'])->name('guest.faq');
 
 
 
-Route::middleware(['auth'])->group(function () {
-
-
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

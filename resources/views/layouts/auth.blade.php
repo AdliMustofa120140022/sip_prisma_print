@@ -10,8 +10,12 @@
     <title>{{ $title }} - Sistem Informasi Kelurahan Bakung</title>
     <x-utils.metas-x-demo />
 
-    {{-- <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @if (isset($head))
+        {{ $head }}
+    @endif
+
+    <!-- Scripts -->
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
 <body class="g-sidenav-show  bg-gray-100" style="min-height: 100vh">
@@ -19,7 +23,7 @@
         <x-toaster type="{{ session('success') ? 'success' : 'error' }}" :message="session('success') ?? session('error')" />
     @endif
     {{-- <x-layouts.sidebar/> --}}
-    <x-layouts.nav-auth />
+    {{-- <x-layouts.nav-auth /> --}}
 
 
 

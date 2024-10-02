@@ -24,4 +24,9 @@ class HomeController extends Controller
 
         return view('guest.home', compact('katagoris', 'producks', 'param'));
     }
+
+    public function about()
+    {
+        return view('guest.about.about');
+    }
 }

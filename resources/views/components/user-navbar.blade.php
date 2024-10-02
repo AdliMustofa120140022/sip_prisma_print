@@ -35,7 +35,7 @@
                  </li>
 
                  <li>
-                     <a href="" class="hover:text-blue-500 flex items-center gap-4">
+                     <a href="{{ route('guest.about') }}" class="hover:text-blue-500 flex items-center gap-4">
                          <span class="">Tentang Kami</span>
                      </a>
 
@@ -88,7 +88,7 @@
                          <i class="fa-solid fa-user text-base"></i>
                      </button>
                      <div x-show="accountInfo"
-                         class="p-3 translate-y-4 -translate-x-10 w-64 text-sm text-gray-600 absolute bg-gray-200 rounded-xl border border-gray-300 shadow text-center transition-all duration-300 ease-in-out"
+                         class="p-3 translate-y-4 -translate-x-20 w-64 text-sm text-gray-600 absolute bg-gray-200 rounded-xl border border-gray-300 shadow text-center transition-all duration-300 ease-in-out"
                          x-transition:enter="transition transform ease-out duration-300"
                          x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                          x-transition:leave="transition transform ease-in duration-200"
@@ -123,7 +123,7 @@
                          <a href="{{ route('login') }}" class="rounded-lg">Masuk</a>
                      </li>
                      <li class="rounded-3xl bg-blue-500 py-2 px-6 text-white hover:bg-gray-100">
-                         <a href="" class="rounded-lg">Daftar</a>
+                         <a href="{{ route('register') }}" class="rounded-lg">Daftar</a>
                      </li>
                  </ul>
              @endif
@@ -152,7 +152,7 @@
              </a>
          </li>
          <li class="py-5">
-             <a href="" class="flex w-full justify-between items-center gap-4">
+             <a href="{{ route('guest.about') }}" class="flex w-full justify-between items-center gap-4">
                  <span>Tentang Kami</span>
              </a>
          </li>
@@ -203,7 +203,7 @@
                      <a href="{{ route('login') }}" class="rounded-lg">Masuk</a>
                  </li>
                  <li class="rounded-3xl bg-blue-500 py-2 px-6 text-white hover:bg-gray-100">
-                     <a href="" class="rounded-lg">Daftar</a>
+                     <a href="{{ route('register') }}" class="rounded-lg">Daftar</a>
                  </li>
              </ul>
          @endif

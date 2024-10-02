@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <x-slot name="title">login</x-slot>
+    <x-slot name="title">new password</x-slot>
 
     <x-slot name="head">
     </x-slot>
@@ -16,31 +16,20 @@
                 <div class="col-md-6 d-flex flex-column ">
                     <div class="card card-plain mt-8 w-80 mx-auto">
                         <div class="card-header pb-0 text-left bg-transparent">
-                            <h3 class="font-weight-bolder text-dark text-gradient">Masuk</h3>
-                            <p class="mb-0"> Selamat Datang Kembali, Masuk untuk Melanjutkan Belanja</p>
+                            <h3 class="font-weight-bolder text-dark text-gradient">Reset Password</h3>
+                            <p class="mb-0">Silahkan Buat Password Baru</p>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('register') }}" method="POST" role="form">
+                            <form role="form" method="POST" action="{{ route('password.store') }}">
                                 @csrf
-                                <label>Name</label>
-                                <div class="mb-3">
-                                    <input name="name" id="name" type="text" class="form-control"
-                                        placeholder="name" aria-label="name" aria-describedby="name-addon"
-                                        value="{{ old('name') }}" required>
-                                </div>
-                                @error('name')
-                                    <p class="text-danger text-center p-0 m-0">{{ $message }}</p>
-                                @enderror
+                                <input type="text" name="token" value="{{ $request->token }}" class="d-none"
+                                    readonly>
                                 <label>Email</label>
                                 <div class="mb-3">
-                                    <input name="email" id="email" type="email" class="form-control"
+                                    <input name="email" id="email" type="text" class="form-control"
                                         placeholder="Email" aria-label="Email" aria-describedby="email-addon"
-                                        value="{{ old('email') }}" required>
+                                        value="{{ $request->email }}" required>
                                 </div>
-                                @error('email')
-                                    <p class="text-danger text-center p-0 m-0">{{ $message }}</p>
-                                @enderror
-
                                 <label>Password</label>
                                 <div class="mb-3">
                                     <div class="form-control d-flex justify-content-between align-items-center p-0">
@@ -53,10 +42,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                @error('password')
-                                    <p class="text-danger text-center p-0 m-0">{{ $message }}</p>
-                                @enderror
-                                <label>Password Konfirmasi</label>
+                                <label>Konfirmasi Password</label>
                                 <div class="mb-3">
                                     <div class="form-control d-flex justify-content-between align-items-center p-0">
                                         <input type="password" name="password_confirmation" id="password_confirmation"
@@ -69,19 +55,20 @@
                                         </button>
                                     </div>
                                 </div>
-                                @error('password_confirmation')
-                                    <p class="text-danger text-center p-0 m-0">{{ $message }}</p>
+
+                                @error('email')
+                                    <p class="text-danger text-center p-0 m-0">{{ $message }}
+                                    </p>
                                 @enderror
 
-
                                 <div class="text-center">
-                                    <button type="submit"
-                                        class="btn bg-dark w-100 mt-4 mb-0 text-white">Daftar</button>
+                                    <button type="submit" class="btn bg-dark w-100 mt-4 mb-0 text-white">Reset
+                                        Password</button>
                                 </div>
                             </form>
 
                             <p class="mb-4 text-sm mt-4">
-                                Sudah memiliki akun ?
+                                Kembali Ke
                                 <a href="{{ route('login') }}"
                                     class="text-dark text-gradient font-weight-bold">Login</a>
                             </p>

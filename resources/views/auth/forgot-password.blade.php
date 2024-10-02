@@ -16,60 +16,44 @@
                 <div class="col-md-6 d-flex flex-column ">
                     <div class="card card-plain mt-8 w-80 mx-auto">
                         <div class="card-header pb-0 text-left bg-transparent">
-                            <h3 class="font-weight-bolder text-dark text-gradient">Masuk</h3>
-                            <p class="mb-0"> Selamat Datang Kembali, Masuk untuk Melanjutkan Belanja</p>
+                            <h3 class="font-weight-bolder text-dark text-gradient">Konfirmasi Email</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('login') }}" method="POST" role="form">
+                            <p class="mb-0">
+                                Silahkan masukkan email anda, kami akan mengirimkan link untuk mereset
+                                password anda
+                            </p>
+
+                            <form role="form" method="POST" action="{{ route('password.email') }}">
                                 @csrf
-                                <label>Email</label>
-                                <div class="mb-3">
+                                <label class="mt-3">Email</label>
+                                <div class="mb-1  ">
                                     <input name="email" id="email" type="text" class="form-control"
                                         placeholder="Email" aria-label="Email" aria-describedby="email-addon"
                                         value="{{ old('email') }}" required>
                                 </div>
-                                <label>Password</label>
-                                <div class="mb-3">
-                                    <div class="form-control d-flex justify-content-between align-items-center p-0">
-                                        <input type="password" name="password" id="password"
-                                            class="form-control border-0" placeholder="Password" aria-label="Password"
-                                            aria-describedby="password-addon" required>
-                                        <button type="button" onclick="toggleShowPassword('password')"
-                                            class="input-group-text border-0">
-                                            <i id="toggleIcon" class="fas fa-eye-slash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe"
-                                        checked="">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                                </div>
                                 @error('email')
-                                    <p class="text-danger text-center p-0 m-0">Kombinasi Email dan Password salah
-                                    </p>
+                                    <p class="text-danger text-center p-0 m-0">Email tidak ditemukan</p>
                                 @enderror
-
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-dark w-100 mt-4 mb-0 text-white">Login</button>
+                                    <p id="countdown" class="my-2 text-primary text-gradient font-weight-bold"></p>
+                                    <!-- Countdown display -->
+                                    <button type="submit" id="submit-button"
+                                        class="btn bg-dark w-100 mt-4 mb-0 text-white">Kirim
+                                        Email Reset Password
+                                    </button>
                                 </div>
                             </form>
 
                             <p class="mb-4 text-sm mt-4">
-                                Belum memiliki akun ?
-                                <a href="{{ route('register') }}"
-                                    class="text-dark text-gradient font-weight-bold">Daftar di sini </a>
-                            </p>
-                            <p class="mb-4 text-sm">
-                                Lupa Passoword ?
-                                <a href="{{ route('password.request') }}"
-                                    class="text-dark text-gradient font-weight-bold">Reset Password </a>
+                                Kembali Ke
+                                <a href="{{ route('login') }}"
+                                    class="text-dark text-gradient font-weight-bold">Login</a>
                             </p>
                             <p class="mb-4 text-sm">
                                 <a href="{{ route('register') }}"
                                     class="text-dark text-gradient font-weight-bold">Kembali Ke Halaman Utama</a>
                             </p>
-
 
                         </div>
                     </div>

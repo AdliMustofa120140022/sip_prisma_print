@@ -33,6 +33,5 @@ class userSeeder extends Seeder
         foreach ($users as $user) {
             User::factory()->create($user);
         }
-        
     }
 }
