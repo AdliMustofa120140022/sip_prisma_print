@@ -16,9 +16,13 @@ class TransaksiData extends Model
         'metode_pengiriman',
         'alamat_id',
         'resi',
-        'metode_pembayaran',
+        'payment_metode_id',
         'bukti_pembayaran',
         'payment_note',
+        'payment_time',
+        'shiping_cost',
+        'shiping_time',
+        'shiping_done_time',
     ];
 
     public $timestamps = false;
@@ -31,5 +35,10 @@ class TransaksiData extends Model
     public function alamat()
     {
         return $this->belongsTo(Alamat::class, 'alamat_id', 'id');
+    }
+
+    public function payment_metode()
+    {
+        return $this->belongsTo(PaymentMetode::class, 'payment_metode_id', 'id');
     }
 }

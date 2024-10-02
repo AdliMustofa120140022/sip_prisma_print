@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Transaksi;
+use App\Observers\TransaksiObserver;
 use App\View\Components\faqSidebar;
 use App\View\Components\productSidebar;
 use App\View\Components\userNavbar;
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Transaksi::observe(TransaksiObserver::class);
         Paginator::useBootstrap();
         Blade::component('user-navbar', userNavbar::class);
         Blade::component('product-sidebar', productSidebar::class);

@@ -6,6 +6,7 @@ use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Alamat;
 use App\Models\Cart;
+use App\Models\PaymentMetode;
 use App\Models\ProdukTransaksi;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -24,6 +25,11 @@ class CheckOutController extends Controller
         }
         $alamat = Alamat::where('user_id', Auth::id())->where('is_default', 1)->first();
 
+        if (!$alamat) {
+            return redirect()->back()->with('error', 'Tmabhkan Alamat terlebih dahulu');
+        }
+
+        $payment_metodes = PaymentMetode::all();
         try {
             $responseCity = Http::withHeaders([
                 'key' => config('app.rajaongkir.api_key'),
@@ -55,18 +61,22 @@ class CheckOutController extends Controller
                 $total_weight += $produck_weight;
             }
 
+            if ($total_weight < 2000) {
+                $total_weight = 2000;
+            }
+
             $responseCost = Http::withHeaders([
                 'key' => config('app.rajaongkir.api_key'),
             ])->post('https://api.rajaongkir.com/starter/cost', [
                 'origin' => config('app.rajaongkir.origin_city_id'),
                 'destination' => $cityId,
-                'weight' => 5000,
+                'weight' => $total_weight,
                 'courier' => 'jne',
             ]);
             $costData = $responseCost->json();
             $shippingCosts = $costData['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'];
 
-            return view('user.checkout.index', compact('transaksi', 'alamat', 'shippingCosts'));
+            return view('user.checkout.index', compact('transaksi', 'alamat', 'shippingCosts', 'payment_metodes'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'internal server error - ' . $e->getMessage());
         }
@@ -120,8 +130,6 @@ class CheckOutController extends Controller
         $url = $request->session()->get('prev_url') ?? route('user.dashboard');
 
         return redirect($url)->with('success', 'Produk berhasil diupdate');
-
-        // return redirect()->->with('success', 'Produk berhasil diupdate');
     }
 
     //buatkah function store untuk menyimpan data checkout?
@@ -181,11 +189,22 @@ class CheckOutController extends Controller
     function checkout(Request $request, $transaksi_code)
     {
         $shiping_cost = $request->shiping_cost;
-
         $payment_metode = $request->pembayaran;
+        $pengiriman = $request->pengiriman;
 
-        if ($request->pembayaran == 'walet' || $request->pembayaran == 'transfer_bank') {
-            $payment_metode = $request->via_id;
+        if ($payment_metode == 'bayar_toko') {
+            $payment_metode = $request->toko_via_id;
+        } elseif ($payment_metode == 'transfer_bank') {
+            $payment_metode = $request->bank_via_id;
+        } elseif ($payment_metode == 'walet') {
+            $payment_metode = $request->wallet_via_id;
+        } elseif ($payment_metode == 'qris') {
+            $payment_metode = $request->qris_via_id;
+        }
+
+        // dd($request->all(), $payment_metode);
+        if ($pengiriman == 'ambil_toko') {
+            $pengiriman = $request->otlet;
         }
         $transaksi = Transaksi::where('transaksi_code', $transaksi_code)->where('user_id', Auth::id())->first();
 
@@ -214,9 +233,9 @@ class CheckOutController extends Controller
         $transaksi->transaksi_data()->create([
             'alamat_id' => $request->alamat_id,
             'metode_pengiriman' => $request->pengiriman,
-            'metode_pembayaran' => $payment_metode,
+            'payment_metode_id' => $payment_metode,
         ]);
 
-        return redirect()->route('user.transaksi.index')->with('success', 'Transaksi berhasil');
+        return redirect()->route('user.payment.index', $transaksi->transaksi_code)->with('success', 'Transaksi berhasil');
     }
 }

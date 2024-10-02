@@ -26,8 +26,11 @@ return new class extends Migration
             $table->string('metode_pengiriman')->nullable();
             $table->foreignId('alamat_id')->constrained('alamats');
             $table->string('resi')->nullable();
-            $table->string('metode_pembayaran')->nullable();
+            $table->integer('shiping_cost')->nullable();
+            $table->dateTime('shiping_time')->nullable();
+            $table->dateTime('shiping_done_time')->nullable();
             $table->string('bukti_pembayaran')->nullable();
+            $table->dateTime('payment_time')->nullable();
             $table->string('payment_note')->nullable();
         });
 

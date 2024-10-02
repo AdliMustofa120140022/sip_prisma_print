@@ -1,4 +1,4 @@
-<footer class="bg-white w-full mt-5">
+<footer class="bg-gray-50 w-full mt-5">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 justify-around py-5 px-5">
         <div class="profile">
             <Span class="font-bold border-s-4 border-black px-3">Percetakan Prima Printing </Span>

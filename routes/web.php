@@ -6,11 +6,13 @@ use App\Http\Controllers\admin\SubKatagoriController;
 use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\guest\FaqController;
 use App\Http\Controllers\guest\HomeController as GuestHomeController;
+use App\Http\Controllers\guest\katagoriController as GuestkatagoriController;
 use App\Http\Controllers\guest\ProdukController as GuestProdukController;
 use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckOutController;
+use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\ProduckFavController;
 use App\Http\Controllers\user\TransaksiController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,7 @@ require __DIR__ . '/auth.php';
 //route tanpa middleware
 Route::get('/', [GuestHomeController::class, 'index'])->name('guest.dashboard');
 Route::get('/product', [GuestProdukController::class, 'index'])->name('guest.product');
+Route::get('/katagori', [GuestkatagoriController::class, 'index'])->name('guest.katagori');
 Route::get('/product/{id}/show', [GuestProdukController::class, 'show'])->name('guest.product.show');
 
 
@@ -62,25 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/user')->middleware('user')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('user.dashboard');
 
-        //love product
-        Route::get('/love/add', [ProduckFavController::class, 'addLove'])->name('user.love.add');
-        Route::get('/love/remove', [ProduckFavController::class, 'removeLove'])->name('user.love.remove');
-
-        Route::get('/cart', [CartController::class, 'index'])->name('user.cart.index');
-        Route::get('/cart/{id}/delete', [CartController::class, 'destroy'])->name('user.cart.delete');
-        Route::post('/cart', [CartController::class, 'store'])->name('user.cart.store');
-
-
-
-        Route::get('/checkout/{transaksi_code}', [CheckOutController::class, 'index'])->name('user.checkout.index');
-        Route::post('/checkout/{transaksi_code}/checkout', [CheckOutController::class, 'checkout'])->name('user.checkout.make');
-        Route::post('/checkout', [CheckOutController::class, 'store'])->name('user.checkout.store');
-        Route::get('/checkout/{id}/product_detail', [CheckOutController::class, 'product_detail'])->name('user.checkout.product_detail');
-        Route::post('/checkout/{id}/update_produck_transaksi', [CheckOutController::class, 'update_produck_transaksi'])->name('user.checkout.update_produck_transaksi');
-        Route::post('/checkout/update-quantity', [CheckOutController::class, 'updateQuantity'])->name('user.checkout.update-quantity');
-
-
-        //alamat
+        //address user
         Route::get('/alamat', [AlamatController::class, 'index'])->name('user.alamat.index');
         Route::get('/alamat/create', [AlamatController::class, 'create'])->name('user.alamat.create');
         Route::post('/alamat', [AlamatController::class, 'store'])->name('user.alamat.store');
@@ -89,10 +74,32 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/alamat/{id}', [AlamatController::class, 'destroy'])->name('user.alamat.destroy');
         Route::get('/alamat/{id}/default', [AlamatController::class, 'setDefault'])->name('user.alamat.default');
 
+        //love product
+        Route::get('/love/add', [ProduckFavController::class, 'addLove'])->name('user.love.add');
+        Route::get('/love/remove', [ProduckFavController::class, 'removeLove'])->name('user.love.remove');
 
-        //transaksi
+        //cart product
+        Route::get('/cart', [CartController::class, 'index'])->name('user.cart.index');
+        Route::get('/cart/{id}/delete', [CartController::class, 'destroy'])->name('user.cart.delete');
+        Route::post('/cart', [CartController::class, 'store'])->name('user.cart.store');
+        Route::post('/cart/update', [CartController::class, 'update'])->name('user.cart.update');
+
+        //checkout
+        Route::get('/checkout/{transaksi_code}', [CheckOutController::class, 'index'])->name('user.checkout.index');
+        Route::post('/checkout/{transaksi_code}/checkout', [CheckOutController::class, 'checkout'])->name('user.checkout.make');
+        Route::post('/checkout', [CheckOutController::class, 'store'])->name('user.checkout.store');
+        Route::get('/checkout/{id}/product_detail', [CheckOutController::class, 'product_detail'])->name('user.checkout.product_detail');
+        Route::post('/checkout/{id}/update_produck_transaksi', [CheckOutController::class, 'update_produck_transaksi'])->name('user.checkout.update_produck_transaksi');
+        Route::post('/checkout/update-quantity', [CheckOutController::class, 'updateQuantity'])->name('user.checkout.update-quantity');
+
+
+        //transaction payment
+        Route::get('/payment/{transaksi_code}', [PaymentController::class, 'index'])->name('user.payment.index');
+        Route::post('/payment/{transaksi_code}', [PaymentController::class, 'store'])->name('user.payment.store');
+
+        //history transaction
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('user.transaksi.index');
-        Route::get('/transaksi/show', [TransaksiController::class, 'show'])->name('user.transaksi.show');
+        Route::get('/transaksi/{id}/show', [TransaksiController::class, 'show'])->name('user.transaksi.show');
     });
 });
 

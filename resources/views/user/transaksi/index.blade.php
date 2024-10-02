@@ -14,7 +14,7 @@
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Riwayat Transaksi</h2>
         </div>
 
-        <div class="container mx-auto p-4 hidden md:block">
+        <div class="container mx-auto p-4 hidden md:block border rounded-lg">
             <div class="flex ">
                 <div class=" justify-self-start"></div>
                 <div class="justify-self-end"></div>
@@ -60,11 +60,60 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-6">
-                                    <a href=""
+                                    <a href="{{ route('user.payment.index', $transaksi->transaksi_code) }}"
                                         class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Lanjutkan
                                         Pembayaran</a>
+                                @elseif($transaksi->status == 'payment_konfirm')
+                                <td class="px-6 py-6">
+                                    <span
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
+                                        Menunggu
+                                    </span>
+                                </td>
+                                <td class="px-6 py-6">
+                                @elseif($transaksi->status == 'desain')
+                                <td class="px-6 py-6">
+                                    <span
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-cyan-100 text-cyan-600">
+                                        Desain
+                                    </span>
+                                </td>
+                                <td class="px-6 py-6">
+                                @elseif($transaksi->status == 'cetak')
+                                <td class="px-6 py-6">
+                                    <span
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-cyan-100 text-cyan-600">
+                                        Cetak
+                                    </span>
+                                </td>
+                                <td class="px-6 py-6">
+                                @elseif($transaksi->status == 'kirim')
+                                <td class="px-6 py-6">
+                                    <span
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-sky-100 text-sky-600">
+                                        Pengiriman
+                                    </span>
+                                </td>
+                                <td class="px-6 py-6">
+                                @elseif($transaksi->status == 'selesai')
+                                <td class="px-6 py-6">
+                                    <span
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-green-600">
+                                        Selesai
+                                    </span>
+                                </td>
+                                <td class="px-6 py-6">
+                                @elseif($transaksi->status == 'gagal')
+                                <td class="px-6 py-6">
+                                    <span
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                                        gagal
+                                    </span>
+                                </td>
+                                <td class="px-6 py-6">
                             @endif
-                            <a href="" class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</a>
+                            <a href="{{ route('user.transaksi.show', $transaksi->id) }}"
+                                class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</a>
                             </td>
                         </tr>
                     @endforeach
@@ -107,9 +156,39 @@
                                         class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-600">
                                         Menunggu Pembayaran
                                     </span>
-                                    <a href=""
+                                    <a href="{{ route('user.payment.index', $transaksi->transaksi_code) }}"
                                         class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Lanjutkan
                                         Pembayaran</a>
+                                @elseif($transaksi->status == 'payment_konfirm')
+                                    <span
+                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
+                                        Menunggu Konfirmasi
+                                    </span>
+                                @elseif($transaksi->status == 'desain')
+                                    <span
+                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-cyan-100 text-cyan-600">
+                                        Desain
+                                    </span>
+                                @elseif($transaksi->status == 'cetak')
+                                    <span
+                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-cyan-100 text-cyan-600">
+                                        Cetak
+                                    </span>
+                                @elseif($transaksi->status == 'kirim')
+                                    <span
+                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-sky-100 text-sky-600">
+                                        Pengiriman
+                                    </span>
+                                @elseif($transaksi->status == 'selesai')
+                                    <span
+                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-green-100 text-green-600">
+                                        Selesai
+                                    </span>
+                                @elseif($transaksi->status == 'gagal')
+                                    <span
+                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                                        gagal
+                                    </span>
                                 @endif
                             </td>
                             <td class="px-6 py-6 ">

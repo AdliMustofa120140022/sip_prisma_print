@@ -87,8 +87,7 @@
                 </label>
                 <div class="col-span-2 space-y-4">
                     <textarea class="w-full px-4 py-2 border rounded-md" rows="4" name="catatan"
-                        placeholder="Masukkan catatan pesanan seperti nama yang ingin dimasukkan ke dalam produk atau informasi penting lainnya"> {{ $produk_transaksi->doc_pendukung ? $produk_transaksi->doc_pendukung->catatan : '' }}
-                    </textarea>
+                        placeholder="Masukkan catatan pesanan seperti nama yang ingin dimasukkan ke dalam produk atau informasi penting lainnya">{{ $produk_transaksi->doc_pendukung ? $produk_transaksi->doc_pendukung->catatan : null }}</textarea>
                 </div>
                 @error('catatan')
                     <p class="text-red-500 text-xs">{{ $message }}</p>

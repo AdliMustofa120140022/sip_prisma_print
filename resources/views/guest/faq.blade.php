@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-        @elseif ($param == 'diskon_jumlah_besar')
+            {{-- @elseif ($param == 'diskon_jumlah_besar')
             <div class=" w-full">
                 <p class="font-semibold text-2xl">Pemesanan</p>
                 <div class="p-3 border rounded-md w-full">
@@ -71,7 +71,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- Pembayaran --}}
         @elseif ($param == 'metode_pembayaran')

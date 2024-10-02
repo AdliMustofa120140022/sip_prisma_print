@@ -17,19 +17,20 @@
             <div class="mx-auto w-full flex-none lg:max-w-[70%] xl:max-w-[70%]">
                 <div class="space-y-6">
                     @foreach ($carts as $cart)
-                        <div x-data="{ counter: @json($cart->quantity), hargaBarang: @json($cart->product->data_produck->harga_satuan) }"
+                        <div x-data="CartCounter({{ $cart->id }}, {{ $cart->quantity }}, {{ $cart->product->data_produck->harga_satuan }}, '{{ route('user.cart.update') }}', {{ cart->product->data_produck->stok }})"
                             class="rounded-xl border border-gray-200 bg-white md:px-6 px-3 py-3 shadow-sm">
                             <div class="flex  items-start justify-between md:gap-6 gap-3 space-y-0">
 
                                 {{-- <button x-data="{ selected: @json(request()->query('cart_id')) === @json($cart->id) ? true : false }" type="button" --}}
                                 <button x-data="{
-                                    selected: {{ request()->query('cart_id') == $cart->id ? 'true' : 'false' }}
+                                    selected: {{ request()->query('cart_id') == $cart->id ? 'true' : 'false' }},
+                                    disabled: {{ $cart->quantity >= $cart->product->data_produck->stok ? 'true' : 'false' }}
                                 }" type="button"
-                                    class=" h-6 aspect-square border rounded-sm"
+                                    class=" h-6 aspect-square border rounded-sm" :disabled="disabled"
                                     @click="
                                 selected = !selected;
-                                selected ? addSelected(counter, hargaBarang, @json($cart->id)) : removeSelected(1);
-                            ">
+                                selected ? addSelected(quantity, productPrice, @json($cart->id)) : removeSelected(@json($cart->id));
+                                ">
                                     <i x-show='selected' class="fa-solid fa-check text-blue-600"></i>
                                     <i x-show='!selected' class="fa-solid"></i>
                                 </button>
@@ -42,7 +43,8 @@
 
                                 <div class="w-full min-w-0 flex-1 space-y-4">
                                     <p class="text-2xl font-bold text-gray-900">{{ $cart->product->name }}</p>
-                                    <p class="text-base font-medium text-blue-600">{{ $cart->product->description }}</p>
+                                    <p class="text-base font-medium text-blue-600">{{ $cart->product->description }}
+                                    </p>
 
                                     <div class="flex items-center gap-4">
                                         <div class="hidden md:flex gap-3">
@@ -63,24 +65,30 @@
                                         <div class="px-3 hidden md:block">
                                             <p class="font-bold text-base">Harga Barang</p>
                                             <p class="text-blue-600 text-base font-medium">Rp
-                                                Rp <span
-                                                    x-text="hargaBarang.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0})"></span>
+                                                Rp. <span
+                                                    x-text="productPrice.toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0})"></span>
                                             </p>
                                         </div>
 
                                         <div class="px-3">
                                             <p class="font-bold text-base">Jumlah</p>
                                             <div class="flex items-center">
-                                                <button type="button" id="decrement-button"
-                                                    class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
-                                                    @click="counter <= 0 ? counter = 0 : counter--">
+                                                <button type="button"
+                                                    class="inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                                                    @click="decrement">
                                                     <i class="fa-solid fa-minus text-white"></i>
                                                 </button>
-                                                <input type="text" id="counter-input" x-model="counter"
-                                                    class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
+
+                                                <!-- Input quantity -->
+                                                <input type="number" min="1" x-model="quantity"
+                                                    @input="triggerDebounceUpdate()"
+                                                    class="w-16 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
                                                     required />
-                                                <button type="button" id="increment-button" @click="counter++"
-                                                    class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+
+                                                <!-- Tombol Plus -->
+                                                <button type="button"
+                                                    class="inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                                                    @click="increment">
                                                     <i class="fa-solid fa-plus text-white"></i>
                                                 </button>
                                             </div>
@@ -93,7 +101,7 @@
                                         <p class="font-medium text-base">Total Harga :</p>
                                         <p class="text-base font-bold text-blue-600">
                                             Rp <span
-                                                x-text="(hargaBarang * counter).toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0})"></span>
+                                                x-text="(productPrice * quantity).toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0})"></span>
                                         </p>
                                     </div>
                                 </div>
@@ -120,7 +128,7 @@
                                     <p class="font-medium text-base">Total Harga :</p>
                                     <p class="text-base font-bold text-blue-600">
                                         Rp <span
-                                            x-text="(hargaBarang * counter).toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0})"></span>
+                                            x-text="(productPrice * quantity).toLocaleString('id-ID', {minimumFractionDigits: 0, maximumFractionDigits: 0})"></span>
                                     </p>
                                 </div>
                             </div>
@@ -132,14 +140,13 @@
             </div>
 
             <div class="mx-auto mt-6 max-w-lg min-w-96 flex-1 space-y-6 lg:mt-0 lg:w-full">
-                <div
-                    class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700   sm:p-6">
+                <div class="space-y-4 rounded-lg border bg-white p-4 shadow-sm sm:p-6">
                     <p class="text-xl font-semibold text-gray-900  ">Order summary</p>
 
                     <div class="space-y-4">
                         <div class="space-y-2">
                             <dl class="flex items-center justify-between gap-4">
-                                <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Sub Total
+                                <dt class="text-base font-normal text-gray-500">Sub Total
                                 </dt>
                                 <dd class="text-base font-medium text-gray-900  ">RP. <span id="total_Harga">0</span>
                                 </dd>
@@ -148,11 +155,16 @@
                     </div>
 
 
-                    <div class="flex items-center justify-center gap-2">
-                        <button type="button" onclick="checkOut()"
-                            class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium bg-gray-600 text-white ">Check
-                            Out
-                        </button>
+                    <div id="checkout-form" class="flex items-center justify-center gap-2">
+
+                        <form action="{{ route('user.checkout.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" id="item-details" name="items">
+                            <button type="submit" id="checkout-button" disabled
+                                class="flex w-full items-center justify-center rounded-lg  px-5 py-2.5 text-sm font-medium bg-gray-300 text-white ">Check
+                                Out
+                            </button>
+                        </form>
 
                     </div>
                 </div>
@@ -161,19 +173,31 @@
         </div>
     </div>
 
-    <form id="checkout-form" action="{{ route('user.checkout.store') }}" method="POST" class="hidden">
-        @csrf
-        <input type="hidden" id="item-details" name="items">
-    </form>
-
 
     <x-slot name="scripts">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
         <script>
             var itemSelected = [];
             const totalHargaElement = document.getElementById('total_Harga');
+            const itemDetailsInput = document.getElementById('item-details');
+            const checkoutButton = document.getElementById('checkout-button');
+
+            function ToggleButton() {
+                if (itemSelected.length > 0) {
+                    checkoutButton.removeAttribute('disabled');
+                    checkoutButton.classList.remove('bg-gray-300');
+                    checkoutButton.classList.add('bg-blue-600');
+                } else {
+                    checkoutButton.setAttribute('disabled', 'disabled');
+                    checkoutButton.classList.remove('bg-blue-600');
+                    checkoutButton.classList.add('bg-gray-300');
+                }
+            }
 
             function renderTotalHarga() {
+                itemDetailsInput.value = JSON.stringify(itemSelected);
+                ToggleButton();
                 const totalHarga = itemSelected.reduce((acc, item) => acc + item.totalHarga, 0);
                 totalHargaElement.innerText = totalHarga.toLocaleString('id-ID', {
                     minimumFractionDigits: 0,
@@ -194,58 +218,86 @@
                         totalHarga: total * harga
                     });
                 }
+                //
                 renderTotalHarga();
-            }
-
-            var carts = @json($carts);
-            var paramCartid = @json(request()->query('cart_id'));
-
-            if (paramCartid) {
-
-
-                carts.forEach(cart => {
-                    if (cart.id == paramCartid) {
-                        addSelected(cart.quantity, cart.product.data_produck.harga_satuan, cart.id)
-                    }
-                });
             }
 
             function removeSelected(id) {
                 itemSelected = itemSelected.filter(item =>
                     item.id !== id
                 );
-
+                // itemDetailsInput = JSON.stringify(itemSelected);
                 renderTotalHarga();
             }
 
-            // fungsi untu checout
-            function checkOut() {
-                // Pastikan itemSelected terdefinisi dan berisi data
-                if (Array.isArray(itemSelected) && itemSelected.length > 0) {
-                    const itemDetails = itemSelected.map(item => ({
-                        id: item.id,
-                    }));
 
-                    // Cek apakah elemen dengan id 'item-details' ada
-                    const itemDetailsInput = document.getElementById('item-details');
-                    if (itemDetailsInput) {
-                        // Masukkan data ke input form tersembunyi
-                        itemDetailsInput.value = JSON.stringify(itemDetails);
 
-                        // Cek apakah form dengan id 'checkout-form' ada sebelum submit
-                        const checkoutForm = document.getElementById('checkout-form');
-                        if (checkoutForm) {
-                            // Submit form
-                            checkoutForm.submit();
-                        } else {
-                            console.error('Checkout form not found!');
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('CartCounter', (cartId, initialQuantity = 1, productPrice, updateUrl, stockAvailable) => ({
+                    cartId: cartId,
+                    productPrice: productPrice,
+                    quantity: initialQuantity,
+                    updateUrl: updateUrl,
+                    totalPrice: initialQuantity * productPrice,
+                    stok: stockAvailable,
+                    debounceTimer: null,
+
+                    increment() {
+                        this.quantity++;
+                        if (this.quantity > this.stok) {
+                            this.quantity = this.stok;
                         }
-                    } else {
-                        console.error('Item details input not found!');
+                        this.updateProductQuantity();
+                    },
+
+                    decrement() {
+                        if (this.quantity > 0) this.quantity--;
+                        this.updateProductQuantity();
+                    },
+                    triggerDebounceUpdate() {
+                        clearTimeout(this.debounceTimer);
+                        this.debounceTimer = setTimeout(() => {
+                            if (this.quantity < 1) {
+                                this.quantity = 1;
+                            } else if (this.quantity > this.stok) {
+                                this.quantity = this.stok;
+                            }
+                            this.updateProductQuantity();
+                        }, 1000);
+                    },
+
+                    updateProductQuantity() {
+                        axios.post(this.updateUrl, {
+                                cart_id: this.cartId,
+                                quantity: this.quantity
+                            })
+                            .then(response => {
+                                console.log(`cart ${this.cartId} updated successfully.`);
+                                this.updateTotalPrice();
+                            })
+                            .catch(error => {
+                                console.error(`Failed to update cart ${this.cartId}: `, error);
+                            });
+                    },
+                    updateTotalPrice() {
+                        const exssitingIndex = itemSelected.findIndex(item => item.id === this.cartId);
+                        if (exssitingIndex !== -1) {
+                            jumlah = this.quantity;
+                            itemSelected[exssitingIndex].totalHarga = this.quantity * this.productPrice;
+                        }
+                        renderTotalHarga();
                     }
-                } else {
-                    console.error('No items selected!');
-                }
+                }));
+            });
+
+            var carts = @json($carts);
+            var paramCartid = @json(request()->query('cart_id'));
+            if (paramCartid) {
+                carts.forEach(cart => {
+                    if (cart.id == paramCartid) {
+                        addSelected(cart.quantity, cart.product.data_produck.harga_satuan, cart.id)
+                    }
+                });
             }
         </script>
 

@@ -17,8 +17,10 @@ class TransaksiController extends Controller
         return view('user.transaksi.index', compact('transaksis'));
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('user.transaksi.show');
+
+        $transaksi = Transaksi::findOrFail($id);
+        return view('user.transaksi.show', compact('transaksi'));
     }
 }

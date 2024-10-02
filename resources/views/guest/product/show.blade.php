@@ -90,17 +90,12 @@
                             </a>
                         @endif
 
-
-                        {{-- <i class="fa-solid fa-heart"></i> --}}
-
                     </div>
 
-                    <!-- Price and Stock -->
                     <div class="flex items-center justify-between mt-2">
                         <p class="text-lg text-blue-500 font-semibold">Harga: Rp.
                             {{ number_format($produck->data_produck->harga_satuan, 0, ',', '.') }}</p>
                         <p class="text-gray-600">Stok : {{ $produck->data_produck->stok }}
-                            {{-- <p class="text-gray-600">Stok : {{ $produck->data_produck->stok > 0 ? 'Tersedia' : 'Kosong' }} --}}
                         </p>
                     </div>
 
@@ -129,11 +124,12 @@
 
                                 <label for="qty" class="text-gray-500 font-medium text-base">Jumlah</label>
                                 <input type="number" name="qty" id="qty" value="1"
+                                    max="{{ $produck->data_produck->stok }}" min="1"
                                     class="border border-gray-300 rounded-lg p-2 w-full">
 
                                 <div class="flex gap-5 py-4">
                                     <button type="submit"
-                                        class="px-4 py-2 bg-[#FFC20E] hover:bg-yellow-500 text-base font-medium text-white rounded-full"
+                                        class=" bg-blue-500 text-white px-4 py-2 rounded-xl font-semibold shadow hover:bg-blue-600 focus:outline-none"
                                         x-text="orderOpen === 'buy' ? 'Pesan' : 'Simpan'">
                                     </button>
                                 </div>

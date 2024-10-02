@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="min-h-screen bg-gray-100 flex flex-1 flex-col">
+<body class="min-h-screen flex  flex-1 flex-col">
     @if (session('success') || session('error'))
         <x-user-toaster type="{{ session('success') ? 'success' : 'error' }}" :message="session('success') ?? session('error')" />
     @endif

@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             KatagoriSeeder::class,
             SubKatagoriSeeder::class,
             ProduckSeeder::class,
+            AlamatSeeder::class,
+            PaymentMetodeSeeder::class,
         ]);
     }
 }

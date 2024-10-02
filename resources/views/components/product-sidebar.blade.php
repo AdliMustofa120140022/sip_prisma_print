@@ -7,7 +7,7 @@
         @foreach ($katagoris as $katagori)
             <li>
                 <button @click="openMenu !== {{ $katagori->id }} ? openMenu = {{ $katagori->id }} : openMenu = null"
-                    class="hover:bg-blue-800 w-full flex bg-[#043058] rounded-md font-semibold text-gray-300 py-2 my-1 px-3">
+                    class="hover:bg-blue-800 w-full flex bg-blue-500 rounded-md font-semibold text-gray-300 py-2 my-1 px-3">
                     <p>{{ $katagori->nama }}</p>
                     <i class="fa-solid fa-chevron-down ml-auto"
                         :class="openMenu === {{ $katagori->id }} ? 'fa-chevron-up' : 'fa-chevron-down'"></i>

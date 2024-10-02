@@ -54,4 +54,27 @@ class CartController extends Controller
         $cart->delete();
         return redirect()->back()->with('success', 'Product removed from cart successfully');
     }
+
+
+    public function update(Request $request)
+    {
+        $cartId = $request->input('cart_id');
+        $newQuantity = $request->input('quantity');
+
+        // Validasi kuantitas (tidak boleh negatif)
+        if ($newQuantity < 1) {
+            return response()->json(['error' => 'Quantity cannot be negative'], 400);
+        }
+
+        $cart = Cart::find($cartId);
+
+        if ($cart) {
+            $cart->quantity = $newQuantity;
+            $cart->save();
+
+            return response()->json(['message' => "Quantity for catr ID $cartId updated successfully"], 200);
+        }
+
+        return response()->json(['error' => 'cart not found'], 404);
+    }
 }
