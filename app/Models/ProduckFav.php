@@ -24,7 +24,7 @@ class ProduckFav extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function produk()
+    public function produck()
     {
         return $this->belongsTo(Produck::class, 'produk_id', 'id');
     }

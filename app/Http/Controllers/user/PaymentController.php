@@ -35,6 +35,7 @@ class PaymentController extends Controller
         ]);
         $transaksi->transaksi_data->update([
             'bukti_pembayaran' => $bukti_pembayaran,
+            'payment_time' => now(),
         ]);
 
         return redirect()->route('user.transaksi.index')->with('success', 'Bukti pembayaran berhasil diupload');

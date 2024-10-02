@@ -31,4 +31,10 @@ class ProduckFavController extends Controller
         $fav->delete();
         return redirect()->back()->with('success', 'Product removed from favorite successfully');
     }
+
+    public function index()
+    {
+        $produck_favs = ProduckFav::where('user_id', Auth::id())->get();
+        return view('user.produk_fav.index', compact('produck_favs'));
+    }
 }

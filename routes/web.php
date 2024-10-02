@@ -75,6 +75,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/alamat/{id}/default', [AlamatController::class, 'setDefault'])->name('user.alamat.default');
 
         //love product
+        Route::get('/love', [ProduckFavController::class, 'index'])->name('user.love.index');
         Route::get('/love/add', [ProduckFavController::class, 'addLove'])->name('user.love.add');
         Route::get('/love/remove', [ProduckFavController::class, 'removeLove'])->name('user.love.remove');
 

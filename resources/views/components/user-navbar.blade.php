@@ -88,7 +88,7 @@
                          <i class="fa-solid fa-user text-base"></i>
                      </button>
                      <div x-show="accountInfo"
-                         class="p-3 translate-y-4 -translate-x-20 w-64 text-sm text-gray-600 absolute bg-gray-200 rounded-xl border border-gray-300 shadow text-center transition-all duration-300 ease-in-out"
+                         class="p-3 translate-y-4 -translate-x-32 w-64 text-sm text-gray-600 absolute bg-gray-200 rounded-xl border border-gray-300 shadow text-center transition-all duration-300 ease-in-out"
                          x-transition:enter="transition transform ease-out duration-300"
                          x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                          x-transition:leave="transition transform ease-in duration-200"
@@ -108,7 +108,7 @@
                                  class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Alamat
                                  Pengiriman
                              </a>
-                             <a href=""
+                             <a href="{{ route('user.love.index') }}"
                                  class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Produk
                                  Favorit</a>
                              <a href="{{ route('logout') }}"
@@ -191,7 +191,7 @@
                              class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Riwayat
                              Transaksi
                          </a>
-                         <a href="{{ route('user.transaksi.index') }}"
+                         <a href="{{ route('user.love.index') }}"
                              class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Produk
                              Favorit</a>
                      </div>
