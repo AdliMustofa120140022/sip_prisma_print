@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
+use App\Http\Controllers\admin\PesananController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SubKatagoriController;
 use App\Http\Controllers\AlamatController;
@@ -60,6 +61,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::post('sub-kategori', [SubKatagoriController::class, 'store'])->name('admin.sub-kategori.store');
         Route::put('sub-kategori/{id}', [SubKatagoriController::class, 'update'])->name('admin.sub-kategori.update');
         Route::delete('sub-kategori/{id}', [SubKatagoriController::class, 'destroy'])->name('admin.sub-kategori.destroy');
+
+        //pesanan
+        Route::get('/pesanan', [PesananController::class, 'index'])->name('admin.pesanan.index');
+        Route::put('/pesanan/{id}/update', [PesananController::class, 'update'])->name('admin.pesanan.update');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {

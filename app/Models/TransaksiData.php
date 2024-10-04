@@ -16,6 +16,7 @@ class TransaksiData extends Model
         'metode_pengiriman',
         'alamat_id',
         'resi',
+        'payment_status',
         'payment_metode_id',
         'bukti_pembayaran',
         'payment_note',

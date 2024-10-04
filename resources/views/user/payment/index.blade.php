@@ -37,7 +37,7 @@
                     <p class="text-md font-semibold text-blue-950">{{ $transaksi->created_at }}</p>
                 </div>
             </div>
-            @if ($transaksi->status == 'payment')
+            @if ($transaksi->status == 'payment' && $transaksi->transaksi_data->payment_status != 'approved')
                 <div class="grid grid-cols-5 py-2">
                     <div class="col-span-2">
                         <p class="text-md font-semibold">Batas Akhir Pembayaran</p>
@@ -53,14 +53,22 @@
                     <p class="text-md font-semibold">Status Pembayaran</p>
                 </div>
                 <div class="col-span-3">
-                    @if ($transaksi->status == 'payment')
-                        <p class="text-md font-semibold text-orange-600">Menunggu Pembayaran</p>
-                    @elseif ($transaksi->status == 'payment_konfirm')
-                        <p class="text-md font-semibold text-blue-700">Menunggu Konfirmasi</p>
-                    @elseif($transaksi->status == 'payment_rejected')
-                        <p class="text-md font-semibold text-red-700">Pembayaran Ditolak</p>
-                    @else
-                        <p class="text-md font-semibold text-green-700">Lunas</p>
+                    @if ($transaksi->transaksi_data->payment_status == 'unpaid')
+                        <span class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                            Belum Dibayar
+                        </span>
+                    @elseif ($transaksi->transaksi_data->payment_status == 'pending')
+                        <span class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
+                            Menunggu Persetujuan
+                        </span>
+                    @elseif($transaksi->transaksi_data->payment_status == 'approved')
+                        <span class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-green-100 text-green-600">
+                            Lunas
+                        </span>
+                    @elseif($transaksi->transaksi_data->payment_status == 'rejected')
+                        <span class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                            Ditolak
+                        </span>
                     @endif
                 </div>
             </div>
@@ -123,13 +131,13 @@
                     </div>
                 </div>
 
-                @if ($transaksi->status == 'payment_reject')
+                @if ($transaksi->status == 'payment' && $transaksi->transaksi_data->payment_status == 'rejected')
                     <div class="grid grid-cols-5 py-2">
                         <div class="col-span-2">
                             <p class="text-md font-semibold">Catatan</p>
                         </div>
                         <div class="col-span-3">
-                            <p class="text-md font-semibold text-blue-950">
+                            <p class="text-md font-semibold text-red-500">
                                 {{ $transaksi->transaksi_data->payment_note }}
                             </p>
                         </div>
@@ -142,7 +150,7 @@
                         class="px-6 py-2 bg-blue-600 text-white w-56 rounded-md hover:bg-blue-700">Konfirmasi
                         Pembayaran</button>
 
-                    <a href="#"
+                    <a href=""
                         class=" bg-gray-200 text-black px-4 py-2 w-56 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Download
                         Invoice</a>
 

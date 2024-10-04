@@ -176,7 +176,7 @@
                      x-transition:leave="transition transform ease-in duration-200"
                      x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
                      <div class="py-4">
-                         <a href=""
+                         <a href="{{ route('user.cart.index') }}"
                              class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Keranjang
                              saya
                          </a>

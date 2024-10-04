@@ -33,6 +33,7 @@
         {{ $slot }}
     </main>
 
+    <script src="{{ asset('assets/js/jquery-3.7.1.slim.min.js') }}"></script>
     <x-utils.scripts-x-demo />
 
     @if (isset($scripts))

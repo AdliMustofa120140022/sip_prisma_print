@@ -28,6 +28,7 @@
                         <th class="py-3 px-4 text-left">Tanggal Pemesanan</th>
                         <th class="py-3 px-4 text-left">Pesanan</th>
                         <th class="py-3 px-4 text-left">Status</th>
+                        <th class="py-3 px-4 text-left">Status Pembayaran</th>
                         <th class="py-3 px-4 text-left rounded-tr-lg"></th>
                     </tr>
                 </thead>
@@ -42,78 +43,87 @@
                                     {{ $produk_transaksi->produck->name }} ({{ $produk_transaksi->jumlah }}),
                                 @endforeach
                             </td>
-                            @if ($transaksi->status == 'make')
-                                <td class="px-6 py-6">
+                            <td>
+                                @if ($transaksi->status == 'make')
                                     <span
-                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
-                                        Pesanan belum selesai
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-gray-100 text-gray-600">
+                                        Pesanan Sedang Dibuat
                                     </span>
-                                </td>
-                                <td class="px-6 py-6">
-                                    <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
-                                        class="bg-blue-500 text-white px-4 py-2 rounded-md">lanjutkan transaksi</a>
                                 @elseif($transaksi->status == 'payment')
-                                <td class="px-6 py-6">
                                     <span
                                         class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-600">
-                                        Menunggu Pembayaran
+                                        Pembayaran
                                     </span>
-                                </td>
-                                <td class="px-6 py-6">
-                                    <a href="{{ route('user.payment.index', $transaksi->transaksi_code) }}"
-                                        class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Lanjutkan
-                                        Pembayaran</a>
-                                @elseif($transaksi->status == 'payment_konfirm')
-                                <td class="px-6 py-6">
-                                    <span
-                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
-                                        Menunggu
-                                    </span>
-                                </td>
-                                <td class="px-6 py-6">
                                 @elseif($transaksi->status == 'desain')
-                                <td class="px-6 py-6">
                                     <span
-                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-cyan-100 text-cyan-600">
-                                        Desain
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
+                                        Proses Desain
                                     </span>
-                                </td>
-                                <td class="px-6 py-6">
                                 @elseif($transaksi->status == 'cetak')
-                                <td class="px-6 py-6">
                                     <span
-                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-cyan-100 text-cyan-600">
-                                        Cetak
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-purple-100 text-purple-600">
+                                        Proses Cetak
                                     </span>
-                                </td>
-                                <td class="px-6 py-6">
                                 @elseif($transaksi->status == 'kirim')
-                                <td class="px-6 py-6">
                                     <span
-                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-sky-100 text-sky-600">
-                                        Pengiriman
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-indigo-100 text-indigo-600">
+                                        Pesanan Dikirim
                                     </span>
-                                </td>
-                                <td class="px-6 py-6">
                                 @elseif($transaksi->status == 'selesai')
-                                <td class="px-6 py-6">
                                     <span
-                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-green-600">
-                                        Selesai
+                                        class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-green-100 text-green-600">
+                                        Pesanan Selesai
                                     </span>
-                                </td>
-                                <td class="px-6 py-6">
                                 @elseif($transaksi->status == 'gagal')
-                                <td class="px-6 py-6">
                                     <span
                                         class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
-                                        gagal
+                                        Pesanan Gagal
                                     </span>
-                                </td>
-                                <td class="px-6 py-6">
-                            @endif
-                            <a href="{{ route('user.transaksi.show', $transaksi->id) }}"
-                                class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</a>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($transaksi->status == 'payment')
+                                    @if ($transaksi->transaksi_data->payment_status == 'unpaid')
+                                        <span
+                                            class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                                            Belum Dibayar
+                                        </span>
+                                    @elseif ($transaksi->transaksi_data->payment_status == 'pending')
+                                        <span
+                                            class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
+                                            Menunggu Persetujuan
+                                        </span>
+                                    @elseif($transaksi->transaksi_data->payment_status == 'approved')
+                                        <span
+                                            class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-green-100 text-green-600">
+                                            Disetujui
+                                        </span>
+                                    @elseif($transaksi->transaksi_data->payment_status == 'rejected')
+                                        <span
+                                            class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                                            Ditolak
+                                        </span>
+                                    @endif
+                                @else
+                                    <span>-</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($transaksi->status == 'payment' && $transaksi->transaksi_data->payment_status != 'approved')
+                                    <a href="{{ route('user.payment.index', $transaksi->transaksi_code) }}"
+                                        class="bg-orange-100  px-4 py-2 rounded-md">Pembayaran</a>
+                                @endif
+                                @if ($transaksi->status == 'make')
+                                    <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-md">lanjutkan
+                                        transaksi</a>
+                                @elseif($transaksi->status == 'desain')
+                                    <a href=""
+                                        class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Desain</a>
+                                @endif
+                                <a href="{{ route('user.transaksi.show', $transaksi->id) }}"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</a>
+                            </td>
                             </td>
                         </tr>
                     @endforeach
@@ -145,54 +155,77 @@
                                 <p>{{ $transaksi->transaksi_code }}</p>
                                 @if ($transaksi->status == 'make')
                                     <span
-                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-blue-100 text-blue-600">
-                                        Pesanan belum selesai
+                                        class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-gray-100 text-gray-600">
+                                        Pesanan Sedang Dibuat
                                     </span>
-                                    <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
-                                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-wrap">lanjutkan
-                                        transaksi</a>
                                 @elseif($transaksi->status == 'payment')
-                                    <span
-                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-600">
-                                        Menunggu Pembayaran
-                                    </span>
-                                    <a href="{{ route('user.payment.index', $transaksi->transaksi_code) }}"
-                                        class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Lanjutkan
-                                        Pembayaran</a>
-                                @elseif($transaksi->status == 'payment_konfirm')
-                                    <span
-                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
-                                        Menunggu Konfirmasi
-                                    </span>
+                                    @if ($transaksi->transaksi_data->payment_status == 'unpaid')
+                                        <span
+                                            class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-red-100 text-red-600">
+                                            Belum Dibayar
+                                        </span>
+                                    @elseif ($transaksi->transaksi_data->payment_status == 'pending')
+                                        <span
+                                            class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-orange-100 text-orange-600">
+                                            Menunggu Persetujuan
+                                        </span>
+                                    @elseif($transaksi->transaksi_data->payment_status == 'approved')
+                                        <span
+                                            class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-green-100 text-green-600">
+                                            Disetujui
+                                        </span>
+                                    @elseif($transaksi->transaksi_data->payment_status == 'rejected')
+                                        <span
+                                            class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-red-100 text-red-600">
+                                            Ditolak
+                                        </span>
+                                    @endif
                                 @elseif($transaksi->status == 'desain')
                                     <span
-                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-cyan-100 text-cyan-600">
-                                        Desain
+                                        class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-blue-100 text-blue-600">
+                                        Proses Desain
                                     </span>
                                 @elseif($transaksi->status == 'cetak')
                                     <span
-                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-cyan-100 text-cyan-600">
-                                        Cetak
+                                        class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-purple-100 text-purple-600">
+                                        Proses Cetak
                                     </span>
                                 @elseif($transaksi->status == 'kirim')
                                     <span
-                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-sky-100 text-sky-600">
-                                        Pengiriman
+                                        class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-indigo-100 text-indigo-600">
+                                        Pesanan Dikirim
                                     </span>
                                 @elseif($transaksi->status == 'selesai')
                                     <span
-                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-green-100 text-green-600">
-                                        Selesai
+                                        class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-green-100 text-green-600">
+                                        Pesanan Selesai
                                     </span>
                                 @elseif($transaksi->status == 'gagal')
                                     <span
-                                        class="px-3 py-1 my-2 rounded-full text-sm font-semibold bg-red-100 text-red-600">
-                                        gagal
+                                        class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-red-100 text-red-600">
+                                        Pesanan Gagal
                                     </span>
                                 @endif
+
+
+
                             </td>
                             <td class="px-6 py-6 ">
-                                <a href="" class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</a>
+                                <a href="{{ route('user.transaksi.show', $transaksi->id) }}"
+                                    class="bg-blue-500 block  my-2 text-white px-4 py-2 rounded-md">Detail</a>
+
+                                @if ($transaksi->status == 'payment' && $transaksi->transaksi_data->payment_status != 'approved')
+                                    <a href="{{ route('user.transaksi.show', $transaksi->transaksi_code) }}"
+                                        class="bg-orange-100 block my-2  px-4 py-2 rounded-md">Pembayran</a>
+                                @endif
+                                @if ($transaksi->status == 'make')
+                                    <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
+                                        class="bg-blue-500 block my-2  text-white px-4 py-2 rounded-md">lanjutkan
+                                        transaksi</a>
+                                @elseif($transaksi->status == 'desain')
+                                    <a href=""
+                                        class="bg-yellow-100 block my-2  text-yellow-600e px-4 py-2 rounded-md">Desain</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

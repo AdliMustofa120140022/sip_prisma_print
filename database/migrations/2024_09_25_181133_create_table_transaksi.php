@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->string('transaksi_code')->unique();
-            $table->enum('status', ['make', 'payment', 'payment_reject', 'payment_konfirm', 'payment-done', 'desain', 'cetak', 'kirim', 'selesai', 'gagal'])->default('make');
+            $table->enum('tansaktion_type', ['normal', 'constume'])->default('normal');
+            $table->enum('status', ['make', 'payment', 'desain', 'cetak', 'kirim', 'selesai', 'gagal'])->default('make');
             $table->integer('total_harga')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->dateTime('shiping_time')->nullable();
             $table->dateTime('shiping_done_time')->nullable();
             $table->string('bukti_pembayaran')->nullable();
+            $table->enum('payment_status', ['unpaid', 'pending', 'approved', 'rejected'])->default('unpaid');
             $table->dateTime('payment_time')->nullable();
             $table->string('payment_note')->nullable();
         });

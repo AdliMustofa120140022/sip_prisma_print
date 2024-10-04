@@ -14,6 +14,7 @@ class Transaksi extends Model
     protected $fillable = [
         'status',
         'transaksi_code',
+        'tansaktion_type',
         'status', // , make, payment, desain, cetak, kirim, selesai
         'total_harga',
         'user_id',

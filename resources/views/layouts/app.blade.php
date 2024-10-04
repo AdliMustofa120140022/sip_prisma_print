@@ -33,6 +33,8 @@
 
     <x-utils.scripts-x-demo />
 
+    <script src="{{ asset('assets/js/jquery-3.7.1.slim.min.js') }}"></script>
+
     @if (isset($scripts))
         {{ $scripts }}
     @endif

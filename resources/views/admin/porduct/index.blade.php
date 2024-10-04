@@ -1,11 +1,9 @@
 <x-app-layout>
     <x-slot name="title">Produk</x-slot>
     <x-slot name="metas">
-        {{-- datatables --}}
-        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-            integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-        <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+        {{-- <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script> --}}
     </x-slot>
 
     <section class="m-3">
@@ -82,7 +80,8 @@
                                                 </p>
                                             </td>
                                             <td>
-                                                <p class=" text-secondary text-center font-weight-bold">
+                                                <p
+                                                    class=" {{ $produck->data_produck->stok < 60 ? 'text-danger' : 'text-secondary' }} text-center font-weight-bold">
                                                     {{ $produck->data_produck->stok ?? '-' }}
                                                 </p>
                                             </td>
@@ -128,6 +127,7 @@
     </section>
 
     <x-slot name="scripts">
+        <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
         <script>
             $(document).ready(function() {
                 $('#dataTabel').DataTable();

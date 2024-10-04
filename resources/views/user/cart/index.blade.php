@@ -23,7 +23,7 @@
                 <div class="mx-auto w-full flex-none lg:max-w-[70%] xl:max-w-[70%]">
                     <div class="space-y-6">
                         @foreach ($carts as $cart)
-                            <div x-data="CartCounter({{ $cart->id }}, {{ $cart->quantity }}, {{ $cart->product->data_produck->harga_satuan }}, '{{ route('user.cart.update') }}', {{ cart->product->data_produck->stok }})"
+                            <div x-data="CartCounter({{ $cart->id }}, {{ $cart->quantity }}, {{ $cart->product->data_produck->harga_satuan }}, '{{ route('user.cart.update') }}', {{ $cart->product->data_produck->stok }})"
                                 class="rounded-xl border border-gray-200 bg-white md:px-6 px-3 py-3 shadow-sm">
                                 <div class="flex  items-start justify-between md:gap-6 gap-3 space-y-0">
 
