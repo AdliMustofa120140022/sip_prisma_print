@@ -72,6 +72,36 @@
                     <span class="nav-link-text ms-1 text-black">Kelola Pesana</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('admin.pembayaran*') ? 'bg-gray-300' : '' }} "
+                    href={{ route('admin.pembayaran.index') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
+                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                    </div>
+                    <span class="nav-link-text ms-1 text-black">Kelola Pembayaran</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('admin.pembayaran*') ? 'bg-gray-300' : '' }} "
+                    href={{ route('admin.pembayaran.index') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
+                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                    </div>
+                    <span class="nav-link-text ms-1 text-black">Kelola Desain Pesanan</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('admin.pembayaran*') ? 'bg-gray-300' : '' }} "
+                    href={{ route('admin.pembayaran.index') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
+                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                    </div>
+                    <span class="nav-link-text ms-1 text-black">Kelola Pengiriman</span>
+                </a>
+            </li>
 
 
 

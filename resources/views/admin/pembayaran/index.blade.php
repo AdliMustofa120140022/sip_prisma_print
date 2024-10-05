@@ -11,17 +11,7 @@
                 <div class="card mb-4">
                     <div class="d-flex justify-content-between items-center">
                         <div class="card-header pb-0">
-                            <h6>Produk</h6>
-                        </div>
-                        <div class="d-flex gap-2">
-
-                            <a href="{{ route('admin.product.create') }}"
-                                class="btn bg-gradient-primary mt-4 mb-0 px-5 text-white me-3">Tambah
-                                Produk</a>
-                            <button class="btn bg-gradient-info mt-4 mb-0 px-5 text-white me-3">Import
-                                Produk</button>
-                            <a href="#" class="btn bg-gradient-success mt-4 mb-0 px-5 text-white me-3">export
-                                Produk</a>
+                            <h6>Pembayaran</h6>
                         </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
@@ -75,40 +65,47 @@
                                             </td>
                                             <td>
                                                 <p class=" text-secondary text-center font-weight-bold">
-                                                    {{ number_format($transaksi->total_harga, 0, ',', '.') ?? '-' }}
+                                                    Rp. {{ number_format($transaksi->total_harga, 0, ',', '.') ?? '-' }}
                                                 </p>
                                             </td>
-                                            @if ($transaksi->status == 'payment')
-                                                <p class=" text-warning text-center font-weight-bold">
-                                                    Memunggu Pembayaran
-                                                </p>
-                                            @elseif($transaksi->status == 'payment_konfirm')
-                                                <p class=" text-warning text-center font-weight-bold">
-                                                    Menunggu Konfirmasi Pembayaran
-                                                </p>
-                                            @elseif($transaksi->status == 'payment_done')
-                                                <p class=" text-warning text-center font-weight-bold">
-                                                    Pembayaran Selesai
-                                                </p>\
-                                            @elseif($transaksi->status == 'payment_reject')
-                                                <p class=" text-danger text-center font-weight-bold">
-                                                    Pembayaran ditolak
-                                                </p>
-                                            @endif
+
+                                            <td>
+                                                @if ($transaksi->transaksi_data->payment_status == 'unpaid')
+                                                    <span class="badge bg-danger">
+                                                        Belum Dibayar
+                                                    </span>
+                                                @elseif ($transaksi->transaksi_data->payment_status == 'pending')
+                                                    <span class="badge bg-warning text-dark">
+                                                        Menunggu Persetujuan
+                                                    </span>
+                                                @elseif ($transaksi->transaksi_data->payment_status == 'approved')
+                                                    <span class="badge bg-success">
+                                                        Disetujui
+                                                    </span>
+                                                @elseif ($transaksi->transaksi_data->payment_status == 'rejected')
+                                                    <span class="badge bg-danger">
+                                                        Ditolak
+                                                    </span>
+                                                @endif
+
+                                            </td>
 
                                             <td class="align-middle">
                                                 <div class="d-flex">
+                                                    @if ($transaksi->transaksi_data->payment_status == 'pending')
+                                                        <a href="{{ route('admin.pembayaran.confirm', $transaksi->id) }}"
+                                                            class="text-secondary font-weight-bold text-decoration-underline pe-3"
+                                                            data-toggle="tooltip" data-original-title="Edit user">
+                                                            Konfirmasi Pembayaran
+                                                        </a>
+                                                    @endif
 
-                                                    <a href=""
-                                                        class="text-secondary font-weight-bold text-decoration-underline pe-3"
-                                                        data-toggle="tooltip" data-original-title="Edit user">
-                                                        Ubah Status Pesanana
-                                                    </a>
-                                                    <a href=""
+                                                    @include('admin.pembayaran.detail')
+                                                    {{-- <a href=""
                                                         class="text-secondary font-weight-bold text-decoration-underline  pe-3"
                                                         data-toggle="tooltip" data-original-title="Edit user">
                                                         detail
-                                                    </a>
+                                                    </a> --}}
                                                 </div>
                                             </td>
                                         </tr>

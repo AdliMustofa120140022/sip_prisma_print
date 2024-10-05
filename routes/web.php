@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
+use App\Http\Controllers\admin\PembayaranController;
 use App\Http\Controllers\admin\PesananController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SubKatagoriController;
@@ -65,6 +66,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //pesanan
         Route::get('/pesanan', [PesananController::class, 'index'])->name('admin.pesanan.index');
         Route::put('/pesanan/{id}/update', [PesananController::class, 'update'])->name('admin.pesanan.update');
+
+        //pembayaran
+        Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('admin.pembayaran.index');
+        Route::get('/pembayaran/{id}/Confirm', [PembayaranController::class, 'show'])->name('admin.pembayaran.show');
+        Route::post('/pembayaran/{id}/Confirm', [PembayaranController::class, 'paymentConfirm'])->name('admin.pembayaran.confirm');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {

@@ -1,15 +1,15 @@
 <button type="button" class="text-secondary font-weight-bold text-decoration-underline pe-3 bg-transparent border-0"
-    data-bs-toggle="modal" data-bs-target="#modelEdit{{ $transaksi->id }}">
-    Update
+    data-bs-toggle="modal" data-bs-target="#modelDetail{{ $transaksi->id }}">
+    detail
 </button>
 
 
-<div class="modal fade" id="modelEdit{{ $transaksi->id }}" tabindex="-1" role="dialog"
-    aria-labelledby="modalEditLabel{{ $transaksi->id }}" aria-hidden="true">
+<div class="modal fade" id="modelDetail{{ $transaksi->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="modalDetailLabel{{ $transaksi->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalEditLabel{{ $transaksi->id }}">
+                <h5 class="modal-title" id="modalDetailLabel{{ $transaksi->id }}">
                     Update Status Pesanan</h5>
                 <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -155,47 +155,24 @@
                             </div>
                         </div>
 
-                        <div class="row mt-sm-4 mt-4">
-                            <div class="card p-3">
-                                <h6 class="border-bottom pb-2 mb-3">Update Status Pesana</h6>
-                                <form action="{{ route('admin.pesanan.update', $transaksi->id) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('put')
-                                    @csrf
-                                    <label for="update_status">Update Statut</label>
-                                    <select name="update_status" id="update_status" class="form-control mb-4">
-                                        <option value="payment"
-                                            {{ $transaksi->status == 'payment' ? 'selected' : '' }}>
-                                            Proses Pembayaran
-                                        </option>
-                                        <option value="desain" {{ $transaksi->status == 'desain' ? 'selected' : '' }}>
-                                            Desain
-                                        </option>
-                                        <option value="cetak" {{ $transaksi->status == 'cetak' ? 'selected' : '' }}>
-                                            Cetak
-                                        </option>
-                                        <option value="kirim" {{ $transaksi->status == 'kirim' ? 'selected' : '' }}>
-                                            Kirim
-                                        </option>
-                                        <option value="selesai"
-                                            {{ $transaksi->status == 'selesai' ? 'selected' : '' }}>
-                                            Selesai
-                                        </option>
-                                        <option value="gagal" {{ $transaksi->status == 'gagal' ? 'selected' : '' }}>
-                                            Gagal
-                                        </option>
-                                    </select>
-
-
-                                    <button type="submit" class="btn bg-dark text-white">Update</button>
-                                </form>
-                            </div>
-                        </div>
-
                     </div>
 
 
+
+
+
+                    <!-- Bukti Pembayaran -->
+                    {{-- <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header pb-0">
+                                <h6>Bukti Pembayaran</h6>
+                            </div>
+                            <div class="card-body d-flex align-items-center justify-content-center">
+                                <img src="{{ asset('storage/bukti_pembayaran/' . $transaksi->transaksi_data->bukti_pembayaran) }}"
+                                    class="img-fluid rounded shadow" alt="bukti pembayaran">
+                            </div>
+                        </div>
+                    </div> --}}
                 </div>
 
             </div>

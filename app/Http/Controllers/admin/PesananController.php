@@ -17,9 +17,13 @@ class PesananController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        $transaksi = Transaksi::find($id);
         $status_update = $request->update_status;
 
-        dd($status_update);
+        if ($status_update == 'payment' and $transaksi->transaksi_data->payment_status != 'aproved') {
+            return redirect()->route('admin.pembayaran.confirm', $id);
+        } else {
+            return redirect()->route('admin.pesanan.index')->with('error', 'transaksi sedang dalam proses');
+        }
     }
 }

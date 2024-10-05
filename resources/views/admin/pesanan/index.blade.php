@@ -14,16 +14,6 @@
                         <div class="card-header pb-0">
                             <h6>Produk</h6>
                         </div>
-                        <div class="d-flex gap-2">
-
-                            <a href="{{ route('admin.product.create') }}"
-                                class="btn bg-gradient-primary mt-4 mb-0 px-5 text-white me-3">Tambah
-                                Produk</a>
-                            <button class="btn bg-gradient-info mt-4 mb-0 px-5 text-white me-3">Import
-                                Produk</button>
-                            <a href="#" class="btn bg-gradient-success mt-4 mb-0 px-5 text-white me-3">export
-                                Produk</a>
-                        </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -43,6 +33,9 @@
                                         </th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
                                             Status
+                                        </th>
+                                        <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
+                                            Status Pembayaran
                                         </th>
                                         <th class="text-info opacity-7"></th>
                                     </tr>
@@ -74,20 +67,8 @@
                                             <td>
                                                 @if ($transaksi->status == 'payment')
                                                     <p class=" text-warning text-center font-weight-bold">
-                                                        Menunggu Pembayaran
+                                                        Proses Pembayaran
                                                     </p>
-                                                    {{-- @elseif($transaksi->status == 'payment_konfirm')
-                                                    <p class=" text-warning text-center font-weight-bold">
-                                                        Menunggu Konfirmasi Pembayaran
-                                                    </p>
-                                                @elseif($transaksi->status == 'payment_done')
-                                                    <p class=" text-warning text-center font-weight-bold">
-                                                        Pembayaran Selesai
-                                                    </p>\
-                                                @elseif($transaksi->status == 'payment_reject')
-                                                    <p class=" text-danger text-center font-weight-bold">
-                                                        Pembayaran ditolak
-                                                    </p> --}}
                                                 @elseif($transaksi->status == 'desain')
                                                     <p class=" text-primary text-center font-weight-bold">
                                                         Desain
@@ -110,27 +91,35 @@
                                                     </p>
                                                 @endif
                                             </td>
+                                            <td>
+                                                @if ($transaksi->transaksi_data->payment_status == 'unpaid')
+                                                    <span class="badge bg-danger">
+                                                        Belum Dibayar
+                                                    </span>
+                                                @elseif ($transaksi->transaksi_data->payment_status == 'pending')
+                                                    <span class="badge bg-warning text-dark">
+                                                        Menunggu Persetujuan
+                                                    </span>
+                                                @elseif ($transaksi->transaksi_data->payment_status == 'approved')
+                                                    <span class="badge bg-success">
+                                                        Disetujui
+                                                    </span>
+                                                @elseif ($transaksi->transaksi_data->payment_status == 'rejected')
+                                                    <span class="badge bg-danger">
+                                                        Ditolak
+                                                    </span>
+                                                @endif
+                                            </td>
 
                                             <td class="align-middle">
                                                 <div class="d-flex">
-                                                    @if (
-                                                        $transaksi->status == 'payment_konfirm' ||
-                                                            $transaksi->status == 'payment_done' ||
-                                                            $transaksi->status == 'desain' ||
-                                                            $transaksi->status == 'cetak')
+                                                    @include('admin.pesanan.detail')
+
+                                                    @if ($transaksi->status == 'payment' || $transaksi->status == 'desain' || $transaksi->status == 'cetak')
                                                         @include('admin.pesanan.edit')
                                                     @endif
-                                                    <a href=""
-                                                        class="text-secondary font-weight-bold text-decoration-underline pe-3"
-                                                        data-toggle="tooltip" data-original-title="Edit user">
-                                                        Ubah Status Pesanana
-                                                    </a>
-                                                    <a href=""
-                                                        class="text-secondary font-weight-bold text-decoration-underline  pe-3"
-                                                        data-toggle="tooltip" data-original-title="Edit user">
-                                                        detail
-                                                    </a>
                                                 </div>
+
                                             </td>
                                         </tr>
                                     @endforeach
