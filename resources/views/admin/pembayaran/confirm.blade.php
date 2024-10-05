@@ -23,7 +23,7 @@
                                 <div class="card p-3">
                                     <h6 class="border-bottom pb-2 mb-3">Informasi Transaksi</h6>
                                     <div class="mb-2">
-                                        <strong>ID Transaksi:</strong> {{ $transaksi->kode_transaksi }}
+                                        <strong>ID Transaksi:</strong> {{ $transaksi->transaksi_code }}
                                     </div>
                                     <div class="mb-2">
                                         <strong>Tanggal Transaksi:</strong>

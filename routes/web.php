@@ -71,6 +71,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('admin.pembayaran.index');
         Route::get('/pembayaran/{id}/Confirm', [PembayaranController::class, 'show'])->name('admin.pembayaran.show');
         Route::post('/pembayaran/{id}/Confirm', [PembayaranController::class, 'paymentConfirm'])->name('admin.pembayaran.confirm');
+
+        //desain
+        Route::get('/desain', [App\Http\Controllers\admin\DesainController::class, 'index'])->name('admin.desain.index');
+        Route::get('/desain/{id}', [App\Http\Controllers\admin\DesainController::class, 'show'])->name('admin.desain.show');
+        Route::post('/desain/{id}', [App\Http\Controllers\admin\DesainController::class, 'add'])->name('admin.desain.add');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {
