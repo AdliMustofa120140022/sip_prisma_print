@@ -206,9 +206,6 @@
                                         Pesanan Gagal
                                     </span>
                                 @endif
-
-
-
                             </td>
                             <td class="px-6 py-6 ">
                                 <a href="{{ route('user.transaksi.show', $transaksi->id) }}"

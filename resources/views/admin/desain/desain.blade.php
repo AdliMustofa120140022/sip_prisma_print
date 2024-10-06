@@ -150,30 +150,34 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        <form action="{{ route('admin.desain.add', $produk_transaksi->id) }}"
-                                            class="mt-4" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <h6 class="border-bottom pb-2 mb-3">Upload Desain Produk</h6>
-                                            <div class="mb-2">
-                                                <label for="desain_produk" class="form-label">Status Pembayaran</label>
-                                                <div class="col-span-2 space-y-4">
-                                                    <label class="w-100">
-                                                        <input type="file" name="desain_produk"
-                                                            id="docPendukung{{ $produk_transaksi->id }}"
-                                                            class="d-none">
-                                                        <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-light cursor-pointer"
-                                                            onclick="document.getElementById('docPendukung{{ $produk_transaksi->id }}').click()">
-                                                            <span id="fileName{{ $produk_transaksi->id }}">Pilih
-                                                                file</span>
-                                                            <span class="text-muted text-xs">Unggah Desain Produk</span>
-                                                        </div>
-                                                    </label>
-                                                    <p class="text-muted text-xs mt-1">Maksimal ukuran file 300MB</p>
+                                        @if ($produk_transaksi->desain_produk_transaksi->status != 'approved')
+                                            <form action="{{ route('admin.desain.add', $produk_transaksi->id) }}"
+                                                class="mt-4" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <h6 class="border-bottom pb-2 mb-3">Upload Desain Produk</h6>
+                                                <div class="mb-2">
+                                                    <label for="desain_produk" class="form-label">Status
+                                                        Pembayaran</label>
+                                                    <div class="col-span-2 space-y-4">
+                                                        <label class="w-100">
+                                                            <input type="file" name="desain_produk"
+                                                                id="docPendukung{{ $produk_transaksi->id }}"
+                                                                class="d-none">
+                                                            <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-light cursor-pointer"
+                                                                onclick="document.getElementById('docPendukung{{ $produk_transaksi->id }}').click()">
+                                                                <span id="fileName{{ $produk_transaksi->id }}">Pilih
+                                                                    file</span>
+                                                                <span class="text-muted text-xs">Unggah Desain
+                                                                    Produk</span>
+                                                            </div>
+                                                        </label>
+                                                        <p class="text-muted text-xs mt-1">Maksimal ukuran file 300MB
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <button type="submit" class="btn bg-dark text-white">upload</button>
-
-                                        </form>
+                                                <button type="submit" class="btn bg-dark text-white">upload</button>
+                                            </form>
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>

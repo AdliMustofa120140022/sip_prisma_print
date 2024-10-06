@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
 use App\Http\Controllers\admin\PembayaranController;
+use App\Http\Controllers\admin\PengirimanController;
 use App\Http\Controllers\admin\PesananController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SubKatagoriController;
@@ -80,6 +81,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         //pengiriman
         Route::get('/pengiriman', [App\Http\Controllers\admin\PengirimanController::class, 'index'])->name('admin.pengiriman.index');
+        Route::get('/pengiriman/{id}', [App\Http\Controllers\admin\PengirimanController::class, 'show'])->name('admin.pengiriman.show');
         Route::put('/pengiriman/{id}', [App\Http\Controllers\admin\PengirimanController::class, 'edit'])->name('admin.pengiriman.edit');
     });
 

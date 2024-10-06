@@ -126,7 +126,12 @@
                                         {{ $produk_transaksi->jumlah }}
                                     </div>
                                 @endforeach
-                                <div class="mt-3">
+                                <div class="mt-2">
+                                    <strong>Desain Produk</strong>
+                                    <a href="{{ route('admin.desain.show', $transaksi->id) }}"
+                                        class="text-info">desain</a>
+                                </div>
+                                <div class="">
                                     <strong>Total Harga:</strong> Rp.
                                     {{ number_format($transaksi->total_harga, 0, ',', '.') }}
                                 </div>

@@ -78,12 +78,14 @@
 
                                             <td class="align-middle">
                                                 <div class="d-flex">
-                                                    @include('admin.pengiriman.edit')
+                                                    <a href="{{ route('admin.pengiriman.show', $transaksi->id) }}"
+                                                        class="text-secondary font-weight-bold text-decoration-underline pe-3 bg-transparent border-0" ">
+                                                        Pengiriman
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
-
+ @endforeach
                                 </tbody>
                             </table>
                         </div>

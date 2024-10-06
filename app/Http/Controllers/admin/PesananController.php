@@ -26,10 +26,12 @@ class PesananController extends Controller
 
         if ($status_update == 'payment' and $transaksi->transaksi_data->payment_status != 'approved') {
             return redirect()->route('admin.pembayaran.confirm', $id);
-        } elseif ($status_update == 'desain' and $transaksi->transaksi_data->payment_status == 'approved') {
+        } elseif ($status_update == 'desain') {
             return redirect()->route('admin.desain.add', $id);
+        } elseif ($status_update == 'kirim') {
+            return redirect()->route('admin.pengiriman.show', $id);
         } else {
-            return redirect()->route('admin.pesanan.index')->with('error', 'transaksi sedang dalam proses');
+            return redirect()->route('admin.pesanan.index')->with('success', 'transaksi sedang dalam proses');
         }
     }
 }
