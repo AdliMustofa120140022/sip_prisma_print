@@ -24,6 +24,7 @@ class TransaksiData extends Model
         'shiping_cost',
         'shiping_time',
         'shiping_done_time',
+        'desain_time',
     ];
 
     public $timestamps = false;

@@ -1,9 +1,7 @@
 <x-app-layout>
-    <x-slot name="title">Pesanana</x-slot>
+    <x-slot name="title">Pengiriman</x-slot>
     <x-slot name="metas">
-
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-        {{-- <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script> --}}
     </x-slot>
 
     <section class="m-3">
@@ -12,7 +10,7 @@
                 <div class="card mb-4">
                     <div class="d-flex justify-content-between items-center">
                         <div class="card-header pb-0">
-                            <h6>Produk</h6>
+                            <h6>Pengirman</h6>
                         </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
@@ -31,20 +29,19 @@
                                             class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
                                             Nama Pelanggan
                                         </th>
-                                        <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
+                                        <th
+                                            class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
                                             Metode Pengiriman
                                         </th>
-                                        <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
-                                            Status
+                                        <th
+                                            class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
+                                            Resi
                                         </th>
-                                        <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
-                                            Status Pembayaran
-                                        </th>
+
                                         <th class="text-info opacity-7"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @foreach ($transaksis as $transaksi)
                                         <tr>
                                             <td>
@@ -73,70 +70,22 @@
                                                 </p>
                                             </td>
                                             <td>
-                                                @if ($transaksi->status == 'payment')
-                                                    <p class=" text-warning text-center font-weight-bold">
-                                                        Proses Pembayaran
-                                                    </p>
-                                                @elseif($transaksi->status == 'desain')
-                                                    <p class=" text-primary text-center font-weight-bold">
-                                                        Desain
-                                                    </p>
-                                                @elseif($transaksi->status == 'cetak')
-                                                    <p class=" text-primary text-center font-weight-bold">
-                                                        cetak
-                                                    </p>
-                                                @elseif($transaksi->status == 'kirim')
-                                                    <p class=" text-primary text-center font-weight-bold">
-                                                        kirim
-                                                    </p>
-                                                @elseif($transaksi->status == 'selesai')
-                                                    <p class=" text-succes text-center font-weight-bold">
-                                                        selesai
-                                                    </p>
-                                                @elseif($transaksi->status == 'gagal')
-                                                    <p class=" text-danger text-center font-weight-bold">
-                                                        gagal
-                                                    </p>
-                                                @endif
+                                                <p class=" text-secondary text-center font-weight-bold">
+                                                    {{ $transaksi->transaksi_data->resi ?? '-' }}
+                                                </p>
                                             </td>
-                                            <td>
-                                                @if ($transaksi->transaksi_data->payment_status == 'unpaid')
-                                                    <span class="badge bg-danger">
-                                                        Belum Dibayar
-                                                    </span>
-                                                @elseif ($transaksi->transaksi_data->payment_status == 'pending')
-                                                    <span class="badge bg-warning text-dark">
-                                                        Menunggu Persetujuan
-                                                    </span>
-                                                @elseif ($transaksi->transaksi_data->payment_status == 'approved')
-                                                    <span class="badge bg-success">
-                                                        Disetujui
-                                                    </span>
-                                                @elseif ($transaksi->transaksi_data->payment_status == 'rejected')
-                                                    <span class="badge bg-danger">
-                                                        Ditolak
-                                                    </span>
-                                                @endif
-                                            </td>
+
 
                                             <td class="align-middle">
                                                 <div class="d-flex">
-                                                    @include('admin.pesanan.detail')
-
-                                                    @if ($transaksi->status == 'payment' || $transaksi->status == 'desain' || $transaksi->status == 'cetak')
-                                                        @include('admin.pesanan.edit')
-                                                    @endif
+                                                    @include('admin.pengiriman.edit')
                                                 </div>
-
                                             </td>
                                         </tr>
                                     @endforeach
 
                                 </tbody>
                             </table>
-
-
-
                         </div>
                     </div>
                 </div>

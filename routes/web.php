@@ -17,6 +17,7 @@ use App\Http\Controllers\user\CheckOutController;
 use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\ProduckFavController;
 use App\Http\Controllers\user\TransaksiController;
+use App\Http\Controllers\user\DesainCotroller as UserDesainCotroller;
 use Illuminate\Support\Facades\Route;
 
 
@@ -76,6 +77,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/desain', [App\Http\Controllers\admin\DesainController::class, 'index'])->name('admin.desain.index');
         Route::get('/desain/{id}', [App\Http\Controllers\admin\DesainController::class, 'show'])->name('admin.desain.show');
         Route::post('/desain/{id}', [App\Http\Controllers\admin\DesainController::class, 'add'])->name('admin.desain.add');
+
+        //pengiriman
+        Route::get('/pengiriman', [App\Http\Controllers\admin\PengirimanController::class, 'index'])->name('admin.pengiriman.index');
+        Route::put('/pengiriman/{id}', [App\Http\Controllers\admin\PengirimanController::class, 'edit'])->name('admin.pengiriman.edit');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {
@@ -113,6 +118,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //transaction payment
         Route::get('/payment/{transaksi_code}', [PaymentController::class, 'index'])->name('user.payment.index');
         Route::post('/payment/{transaksi_code}', [PaymentController::class, 'store'])->name('user.payment.store');
+
+        //transaktion Desain
+        Route::get('/desain/{transaksi_code}', [UserDesainCotroller::class, 'index'])->name('user.desain.index');
+        Route::post('/desain/{id}/confirm', [UserDesainCotroller::class, 'confirm'])->name('user.desain.confirm');
 
         //history transaction
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('user.transaksi.index');

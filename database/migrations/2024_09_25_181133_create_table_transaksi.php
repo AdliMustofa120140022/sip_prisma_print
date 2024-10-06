@@ -30,6 +30,7 @@ return new class extends Migration
             $table->integer('shiping_cost')->nullable();
             $table->dateTime('shiping_time')->nullable();
             $table->dateTime('shiping_done_time')->nullable();
+            $table->dateTime('desain_time')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->enum('payment_status', ['unpaid', 'pending', 'approved', 'rejected'])->default('unpaid');
             $table->dateTime('payment_time')->nullable();
@@ -52,6 +53,7 @@ return new class extends Migration
             $table->string('catatan')->nullable();
         });
         Schema::create('desain_produk_transaksi', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('produk_transaksi_id')->constrained('produk_transaksi');
             $table->string('desain')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected']);

@@ -62,11 +62,11 @@
 
                                             <td class="align-middle">
                                                 <div class="d-flex">
-                                                    {{-- <a href=""
+                                                    <a href="{{ route('admin.desain.show', $transaksi->id) }}"
                                                         class="text-secondary font-weight-bold text-decoration-underline  pe-3"
                                                         data-toggle="tooltip" data-original-title="Edit user">
-                                                        detail
-                                                    </a> --}}
+                                                        Desain
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -74,9 +74,6 @@
 
                                 </tbody>
                             </table>
-
-
-
                         </div>
                     </div>
                 </div>

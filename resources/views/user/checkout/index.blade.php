@@ -107,8 +107,8 @@
 
                     <div class="ml-6 mt-2">
                         <select name="otlet" class="border px-4 py-2 w-full rounded-md">
-                            <option>Prima Printing Cabang Madukoro (Proximal)</option>
-                            <option>Prima Printing Cabang Pasar Cempaka</option>
+                            <option value="Cabang Madukoro">Prima Printing Cabang Madukoro (Proximal)</option>
+                            <option value="Cabang Pasar Cempaka">Prima Printing Cabang Pasar Cempaka</option>
                         </select>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                 @if (in_array($alamat->kecamatan, ['Kotabumi Utara', 'Sungkai Jaya']))
                     <div class="mt-4">
                         <label class="inline-flex items-center">
-                            <input type="radio" name="pengiriman" value="kuri_toko" class="form-radio" />
+                            <input type="radio" name="pengiriman" value="kuri toko" class="form-radio" />
                             <span class="ml-2">Kirim ke alamat (kurir toko)</span>
                         </label>
 

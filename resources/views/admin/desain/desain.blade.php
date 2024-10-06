@@ -150,8 +150,6 @@
                                                 </div>
                                             </div>
                                         @endif
-
-
                                         <form action="{{ route('admin.desain.add', $produk_transaksi->id) }}"
                                             class="mt-4" method="POST" enctype="multipart/form-data">
                                             @csrf
@@ -178,10 +176,6 @@
                                         </form>
                                     </div>
                                 @endforeach
-                                {{-- <div class="mt-3">
-                                    <strong>Total Harga:</strong> Rp.
-                                    {{ number_format($transaksi->total_harga, 0, ',', '.') }}
-                                </div> --}}
                             </div>
 
                         </div>

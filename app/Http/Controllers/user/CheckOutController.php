@@ -232,7 +232,7 @@ class CheckOutController extends Controller
 
         $transaksi->transaksi_data()->create([
             'alamat_id' => $request->alamat_id,
-            'metode_pengiriman' => $request->pengiriman,
+            'metode_pengiriman' => $pengiriman,
             'shiping_cost' => $shiping_cost,
             'payment_metode_id' => $payment_metode,
         ]);

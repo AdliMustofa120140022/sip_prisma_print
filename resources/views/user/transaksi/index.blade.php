@@ -82,7 +82,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($transaksi->status == 'payment')
+                                @if ($transaksi->status != 'make')
                                     @if ($transaksi->transaksi_data->payment_status == 'unpaid')
                                         <span
                                             class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
@@ -117,8 +117,8 @@
                                     <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
                                         class="bg-blue-500 text-white px-4 py-2 rounded-md">lanjutkan
                                         transaksi</a>
-                                @elseif($transaksi->status == 'desain')
-                                    <a href=""
+                                @elseif(!in_array($transaksi->status, ['make', 'payment', 'gagal']))
+                                    <a href="{{ route('user.desain.index', $transaksi->transaksi_code) }}"
                                         class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Desain</a>
                                 @endif
                                 <a href="{{ route('user.transaksi.show', $transaksi->id) }}"
@@ -222,9 +222,9 @@
                                     <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
                                         class="bg-blue-500 block my-2  text-white px-4 py-2 rounded-md">lanjutkan
                                         transaksi</a>
-                                @elseif($transaksi->status == 'desain')
-                                    <a href=""
-                                        class="bg-yellow-100 block my-2  text-yellow-600e px-4 py-2 rounded-md">Desain</a>
+                                @elseif(!in_array($transaksi->status, ['make', 'payment', 'gagal']))
+                                    <a href="{{ route('user.desain.index', $transaksi->transaksi_code) }}"
+                                        class="bg-yellow-100 text-yellow-600e px-4 py-2 rounded-md">Desain</a>
                                 @endif
                             </td>
                         </tr>

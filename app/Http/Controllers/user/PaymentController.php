@@ -22,7 +22,7 @@ class PaymentController extends Controller
         // dd($request->all());
         $transaksi = Transaksi::where('transaksi_code', $transaksi_code)->where('user_id', Auth::id())->first();
         $request->validate([
-            'bukti_pembayaran' => 'required|mimes:jpg,jpeg,png|max:2048'
+            'bukti_pembayaran' => 'required|mimes:jpg,jpeg,png|max:10048'
 
         ]);
 

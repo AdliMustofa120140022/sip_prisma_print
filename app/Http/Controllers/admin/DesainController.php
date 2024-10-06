@@ -32,6 +32,10 @@ class DesainController extends Controller
 
         $produk_transaksi = ProdukTransaksi::find($id);
 
+        $produk_transaksi->transaksi->transaksi_data()->update([
+            'desain_time' => now()
+        ]);
+
         $desain_produk = FileHelper::uploadFile($request->file('desain_produk'), 'desain_produk');
 
         if ($produk_transaksi->desain_produk_transaksi) {
