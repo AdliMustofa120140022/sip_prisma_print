@@ -23,4 +23,12 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         return view('user.transaksi.show', compact('transaksi'));
     }
+
+    public function done($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->status = 'selesai';
+        $transaksi->save();
+        return redirect()->back()->with('success', 'Transaksi Selesai');
+    }
 }

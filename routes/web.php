@@ -139,6 +139,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //history transaction
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('user.transaksi.index');
         Route::get('/transaksi/{id}/show', [TransaksiController::class, 'show'])->name('user.transaksi.show');
+        Route::get('/transaksi/{id}/done', [TransaksiController::class, 'done'])->name('user.transaksi.done');
 
 
         //return

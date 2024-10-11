@@ -131,6 +131,10 @@
                                     <a href="{{ route('user.costume.show', $transaksi->id) }}"
                                         class="bg-green-100 text-green-600 px-4 py-2 rounded-md">Detail
                                         Costume</a>
+                                    @if ($transaksi->status != 'make')
+                                        <a href="{{ route('user.transaksi.show', $transaksi->id) }}"
+                                            class="bg-blue-500 text-white px-4 py-2 rounded-md">Detail</a>
+                                    @endif
                                 @else
                                     @if ($transaksi->status != 'make')
                                         <a href="{{ route('user.transaksi.show', $transaksi->id) }}"

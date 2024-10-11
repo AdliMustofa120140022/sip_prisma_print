@@ -109,36 +109,62 @@
             <div class="mb-6 border-t pt-4">
                 <h2 class="text-lg font-semibold">Pesanan</h2>
 
-
-                @foreach ($transaksi->produk_transaksi as $produk_transaksi)
-                    <!-- Pesanan card -->
+                @if ($transaksi->tansaktion_type == 'costume')
                     <div class="flex justify-between items-center border-b pb-4">
+
                         <div>
-                            <p class="font-semibold">{{ $produk_transaksi->produck->name }}</p>
+                            <strong>(Kostum)</strong>
+                            <p class="font-semibold">{{ $transaksi->costume_transaksi->product_name }}</p>
                         </div>
 
                         <div class="flex items-center space-x-12">
-                            <div class="text-center">
-                                <p class="font-semibold">Harga Barang</p>
-                                <p class="text-blue-500">Rp.
-                                    {{ number_format($produk_transaksi->produck->data_produck->harga_satuan, 0, ',', '.') }}
-                                </p>
-                            </div>
+
 
                             <div class="px-3">
                                 <p class="font-bold text-base">Jumlah</p>
-                                <p class="text-center font-semibold">{{ $produk_transaksi->jumlah }}</p>
+                                <p class="text-center font-semibold">
+                                    {{ $transaksi->costume_transaksi->order_quantity }}</p>
                             </div>
 
                             <div class="text-center">
                                 <p class="font-semibold">Total Harga</p>
                                 <p class="text-blue-500">Rp.
-                                    {{ number_format($produk_transaksi->produck->data_produck->harga_satuan * $produk_transaksi->jumlah, 0, ',', '.') }}</span>
+                                    {{ number_format($transaksi->costume_transaksi->harga, 0, ',', '.') }}</span>
                                 </p>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @else
+                    @foreach ($transaksi->produk_transaksi as $produk_transaksi)
+                        <!-- Pesanan card -->
+                        <div class="flex justify-between items-center border-b pb-4">
+                            <div>
+                                <p class="font-semibold">{{ $produk_transaksi->produck->name }}</p>
+                            </div>
+
+                            <div class="flex items-center space-x-12">
+                                <div class="text-center">
+                                    <p class="font-semibold">Harga Barang</p>
+                                    <p class="text-blue-500">Rp.
+                                        {{ number_format($produk_transaksi->produck->data_produck->harga_satuan, 0, ',', '.') }}
+                                    </p>
+                                </div>
+
+                                <div class="px-3">
+                                    <p class="font-bold text-base">Jumlah</p>
+                                    <p class="text-center font-semibold">{{ $produk_transaksi->jumlah }}</p>
+                                </div>
+
+                                <div class="text-center">
+                                    <p class="font-semibold">Total Harga</p>
+                                    <p class="text-blue-500">Rp.
+                                        {{ number_format($produk_transaksi->produck->data_produck->harga_satuan * $produk_transaksi->jumlah, 0, ',', '.') }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
 
             <!-- Ringkasan Pesanan -->
@@ -232,12 +258,69 @@
                 </div>
 
                 <!-- Pesanan Selesai Button (Full Width) -->
-                <div class="flex justify-center mt-6">
-                    <button
-                        class="w-full max-w-md px-40 py-2 text-green-600 bg-green-100 border border-green-400 rounded-md hover:bg-green-200">
-                        Pesanan Selesai
-                    </button>
-                </div>
+                @if ($transaksi->status == 'kirim')
+                    <div x-data="{ isOpen: false }">
+                        <div class="flex justify-center mt-6">
+                            <button type="button" @click="isOpen = true"
+                                class="w-full max-w-md px-40 py-2 text-green-600 bg-green-100 border border-green-400 rounded-md hover:bg-green-200">
+                                Pesanan Selesai
+                            </button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 scale-90"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-200"
+                            x-transition:leave-start="opacity-100 scale-100"
+                            x-transition:leave-end="opacity-0 scale-90"
+                            class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+                            @click.away="isOpen = false" @keydown.escape.window="isOpen = false"
+                            style="display: none;">
+                            <div class="bg-white rounded-lg shadow-lg w-1/3 text-center" @click.away="isOpen = false">
+                                <div class="p-6" x-data='{isChecked : false}'>
+                                    <!-- Modal Header -->
+                                    <div class="flex justify-between items-center">
+                                        <h3 class="text-lg font-bold">Pernyataan Selesai Pesanan</h3>
+                                        <button @click="isOpen = false"
+                                            class="text-gray-600 hover:text-gray-900">&times;</button>
+                                    </div>
+
+
+                                    <!-- Modal Body -->
+                                    <div class="mt-4 py-4">
+                                        <p class="text-gray-600">
+                                            Dengan ini saya menyatakan bahwa pesanan saya sudah diterima dengan baik dan
+                                            sesuai dengan pesanan yang saya lakukan.
+                                        </p>
+                                        <p class="text-gray-600 pt-4">
+                                            Saya juga menyatakan bahwa saya tidak akan melakukan pengajuan retur barang
+                                            tersebut.
+                                        </p>
+                                        <label class=" py-4 flex items-center space-x-2 mt-4">
+                                            <input type="checkbox" class="form-checkbox" x-model="isChecked">
+                                            <span class="text-gray-600">
+                                                Saya setuju dengan pernyataan diatas
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <!-- Modal Footer -->
+                                    <div class="flex justify-center mt-6">
+                                        <button @click="isOpen = false"
+                                            class="bg-red-500 text-white px-4 py-2 rounded mr-2">Close</button>
+                                        <a href="{{ route('user.transaksi.done', $transaksi->id) }}"
+                                            :disabled="!isChecked" class="bg-green-500 text-white px-4 py-2 rounded"
+                                            :class="{ 'opacity-50 cursor-not-allowed': !isChecked }">
+                                            Selesai
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
             </div>
         </div>
 </x-guest-layout>
