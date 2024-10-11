@@ -15,7 +15,7 @@ class Transaksi extends Model
         'status',
         'transaksi_code',
         'tansaktion_type',
-        'status', // , make, payment, desain, cetak, kirim, selesai
+        'status',
         'total_harga',
         'user_id',
     ];
@@ -25,7 +25,6 @@ class Transaksi extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            // Get the highest product ID and increment it
             $maxId = static::max('id') + 1;
             $model->transaksi_code = 'TR-' . str_pad($maxId, 3, '0', STR_PAD_LEFT);
         });
@@ -48,8 +47,13 @@ class Transaksi extends Model
         return $this->hasMany(ProdukTransaksi::class, 'transaksi_id', 'id');
     }
 
-    // public function desain_produk_transaksi()
-    // {
-    //     return $this->hasOne(DesainProdukTransaksi::class, 'transaksi_id', 'id');
-    // }
+    public function return_transaksi()
+    {
+        return $this->hasOne(ReturnTransaksi::class, 'transaksi_id', 'id');
+    }
+
+    public function costume_transaksi()
+    {
+        return $this->hasOne(CostumeTransaksi::class, 'transaksi_id', 'id');
+    }
 }

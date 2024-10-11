@@ -29,4 +29,9 @@ class SubKatagori extends Model
     {
         return $this->hasMany(Produck::class, 'sub_kategori_id', 'id');
     }
+
+    public function costume_transaksi()
+    {
+        return $this->hasMany(CostumeTransaksi::class, 'sub_kategori_id', 'id');
+    }
 }

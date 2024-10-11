@@ -19,6 +19,9 @@ use App\Http\Controllers\user\PaymentController;
 use App\Http\Controllers\user\ProduckFavController;
 use App\Http\Controllers\user\TransaksiController;
 use App\Http\Controllers\user\DesainCotroller as UserDesainCotroller;
+use App\Http\Controllers\user\ReturnController;
+use App\Http\Controllers\admin\ReturnController as AdminReturnController;
+use App\Http\Controllers\user\CostumeTransaktionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -68,6 +71,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //pesanan
         Route::get('/pesanan', [PesananController::class, 'index'])->name('admin.pesanan.index');
         Route::put('/pesanan/{id}/update', [PesananController::class, 'update'])->name('admin.pesanan.update');
+
+        //return
+        Route::post('/return/{id}/update', [AdminReturnController::class, 'update'])->name('admin.return.update');
 
         //pembayaran
         Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('admin.pembayaran.index');
@@ -128,6 +134,16 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //history transaction
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('user.transaksi.index');
         Route::get('/transaksi/{id}/show', [TransaksiController::class, 'show'])->name('user.transaksi.show');
+
+
+        //return
+        Route::get('/return/{id}/create', [ReturnController::class, 'create'])->name('user.return.create');
+        Route::post('/return/{id}/store', [ReturnController::class, 'store'])->name('user.return.store');
+
+        //pesanan constume
+        Route::get('/costume-pesanan', [CostumeTransaktionController::class, 'index'])->name('user.costume.index');
+        Route::post('/costume-pesanan', [CostumeTransaktionController::class, 'store'])->name('user.costume.store');
+        Route::get('/costume-pesanan/{id}/show', [CostumeTransaktionController::class, 'show'])->name('user.costume.show');
     });
 });
 

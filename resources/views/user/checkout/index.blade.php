@@ -41,57 +41,67 @@
             <!-- Daftar Pesanan -->
             <div class="mb-6 border-t pt-4">
                 <h2 class="text-lg font-semibold">Pesanan</h2>
-
-
-                @foreach ($transaksi->produk_transaksi as $produk_transaksi)
-                    <!-- Pesanan card -->
-                    <div class="flex justify-between items-center border-b pb-4">
+                @if ($transaksi->tansaktion_type == 'custume')
+                    <p class="font-semibold">Kostume</p>
+                    @foreach ($transaksi->produk_transaksi as $produk_transaksi)
                         <div>
-                            <p class="font-semibold">{{ $produk_transaksi->produck->name }}</p>
                             <a href="{{ route('user.checkout.product_detail', ['id' => $produk_transaksi->id, 'origin' => request()->fullUrl()]) }}"
                                 class="{{ $produk_transaksi->doc_pendukung ? 'text-blue-600' : 'text-red-600' }} text-sm">{{ $produk_transaksi->doc_pendukung ? 'Detail produk' : 'Tambah Detail produk' }}</a>
                         </div>
-
-                        <div class="flex items-center space-x-12">
-                            <div class="text-center">
-                                <p class="font-semibold">Harga Barang</p>
-                                <p class="text-blue-500">Rp.
-                                    {{ number_format($produk_transaksi->produck->data_produck->harga_satuan, 0, ',', '.') }}
-                                </p>
+                    @endforeach
+                @else
+                    @foreach ($transaksi->produk_transaksi as $produk_transaksi)
+                        <!-- Pesanan card -->
+                        <div class="flex justify-between items-center border-b pb-4">
+                            <div>
+                                <p class="font-semibold">{{ $produk_transaksi->produck->name }}</p>
+                                <a href="{{ route('user.checkout.product_detail', ['id' => $produk_transaksi->id, 'origin' => request()->fullUrl()]) }}"
+                                    class="{{ $produk_transaksi->doc_pendukung ? 'text-blue-600' : 'text-red-600' }} text-sm">{{ $produk_transaksi->doc_pendukung ? 'Detail produk' : 'Tambah Detail produk' }}</a>
                             </div>
 
-                            <div class="px-3" x-data="productCounter(@json($produk_transaksi->id), @json($produk_transaksi->jumlah), @json($produk_transaksi->produck->data_produck->harga_satuan), '{{ route('user.checkout.update-quantity') }}', {{ $produk_transaksi->produck->data_produck->stok }})" x-init='calculateTotalPrice'>
-                                <p class="font-bold text-base">Jumlah</p>
-                                <div class="flex items-center">
-                                    <button type="button"
-                                        class="inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
-                                        @click="decrement">
-                                        <i class="fa-solid fa-minus text-white"></i>
-                                    </button>
+                            <div class="flex items-center space-x-12">
+                                <div class="text-center">
+                                    <p class="font-semibold">Harga Barang</p>
+                                    <p class="text-blue-500">Rp.
+                                        {{ number_format($produk_transaksi->produck->data_produck->harga_satuan, 0, ',', '.') }}
+                                    </p>
+                                </div>
 
-                                    <!-- Input quantity -->
-                                    <input type="number" min="1" x-model="quantity"
-                                        @input="triggerDebounceUpdate()"
-                                        class="w-16 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
-                                        required />
+                                <div class="px-3" x-data="productCounter(@json($produk_transaksi->id), @json($produk_transaksi->jumlah), @json($produk_transaksi->produck->data_produck->harga_satuan), '{{ route('user.checkout.update-quantity') }}', {{ $produk_transaksi->produck->data_produck->stok }})" x-init='calculateTotalPrice'>
+                                    <p class="font-bold text-base">Jumlah</p>
+                                    <div class="flex items-center">
+                                        <button type="button"
+                                            class="inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                                            @click="decrement">
+                                            <i class="fa-solid fa-minus text-white"></i>
+                                        </button>
 
-                                    <!-- Tombol Plus -->
-                                    <button type="button"
-                                        class="inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
-                                        @click="increment">
-                                        <i class="fa-solid fa-plus text-white"></i>
-                                    </button>
+                                        <!-- Input quantity -->
+                                        <input type="number" min="1" x-model="quantity"
+                                            @input="triggerDebounceUpdate()"
+                                            class="w-16 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
+                                            required />
+
+                                        <!-- Tombol Plus -->
+                                        <button type="button"
+                                            class="inline-flex h-5 w-5 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                                            @click="increment">
+                                            <i class="fa-solid fa-plus text-white"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <p class="font-semibold">Total Harga</p>
+                                    <p class="text-blue-500">Rp. <span
+                                            id="totalPrice{{ $produk_transaksi->id }}"></span>
+                                    </p>
                                 </div>
                             </div>
-
-                            <div class="text-center">
-                                <p class="font-semibold">Total Harga</p>
-                                <p class="text-blue-500">Rp. <span id="totalPrice{{ $produk_transaksi->id }}"></span>
-                                </p>
-                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
+
             </div>
 
             <!-- Metode Pengiriman -->

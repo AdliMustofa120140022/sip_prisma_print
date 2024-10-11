@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title">Riwayat transaksi</x-slot>
+    <x-slot name="title">Detai transaksi</x-slot>
 
     <x-slot name="head">
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css" />
@@ -10,12 +10,89 @@
             <a href="{{ url()->previous() }}">
                 <i class="fa-solid fa-arrow-left text-lg"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Riwayat Transaksi</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Detail Transaksi</h2>
         </div>
 
         <div class="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-md">
+            {{-- status --}}
+            @if ($transaksi->status != 'selesai' && $transaksi->status != 'gagal')
+                <div class="border-b-4 border-gray-400 bg-gray-100 py-3 p px-10">
+                    <h2 class="text-xl font-bold">Sedang Dalam Proses</h2>
+                    <p class="text-gray-700 font-semibold">Sedang Dalam Proses {{ $transaksi->status }}</p>
+                </div>
+            @elseif ($transaksi->status == 'gagal')
+                <div class="border-b-4 border-red-400 bg-red-100 py-3 p px-10">
+                    <h2 class="text-xl font-bold">Gagal</h2>
+                    <p class="text-red-700 font-semibold">Transaksi Gagal
+                        {{ $transaksi->transaksi_data->payment_note }}</p>
+                </div>
+            @elseif ($transaksi->status == 'selesai')
+                <div class="border-b-4 border-green-400 bg-green-100 py-3 p px-10">
+                    <h2 class="text-xl font-bold">Selesai</h2>
+                    <p class="text-green-700 font-semibold">Transaksi Selesai</p>
+                </div>
+            @endif
+
+            @if ($transaksi->status == 'return' || $transaksi->return_transaksi != null)
+                <div class="border-b-4 mt-4 py-3 p px-10">
+                    <h2 class="text-xl font-bold">Pengajuan Return</h2>
+                    <div class="grid grid-cols-3 gap-8 py-2">
+                        <label for="nama_product" class="col-span-1 text-sm font-semibold text-gray-700">
+                            Return Status
+                        </label>
+                        <div class="col-span-2 space-y-4">
+                            @if ($transaksi->return_transaksi->status == 'pending')
+                                <span
+                                    class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-orange-100 text-orange-600">
+                                    Menunggu Persetujuan
+                                </span>
+                            @elseif($transaksi->return_transaksi->status == 'approved')
+                                <span
+                                    class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-green-100 text-green-600">
+                                    Disetujui
+                                </span>
+                            @elseif($transaksi->return_transaksi->status == 'rejected')
+                                <span
+                                    class="px-3 py-1 my-2 rounded-full text-wrap text-sm font-semibold bg-red-100 text-red-600">
+                                    Ditolak
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-8 ">
+                        <label for="nama_product" class="col-span-1 text-sm font-semibold text-gray-700">
+                            Alasan Return
+                        </label>
+                        <div class="col-span-2 space-y-4">
+                            <span>{{ $transaksi->return_transaksi->alasan }}</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-8 ">
+                        <label for="nama_product" class="col-span-1 text-sm font-semibold text-gray-700">
+                            Bukti return
+                        </label>
+                        <div class="col-span-2 space-y-4">
+                            <a href="{{ asset('storage/bukti_return/' . $transaksi->return_transaksi->bukti) }}"
+                                class="font-semibold text-blue-800" download>
+                                <span>Download Bukti</span>
+                            </a>
+                        </div>
+                    </div>
+                    @if ($transaksi->return_transaksi->status == 'rejected')
+                        <div class="grid grid-cols-3 gap-8 ">
+                            <label for="nama_product" class="col-span-1 text-sm font-semibold text-gray-700">
+                                Alasan Penolakan
+                            </label>
+                            <div class="col-span-2 space-y-4">
+                                <span>{{ $transaksi->return_transaksi->reject_reason }}</span>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            @endif
+
             {{-- section 1 --}}
-            <div class="mb-6">
+            <div class="mb-6 ">
                 <div class="justify-between items-center">
                     <h2 class="text-lg font-semibold">Alamat Pengiriman</h2>
                     <p class="text-gray-600">{{ $transaksi->transaksi_data->alamat->nama_penerima }}</p>
@@ -38,8 +115,6 @@
                     <div class="flex justify-between items-center border-b pb-4">
                         <div>
                             <p class="font-semibold">{{ $produk_transaksi->produck->name }}</p>
-                            {{-- <a href="{{ route('user.checkout.product_detail', ['id' => $produk_transaksi->id, 'origin' => request()->fullUrl()]) }}"
-                                class="{{ $produk_transaksi->doc_pendukung ? 'text-blue-600' : 'text-red-600' }} text-sm">{{ $produk_transaksi->doc_pendukung ? 'Detail produk' : 'Tambah Detail produk' }}</a> --}}
                         </div>
 
                         <div class="flex items-center space-x-12">
@@ -72,12 +147,12 @@
                 <div class="space-y-2">
                     <div class="flex justify-between">
                         <span>Sub Total</span>
-                        <span>Rp. {{ number_format($transaksi->total_harga, 0, ',', '.') }}</span>
+                        <span>Rp.
+                            {{ number_format($transaksi->total_harga - $transaksi->transaksi_data->shiping_cost, 0, ',', '.') }}</span>
                     </div>
                     <div class="flex justify-between">
                         <span>Biaya Pengiriman</span>
-                        {{-- <span>Rp. {{ number_format($transaksi->transaksi_data->shiping_cost, 0, ',', '.') }}</span> --}}
-                        <span>Rp100.000</span>
+                        <span>Rp. {{ number_format($transaksi->transaksi_data->shiping_cost, 0, ',', '.') }}</span>
                     </div>
                     <div class="flex justify-between font-semibold">
                         <span>Total Pesanan</span>
@@ -141,8 +216,7 @@
                         Download Surat Pesanan
                     </a>
                     @if ($transaksi->status == 'kirim')
-                        <!-- Ajukan Retur Button -->
-                        <a href=""
+                        <a href="{{ route('user.return.create', $transaksi->id) }}"
                             class="px-4 py-2 text-red-600 bg-red-100 border border-red-400 rounded-md hover:bg-red-200">
                             Ajukan Retur
                         </a>

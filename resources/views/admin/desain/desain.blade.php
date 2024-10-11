@@ -150,7 +150,7 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        @if ($produk_transaksi->desain_produk_transaksi->status != 'approved')
+                                        @if (!$produk_transaksi->desain_produk_transaksi || $produk_transaksi->desain_produk_transaksi->status != 'approved')
                                             <form action="{{ route('admin.desain.add', $produk_transaksi->id) }}"
                                                 class="mt-4" method="POST" enctype="multipart/form-data">
                                                 @csrf

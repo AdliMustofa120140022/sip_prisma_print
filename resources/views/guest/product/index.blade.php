@@ -5,7 +5,7 @@
         {{-- <x-product-sidebar :param='$params' /> --}}
         <div class="flex items-center space-x-4 p-4 flex-wrap justify-between gap-5">
             <!-- Button -->
-            <a href="#"
+            <a href="{{ route('user.costume.index') }}"
                 class="bg-blue-500 hover:bg-blue-600  text-white font-bold py-2 px-4 rounded-full whitespace-nowrap">
                 Buat Pesanan Kustom
             </a>

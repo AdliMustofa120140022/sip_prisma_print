@@ -89,6 +89,10 @@
                                                     <p class=" text-primary text-center font-weight-bold">
                                                         kirim
                                                     </p>
+                                                @elseif($transaksi->status == 'return')
+                                                    <p class=" text-primary text-center font-weight-bold">
+                                                        return
+                                                    </p>
                                                 @elseif($transaksi->status == 'selesai')
                                                     <p class=" text-succes text-center font-weight-bold">
                                                         selesai
@@ -125,6 +129,10 @@
 
                                                     @if ($transaksi->status == 'payment' || $transaksi->status == 'desain' || $transaksi->status == 'cetak')
                                                         @include('admin.pesanan.edit')
+                                                    @endif
+
+                                                    @if ($transaksi->status == 'return' || $transaksi->return_transaksi != null)
+                                                        @include('admin.pesanan.return')
                                                     @endif
                                                 </div>
 
