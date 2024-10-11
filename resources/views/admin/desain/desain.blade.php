@@ -54,20 +54,25 @@
                                                 </h6>
                                                 <div class="mb-2">
                                                     <strong>Katagori:</strong>
-                                                    {{ $produk_transaksi->produck->sub_katagori->katagori->nama }}
+                                                    {{ $transaksi->tansaktion_type == 'costume' ? $transaksi->costume_transaksi->katagori->nama : $produk_transaksi->produck->sub_katagori->katagori->nama }}
                                                 </div>
                                                 <div class="mb-2">
                                                     <strong>Sub Katagori:</strong>
-                                                    {{ $produk_transaksi->produck->sub_katagori->name }}
+                                                    {{ $transaksi->tansaktion_type == 'costume' ? $transaksi->costume_transaksi->sub_katagori->name : $produk_transaksi->produck->sub_katagori->name }}
                                                 </div>
                                                 <div class="mb-2">
                                                     <strong>Produk:</strong>
-                                                    {{ $produk_transaksi->produck->name }}
+                                                    {{ $transaksi->tansaktion_type == 'costume' ? $transaksi->costume_transaksi->product_name : $produk_transaksi->produck->name }}
                                                 </div>
                                                 <div class="mb-2">
                                                     <strong>Harga Satuan:</strong>
                                                     Rp.
-                                                    {{ number_format($produk_transaksi->produck->harga_satuan, 0, ',', '.') }}
+                                                    @if ($transaksi->tansaktion_type == 'costume')
+                                                        {{ number_format($transaksi->costume_transaksi->harga, 0, ',', '.') }}
+                                                    @else
+                                                        {{ number_format($produk_transaksi->produck->harga_satuan, 0, ',', '.') }}
+                                                    @endif
+
                                                 </div>
                                                 <div class="mb-2">
                                                     <strong>Jumlah:</strong>

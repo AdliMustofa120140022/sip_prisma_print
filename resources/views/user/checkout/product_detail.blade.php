@@ -25,7 +25,8 @@
                 <div class="col-span-2 space-y-4">
                     <input type="text" id="nama_product" name="nama_product"
                         class="w-full px-4 py-2 border rounded-md bg-gray-100"
-                        value="{{ $produk_transaksi->produck->name }}" readonly>
+                        value="{{ $produk_transaksi->transaksi->tansaktion_type == 'costume' ? $produk_transaksi->transaksi->costume_transaksi->product_name : $produk_transaksi->produck->name }}"
+                        readonly>
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-8 py-2">
@@ -35,7 +36,8 @@
                 <div class="col-span-2 space-y-4">
                     <input type="text" id="nama_product" name="nama_product"
                         class="w-full px-4 py-2 border rounded-md bg-gray-100"
-                        value="{{ $produk_transaksi->produck->sub_katagori->katagori->nama }}" readonly>
+                        value="{{ $produk_transaksi->transaksi->tansaktion_type == 'costume' ? $produk_transaksi->transaksi->costume_transaksi->katagori->nama : $produk_transaksi->produck->sub_katagori->katagori->nama }}"
+                        readonly>
                 </div>
             </div>
 
@@ -46,7 +48,8 @@
                 <div class="col-span-2 space-y-4">
                     <input type="text" id="nama_product" name="nama_product"
                         class="w-full px-4 py-2 border rounded-md bg-gray-100"
-                        value="{{ $produk_transaksi->produck->sub_katagori->name }}" readonly>
+                        value="{{ $produk_transaksi->transaksi->tansaktion_type == 'costume' ? $produk_transaksi->transaksi->costume_transaksi->sub_katagori->name : $produk_transaksi->produck->sub_katagori->name }}"
+                        readonly>
                 </div>
             </div>
 

@@ -119,13 +119,24 @@
                         <div class="row mt-sm-4 mt-md-0">
                             <div class="card p-3">
                                 <h6 class="border-bottom pb-2 mb-3">Detail Produk</h6>
-                                @foreach ($transaksi->produk_transaksi as $produk_transaksi)
+                                @if ($transaksi->tansaktion_type != 'costume')
+                                    @foreach ($transaksi->produk_transaksi as $produk_transaksi)
+                                        <div class="mb-2">
+                                            <strong>{{ $produk_transaksi->produck->name }}</strong> - Rp.
+                                            {{ number_format($produk_transaksi->produck->harga_satuan, 0, ',', '.') }}
+                                            x
+                                            {{ $produk_transaksi->jumlah }}
+                                        </div>
+                                    @endforeach
+                                @else
                                     <div class="mb-2">
-                                        <strong>{{ $produk_transaksi->produck->name }}</strong> - Rp.
-                                        {{ number_format($produk_transaksi->produck->harga_satuan, 0, ',', '.') }} x
-                                        {{ $produk_transaksi->jumlah }}
+                                        <strong>(Kostum)</strong>
+                                        <strong>{{ $transaksi->costume_transaksi->product_name }}</strong> - Rp.
+                                        {{ number_format($transaksi->costume_transaksi->price, 0, ',', '.') }}
+                                        x
+                                        {{ $transaksi->costume_transaksi->order_quantity }}
                                     </div>
-                                @endforeach
+                                @endif
                                 <div class="mt-3">
                                     <strong>Total Harga:</strong> Rp.
                                     {{ number_format($transaksi->total_harga, 0, ',', '.') }}

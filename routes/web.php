@@ -22,6 +22,7 @@ use App\Http\Controllers\user\DesainCotroller as UserDesainCotroller;
 use App\Http\Controllers\user\ReturnController;
 use App\Http\Controllers\admin\ReturnController as AdminReturnController;
 use App\Http\Controllers\user\CostumeTransaktionController;
+use App\Http\Controllers\admin\CostumeTransaktionController as adminCostumeTransaktionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -71,6 +72,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //pesanan
         Route::get('/pesanan', [PesananController::class, 'index'])->name('admin.pesanan.index');
         Route::put('/pesanan/{id}/update', [PesananController::class, 'update'])->name('admin.pesanan.update');
+
+        // pesanan costume
+        Route::get('/costume-pesanan', [adminCostumeTransaktionController::class, 'index'])->name('admin.costume.index');
+        Route::put('/costume-pesanan/{id}/update', [adminCostumeTransaktionController::class, 'update'])->name('admin.costume.update');
 
         //return
         Route::post('/return/{id}/update', [AdminReturnController::class, 'update'])->name('admin.return.update');

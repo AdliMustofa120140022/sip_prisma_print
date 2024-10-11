@@ -41,7 +41,7 @@
             <!-- Daftar Pesanan -->
             <div class="mb-6 border-t pt-4">
                 <h2 class="text-lg font-semibold">Pesanan</h2>
-                @if ($transaksi->tansaktion_type == 'custume')
+                @if ($transaksi->tansaktion_type == 'costume')
                     <p class="font-semibold">Kostume</p>
                     @foreach ($transaksi->produk_transaksi as $produk_transaksi)
                         <div>
@@ -243,14 +243,14 @@
                 </div>
             </div>
 
-            <!-- Button Buat Pesanan -->
-            {{-- <x-utils.btn-submit  text="Buat pesanan" /> --}}
             <div class="text-center mt-8">
                 <button type='submit' :disabled="isSubmitDisabled"
                     :class="isSubmitDisabled ? 'bg-blue-200 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'"
                     class="px-6 py-2  text-white rounded-md">Buat pesanan</button>
             </div>
         </form>
+
+        {{ $transaksi->costume_transaksi->harga }}
 
 
     </div>
@@ -271,9 +271,17 @@
             var pengirimanMetode = document.querySelectorAll('input[name="pengiriman"]');
             var shipingCostInput = document.getElementById('shiping_cost_input');
 
+
+
             pengiriman.innerText = pengirimanPrice.toLocaleString('id-ID');
             shipingCostInput.value = pengirimanPrice;
             var pembayaranMetodeValue = ''
+
+            @if ($transaksi->tansaktion_type == 'costume')
+                var costumeSubTotalPrice = @json($transaksi->costume_transaksi->harga);
+                subTotalPrice.innerText = costumeSubTotalPrice.toLocaleString('id-ID');
+                updateTotalPrice();
+            @endif
 
             document.addEventListener('alpine:init', () => {
                 Alpine.data('productCounter', (productId, initialQuantity = 0, productPrice, updateUrl, stokAvalible) =>
@@ -339,7 +347,7 @@
                     total += parseInt(element.innerText.replace(/\./g, ''));
                 });
                 subTotalPrice.innerText = total.toLocaleString('id-ID');
-                updateTotalPrice(pengirimanPrice);
+                updateTotalPrice();
             }
 
             function updateTotalPrice() {

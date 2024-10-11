@@ -56,9 +56,11 @@ class CheckOutController extends Controller
             }
 
             $total_weight = 0;
-            foreach ($transaksi->produk_transaksi as $produk_transaksi) {
-                $produck_weight = $produk_transaksi->produck->data_produck->berat * $produk_transaksi->jumlah;
-                $total_weight += $produck_weight;
+            if ($transaksi->tansaktion_type != 'costume') {
+                foreach ($transaksi->produk_transaksi as $produk_transaksi) {
+                    $produck_weight = $produk_transaksi->produck->data_produck->berat * $produk_transaksi->jumlah;
+                    $total_weight += $produck_weight;
+                }
             }
 
             if ($total_weight < 2000) {
@@ -215,14 +217,20 @@ class CheckOutController extends Controller
         $total_pice = 0;
         $admin_price = 1000;
 
-        foreach ($transaksi->produk_transaksi as $produk_transaksi) {
-            $produk_transaksi->produck->data_produck->update([
-                'stok' => $produk_transaksi->produck->data_produck->stok - $produk_transaksi->jumlah
-            ]);
-            $price = $produk_transaksi->produck->data_produck->harga_satuan * $produk_transaksi->jumlah;
-            $total_pice += $price;
+        if ($transaksi->tansaktion_type != 'costume') {
 
-            Cart::destroy($produk_transaksi->cart_id);
+
+            foreach ($transaksi->produk_transaksi as $produk_transaksi) {
+                $produk_transaksi->produck->data_produck->update([
+                    'stok' => $produk_transaksi->produck->data_produck->stok - $produk_transaksi->jumlah
+                ]);
+                $price = $produk_transaksi->produck->data_produck->harga_satuan * $produk_transaksi->jumlah;
+                $total_pice += $price;
+
+                Cart::destroy($produk_transaksi->cart_id);
+            }
+        } else {
+            $total_pice = $transaksi->costume_transaksi->harga;
         }
 
         $transaksi->update([

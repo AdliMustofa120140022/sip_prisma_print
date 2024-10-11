@@ -41,15 +41,15 @@
                 <h2 class="text-lg font-semibold  mt-4">Produk {{ $loop->iteration }}</h2>
                 <div class="flex justify-between">
                     <span>Produk</span>
-                    <span>{{ $produk_transaksi->produck->name }}</span>
+                    <span>{{ $transaksi->tansaktion_type == 'costume' ? $transaksi->costume_transaksi->product_name : $produk_transaksi->produck->name }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Katagori</span>
-                    <span>{{ $produk_transaksi->produck->sub_katagori->katagori->nama }}</span>
+                    <span>{{ $transaksi->tansaktion_type == 'costume' ? $transaksi->costume_transaksi->katagori->nama : $produk_transaksi->produck->sub_katagori->katagori->nama }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Sub katagori</span>
-                    <span>{{ $produk_transaksi->produck->sub_katagori->name }}</span>
+                    <span>{{ $transaksi->tansaktion_type == 'costume' ? $transaksi->costume_transaksi->product_name : $produk_transaksi->produck->name }}</span>
                 </div>
                 @if ($produk_transaksi->desain_produk_transaksi->status == 'approved')
                     <div class="flex justify-between">
