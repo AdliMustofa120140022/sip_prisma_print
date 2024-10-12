@@ -23,6 +23,7 @@ use App\Http\Controllers\user\ReturnController;
 use App\Http\Controllers\admin\ReturnController as AdminReturnController;
 use App\Http\Controllers\user\CostumeTransaktionController;
 use App\Http\Controllers\admin\CostumeTransaktionController as adminCostumeTransaktionController;
+use App\Http\Controllers\user\ProfileController as userProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -150,6 +151,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/costume-pesanan', [CostumeTransaktionController::class, 'index'])->name('user.costume.index');
         Route::post('/costume-pesanan', [CostumeTransaktionController::class, 'store'])->name('user.costume.store');
         Route::get('/costume-pesanan/{id}/show', [CostumeTransaktionController::class, 'show'])->name('user.costume.show');
+
+        //profile
+        Route::get('/profile', [userProfileController::class, 'index'])->name('user.profile.index');
+        Route::put('/profile', [userProfileController::class, 'update'])->name('user.profile.update');
     });
 });
 

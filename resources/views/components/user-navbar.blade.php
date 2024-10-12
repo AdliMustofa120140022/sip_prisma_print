@@ -101,7 +101,7 @@
                          <p class="text-base font-light">halo {{ Auth()->user()->name }}</p>
 
                          <div class="py-4">
-                             <a href=""
+                             <a href="{{ route('user.profile.index') }}"
                                  class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Kelola
                                  Akun</a>
                              <a href="{{ route('user.alamat.index', ['origin' => request()->fullUrl()]) }}"
@@ -180,7 +180,7 @@
                              class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Keranjang
                              saya
                          </a>
-                         <a href=""
+                         <a href="{{ route('user.profile.index') }}"
                              class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Kelola
                              Akun</a>
                          <a href="{{ route('user.alamat.index', ['origin' => request()->fullUrl()]) }}"
