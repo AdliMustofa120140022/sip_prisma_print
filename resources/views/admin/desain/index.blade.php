@@ -30,6 +30,10 @@
                                             class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
                                             Nama Pelanggan
                                         </th>
+                                        <th
+                                            class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
+                                            Status
+                                        </th>
 
                                         <th class="text-info opacity-7"></th>
                                     </tr>
@@ -57,6 +61,22 @@
                                                 <p class=" text-secondary text-center font-weight-bold">
                                                     {{ $transaksi->user->name ?? '-' }}
                                                 </p>
+                                            </td>
+                                            <td>
+
+                                                @if ($transaksi->produk_transaksi[0]->desain_produk_transaksi->status == 'pending')
+                                                    <span class="badge bg-warning text-dark">
+                                                        Menunggu Persetujuan
+                                                    </span>
+                                                @elseif ($transaksi->produk_transaksi[0]->desain_produk_transaksi->status == 'approved')
+                                                    <span class="badge bg-success">
+                                                        Disetujui
+                                                    </span>
+                                                @elseif ($transaksi->produk_transaksi[0]->desain_produk_transaksi->status == 'rejected')
+                                                    <span class="badge bg-danger">
+                                                        Ditolak
+                                                    </span>
+                                                @endif
                                             </td>
 
 

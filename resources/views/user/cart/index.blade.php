@@ -41,16 +41,15 @@
                                         <i x-show='!selected' class="fa-solid"></i>
                                     </button>
 
-                                    <a href="#" class="shrink-0">
+                                    <div class="shrink-0">
                                         <img class="md:w-32 w-24 rounded-xl aspect-square"
                                             src="{{ !empty($cart->product->img_produck) && is_array($cart->product->img_produck) ? asset('storage/img/produck/' . $cart->product->img_produck[0]->img) : asset('static/dummy/dummy.png') }}"
                                             alt="product image" />
-                                    </a>
+                                    </div>
 
                                     <div class="w-full min-w-0 flex-1 space-y-4">
                                         <p class="text-2xl font-bold text-gray-900">{{ $cart->product->name }}</p>
                                         <p class="text-base font-medium text-gray-800">
-                                            {{-- {{ $cart->product->description }} --}}
                                             Estimasi Pengerjaan 1-14 Hari
                                         </p>
 
@@ -101,10 +100,13 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            <p class="md:hidden text-end mb-4">Stok :
+                                                {{ $cart->product->data_produck->stok }}</p>
                                         </div>
                                     </div>
 
-                                    <div class="hidden md:flex items-center justify-start md:order-3 md:justify-end">
+                                    <div class="hidden md:block">
+                                        <p class="text-end mb-4">Stok : {{ $cart->product->data_produck->stok }}</p>
                                         <div class="text-end md:order-4 md:w-32">
                                             <p class="font-medium text-base">Total Harga :</p>
                                             <p class="text-base font-bold text-blue-600">
@@ -166,15 +168,6 @@
 
                         <div id="checkout-form" class="flex items-center justify-center gap-2">
 
-                            {{-- <form action="{{ route('user.checkout.store') }}" method="POST" x-data="{ loding: fal }"
-                                @submit="loading = true">
-                                @csrf
-                                <input type="hidden" id="item-details" name="items">
-                                <button type="submit" id="checkout-button" disabled
-                                    class="flex w-full items-center justify-center rounded-lg  px-5 py-2.5 text-sm font-medium bg-gray-300 text-white ">Check
-                                    Out
-                                </button>
-                            </form> --}}
                             <form action="{{ route('user.checkout.store') }}" method="POST" x-data="{ loading: false }"
                                 @submit="loading = true">
                                 @csrf
@@ -214,11 +207,9 @@
             var itemSelected = [];
             const totalHargaElement = document.getElementById('total_Harga');
             const itemDetailsInput = document.getElementById('item-details');
-            // const checkoutButton = document.getElementById('checkout-button');
 
 
             function ToggleButton() {
-                console.log(itemSelected.length);
                 const checkoutButton = document.querySelector('[x-ref="checkoutButton"]');;
 
                 if (itemSelected.length > 0) {
@@ -255,7 +246,6 @@
                         totalHarga: total * harga
                     });
                 }
-                //
                 renderTotalHarga();
             }
 
@@ -263,11 +253,8 @@
                 itemSelected = itemSelected.filter(item =>
                     item.id !== id
                 );
-                // itemDetailsInput = JSON.stringify(itemSelected);
                 renderTotalHarga();
             }
-
-
 
             document.addEventListener('alpine:init', () => {
                 Alpine.data('CartCounter', (cartId, initialQuantity = 1, productPrice, updateUrl, stockAvailable) => ({

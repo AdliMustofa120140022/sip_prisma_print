@@ -1,4 +1,4 @@
- <nav class="bg-white sticky md:relative top-0 z-20" x-data='{ isMobileOpen: false }'>
+ <nav class="bg-white sticky lg:relative top-0 z-20" x-data='{ isMobileOpen: false }'>
      <div class="container mx-auto flex justify-between items-center py-3 px-4 ">
          <!-- Logo -->
          <div class="flex gap-5 items-center">
@@ -15,7 +15,7 @@
              <ul x-data='{
                     openMenu: null,
                 }'
-                 class="hidden md:flex gap-10 items-center font-semibold">
+                 class="hidden lg:flex gap-10 items-center font-semibold">
                  <li>
                      <a href="{{ route('guest.dashboard') }}"
                          class="hover:text-blue-500 flex items-center gap-4  {{ Request::routeIs('guest.dashboard') ? 'text-blue-500' : '' }} ">
@@ -46,12 +46,12 @@
          </div>
 
          <!-- Mobile Menu Toggle -->
-         <button type="button" class="md:hidden text-2xl text-gray-700" @click="isMobileOpen = !isMobileOpen">
+         <button type="button" class="lg:hidden text-2xl text-gray-700" @click="isMobileOpen = !isMobileOpen">
              <i class="fa-solid fa-bars"></i>
          </button>
 
          <!-- Desktop Actions -->
-         <div class="hidden md:flex gap-5">
+         <div class="hidden lg:flex gap-5">
              <div class="flex gap-5 items-center">
                  <a href="{{ route('user.cart.index') }}" class="  py-2 px-6 rounded-full border relative inline-block">
                      {{-- <i class="fa-solid fa-cart-shopping"></i> --}}
@@ -132,7 +132,7 @@
 
      <!-- Mobile Menu -->
      <ul x-show="isMobileOpen" x-data='{openMenu: null}'
-         class="md:hidden bg-white px-4 block shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out"
+         class="lg:hidden bg-white px-4 md:px-20 block shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out"
          x-transition:enter="transition transform ease-out duration-300" x-transition:enter-start="opacity-0 scale-95"
          x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition transform ease-in duration-200"
          x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
@@ -176,16 +176,16 @@
                      x-transition:leave="transition transform ease-in duration-200"
                      x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
                      <div class="py-4">
-                         <a href="{{ route('user.cart.index') }}"
-                             class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Keranjang
-                             saya
-                         </a>
                          <a href="{{ route('user.profile.index') }}"
                              class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Kelola
                              Akun</a>
                          <a href="{{ route('user.alamat.index', ['origin' => request()->fullUrl()]) }}"
                              class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Alamat
                              Pengiriman
+                         </a>
+                         <a href="{{ route('user.cart.index') }}"
+                             class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Keranjang
+                             saya
                          </a>
                          <a href="{{ route('user.transaksi.index') }}"
                              class="w-full block my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">Riwayat

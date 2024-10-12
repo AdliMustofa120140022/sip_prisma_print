@@ -11,7 +11,8 @@ class PembayaranController extends Controller
     public function index()
     {
 
-        $transaksis = Transaksi::where('status', 'payment')->get();
+        $transaksis = Transaksi::whereNotIn('status', ['make', 'gagal'])->get();
+        // $transaksis = Transaksi::where('status', 'payment')->get();
         return view('admin.pembayaran.index', compact('transaksis'));
     }
 

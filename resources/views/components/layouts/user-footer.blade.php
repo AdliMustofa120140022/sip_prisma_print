@@ -1,5 +1,5 @@
 <footer class="bg-gray-50 w-full mt-5">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 justify-around py-5 px-5">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 justify-around py-5 px-5">
         <div class="profile">
             <Span class="font-bold border-s-4 border-black px-3">Percetakan Prima Printing </Span>
             <div class="flex gap-5 py-6">
@@ -51,13 +51,6 @@
                             Lampung 34511</td>
                     </tr>
                     <tr>
-                        <td class="align-top">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </td>
-                        <td class="align-top">Pasar Cempaka, Cempaka, Kec. Sungkai Jaya, Kabupaten Lampung Utara,
-                            Lampung 34554</td>
-                    </tr>
-                    <tr>
                         <td></td>
                         <td class="align-top">
                             <a href="mailto:perc.primaprinting@gmail.com"
@@ -67,7 +60,20 @@
                     <tr>
                         <td></td>
                         <td class="align-top">
-                            <a href="https://wa.me/+6281379317635" class="">0813-7931-7635</a>
+                            <a href="https://wa.me/+628127964966" target="_blank" class="">0812-7964-966</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-top">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </td>
+                        <td class="align-top">Pasar Cempaka, Cempaka, Kec. Sungkai Jaya, Kabupaten Lampung Utara,
+                            Lampung 34554</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="align-top">
+                            <a href="https://wa.me/+6282374873888" target="_blank" class="">0823-7487-3888</a>
                         </td>
                     </tr>
                 </table>

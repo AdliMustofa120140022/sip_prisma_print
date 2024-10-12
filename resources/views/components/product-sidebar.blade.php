@@ -1,8 +1,9 @@
 <div class="" x-data='{isSidebarOpen : false}'>
-    <button @click="isSidebarOpen = !isSidebarOpen"
-        class="absolute md:hidden left-4  z-10 bg-blue-600 text-white px-4 py-2 rounded-md">
-        <i class="fa-solid fa-bars"></i> Kategori Produk
-    </button>
+    <div class="absolute lg:hidden w-full">
+        <button @click="isSidebarOpen = !isSidebarOpen" class=" bg-blue-600 text-white px-4 py-2 rounded-md">
+            <i class="fa-solid fa-bars"></i> Kategori Produk
+        </button>
+    </div>
 
     <div x-show="isSidebarOpen" @click="isSidebarOpen = false" class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"

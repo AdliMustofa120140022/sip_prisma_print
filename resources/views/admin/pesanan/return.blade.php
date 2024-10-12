@@ -44,36 +44,37 @@
                             </div>
                         </div>
                     </div>
+                    @if ($transaksi->return_transaksi->status != 'approved')
+                        <div class="col md-6">
+                            <h6 class="border-bottom pb-2 mb-3 mt-4">Konfirmasi Retun</h6>
+                            <form action="{{ route('admin.return.update', $transaksi->return_transaksi->id) }}"
+                                method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Konfirmasi
+                                        return</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="">Konformasi pembayaran</option>
+                                        <option value="approved">Disetujui</option>
+                                        <option value="rejected">Ditolak</option>
+                                    </select>
+                                </div>
 
-                    <div class="col md-6">
-                        <h6 class="border-bottom pb-2 mb-3 mt-4">Konfirmasi Retun</h6>
-                        <form action="{{ route('admin.return.update', $transaksi->return_transaksi->id) }}"
-                            method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="status" class="form-label">Konfirmasi
-                                    return</label>
-                                <select name="status" id="status" class="form-control">
-                                    <option value="">Konformasi pembayaran</option>
-                                    <option value="approved">Disetujui</option>
-                                    <option value="rejected">Ditolak</option>
-                                </select>
-                            </div>
+                                @error('status')
+                                    <span class="text-danger text-center p-0 m-0">{{ $message }}</span>
+                                @enderror
 
-                            @error('status')
-                                <span class="text-danger text-center p-0 m-0">{{ $message }}</span>
-                            @enderror
-
-                            <div class="mb-3">
-                                <label for="reject_reason" class="form-label">Alasan Return Ditolak</label>
-                                <textarea name="reject_reason" id="reject_reason" class="form-control" placeholder="Catatam Pembayaran" rows="3"></textarea>
-                            </div>
-                            @error('reject_reason')
-                                <span class="text-danger text-center p-0 m-0">{{ $message }}</span>
-                            @enderror
-                            <button type="submit" class="btn btn-dark text-white">Konfirmasi</button>
-                        </form>
-                    </div>
+                                <div class="mb-3">
+                                    <label for="reject_reason" class="form-label">Alasan Return Ditolak</label>
+                                    <textarea name="reject_reason" id="reject_reason" class="form-control" placeholder="Catatam Pembayaran" rows="3"></textarea>
+                                </div>
+                                @error('reject_reason')
+                                    <span class="text-danger text-center p-0 m-0">{{ $message }}</span>
+                                @enderror
+                                <button type="submit" class="btn btn-dark text-white">Konfirmasi</button>
+                            </form>
+                        </div>
+                    @endif
 
 
 

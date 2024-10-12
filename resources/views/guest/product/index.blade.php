@@ -62,19 +62,13 @@
             </div>
         </div>
         <div class="w-full mb-4 ">
-            {{-- <p class="font-semibold text-3xl text-gray-800">{{ $sub_katagori->name }}</p>
-            <p class="text-xl font-normal text-gray-007">{{ $sub_katagori->description }}</p> --}}
-
             <div class="grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-5 pt-5">
                 @foreach ($producks as $produck)
-                    {{-- {{ $produck->name }} --}}
                     <x-card-product :produck="$produck" />
                 @endforeach
             </div>
         </div>
-        {{-- <div class=""> --}}
         {{ $producks->links('vendor.pagination.tailwind') }} <!-- Use the Tailwind pagination view -->
-        {{-- </div> --}}
     </section>
 
     <x-slot name="scripts">

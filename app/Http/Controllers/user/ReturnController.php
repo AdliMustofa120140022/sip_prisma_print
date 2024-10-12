@@ -14,14 +14,15 @@ class ReturnController extends Controller
     {
         $transaksi = Transaksi::find($id);
 
-        return view('user.return.index', compact('transaksi', 'katagori'));
+
+        return view('user.return.index', compact('transaksi'));
     }
 
     public function store(Request $request, $id)
     {
         $request->validate([
             'alasan' => 'required',
-            'bukti' => 'required||mimes:jpg,jpeg,png|max:20048',
+            'bukti' => 'required|mimes:jpg,jpeg,png|max:20048',
         ]);
 
         $buktiRetun = FileHelper::uploadFile($request->file('bukti'), 'bukti_return');

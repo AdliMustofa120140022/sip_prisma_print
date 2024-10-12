@@ -193,7 +193,14 @@
                 <div class="space-y-2">
                     <div class="flex justify-between">
                         <span class="text-wrap">Nomor Pesanan</span>
-                        <span>{{ $transaksi->transaksi_code }}</span>
+                        <div x-data="{ copied: false }" class="flex items-center">
+                            <span x-ref="tCode" class="mr-2">{{ $transaksi->transaksi_code ?? '-' }}</span>
+                            <button class="px-1"
+                                @click='navigator.clipboard.writeText($refs.tCode.textContent); copied = true;  setTimeout(() => copied = false, 5000) '>
+                                <i x-show='!copied' class="fa-regular fa-copy"></i>
+                                <i x-show='copied' class="fa-solid fa-check"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-wrap">Tanggal Pesanan</span>
@@ -213,7 +220,14 @@
                     </div>
                     <div class="flex justify-between ">
                         <span class="text-wrap">Nomor Resi</span>
-                        <span>{{ $transaksi->transaksi_data->resi ?? '-' }}</span>
+                        <div x-data="{ copied: false }" class="flex items-center">
+                            <span x-ref="resi" class="mr-2">{{ $transaksi->transaksi_data->resi ?? '-' }}</span>
+                            <button class="px-1"
+                                @click='navigator.clipboard.writeText($refs.resi.textContent); copied = true;  setTimeout(() => copied = false, 5000) '>
+                                <i x-show='!copied' class="fa-regular fa-copy"></i>
+                                <i x-show='copied' class="fa-solid fa-check"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="flex justify-between ">
                         <span class="text-wrap">Tanggal Pengiriman</span>
@@ -222,7 +236,7 @@
                     @if ($transaksi->status == 'selesai')
                         <div class="flex justify-between ">
                             <span class="text-wrap">Tanggal Penerimaan</span>
-                            <span>{{ $transaksi->transaksi_data->shiping_done_time ?? '-' }}</span>
+                            <span>{{ $transaksi->updated_at ?? '-' }}</span>
                         </div>
                     @endif
                 </div>
@@ -277,7 +291,8 @@
                             class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
                             @click.away="isOpen = false" @keydown.escape.window="isOpen = false"
                             style="display: none;">
-                            <div class="bg-white rounded-lg shadow-lg w-1/3 text-center" @click.away="isOpen = false">
+                            <div class="bg-white rounded-lg shadow-lg w-96 md:w-1/3 text-center"
+                                @click.away="isOpen = false">
                                 <div class="p-6" x-data='{isChecked : false}'>
                                     <!-- Modal Header -->
                                     <div class="flex justify-between items-center">
@@ -308,9 +323,9 @@
                                     <!-- Modal Footer -->
                                     <div class="flex justify-center mt-6">
                                         <button @click="isOpen = false"
-                                            class="bg-red-500 text-white px-4 py-2 text-wrap rounded mr-2">Close</button>
+                                            class="bg-red-500 text-white px-4 py-2 text-wrap rounded-lg mr-2">Close</button>
                                         <a href="{{ route('user.transaksi.done', $transaksi->id) }}"
-                                            :disabled="!isChecked" class="bg-green-500 text-white px-4 py-2 rounded"
+                                            :disabled="!isChecked" class="bg-green-500 text-white px-4 py-2 rounded-lg"
                                             :class="{ 'opacity-50 cursor-not-allowed': !isChecked }">
                                             Selesai
                                         </a>

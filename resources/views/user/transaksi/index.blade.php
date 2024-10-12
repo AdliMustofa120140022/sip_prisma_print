@@ -132,24 +132,33 @@
                                         <a href="{{ route('user.costume.show', $transaksi->id) }}"
                                             class="bg-green-100 text-green-600 px-4 py-2 text-wrap text-center rounded-md">Detail
                                             Costume</a>
+                                        @if ($transaksi->status == 'make')
+                                            <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
+                                                class="bg-blue-500 text-white px-4 py-2 text-wrap text-center rounded-md">lanjutkan
+                                                transaksi</a>
+                                        @elseif(!in_array($transaksi->status, ['make', 'payment', 'gagal']))
+                                            <a href="{{ route('user.desain.index', $transaksi->transaksi_code) }}"
+                                                class="bg-yellow-100 text-yellow-600e px-4 py-2 text-wrap text-center rounded-md">Desain</a>
+                                        @endif
                                         @if ($transaksi->status != 'make')
                                             <a href="{{ route('user.transaksi.show', $transaksi->id) }}"
                                                 class="bg-blue-500 text-white px-4 py-2 text-wrap text-center rounded-md">Detail</a>
                                         @endif
                                     @else
+                                        @if ($transaksi->status == 'make')
+                                            <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
+                                                class="bg-blue-500 text-white px-4 py-2 text-wrap text-center rounded-md">lanjutkan
+                                                transaksi</a>
+                                        @elseif(!in_array($transaksi->status, ['make', 'payment', 'gagal']))
+                                            <a href="{{ route('user.desain.index', $transaksi->transaksi_code) }}"
+                                                class="bg-yellow-100 text-yellow-600e px-4 py-2 text-wrap text-center rounded-md">Desain</a>
+                                        @endif
                                         @if ($transaksi->status != 'make')
                                             <a href="{{ route('user.transaksi.show', $transaksi->id) }}"
                                                 class="bg-blue-500 text-white px-4 py-2 text-wrap text-center rounded-md">Detail</a>
                                         @endif
                                     @endif
-                                    @if ($transaksi->status == 'make' && $transaksi->tansaktion_type != 'costume')
-                                        <a href="{{ route('user.checkout.index', $transaksi->transaksi_code) }}"
-                                            class="bg-blue-500 text-white px-4 py-2 text-wrap text-center rounded-md">lanjutkan
-                                            transaksi</a>
-                                    @elseif(!in_array($transaksi->status, ['make', 'payment', 'gagal']))
-                                        <a href="{{ route('user.desain.index', $transaksi->transaksi_code) }}"
-                                            class="bg-yellow-100 text-yellow-600e px-4 py-2 text-wrap text-center rounded-md">Desain</a>
-                                    @endif
+
                                 </div>
                             </td>
                         </tr>

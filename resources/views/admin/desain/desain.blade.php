@@ -88,7 +88,7 @@
                                                     <strong>Dok:</strong>
                                                     @if ($produk_transaksi->doc_pendukung->doc)
                                                         <a href="{{ asset('storage/doc_pendukung/' . $produk_transaksi->doc_pendukung->doc) }}"
-                                                            target="_blank" class="inline-flex">
+                                                            download class="inline-flex">
                                                             {{ $produk_transaksi->doc_pendukung->doc }}
                                                             <i class="fa-solid fa-download"></i>
                                                         </a>
@@ -155,7 +155,17 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        @if (!$produk_transaksi->desain_produk_transaksi || $produk_transaksi->desain_produk_transaksi->status != 'approved')
+                                        @php
+                                            $isDesignApproved =
+                                                $produk_transaksi->desain_produk_transaksi &&
+                                                $produk_transaksi->desain_produk_transaksi->status === 'approved';
+
+                                            $isReturnApproved =
+                                                $produk_transaksi->transaksi->return_transaksi &&
+                                                $produk_transaksi->transaksi->return_transaksi->status !== 'approved';
+                                        @endphp
+
+                                        @if (!$isDesignApproved || !$isReturnApproved)
                                             <form action="{{ route('admin.desain.add', $produk_transaksi->id) }}"
                                                 class="mt-4" method="POST" enctype="multipart/form-data">
                                                 @csrf

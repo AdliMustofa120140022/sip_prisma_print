@@ -2,16 +2,16 @@
 
     <x-slot name="title">FAQ</x-slot>
 
-    <section class="title uppercase font-bold text-5xl py-5 ">
+    <section class="title px-4 md:px-0 uppercase font-bold text-5xl py-5 ">
         <h1>FAQ</h1>
     </section>
 
-    <section class="flex gap-5">
+    <section class="flex gap-5 px-4 md:px-0 relative">
         <x-faq-sidebar :param='$param' />
 
         {{-- pemesanan --}}
-        @if ($param == 'cara_pemesanan')
-            <div class=" w-full">
+        <div class=" w-full mt-12 lg:mt-0 ">
+            @if ($param == 'cara_pemesanan')
                 <p class="font-semibold text-2xl">Pemesanan</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Bagaimana cara melakukan pemesanan?</p>
@@ -25,9 +25,7 @@
                         <p>5. Klik "Konfirmasi Pesanan" untuk menyelesaikan pemesanan.</p>
                     </div>
                 </div>
-            </div>
-        @elseif ($param == 'contoh_produk')
-            <div class=" w-full">
+            @elseif ($param == 'contoh_produk')
                 <p class="font-semibold text-2xl">Pemesanan</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Apakah saya bisa melihat contoh produk sebelum memesan dalam jumlah besar?
@@ -41,9 +39,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-        @elseif ($param == 'desain_sendiri')
-            <div class=" w-full">
+            @elseif ($param == 'desain_sendiri')
                 <p class="font-semibold text-2xl">Pemesanan</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Apakah saya bisa membuat desain sendiri untuk produk yang saya pesan?</p>
@@ -56,9 +52,9 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            {{-- @elseif ($param == 'diskon_jumlah_besar')
-            <div class=" w-full">
+
+                {{-- @elseif ($param == 'diskon_jumlah_besar')
+
                 <p class="font-semibold text-2xl">Pemesanan</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Apakah ada diskon untuk pemesanan dalam jumlah besar?</p>
@@ -73,9 +69,8 @@
                 </div>
             </div> --}}
 
-            {{-- Pembayaran --}}
-        @elseif ($param == 'metode_pembayaran')
-            <div class=" w-full">
+                {{-- Pembayaran --}}
+            @elseif ($param == 'metode_pembayaran')
                 <p class="font-semibold text-2xl">Pembayaran</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Apa saja metode pembayaran yang diterima?</p>
@@ -91,11 +86,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            {{-- Pengiriman --}}
-        @elseif ($param == 'waktu_cetak')
-            <div class=" w-full">
+
+                {{-- Pengiriman --}}
+            @elseif ($param == 'waktu_cetak')
                 <p class="font-semibold text-2xl">Pengiriman</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Berapa lama waktu yang dibutuhkan untuk proses cetak?</p>
@@ -110,9 +104,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-        @elseif ($param == 'melacak_pesanan')
-            <div class=" w-full">
+            @elseif ($param == 'melacak_pesanan')
                 <p class="font-semibold text-2xl">Pengiriman</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Bagaimana cara melacak pesanan saya?</p>
@@ -125,9 +117,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-        @elseif ($param == 'biaya_pengiriman')
-            <div class=" w-full">
+            @elseif ($param == 'biaya_pengiriman')
                 <p class="font-semibold text-2xl">Pengiriman</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Apakah ada biaya pengiriman?</p>
@@ -140,11 +130,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            {{-- kebijana  dan garansi --}}
-        @elseif ($param == 'garansi_cetakan')
-            <div class=" w-full">
+
+                {{-- kebijana  dan garansi --}}
+            @elseif ($param == 'garansi_cetakan')
                 <p class="font-semibold text-2xl">Kebijakan & Garansi</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Apakah ada garansi untuk produk cetakan?</p>
@@ -158,11 +147,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            {{-- Layanan Pelanggan --}}
-        @elseif ($param == 'hubungi_layanan_pelanggan')
-            <div class=" w-full">
+
+                {{-- Layanan Pelanggan --}}
+            @elseif ($param == 'hubungi_layanan_pelanggan')
                 <p class="font-semibold text-2xl">Layanan Pelanggan</p>
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Bagaimana cara menghubungi layanan pelanggan?</p>
@@ -188,11 +176,9 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        @endif
+            @endif
 
-        {{-- <div class=" w-full">
+            {{--
             <p class="font-semibold text-2xl">Pemesanan</p>
             <div class="p-3 border rounded-md w-full">
                 <p class="font-semibold">Bagaimana</p>
