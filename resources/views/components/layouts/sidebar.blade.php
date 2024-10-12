@@ -118,14 +118,29 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laporan</h6>
             </li>
 
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pengaturan Sistem</h6>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('admin.payment-metode*') ? 'bg-gray-300' : '' }} "
+                    href={{ route('admin.payment-metode.index') }}>
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
+                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                    </div>
+                    <span class="nav-link-text ms-1 text-black">Metode Pembayaran</span>
+                </a>
+            </li>
+
 
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link rounded-3  {{ Request::routeIs('admin.pengiriman*') ? 'bg-gray-300' : '' }} "
-                    href={{ route('admin.pengiriman.index') }}>
+                <a class="nav-link rounded-3  {{ Request::routeIs('admin.user*') ? 'bg-gray-300' : '' }} "
+                    href={{ route('admin.user.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
                         <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>

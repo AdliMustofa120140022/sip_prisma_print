@@ -272,7 +272,7 @@
                         <div id="image-preview-container"
                             class="img-preview-container d-flex flex-wrap align-items-center gap-3 justify-content-center py-5 ">
                         </div>
-                        <div class="drop-zone w-full d-flex justify-content-center align-items-center rounded rounded-2xl border-dashed border-black "
+                        <div class="drop-zone w-full d-flex justify-content-center align-items-center  rounded-2xl border-dashed border-black "
                             id="drop-zone" style="height: 200px">
                             <span>Drag & Drop hire or click hire to select</span>
                             <input type="file" id="image" name="image[]" accept="image/*" class="d-none"

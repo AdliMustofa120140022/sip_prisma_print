@@ -44,10 +44,6 @@ Route::get('/faq', [FaqController::class, 'index'])->name('guest.faq');
 
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 
     Route::prefix('/super')->middleware('superadmin')->group(function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('super.dashboard');
@@ -95,6 +91,20 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/pengiriman', [App\Http\Controllers\admin\PengirimanController::class, 'index'])->name('admin.pengiriman.index');
         Route::get('/pengiriman/{id}', [App\Http\Controllers\admin\PengirimanController::class, 'show'])->name('admin.pengiriman.show');
         Route::put('/pengiriman/{id}', [App\Http\Controllers\admin\PengirimanController::class, 'edit'])->name('admin.pengiriman.edit');
+
+        //user
+        Route::get('/user', [App\Http\Controllers\admin\UserController::class, 'index'])->name('admin.user.index');
+        Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'store'])->name('admin.user.store');
+        Route::put('/user/{id}', [App\Http\Controllers\admin\UserController::class, 'update'])->name('admin.user.update');
+        Route::put('/user/{id}/update-pass', [App\Http\Controllers\admin\UserController::class, 'updatePass'])->name('admin.user.update-pass');
+        Route::delete('/user/{id}', [App\Http\Controllers\admin\UserController::class, 'destroy'])->name('admin.user.destroy');
+
+        //payment metode
+        Route::get('/payment-metode', [App\Http\Controllers\admin\PaymentMetodeController::class, 'index'])->name('admin.payment-metode.index');
+        Route::post('/payment-metode', [App\Http\Controllers\admin\PaymentMetodeController::class, 'store'])->name('admin.payment-metode.store');
+        Route::put('/payment-metode/{id}', [App\Http\Controllers\admin\PaymentMetodeController::class, 'update'])->name('admin.payment-metode.update');
+        Route::put('/payment-metode/{id}/update-qr-code', [App\Http\Controllers\admin\PaymentMetodeController::class, 'updateQrCode'])->name('admin.payment-metode.update-qr-code');
+        Route::delete('/payment-metode/{id}', [App\Http\Controllers\admin\PaymentMetodeController::class, 'destroy'])->name('admin.payment-metode.destroy');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {

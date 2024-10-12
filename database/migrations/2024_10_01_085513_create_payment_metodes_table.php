@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->enum('type', ['bank', 'wallet', 'toko', 'qris']);
             $table->string('rekening')->nullable();
+            $table->string('qr_code')->nullable();
         });
     }
 

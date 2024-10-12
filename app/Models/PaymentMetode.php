@@ -15,5 +15,6 @@ class PaymentMetode extends Model
         'name',
         'type',
         'rekening',
+        'qr_code',
     ];
 }
