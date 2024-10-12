@@ -104,19 +104,6 @@
                         </p>
                     </div>
                 </div>
-            @elseif ($transaksi->status == 'payment' && $transaksi->transaksi_data->payment_metode->type == 'qris')
-                <div class="grid grid-cols-5 py-2">
-                    <div class="col-span-2">
-                        <p class="text-md font-semibold">QRIS</p>
-                    </div>
-                    {{-- <div class="col-span-5">
-                        <img src="{{ asset('storage/payment_metode/' . $transaksi->transaksi_data->payment_metode->qris) }}"
-                            alt="qris" class="w-32 h-32">
-                    </div> --}}
-                    <div class="card-body d-flex align-items-center justify-content-center">
-                        <img src="{{ asset('storage/payment_metode/' . $transaksi->transaksi_data->payment_metode->qris) }}"
-                            class="img-fluid rounded shadow w-32 h-32" style="" alt="qris">
-                    </div>
             @endif
             <form action="{{ route('user.payment.store', $transaksi->transaksi_code) }}" method="POST"
                 enctype="multipart/form-data">
@@ -131,7 +118,7 @@
                                 <input type="file" name="bukti_pembayaran" class="hidden" accept=".jpg,.jpeg,.png"
                                     @change="fileName = $event.target.files[0].name">
                                 <div
-                                    class="flex items-center justify-between px-4 py-2 border rounded-md cursor-pointer bg-gray-100">
+                                    class="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-md cursor-pointer bg-white">
                                     <span x-text="fileName || 'Pilih file'"></span>
                                     <span class="text-gray-500 text-xs">Unggah Bukti Transaksi</span>
                                 </div>
@@ -153,6 +140,22 @@
                             <p class="text-md font-semibold text-red-500">
                                 {{ $transaksi->transaksi_data->payment_note }}
                             </p>
+                        </div>
+                    </div>
+                @endif
+
+                @if ($transaksi->status == 'payment' && $transaksi->transaksi_data->payment_metode->type == 'qris')
+                    <div class="grid grid-cols-5 py-2">
+                        <div class="col-span-2">
+                            <p class="text-md font-semibold">QRIS</p>
+                        </div>
+                        {{-- <div class="col-span-5">
+                        <img src="{{ asset('storage/payment_metode/' . $transaksi->transaksi_data->payment_metode->qris) }}"
+                            alt="qris" class="w-32 h-32">
+                    </div> --}}
+                        <div class="col-span-3 card-body d-flex align-items-center justify-content-center">
+                            <img src="{{ asset('storage/payment_metode/' . $transaksi->transaksi_data->payment_metode->qr_code) }}"
+                                class="img-fluid rounded shadow" style="" alt="qris">
                         </div>
                     </div>
                 @endif

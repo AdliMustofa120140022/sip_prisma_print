@@ -80,7 +80,8 @@ class CheckOutController extends Controller
 
             return view('user.checkout.index', compact('transaksi', 'alamat', 'shippingCosts', 'payment_metodes'));
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'internal server error - ' . $e->getMessage());
+            // return redirect()->route('user.transaksi.index')->with('error', 'internal server error -  ' . $e->getMessage());
+            return redirect()->route('user.transaksi.index')->with('error', 'internal server error - Silahkan Lanjuutkan Transaksi');
         }
     }
 
@@ -102,6 +103,8 @@ class CheckOutController extends Controller
     {
 
         $request->validate([
+            'doc_pendukung' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:10024',
+            'link' => 'nullable|url',
             'catatan' => 'required',
         ]);
         $produk_transaksi = ProdukTransaksi::findOrFail($id);
@@ -153,7 +156,7 @@ class CheckOutController extends Controller
                 'produk_id' => $cart->product_id,
                 'cart_id' => $cart->id,
             ]);
-            // $cart->delete();
+            $cart->delete();
         };
 
         $transaksi->update([
@@ -227,7 +230,7 @@ class CheckOutController extends Controller
                 $price = $produk_transaksi->produck->data_produck->harga_satuan * $produk_transaksi->jumlah;
                 $total_pice += $price;
 
-                Cart::destroy($produk_transaksi->cart_id);
+                // Cart::destroy($produk_transaksi->cart_id);
             }
         } else {
             $total_pice = $transaksi->costume_transaksi->harga;

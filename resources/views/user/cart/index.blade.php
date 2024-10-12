@@ -49,8 +49,9 @@
 
                                     <div class="w-full min-w-0 flex-1 space-y-4">
                                         <p class="text-2xl font-bold text-gray-900">{{ $cart->product->name }}</p>
-                                        <p class="text-base font-medium text-blue-600">
-                                            {{ $cart->product->description }}
+                                        <p class="text-base font-medium text-gray-800">
+                                            {{-- {{ $cart->product->description }} --}}
+                                            Estimasi Pengerjaan 1-14 Hari
                                         </p>
 
                                         <div class="flex items-center gap-4">
@@ -59,13 +60,13 @@
                                                     type="button"
                                                     class="inline-flex gap-2 items-center text-sm font-medium text-black hover:underline pb-3 md:pb-0">
                                                     <i class="fa-solid fa-eye"></i>
-                                                    See Product
+                                                    Detail
                                                 </a>
 
                                                 <a href="{{ route('user.cart.delete', $cart->id) }}" type="button"
                                                     class="inline-flex gap-2 items-center text-sm font-medium text-red-600 hover:underline">
                                                     <i class="fa-solid fa-trash"></i>
-                                                    Remove
+                                                    Hapus
                                                 </a>
 
                                             </div>
@@ -121,13 +122,13 @@
                                         <a href="{{ route('guest.product.show', $cart->product->id) }}" type="button"
                                             class="inline-flex gap-2 items-center text-sm font-medium text-black hover:underline pb-3 md:pb-0">
                                             <i class="fa-solid fa-eye"></i>
-                                            See Product
+                                            Detail
                                         </a>
 
                                         <a href="{{ route('user.cart.delete', $cart->id) }}" type="button"
                                             class="inline-flex gap-2 items-center text-sm font-medium text-red-600 hover:underline pb-3 md:pb-0">
                                             <i class="fa-solid fa-trash"></i>
-                                            Remove
+                                            Hapus
                                         </a>
 
                                     </div>
@@ -165,14 +166,36 @@
 
                         <div id="checkout-form" class="flex items-center justify-center gap-2">
 
-                            <form action="{{ route('user.checkout.store') }}" method="POST">
+                            {{-- <form action="{{ route('user.checkout.store') }}" method="POST" x-data="{ loding: fal }"
+                                @submit="loading = true">
                                 @csrf
                                 <input type="hidden" id="item-details" name="items">
                                 <button type="submit" id="checkout-button" disabled
                                     class="flex w-full items-center justify-center rounded-lg  px-5 py-2.5 text-sm font-medium bg-gray-300 text-white ">Check
                                     Out
                                 </button>
+                            </form> --}}
+                            <form action="{{ route('user.checkout.store') }}" method="POST" x-data="{ loading: false }"
+                                @submit="loading = true">
+                                @csrf
+                                <input type="hidden" id="item-details" name="items">
+
+                                <template x-if="!loading">
+                                    <button type="submit" id="checkout-button" x-ref="checkoutButton" disabled
+                                        class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium bg-gray-300 text-white">
+                                        Check Out
+                                    </button>
+                                </template>
+
+                                <template x-if="loading">
+                                    <button type="button" disabled
+                                        class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium bg-gray-400 text-white">
+                                        Loading...
+                                    </button>
+                                </template>
+
                             </form>
+
 
                         </div>
                     </div>
@@ -191,9 +214,13 @@
             var itemSelected = [];
             const totalHargaElement = document.getElementById('total_Harga');
             const itemDetailsInput = document.getElementById('item-details');
-            const checkoutButton = document.getElementById('checkout-button');
+            // const checkoutButton = document.getElementById('checkout-button');
+
 
             function ToggleButton() {
+                console.log(itemSelected.length);
+                const checkoutButton = document.querySelector('[x-ref="checkoutButton"]');;
+
                 if (itemSelected.length > 0) {
                     checkoutButton.removeAttribute('disabled');
                     checkoutButton.classList.remove('bg-gray-300');

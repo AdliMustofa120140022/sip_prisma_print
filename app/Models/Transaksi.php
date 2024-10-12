@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +27,8 @@ class Transaksi extends Model
 
         static::creating(function ($model) {
             $maxId = static::max('id') + 1;
-            $model->transaksi_code = 'TR-' . str_pad($maxId, 3, '0', STR_PAD_LEFT);
+            $today = Carbon::now()->format('Ymd');
+            $model->transaksi_code = 'PP-' . $today . str_pad($maxId, 4, '0', STR_PAD_LEFT);
         });
     }
 

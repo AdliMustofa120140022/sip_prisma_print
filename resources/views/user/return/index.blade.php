@@ -37,7 +37,7 @@
                         <input type="file" name="bukti" class="hidden"
                             @change="fileName = $event.target.files[0].name">
                         <div
-                            class="flex items-center justify-between px-4 py-2 border rounded-md cursor-pointer bg-gray-100">
+                            class="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-md cursor-pointer bg-white">
                             <span x-text="fileName || 'Pilih file'"></span>
                             <span class="text-gray-500 text-xs">Unggah Bukti Pendukung</span>
                         </div>

@@ -46,7 +46,7 @@
                     @foreach ($transaksi->produk_transaksi as $produk_transaksi)
                         <div>
                             <a href="{{ route('user.checkout.product_detail', ['id' => $produk_transaksi->id, 'origin' => request()->fullUrl()]) }}"
-                                class="{{ $produk_transaksi->doc_pendukung ? 'text-blue-600' : 'text-red-600' }} text-sm">{{ $produk_transaksi->doc_pendukung ? 'Detail produk' : 'Tambah Detail produk' }}</a>
+                                class="{{ $produk_transaksi->doc_pendukung ? 'text-blue-600' : 'text-red-600' }} text-sm">{{ $produk_transaksi->doc_pendukung ? 'Detail produk' : 'Upload FIle Pendukung' }}</a>
                         </div>
                     @endforeach
                 @else
@@ -56,7 +56,7 @@
                             <div>
                                 <p class="font-semibold">{{ $produk_transaksi->produck->name }}</p>
                                 <a href="{{ route('user.checkout.product_detail', ['id' => $produk_transaksi->id, 'origin' => request()->fullUrl()]) }}"
-                                    class="{{ $produk_transaksi->doc_pendukung ? 'text-blue-600' : 'text-red-600' }} text-sm">{{ $produk_transaksi->doc_pendukung ? 'Detail produk' : 'Tambah Detail produk' }}</a>
+                                    class="{{ $produk_transaksi->doc_pendukung ? 'text-blue-600' : 'text-red-600' }} text-sm">{{ $produk_transaksi->doc_pendukung ? 'Detail produk' : 'Upload FIle Pendukung' }}</a>
                             </div>
 
                             <div class="flex items-center space-x-12">
@@ -117,7 +117,7 @@
 
                     <div class="ml-6 mt-2">
                         <select name="otlet" class="border px-4 py-2 w-full rounded-md">
-                            <option value="Cabang Madukoro">Prima Printing Cabang Madukoro (Proximal)</option>
+                            <option value="Cabang Madukoro">Prima Printing Cabang Madukoro (Prokimal)</option>
                             <option value="Cabang Pasar Cempaka">Prima Printing Cabang Pasar Cempaka</option>
                         </select>
                     </div>
@@ -135,7 +135,7 @@
                 <div class="mt-4">
                     <label class="inline-flex items-center">
                         <input type="radio" name="pengiriman" value="jnt" class="form-radio" />
-                        <span class="ml-2">J&t</span>
+                        <span class="ml-2">J&T Express</span>
                     </label>
 
                 </div>

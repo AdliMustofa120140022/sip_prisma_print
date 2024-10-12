@@ -9,7 +9,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalQrLabel{{ $payment_metode->id }}">Edit User</h5>
+                <h5 class="modal-title" id="modalQrLabel{{ $payment_metode->id }}">Update QR Code</h5>
                 <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -37,7 +37,7 @@
 
                         <div class="card p-3">
                             <form action="{{ route('admin.payment-metode.update-qr-code', $payment_metode->id) }}"
-                                method="POST">
+                                method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 

@@ -26,7 +26,7 @@ class PaymentMetodeController extends Controller
 
         if ($request->type == 'qris') {
             $request->validate([
-                'qr_code' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1048',
+                'qr_code' => 'required|file|mimes:jpg,jpeg,png|max:5048',
             ]);
         }
 
@@ -49,7 +49,7 @@ class PaymentMetodeController extends Controller
     public function updateQrCode(Request $request, $id)
     {
         $request->validate([
-            'qr_code' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1048',
+            'qr_code' => 'required|file|mimes:jpg,jpeg,png|max:5048',
         ]);
 
         $payment_metode = PaymentMetode::find($id);

@@ -161,10 +161,10 @@
                                                 @csrf
                                                 <h6 class="border-bottom pb-2 mb-3">Upload Desain Produk</h6>
                                                 <div class="mb-2">
-                                                    <label for="desain_produk" class="form-label">Status
-                                                        Pembayaran</label>
+                                                    <label for="desain_produk" class="form-label">Desain Produk</label>
                                                     <div class="col-span-2 space-y-4">
-                                                        <label class="w-100">
+                                                        <input type="file" name="desain_produk" class="form-control">
+                                                        {{-- <label class="w-100">
                                                             <input type="file" name="desain_produk"
                                                                 id="docPendukung{{ $produk_transaksi->id }}"
                                                                 class="d-none">
@@ -175,7 +175,7 @@
                                                                 <span class="text-muted text-xs">Unggah Desain
                                                                     Produk</span>
                                                             </div>
-                                                        </label>
+                                                        </label> --}}
                                                         <p class="text-muted text-xs mt-1">Maksimal ukuran file 300MB
                                                         </p>
                                                     </div>
