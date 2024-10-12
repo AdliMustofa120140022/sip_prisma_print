@@ -26,6 +26,7 @@ class AlamatController extends Controller
 
     public function store(Request $request)
     {
+
         // dd($request->all());
         $request->validate([
             'nama_penerima' => 'required',
@@ -44,10 +45,12 @@ class AlamatController extends Controller
             Alamat::where('user_id', Auth::id())->update(['is_default' => false]);
         }
 
+        $no_hp = '+62' . $request->no_hp;
+
         Alamat::create([
             'user_id' => Auth::id(),
             'nama_penerima' => $request->nama_penerima,
-            'no_hp' => $request->no_hp,
+            'no_hp' => $no_hp,
             'alamat' => $request->alamat,
             'kelurahan' => $request->kelurahan,
             'kecamatan' => $request->kecamatan,

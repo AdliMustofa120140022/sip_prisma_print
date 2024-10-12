@@ -22,6 +22,7 @@
                     <h3 class="text-lg font-semibold mb-2">Informasi Kontak</h3>
                     <label class="block mb-2 font-semibold text-gray-700">Nama Lengkap Penerima</label>
                     <input type="text" id="nama_penerima" name="nama_penerima" placeholder="Nama Lengkap Penerima"
+                        value="{{ old('nama_penerima') }}"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4">
 
                     @error('nama_penerima')
@@ -30,10 +31,15 @@
 
                     <label class="block mb-2 font-semibold text-gray-700">Nomor WhatsApp</label>
                     <div class="flex mb-4">
-                        <select class="p-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500">
-                            <option>ID +62</option>
-                        </select>
+                        <div class="relative">
+                            <div
+                                class=" block   p-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500">
+                                <span class="text-nowrap">ID +62</span>
+                            </div>
+                        </div>
+
                         <input type="text" id="no_hp" name="no_hp" placeholder="Nomor WhatsApp"
+                            value="{{ old('no_hp') }}"
                             class="w-full p-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500">
                     </div>
                     @error('no_hp')
@@ -44,12 +50,10 @@
                 <!-- Informasi Alamat -->
                 <div class="mb-6">
                     <h3 class="text-lg font-semibold mb-2">Informasi Alamat</h3>
-
-
                     <label class="block mb-2 font-semibold text-gray-700">Provinsi</label>
                     <select id="provinsi" name="provinsi" onchange="getKabupaten()"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4">
-                        <option>Pilih Provinsi</option>
+                        <option value="">Pilih Provinsi</option>
                     </select>
                     @error('provinsi')
                         <span class="text-red-500">{{ $message }}</span>
@@ -104,13 +108,13 @@
                     @enderror
                     <label class="block mb-2 font-semibold text-gray-700">Alamat</label>
                     <textarea id="alamat" name="alamat" placeholder="Masukkan Alamat, Nama Jalan, No Rumah"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4"></textarea>
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4">{{ old('alamat') }}</textarea>
                     @error('alamat')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                     <label class="block mb-2 font-semibold text-gray-700">Informasi Detail Lainnya</label>
                     <textarea name="catatan" placeholder="Masukkan detail lainnya (contoh: lantai, blok, informasi penunjuk arah lainnya)"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4"></textarea>
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4">{{ old('catatan') }}</textarea>
                     @error('catatan')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
@@ -187,8 +191,13 @@
 
             function getKabupaten() {
                 let provinsiElement = document.getElementById('provinsi');
+
                 let provinsiId = provinsiElement.options[provinsiElement.selectedIndex].dataset.id;
                 let kabupaten = document.getElementById('kabupaten');
+                if (!provinsiElement.value) {
+                    kabupaten.innerHTML = '<option value="">Pilih Kabupaten/Kota</option>';
+                    return;
+                }
                 kabupaten.innerHTML = '<option value="">Loading...</option>';
 
                 fetch(`https://alamat.thecloudalert.com/api/kabkota/get/?d_provinsi_id=${provinsiId}`)
@@ -205,10 +214,15 @@
 
             function getKecamatan() {
                 let kabupatenElement = document.getElementById('kabupaten');
+
                 let kabupatenId = kabupatenElement.options[kabupatenElement.selectedIndex].dataset.id;
                 console.log(kabupatenId);
 
                 let kecamatan = document.getElementById('kecamatan');
+                if (!kabupatenElement.value) {
+                    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                    return;
+                }
                 kecamatan.innerHTML = '<option value="">Loading...</option>';
 
                 fetch(`https://alamat.thecloudalert.com/api/kecamatan/get/?d_kabkota_id=${kabupatenId}`)
@@ -227,6 +241,10 @@
                 let kecamatanElement = document.getElementById('kecamatan');
                 let kecamatanId = kecamatanElement.options[kecamatanElement.selectedIndex].dataset.id;
                 let kelurahan = document.getElementById('kelurahan');
+                if (!kecamatanElement.value) {
+                    kelurahan.innerHTML = '<option value="">Pilih Kelurahan</option>';
+                    return;
+                }
                 kelurahan.innerHTML = '<option value="">Loading...</option>';
 
                 fetch(`https://alamat.thecloudalert.com/api/kelurahan/get/?d_kecamatan_id=${kecamatanId}`)
@@ -247,6 +265,11 @@
                 let kecamatanElement = document.getElementById('kecamatan');
                 let kecamatanId = kecamatanElement.options[kecamatanElement.selectedIndex].dataset.id;
                 let postCode = document.getElementById('pos_kode');
+
+                if (!kabupatenElement.value || !kecamatanElement.value) {
+                    postCode.innerHTML = '<option value="">Pilih Kode Pos</option>';
+                    return;
+                }
                 postCode.innerHTML = '<option value="">Loading...</option>';
 
                 fetch(

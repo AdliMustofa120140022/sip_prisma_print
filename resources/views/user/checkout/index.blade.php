@@ -250,9 +250,6 @@
             </div>
         </form>
 
-        {{ $transaksi->costume_transaksi->harga }}
-
-
     </div>
 
     <x-slot name="scripts">

@@ -27,6 +27,22 @@
                             <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
                                 class="w-full h-full rounded-2xl object-cover object-center">
                         </div>
+                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
+                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
+                                class="w-full h-full rounded-2xl object-cover object-center">
+                        </div>
+                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
+                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
+                                class="w-full h-full rounded-2xl object-cover object-center">
+                        </div>
+                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
+                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
+                                class="w-full h-full rounded-2xl object-cover object-center">
+                        </div>
+                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
+                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
+                                class="w-full h-full rounded-2xl object-cover object-center">
+                        </div>
 
                         {{-- carousel item --}}
 
