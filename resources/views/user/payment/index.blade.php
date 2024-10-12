@@ -10,12 +10,12 @@
     <div class=" w-full">
         <div class="flex gap-3 items-center">
             <a href="{{ route('user.transaksi.index') }}">
-                <i class="fa-solid fa-arrow-left text-lg"></i>
+                <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Pemabyaran</h2>
         </div>
 
-        <div class="max-w-5xl mx-auto bg-white py-6 px-14 rounded-lg shadow-md">
+        <div class="max-w-5xl mx-auto bg-white py-6 px-5 md:px-14 rounded-lg shadow-md">
             {{-- isi --}}
 
             <h2 class="text-xl font-semibold text-center mb-4">Informasi Pembayaran</h2>
@@ -54,21 +54,25 @@
                 </div>
                 <div class="col-span-3">
                     @if ($transaksi->transaksi_data->payment_status == 'unpaid')
-                        <span class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                        <div
+                            class="px-3 py-1 my-2 text-center rounded-full text-sm font-semibold bg-red-100 text-red-600">
                             Belum Dibayar
-                        </span>
+                        </div>
                     @elseif ($transaksi->transaksi_data->payment_status == 'pending')
-                        <span class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
+                        <div
+                            class="px-3 py-1 my-2 text-center rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
                             Menunggu Persetujuan
-                        </span>
+                        </div>
                     @elseif($transaksi->transaksi_data->payment_status == 'approved')
-                        <span class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-green-100 text-green-600">
+                        <div
+                            class="px-3 py-1 my-2 text-center rounded-full text-sm font-semibold bg-green-100 text-green-600">
                             Lunas
-                        </span>
+                        </div>
                     @elseif($transaksi->transaksi_data->payment_status == 'rejected')
-                        <span class="px-3 py-1 my-20 rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                        <div
+                            class="px-3 py-1 my-2 text-center rounded-full text-sm font-semibold bg-red-100 text-red-600">
                             Ditolak
-                        </span>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -112,7 +116,7 @@
                     <div class="col-span-2">
                         <label for="bukti_pembayaran" class="text-md font-semibold">Bukit Transaksi</label>
                     </div>
-                    <div class="col-span-3">
+                    <div class="col-span-5 md:col-span-3">
                         <div x-data="{ fileName: '' }" class="col-span-2 space-y-4">
                             <label class="block">
                                 <input type="file" name="bukti_pembayaran" class="hidden" accept=".jpg,.jpeg,.png"
@@ -136,7 +140,7 @@
                         <div class="col-span-2">
                             <p class="text-md font-semibold">Catatan</p>
                         </div>
-                        <div class="col-span-3">
+                        <div class="col-span-5 md:col-span-3">
                             <p class="text-md font-semibold text-red-500">
                                 {{ $transaksi->transaksi_data->payment_note }}
                             </p>
@@ -153,7 +157,8 @@
                         <img src="{{ asset('storage/payment_metode/' . $transaksi->transaksi_data->payment_metode->qris) }}"
                             alt="qris" class="w-32 h-32">
                     </div> --}}
-                        <div class="col-span-3 card-body d-flex align-items-center justify-content-center">
+                        <div
+                            class="col-span-5 md:col-span-3 card-body d-flex align-items-center justify-content-center">
                             <img src="{{ asset('storage/payment_metode/' . $transaksi->transaksi_data->payment_metode->qr_code) }}"
                                 class="img-fluid rounded shadow" style="" alt="qris">
                         </div>

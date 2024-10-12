@@ -10,7 +10,7 @@
     <div class=" w-full">
         <div class="flex gap-3 items-center">
             <a href="{{ route('user.transaksi.index') }}">
-                <i class="fa-solid fa-arrow-left text-lg"></i>
+                <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Desain Produk</h2>
         </div>

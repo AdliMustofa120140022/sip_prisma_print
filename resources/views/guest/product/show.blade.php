@@ -4,14 +4,14 @@
     <div class="mx-auto w-full px-1 2xl:px-0">
         <div class="flex gap-3 items-center">
             <a href="{{ url()->previous() }}">
-                <i class="fa-solid fa-arrow-left text-lg"></i>
+                <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Detail Prduk</h2>
         </div>
 
 
-        <section class=" max-w-5xl mx-auto grid grid-cols-5 gap-10">
-            <div class="col-span-2 ">
+        <section class=" max-w-5xl mx-auto grid grid-cols-3 md:grid-cols-5 gap-1 md:gap-10">
+            <div class="col-span-3 md:col-span-2 ">
                 <section class="relative w-full">
                     <div x-data="carousel()" x-init="startAutoSlide()" class="relative overflow-hidden  m-3">
                         <div class="relative border rounded-2xl shadow-sm">
@@ -43,16 +43,16 @@
                         </div>
                         <!-- Navigation Buttons -->
                         <button @click="prev"
-                            class="hover:bg-gray-200 absolute left-2 top-1/4 transform translate-y-1/2 border-2 text-gray-200 px-3 py-1 rounded-full">
+                            class="hover:bg-gray-200 absolute left-3 md:top-1/4 top-1/2 transform translate-y-1/3 md:translate-y-1/2 border-2 text-gray-200 px-3 py-1 rounded-full">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
                         <button @click="next"
-                            class="hover:bg-gray-200 absolute right-2 top-1/4 transform translate-y-1/2 border-2 text-gray-200 px-3 py-1 rounded-full">
+                            class="hover:bg-gray-200 absolute right-3 md:top-1/4 top-1/2 transform translate-y-1/3 md:translate-y-1/2 border-2 text-gray-200 px-3 py-1 rounded-full">
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
 
-                        <p class="pt-4 pb-2 text-gray-800 font-semibold">Gambar Lainnya</p>
-                        <div class="flex gap-3 justify-around items-center w-full overflow-hidden">
+                        <p class="hidden md:block pt-4 pb-2 text-gray-800 font-semibold">Gambar Lainnya</p>
+                        <div class="hidden md:flex gap-3 justify-around items-center w-full overflow-hidden">
 
                             @if ($produck->img_produck->count() > 0)
                                 @foreach ($produck->img_produck as $img)

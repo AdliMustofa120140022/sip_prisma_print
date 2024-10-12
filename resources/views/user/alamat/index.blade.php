@@ -8,7 +8,7 @@
         <div class="flex gap-3 items-center">
             {{-- {{ session()->get('previous_url') }} --}}
             <a href="{{ session()->get('previous_url') !== null ? session()->get('previous_url') : url()->previous() }}">
-                <i class="fa-solid fa-arrow-left text-lg"></i>
+                <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Check Out Pesanan</h2>
         </div>

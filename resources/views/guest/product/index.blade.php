@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot name="title"> Product</x-slot>
 
-    <section class="container mx-auto px-3">
+    <section class="container mx-auto px-4 md:px-0">
         {{-- <x-product-sidebar :param='$params' /> --}}
         <div class="flex items-center space-x-4 p-4 flex-wrap justify-between gap-5">
             <!-- Button -->
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full mb-4">
+        <div class="w-full mb-4 ">
             {{-- <p class="font-semibold text-3xl text-gray-800">{{ $sub_katagori->name }}</p>
             <p class="text-xl font-normal text-gray-007">{{ $sub_katagori->description }}</p> --}}
 

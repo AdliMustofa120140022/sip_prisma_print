@@ -6,7 +6,7 @@
     <div class=" w-full">
         <div class="flex gap-3 items-center">
             <a href="{{ url()->previous() }}">
-                <i class="fa-solid fa-arrow-left text-lg"></i>
+                <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Check Out Pesanan</h2>
         </div>
@@ -59,15 +59,15 @@
                                     class="{{ $produk_transaksi->doc_pendukung ? 'text-blue-600' : 'text-red-600' }} text-sm">{{ $produk_transaksi->doc_pendukung ? 'Detail produk' : 'Upload FIle Pendukung' }}</a>
                             </div>
 
-                            <div class="flex items-center space-x-12">
-                                <div class="text-center">
+                            <div class="flex flex-wrap gap-3 items-center space-x-12">
+                                <div class="text-center hidden md:block">
                                     <p class="font-semibold">Harga Barang</p>
                                     <p class="text-blue-500">Rp.
                                         {{ number_format($produk_transaksi->produck->data_produck->harga_satuan, 0, ',', '.') }}
                                     </p>
                                 </div>
 
-                                <div class="px-3" x-data="productCounter(@json($produk_transaksi->id), @json($produk_transaksi->jumlah), @json($produk_transaksi->produck->data_produck->harga_satuan), '{{ route('user.checkout.update-quantity') }}', {{ $produk_transaksi->produck->data_produck->stok }})" x-init='calculateTotalPrice'>
+                                <div class="px-0 md:px-3" x-data="productCounter(@json($produk_transaksi->id), @json($produk_transaksi->jumlah), @json($produk_transaksi->produck->data_produck->harga_satuan), '{{ route('user.checkout.update-quantity') }}', {{ $produk_transaksi->produck->data_produck->stok }})" x-init='calculateTotalPrice'>
                                     <p class="font-bold text-base">Jumlah</p>
                                     <div class="flex items-center">
                                         <button type="button"
@@ -116,9 +116,11 @@
                         pesanan</p>
 
                     <div class="ml-6 mt-2">
-                        <select name="otlet" class="border px-4 py-2 w-full rounded-md">
-                            <option value="Cabang Madukoro">Prima Printing Cabang Madukoro (Prokimal)</option>
-                            <option value="Cabang Pasar Cempaka">Prima Printing Cabang Pasar Cempaka</option>
+                        <select name="otlet" class="border px-4 py-2 w-full rounded-md text-wrap">
+                            <option class="text-wrap" value="Cabang Madukoro">Prima Printing Cabang Madukoro (Prokimal)
+                            </option>
+                            <option class="text-wrap" value="Cabang Pasar Cempaka">Prima Printing Cabang Pasar Cempaka
+                            </option>
                         </select>
                     </div>
                 </div>
