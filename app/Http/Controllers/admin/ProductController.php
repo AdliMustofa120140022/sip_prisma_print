@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\DataTables\ProdukDataTable;
+use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Produck;
 use App\Models\SubKatagori;
@@ -125,6 +126,7 @@ class ProductController extends Controller
         ]);
 
         foreach ($request->image as $image) {
+            $img_produck_name = FileHelper::uploadFile($image, 'img_produck');
             $Produck->img_produck()->create([
                 'img' => $this->fileUpload($image, 'public/img/produck'),
             ]);

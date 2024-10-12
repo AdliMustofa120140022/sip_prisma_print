@@ -19,21 +19,24 @@
                                 <div id="carousel" x-ref="carousel"
                                     class="flex transition-transform duration-500 ease-in-out">
 
-                                    <div
-                                        class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
-                                        <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                            class="object-cover w-full h-full rounded-2xl shadow-lg">
-                                    </div>
-                                    <div
-                                        class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
-                                        <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                            class="object-cover w-full h-full rounded-2xl shadow-lg">
-                                    </div>
-                                    <div
-                                        class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
-                                        <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                            class="object-cover w-full h-full rounded-2xl shadow-lg">
-                                    </div>
+                                    @if ($produck->img_produck->count() > 0)
+                                        @foreach ($produck->img_produck as $img)
+                                            <div
+                                                class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
+                                                <img src="{{ asset('storage/img_produck/' . $img->img) }}"
+                                                    alt="img promoso"
+                                                    class="object-cover w-full h-full rounded-2xl shadow-lg">
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div
+                                            class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
+                                            <img src="{{ asset('static/dummy/dummy.png') }}" alt="img promoso"
+                                                class="object-cover w-full h-full rounded-2xl shadow-lg">
+                                        </div>
+                                    @endif
+
+
 
                                 </div>
                             </div>
@@ -50,26 +53,23 @@
 
                         <p class="pt-4 pb-2 text-gray-800 font-semibold">Gambar Lainnya</p>
                         <div class="flex gap-3 justify-around items-center w-full overflow-hidden">
-                            <div @click="toImg(0)"
-                                class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
-                                <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                    class="rounded-2xl w-full h-full object-cover">
-                            </div>
-                            <div @click="toImg(0)"
-                                class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
-                                <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                    class="rounded-2xl w-full h-full object-cover">
-                            </div>
-                            <div @click="toImg(0)"
-                                class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
-                                <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                    class="rounded-2xl w-full h-full object-cover">
-                            </div>
-                            <div @click="toImg(0)"
-                                class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
-                                <img src="{{ asset('static/img/test-item.png') }}" alt="img promoso"
-                                    class="rounded-2xl w-full h-full object-cover">
-                            </div>
+
+                            @if ($produck->img_produck->count() > 0)
+                                @foreach ($produck->img_produck as $img)
+                                    <div @click="toImg({{ $loop->index }})"
+                                        class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
+                                        <img src="{{ asset('storage/img_produck/' . $img->img) }}" alt="img promoso"
+                                            class="rounded-2xl w-full h-full object-cover">
+                                    </div>
+                                @endforeach
+                            @else
+                                <div @click="toImg(0)"
+                                    class="rounded-2xl border w-20 aspect-square border-gray-300 p-1">
+                                    <img src="{{ asset('static/dummy/dummy.png') }}" alt="img promoso"
+                                        class="rounded-2xl w-full h-full object-cover">
+                                </div>
+
+                            @endif
 
                         </div>
                     </div>
