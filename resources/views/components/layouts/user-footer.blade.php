@@ -23,16 +23,16 @@
 
                     <span class="font-bold">Ikuti Kami</span>
                     <div class="flex gap-2 pt-2">
-                        <a href="#" class="mr-2">
+                        <a target="_blank" href="https://www.facebook.com" class="mr-2">
                             <i class="fab fa-facebook text-2xl"></i>
                         </a>
-                        <a href="#" class="mr-2">
+                        <a target="_blank" href="https://www.instagram.com" class="mr-2">
                             <i class="fab fa-instagram text-2xl"></i>
                         </a>
-                        <a href="">
+                        <a target="_blank" href="https://www.tiktok.com">
                             <i class="fab fa-tiktok text-2xl"></i>
                         </a>
-                        <a href="https://wa.me/081379317635">
+                        <a target="_blank" href="https://wa.me/+628127964966">
                             <i class="fab fa-whatsapp text-2xl"></i>
                         </a>
                     </div>

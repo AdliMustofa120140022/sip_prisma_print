@@ -69,22 +69,23 @@
                 <div class="mb-6">
                     <p>Alamat 1:</p>
                     <p>Jl. Tabak No.09, Madukoro, Kec. Kotabumi Utara, Kabupaten Lampung Utara, Lampung 34552</p>
-                    <p>Email: <a href="mailto:perc.primaprinting@gmail.com"
+                    <p>Email: <a target="_blank" href="mailto:perc.primaprinting@gmail.com"
                             class="text-blue-500">perc.primaprinting@gmail.com</a></p>
-                    <p>Telepon: 0812-7964-966</p>
-                    <a href="#" class="text-blue-500">Lihat di Google Maps</a>
+                    <p>Telepon: <a href="https://wa.me/+628127964966" target="_blank" class="">0812-7964-966</a>
+                    </p>
+                    <a href="https://www.google.com/maps" target="_blank" class="text-blue-500">Lihat di Google Maps</a>
                 </div>
 
                 <div>
                     <p>Alamat 2:</p>
                     <p>Pasar Cempaka, Cempaka, Kec. Sungkai Jaya, Kabupaten Lampung Utara, Lampung 34552</p>
-                    <p>Email: <a href="mailto:perc.primaprinting@gmail.com"
+                    <p>Email: <a target="_blank" href="mailto:perc.primaprinting@gmail.com"
                             class="text-blue-500">perc.primaprinting@gmail.com</a></p>
-                    <p>Telepon: 0823-7487-3888</p>
-                    <a href="#" class="text-blue-500">Lihat di Google Maps</a>
+                    <p>Telepon: <a href="https://wa.me/+6282374873888" target="_blank" class="">0823-7487-3888</a>
+                    </p>
+                    <a href="https://www.google.com/maps" target="_blank" class="text-blue-500">Lihat di Google Maps</a>
                 </div>
-            </div>2
-
+            </div>
         </div>
 
     </div>

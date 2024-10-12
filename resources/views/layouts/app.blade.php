@@ -8,13 +8,12 @@
 
     <title>{{ $title }} - SIP prisma Printing</title>
     <x-utils.metas-x-demo />
+    <x-utils.meta-seo />
 
     @if (isset($metas))
         {{ $metas }}
     @endif
 
-    <!-- Scripts -->
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
 <body class="g-sidenav-show  bg-gray-100" style="min-height: 100vh">

@@ -17,6 +17,7 @@
         {{ $head }}
     @endif
     <x-utils.user-metas-x-demo />
+    <x-utils.meta-seo />
 
 </head>
 
