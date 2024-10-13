@@ -2,10 +2,15 @@
     <x-slot name="title">login</x-slot>
 
     <x-slot name="head">
+        <style>
+            div::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
     </x-slot>
 
     <section>
-        <div class=" min-vh-100">
+        <div class=" min-vh-100" style="max-height: 100vh; overflow-y: auto;">
             {{-- <div class="container"> --}}
             <div class="row">
                 <div class="col-md-6 border-3 d-none d-md-block" style="height: 100hv">
@@ -13,11 +18,12 @@
                         alt="auth_image">
                 </div>
 
-                <div class="col-md-6 d-flex flex-column ">
+                <div class="col-md-6 d-flex flex-column"
+                    style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
                     <div class="card card-plain mt-8 w-80 mx-auto">
                         <div class="card-header pb-0 text-left bg-transparent">
                             <h3 class="font-weight-bolder text-dark text-gradient">Masuk</h3>
-                            <p class="mb-0"> Selamat Datang Kembali, Masuk untuk Melanjutkan Belanja</p>
+                            <p class="mb-0"> Selamat dating Kembali, Silahkan masuk untuk melanjutkan belanja</p>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('login') }}" method="POST" role="form">
@@ -66,10 +72,9 @@
                                     class="text-dark text-gradient font-weight-bold">Reset Password </a>
                             </p>
                             <p class="mb-4 text-sm">
-                                <a href="{{ route('register') }}"
+                                <a href="{{ route('guest.dashboard') }}"
                                     class="text-dark text-gradient font-weight-bold">Kembali Ke Halaman Utama</a>
                             </p>
-
 
                         </div>
                     </div>

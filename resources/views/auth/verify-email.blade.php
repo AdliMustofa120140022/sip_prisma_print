@@ -39,7 +39,7 @@
                                     class="text-dark text-gradient font-weight-bold">Login</a>
                             </p>
                             <p class="mb-4 text-sm">
-                                <a href="{{ route('register') }}"
+                                <a href="{{ route('guest.dashboard') }}"
                                     class="text-dark text-gradient font-weight-bold">Kembali Ke Halaman Utama</a>
                             </p>
                         </div>

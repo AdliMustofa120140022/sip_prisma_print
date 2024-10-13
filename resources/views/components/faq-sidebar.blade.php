@@ -13,7 +13,7 @@
 
     <aside
         x-bind:class="{ 'lg:translate-x-0': true, 'translate-x-0': isSidebarOpen, '-translate-x-full': !isSidebarOpen }"
-        class="fixed inset-y-0 left-0 w-72 md:w-5/12 px-4 bg-white z-50 lg:z-auto lg:relative transform lg:transform-none transition-transform duration-300 ease-in-out lg:transition-none">
+        class="fixed inset-y-0 left-0 w-72 md:w-full px-4 bg-white z-50 lg:z-auto lg:relative transform lg:transform-none transition-transform duration-300 ease-in-out lg:transition-none">
         <div class="menu pb-4">
             @foreach ($menus as $menu)
                 <h3 class="font-bold text-3xl pb-2 ">{{ $menu['section'] }}</h3>

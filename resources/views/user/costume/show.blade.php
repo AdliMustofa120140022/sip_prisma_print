@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">
-        Detail Pesanan Kostum
+        Detail Pesanan Kustom
     </x-slot>
 
     <div class=" w-full">
@@ -8,7 +8,7 @@
             <a href="{{ url()->previous() }}">
                 <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Detail Pesanan Kostume</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Detail Pesanan kustom</h2>
         </div>
 
 
@@ -17,37 +17,38 @@
         <form method="POST" enctype="multipart/form-data" action=""
             class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md">
             @csrf
-            <h1 class="text-xl font-semibold text-center pb-10">Detail Pesanan Kostum</h1>
+            <h1 class="text-xl font-semibold text-center pb-10">Detail Pesanan Kustom</h1>
 
             <h2 class="text-lg font-semibold">Informasi Transaksi</h2>
-            <div class="flex justify-between">
-                <spa>Transaksi Code</spa\ <span>{{ $transaksi->transaksi_code }}</span>
+            <div class="grid grid-cols-3 gap-8 py-2">
+                <span class="col-span-1">Nomor Pesanan : </span>
+                <span class="col-span-2 ">{{ $transaksi->transaksi_code }}</span>
             </div>
-            <div class="flex justify-between">
-                <span>Status</span>
+            <div class="grid grid-cols-3 gap-8 py-2">
+                <span class="col-span-1">Status</span>
                 @if ($transaksi->costume_transaksi->status == 'pending')
-                    <span class="px-3  rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
+                    <span class="px-3 col-span-2  rounded-full text-sm font-semibold bg-orange-100 text-orange-600">
                         Menunggu Persetujuan
                     </span>
                 @elseif($transaksi->costume_transaksi->status == 'approved')
-                    <span class="px-3  rounded-full text-sm font-semibold bg-green-100 text-green-600">
+                    <span class="px-3 col-span-2  rounded-full text-sm font-semibold bg-green-100 text-green-600">
                         Disetujui
                     </span>
                 @elseif($transaksi->costume_transaksi->status == 'rejected')
-                    <span class="px-3  rounded-full text-sm font-semibold bg-red-100 text-red-600">
+                    <span class="px-3 col-span-2  rounded-full text-sm font-semibold bg-red-100 text-red-600">
                         Ditolak
                     </span>
                 @endif
             </div>
             @if ($transaksi->costume_transaksi->status == 'approved')
-                <div class="flex justify-between">
-                    <span>Estimasi Harga</span>
-                    <span>{{ $transaksi->costume_transaksi->harga }}</span>
+                <div class="grid grid-cols-3 gap-8 py-2">
+                    <span class="col-span-1">Estimasi Harga</span>
+                    <span class="col-span-2 ">{{ $transaksi->costume_transaksi->harga }}</span>
                 </div>
             @elseif ($transaksi->costume_transaksi->status == 'rejected')
-                <div class="flex justify-between">
-                    <span>Estimasi Harga</span>
-                    <span>{{ $transaksi->costume_transaksi->note }}</span>
+                <div class="grid grid-cols-3 gap-8 py-2">
+                    <span class="col-span-1">Estimasi Harga</span>
+                    <span class="col-span-2 ">{{ $transaksi->costume_transaksi->note }}</span>
                 </div>
             @endif
 

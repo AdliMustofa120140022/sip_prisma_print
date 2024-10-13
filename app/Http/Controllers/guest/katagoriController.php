@@ -13,9 +13,17 @@ class katagoriController extends Controller
 
         $sub_katagori = SubKatagori::first();
         $params = $request->query('p', $sub_katagori->id);
+        $search = $request->query('search');
 
-        $sub_katagori = SubKatagori::where('id', $params)->first();
+
+        $sub_katagori = SubKatagori::with(['produck' => function ($query) use ($search) {
+            if ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            }
+        }])->where('id', $params)->firstOrFail();
+
+        // Get the filtered producks from the eager-loaded sub_katagori
         $producks = $sub_katagori->produck;
-        return view('guest.katagori.index', compact('producks', 'sub_katagori', 'params'));
+        return view('guest.katagori.index', compact('producks', 'sub_katagori', 'params', 'search'));
     }
 }

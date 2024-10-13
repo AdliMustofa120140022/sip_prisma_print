@@ -218,7 +218,7 @@ class CheckOutController extends Controller
         }
 
         $total_pice = 0;
-        $admin_price = 1000;
+        $admin_price = 0;
 
         if ($transaksi->tansaktion_type != 'costume') {
 

@@ -155,7 +155,6 @@
                 <div class="p-3 border rounded-md w-full">
                     <p class="font-semibold">Bagaimana cara menghubungi layanan pelanggan?</p>
                     <div class=" ps-4 py-2 w-full text-gray-600">
-                        <p class="font-semibold mb-2">Bagaimana cara menghubungi layanan pelanggan?</p>
                         <p class="mb-2">Anda dapat menghubungi layanan pelanggan kami melalui:</p>
                         <ul class="list-disc ml-5 text-gray-700 mb-4">
                             <li>Telepon: (021) 123-4567</li>

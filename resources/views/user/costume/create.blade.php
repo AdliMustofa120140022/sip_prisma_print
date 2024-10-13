@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">
-        Pesanan Kostum
+        Pesanan Kustom
     </x-slot>
 
     <div class=" w-full">
@@ -8,7 +8,7 @@
             <a href="{{ url()->previous() }}">
                 <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Buat Pesanan Kostume</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Buat Pesanan Kustom</h2>
         </div>
 
 

@@ -73,7 +73,8 @@
                             class="text-blue-500">perc.primaprinting@gmail.com</a></p>
                     <p>Telepon: <a href="https://wa.me/+628127964966" target="_blank" class="">0812-7964-966</a>
                     </p>
-                    <a href="https://www.google.com/maps" target="_blank" class="text-blue-500">Lihat di Google Maps</a>
+                    <a href="https://maps.app.goo.gl/Z5n8kQQseJQeqUo27" target="_blank" class="text-blue-500">Lihat di
+                        Google Maps</a>
                 </div>
 
                 <div>
@@ -83,7 +84,8 @@
                             class="text-blue-500">perc.primaprinting@gmail.com</a></p>
                     <p>Telepon: <a href="https://wa.me/+6282374873888" target="_blank" class="">0823-7487-3888</a>
                     </p>
-                    <a href="https://www.google.com/maps" target="_blank" class="text-blue-500">Lihat di Google Maps</a>
+                    <a href="https://maps.app.goo.gl/V92Z2EnrH15sW3WR8" target="_blank" class="text-blue-500">Lihat di
+                        Google Maps</a>
                 </div>
             </div>
         </div>

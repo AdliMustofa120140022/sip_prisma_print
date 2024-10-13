@@ -13,14 +13,7 @@ class ProdukController extends Controller
     {
         $order = $request->query('order', 'asc');
         $search = $request->query('search');
-        // $sub_katagori = SubKatagori::first();
-        // $params = $request->query('p', $sub_katagori->id);
 
-        // $sub_katagori = SubKatagori::where('id', $params)->first();
-        // $producks = $sub_katagori->produck;
-        // return view('guest.product.index', compact('producks', 'sub_katagori', 'params'));
-
-        // $producks = Produck::inRandomOrder()->orderBy('name', 'desc')->paginate(12);
 
         if ($search) {
             $producks = Produck::where('name', 'like', '%' . $search . '%')->orderBy('name', $order)->paginate(20);

@@ -3,7 +3,7 @@
 
     <section class="container mx-auto px-4 md:px-0">
         {{-- <x-product-sidebar :param='$params' /> --}}
-        <div class="flex items-center space-x-4 p-4 flex-wrap justify-between gap-5">
+        <div class="flex items-center space-x-4 p-4 flex-wrap justify-between gap-1">
             <!-- Button -->
             <a href="{{ route('user.costume.index') }}"
                 class="bg-blue-500 hover:bg-blue-600  text-white font-bold py-2 px-4 rounded-full whitespace-nowrap">
@@ -50,11 +50,7 @@
                             class="w-full border border-gray-300 rounded-full py-2 pl-10 pr-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Cari Produk" />
                         <input type="text" name="order" value="{{ $order }}" readonly class="hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-2.5 text-gray-400"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 4a8 8 0 100 16 8 8 0 000-16zm12 12l-4-4" />
-                        </svg>
+                        <i class="fa-solid fa-magnifying-glass h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
                         <button type="submit"
                             class="bg-blue-500 border text-white font-semibold border-gray-300 rounded-full px-4 py-2">cari</button>
                     </form>

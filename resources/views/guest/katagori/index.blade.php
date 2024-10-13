@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title"> Product</x-slot>
+    <x-slot name="title">Katagori</x-slot>
 
     <section class="md:flex md:gap-10 px-4 md:px-0 relative">
         <x-product-sidebar :param='$params' />
@@ -7,9 +7,24 @@
             <p class="font-semibold text-xl md:text-3xl text-gray-800">{{ $sub_katagori->name }}</p>
             <p class="text-base md:text-xl font-normal text-gray-007">{{ $sub_katagori->description }}</p>
 
+            <div class="flex justify-end">
+                <!-- Search Input -->
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <form action="{{ route('guest.katagori') }}" class="flex gap-2">
+                            <input type="text" name="search" value="{{ $search }}" placeholder="Cari Produk"
+                                class="w-full border border-gray-300 rounded-full py-2 pl-10 pr-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Cari Produk" />
+                            <i class="fa-solid fa-magnifying-glass h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
+                            <button type="submit"
+                                class="bg-blue-500 border text-white font-semibold border-gray-300 rounded-full px-4 py-2">cari</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid grid-cols-2 md:grid-cols-3 justify-center items-center gap-5 pt-5">
                 @foreach ($producks as $produck)
-                    {{-- {{ $produck->name }} --}}
                     <x-card-product :produck="$produck" />
                 @endforeach
             </div>
