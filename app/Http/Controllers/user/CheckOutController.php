@@ -142,6 +142,11 @@ class CheckOutController extends Controller
     {
         $items = json_decode($request->input('items'), true);
 
+        $alamat = Alamat::where('user_id', Auth::id())->where('is_default', 1)->first();
+
+        if (!$alamat) {
+            return redirect()->back()->with('error', 'Tmabhkan Alamat terlebih dahulu');
+        }
         $totalharga = 0;
         $transaksi = Transaksi::create([
             'user_id' => Auth::id(),

@@ -128,7 +128,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::post('/alamat', [AlamatController::class, 'store'])->name('user.alamat.store');
         Route::get('/alamat/{id}/edit', [AlamatController::class, 'edit'])->name('user.alamat.edit');
         Route::put('/alamat/{id}', [AlamatController::class, 'update'])->name('user.alamat.update');
-        Route::get('/alamat/{id}', [AlamatController::class, 'destroy'])->name('user.alamat.destroy');
+        Route::delete('/alamat/{id}/delete', [AlamatController::class, 'destroy'])->name('user.alamat.destroy');
         Route::get('/alamat/{id}/default', [AlamatController::class, 'setDefault'])->name('user.alamat.default');
 
         //love product

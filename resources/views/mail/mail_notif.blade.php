@@ -58,7 +58,7 @@
                                             style=" --bg-opacity: 0.3;  background-color: #597af3; font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif; font-size: 14px; line-height: 24px; padding-bottom: 40px; padding-top: 20px; border-radius: 20px 20px 0 0; text-align: center;">
                                             <span
                                                 style="font-weight: 800; font-size: 32px; line-height: normal; margin-bottom: 0; color: #eceff1;">
-                                                Notifikasi Transaksi {{ $transaksi->transaksi_code }}
+                                                Transaksi {{ $transaksi->transaksi_code }}
                                             </span>
                                         </td>
                                     </tr>
@@ -73,14 +73,14 @@
                                                 <p>Halo, {{ $user->name }},</p>
                                                 <p>Kami senang memberi tahu Anda bahwa transaksi Anda dengan nomor
                                                     <strong>{{ $transaksi->transaksi_code }}</strong>
-                                                    @if ($transaksi->status == 'kerim')
+                                                    @if ($transaksi->status == 'kirim')
                                                         telah dikirim pada
-                                                        <strong>{{ $transaksi->transaksi_data->shipping_time->format('d M Y') }}</strong>.
+                                                        <strong>{{ \Carbon\Carbon::parse($transaksi->transaksi_data->shiping_time)->format('d M Y') }}</strong>.
                                                     @elseif ($transaksi->status == 'desain')
                                                         sedang dalam proses desain.
                                                     @elseif ($transaksi->status == 'selesai')
                                                         telah selesai. pada
-                                                        <strong>{{ $transaksi->updated_at->format('d M Y') }}</strong>.
+                                                        <strong>{{ \Carbon\Carbon::parse($transaksi->updated_at)->format('d M Y') }}</strong>.
                                                     @endif
                                                 </p>
                                                 <p>Detail transaksi Anda adalah sebagai berikut:</p>

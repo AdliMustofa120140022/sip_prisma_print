@@ -174,7 +174,7 @@
                                 <input type="hidden" id="item-details" name="items">
 
                                 <template x-if="!loading">
-                                    <button type="submit" id="checkout-button" x-ref="checkoutButton" disabled
+                                    <button type="submit" id="checkout-button" x-ref="checkoutButton"
                                         class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium bg-gray-300 text-white">
                                         Check Out
                                     </button>
@@ -208,9 +208,8 @@
             const totalHargaElement = document.getElementById('total_Harga');
             const itemDetailsInput = document.getElementById('item-details');
 
-
             function ToggleButton() {
-                const checkoutButton = document.querySelector('[x-ref="checkoutButton"]');;
+                var checkoutButton = document.querySelector('[x-ref="checkoutButton"]');
 
                 if (itemSelected.length > 0) {
                     checkoutButton.removeAttribute('disabled');
@@ -223,9 +222,18 @@
                 }
             }
 
+            var isInitialized = false;
+
             function renderTotalHarga() {
                 itemDetailsInput.value = JSON.stringify(itemSelected);
-                ToggleButton();
+                if (!isInitialized) {
+                    document.addEventListener('DOMContentLoaded', function() {
+                        ToggleButton();
+                        isInitialized = true;
+                    });
+                } else {
+                    ToggleButton();
+                }
                 const totalHarga = itemSelected.reduce((acc, item) => acc + item.totalHarga, 0);
                 totalHargaElement.innerText = totalHarga.toLocaleString('id-ID', {
                     minimumFractionDigits: 0,
@@ -253,6 +261,7 @@
                 itemSelected = itemSelected.filter(item =>
                     item.id !== id
                 );
+
                 renderTotalHarga();
             }
 

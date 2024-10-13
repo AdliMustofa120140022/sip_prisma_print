@@ -41,8 +41,14 @@
                             Alamat</a>
                         <a href="{{ route('user.alamat.default', $alamat->id) }}"
                             class="text-blue-500 block pb-2">Pilih Jadi Alamat Utama</a>
-                        <x-utils.btn-href text="Hapus" target:="{{ route('user.alamat.destroy', $alamat->id) }}"
-                            class="bg-red-500 block" />
+                        <form action="{{ route('user.alamat.destroy', $alamat->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="bg-red-500 block px-6 py-2 text-white rounded-md text-center">Hapus</button>
+                        </form>
+                        {{-- <x-utils.btn-href text="Hapus" target:="{{ route('user.alamat.destroy', $alamat->id) }}"
+                            class="bg-red-500 block" /> --}}
                     </div>
                 </div>
             @endforeach
