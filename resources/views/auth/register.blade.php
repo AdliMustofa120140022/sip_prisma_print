@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <x-slot name="title">login</x-slot>
+    <x-slot name="title">Register</x-slot>
 
     <x-slot name="head">
         <style>
@@ -22,8 +22,9 @@
                     style="max-height: 100vh; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
                     <div class="card card-plain mt-6 w-80 mx-auto overflow-scroll">
                         <div class="card-header pb-0 text-left bg-transparent">
-                            <h3 class="font-weight-bolder text-dark text-gradient">Masuk</h3>
-                            <p class="mb-0"> Selamat Datang Kembali, Masuk untuk Melanjutkan Belanja</p>
+                            <h3 class="font-weight-bolder text-dark text-gradient">Daftar</h3>
+                            <p class="mb-0">Belum punya akun? Daftar dan nikmati kemudahan berbelanja online bersama
+                                kami.</p>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('register') }}" method="POST" role="form">
@@ -31,7 +32,7 @@
                                 <label>Nama</label>
                                 <div class="mb-3">
                                     <input name="name" id="name" type="text" class="form-control"
-                                        placeholder="name" aria-label="name" aria-describedby="name-addon"
+                                        placeholder="Nama" aria-label="name" aria-describedby="name-addon"
                                         value="{{ old('name') }}" required>
                                 </div>
                                 @error('name')

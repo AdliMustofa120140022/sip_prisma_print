@@ -9,7 +9,7 @@
 
             <div class="flex justify-end">
                 <!-- Search Input -->
-                <div class="md:w-1/2">
+                <div class="w-full lg:w-3/4">
                     <div class="relative">
                         <form action="{{ route('guest.katagori') }}" class="flex gap-2">
                             <input type="text" name="search" value="{{ $search }}" placeholder="Cari Produk"

@@ -46,7 +46,7 @@
                                 <div class="mb-3">
                                     <div class="form-control d-flex justify-content-between align-items-center p-0">
                                         <input type="password" name="password_confirmation" id="password_confirmation"
-                                            class="form-control border-0" placeholder="password_confirmation"
+                                            class="form-control border-0" placeholder="Password Konfirmasi"
                                             aria-label="password_confirmation"
                                             aria-describedby="password_confirmation-addon" required>
                                         <button type="button" onclick="toggleShowPassword('password_confirmation')"

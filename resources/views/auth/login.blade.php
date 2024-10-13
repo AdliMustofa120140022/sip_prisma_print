@@ -23,7 +23,7 @@
                     <div class="card card-plain mt-8 w-80 mx-auto">
                         <div class="card-header pb-0 text-left bg-transparent">
                             <h3 class="font-weight-bolder text-dark text-gradient">Masuk</h3>
-                            <p class="mb-0"> Selamat dating Kembali, Silahkan masuk untuk melanjutkan belanja</p>
+                            <p class="mb-0">Selamat datang kembali, Silahkan masuk untuk melanjutkan belanja</p>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('login') }}" method="POST" role="form">
@@ -57,7 +57,7 @@
                                 @enderror
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-dark w-100 mt-4 mb-0 text-white">Login</button>
+                                    <button type="submit" class="btn bg-dark w-100 mt-4 mb-0 text-white">Masuk</button>
                                 </div>
                             </form>
 
@@ -85,8 +85,6 @@
         </div>
     </section>
 
-
-    {{-- </section> --}}
 
     <x-slot name='scripts'>
         <script>

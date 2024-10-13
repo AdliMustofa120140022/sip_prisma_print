@@ -3,8 +3,7 @@
          <!-- Logo -->
          <div class="flex gap-5 items-center">
              <a class="flex gap-4" href="{{ route('guest.dashboard') }}">
-                 <img src="{{ asset('static/img/prima_logo.png') }}" alt="logo"
-                     class="drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)] w-[50px] h-[50px]" />
+                 <img src="{{ asset('static/img/prima_logo.png') }}" alt="logo" class=" w-[50px] h-[50px]" />
                  <div class="flex flex-col text-blue-500">
                      <span class="font-bold text-lg">Percetakan </span>
                      <span class="font-bold text-lg">Prima Printing</span>
@@ -119,7 +118,7 @@
                  </div>
              @else
                  <ul class="flex gap-5 items-center font-semibold text-gray-600">
-                     <li class="drop-shadow-[0_5px_20px_rgba(0,0,0,0.45)]">
+                     <li class=" rounded-3xl  py-2 px-6 border ">
                          <a href="{{ route('login') }}" class="rounded-lg">Masuk</a>
                      </li>
                      <li class="rounded-3xl bg-blue-500 py-2 px-6 text-white hover:bg-gray-100">

@@ -34,17 +34,17 @@ class AuthenticatedSessionController extends Controller
         if (Auth::user()->role == 'super_admin') {
             if (Str::contains($intended, '/super')) {
                 // dd($intended);
-                return redirect()->intended(route('super.dashboard', absolute: false));
+                return redirect()->intended(route('super.dashboard', absolute: false))->with('success', 'Login Berhasil');
             }
-            return redirect()->route('super.dashboard');
+            return redirect()->route('super.dashboard')->with('success', 'Login Berhasil');
         } elseif (Auth::user()->role == 'admin') {
             if (Str::contains($intended, '/admin')) {
                 // dd($intended);
-                return redirect()->intended(route('admin.dashboard', absolute: false));
+                return redirect()->intended(route('admin.dashboard', absolute: false))->with('success', 'Login Berhasil');
             }
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('success', 'Login Berhasil');
         }
-        return redirect()->intended(route('guest.dashboard', absolute: false));
+        return redirect()->intended(route('guest.dashboard', absolute: false))->with('success', 'Login Berhasil');
     }
 
     /**
@@ -58,6 +58,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Logout Berhasil');
     }
 }

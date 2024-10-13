@@ -60,10 +60,10 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         if (!$user->hasVerifiedEmail()) {
-            return redirect()->route('verification.notice');
+            return redirect()->route('verification.notice')->with('success', 'Registrasi Berhasil. Silahkan cek email untuk verifikasi');
         }
 
         // return redirect(route('dashboard', absolute: false));
-        return redirect()->intended(route('guest.dashboard', absolute: false));
+        return redirect()->intended(route('guest.dashboard', absolute: false))->with('success', 'Registrasi Berhasil');
     }
 }
