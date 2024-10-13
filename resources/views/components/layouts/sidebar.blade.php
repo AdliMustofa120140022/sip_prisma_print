@@ -119,8 +119,8 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laporan</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link rounded-3  {{ Request::routeIs('admin.pesanan*') ? 'bg-gray-300' : '' }} "
-                    href={{ route('admin.pesanan.index') }}>
+                <a class="nav-link rounded-3  {{ Request::routeIs('admin.export*') ? 'bg-gray-300' : '' }} "
+                    href={{ route('admin.export.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
                         <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>

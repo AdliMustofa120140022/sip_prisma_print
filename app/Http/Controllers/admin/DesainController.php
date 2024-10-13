@@ -4,9 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
+use App\Mail\MailNotif;
 use App\Models\ProdukTransaksi;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class DesainController extends Controller
 {
@@ -50,6 +52,9 @@ class DesainController extends Controller
                 'status' => 'pending',
             ]);
         }
+
+        Mail::to($produk_transaksi->transaksi->user->email)->send(new MailNotif($produk_transaksi->transaksi, $produk_transaksi->transaksi->user, 'Desain Produk'));
+
         return redirect()->back()->with('success', 'Desain berhasil diupload');
     }
 }

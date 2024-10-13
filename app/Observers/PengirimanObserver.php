@@ -2,8 +2,10 @@
 
 namespace App\Observers;
 
+use App\Mail\MailNotif;
 use App\Models\Transaksi;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class PengirimanObserver
 {
@@ -24,7 +26,11 @@ class PengirimanObserver
 
             if (Carbon::now()->greaterThanOrEqualTo($batasWaktuPengiriman)) {
                 $transaksi->status = 'selesai';
+                $transaksi->transaksi_data->shiping_done_time = now();
+                $transaksi->transaksi_data->save();
                 $transaksi->save();
+
+                Mail::to($transaksi->user->email)->send(new MailNotif($transaksi, $transaksi->user, 'Transaksi Selesai'));
             }
         }
     }

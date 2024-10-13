@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,16 +11,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class mailNotification extends Mailable
+class MailNotif extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $subject;
+    public $transaksi;
+    public $user;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(Transaksi $transaksi, User $user, $subject)
     {
-        //
+        $this->transaksi = $transaksi;
+        $this->user = $user;
+        $this->subject = $subject;
     }
 
     /**
@@ -27,7 +35,7 @@ class mailNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mail Notification',
+            subject: $this->subject,
         );
     }
 
@@ -37,7 +45,7 @@ class mailNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.mail_notif',
         );
     }
 

@@ -30,6 +30,9 @@ class PaymentController extends Controller
         $bukti_pembayaran = FileHelper::uploadFile($request->file('bukti_pembayaran'), 'bukti_pembayaran');
         // $bukti_pembayaran = $request->file('bukti_pembayaran')->store('bukti_pembayaran');
 
+        $transaksi->status = 'payment';
+        $transaksi->save();
+
         $transaksi->transaksi_data->update([
             'bukti_pembayaran' => $bukti_pembayaran,
             'payment_status' => 'pending',

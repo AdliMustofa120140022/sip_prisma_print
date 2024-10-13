@@ -24,6 +24,7 @@ use App\Http\Controllers\admin\ReturnController as AdminReturnController;
 use App\Http\Controllers\user\CostumeTransaktionController;
 use App\Http\Controllers\admin\CostumeTransaktionController as adminCostumeTransaktionController;
 use App\Http\Controllers\user\ProfileController as userProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,6 +49,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('/super')->middleware('superadmin')->group(function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('super.dashboard');
     });
+
+    // Route::get('/cek', function () {
+    //     $transaksi = \App\Models\Transaksi::where('transaksi_code', 'TR-004')->first();
+    //     $user = Auth::user();
+
+    //     return view('mail.mail_notif', compact('transaksi', 'user'));
+    // });
 
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('admin.dashboard');
@@ -105,6 +113,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::put('/payment-metode/{id}', [App\Http\Controllers\admin\PaymentMetodeController::class, 'update'])->name('admin.payment-metode.update');
         Route::put('/payment-metode/{id}/update-qr-code', [App\Http\Controllers\admin\PaymentMetodeController::class, 'updateQrCode'])->name('admin.payment-metode.update-qr-code');
         Route::delete('/payment-metode/{id}', [App\Http\Controllers\admin\PaymentMetodeController::class, 'destroy'])->name('admin.payment-metode.destroy');
+
+        //export
+        Route::get('/export', [App\Http\Controllers\admin\exportController::class, 'index'])->name('admin.export.index');
+        Route::post('/export', [App\Http\Controllers\admin\exportController::class, 'export'])->name('admin.export.export');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {
