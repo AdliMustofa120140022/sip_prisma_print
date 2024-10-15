@@ -18,7 +18,8 @@ class katagoriController extends Controller
 
         $sub_katagori = SubKatagori::with(['produck' => function ($query) use ($search) {
             if ($search) {
-                $query->where('name', 'like', '%' . $search . '%');
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->where('deleted', false);
             }
         }])->where('id', $params)->firstOrFail();
 

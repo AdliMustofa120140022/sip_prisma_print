@@ -15,6 +15,7 @@ class Produck extends Model
         'name',
         'description',
         'sub_kategori_id',
+        'deleted',
     ];
     public static function boot()
     {

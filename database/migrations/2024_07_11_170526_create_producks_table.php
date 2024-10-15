@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->foreignId('sub_kategori_id')->references('id')->on('sub_katagoris');
+            $table->boolean('deleted')->default(false);
         });
     }
 

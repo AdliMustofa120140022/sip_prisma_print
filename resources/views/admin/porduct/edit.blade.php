@@ -264,9 +264,24 @@
 
                     </div>
                 </div>
-                <div class="row align-items-center">
+                <div class="row align-items-center" id="gambarProduk">
                     <h6 class="ps-4 mt-2 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
-                        GamBar Produk</h6>
+                        GamBar produk</h6>
+                    <div
+                        class="img-preview-container d-flex flex-wrap align-items-center gap-3 justify-content-center py-5 ">
+                        @foreach ($produck->img_produck as $img_produck)
+                            <div class="position-relative ratio ratio-1x1 w-20 border rounded rounded-2xl">
+                                <img src="{{ asset('storage/img_produck/' . $img_produck->img) }}" alt=""
+                                    class="rounded-2xl img-fluid" style="object-fit: cover;">
+                                <a href="{{ route('admin.product.delete-image', $img_produck->id) }}"
+                                    class="btn btn-danger position-absolute top-0 end-0 m-1 rounded-circle"
+                                    style="padding: 0.2rem; font-size: 0.8rem; width: 1.5rem; height: 1.5rem; line-height: 1rem; z-index: 1;">×</a>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <h6 class="ps-4 mt-2 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
+                        GamBar baru</h6>
 
                     <div class="row">
                         <div id="image-preview-container"
@@ -276,7 +291,7 @@
                             id="drop-zone" style="height: 200px">
                             <span>Drag & Drop hire or click hire to select</span>
                             <input type="file" id="image" name="image[]" accept="image/*" class="d-none"
-                                multiple onchange="previewImages(event)">
+                                multiple>
                         </div>
 
                     </div>
@@ -284,6 +299,8 @@
 
                 <div class="col-md-11 ">
                     <div class="d-flex justify-content-end">
+                        <a href="{{ route('admin.product.index') }}"
+                            class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Kembali</a>
                         <button type="submit"
                             class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Simpan</button>
                     </div>
@@ -300,27 +317,28 @@
             console.log(session);
 
             const dropZone = document.getElementById('drop-zone');
-            const preview = document.getElementById('preview');
             const imageInput = document.getElementById('image');
             const imagePreviewContainer = document.getElementById('image-preview-container');
+            let fileList = []; // Array to track uploaded files
 
+            // Click to open file dialog
             dropZone.addEventListener('click', () => {
                 imageInput.click();
             });
 
+            // Drag and drop functionality
             dropZone.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 dropZone.classList.add('drop-zone--over');
             });
 
             dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('hover');
+                dropZone.classList.remove('drop-zone--over');
             });
-
 
             dropZone.addEventListener('drop', (event) => {
                 event.preventDefault();
-                dropZone.classList.remove('hover');
+                dropZone.classList.remove('drop-zone--over');
 
                 const files = event.dataTransfer.files;
                 if (files.length > 0) {
@@ -328,6 +346,7 @@
                 }
             });
 
+            // File input change handler
             imageInput.addEventListener('change', (event) => {
                 const files = event.target.files;
                 if (files.length > 0) {
@@ -335,17 +354,56 @@
                 }
             });
 
+            // Handle the uploaded files
             function handleFiles(files) {
-                for (const file of files) {
+                // Convert the file list to an array and store in fileList
+                fileList = [...fileList, ...Array.from(files)];
+
+                // Loop through files and create image previews
+                for (const [index, file] of Array.from(files).entries()) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
+                        const div = document.createElement('div');
+                        div.classList.add('position-relative', 'ratio', 'ratio-1x1', 'w-20', 'border', 'rounded',
+                            'rounded-2xl');
+
                         const img = document.createElement('img');
                         img.src = e.target.result;
-                        img.classList.add('img-fluid', 'w-10', 'rounded', 'rounded-2xl');
-                        imagePreviewContainer.appendChild(img);
-                    }
+                        img.classList.add('rounded-2xl', 'img-fluid');
+                        img.style.objectFit = 'cover';
+                        img.alt = '';
+
+                        const button = document.createElement('button');
+                        button.innerHTML = '×'; // Close button
+                        button.classList.add('btn', 'btn-danger', 'position-absolute', 'top-0', 'end-0', 'm-1',
+                            'rounded-circle');
+                        button.style.padding = '0.2rem';
+                        button.style.fontSize = '0.8rem';
+                        button.style.width = '1.5rem';
+                        button.style.height = '1.5rem';
+                        button.style.lineHeight = '1rem';
+                        button.style.zIndex = '1';
+
+                        button.onclick = function() {
+                            imagePreviewContainer.removeChild(div); // Remove image preview
+                            fileList.splice(index, 1); // Remove file from array
+                            updateImageInput(); // Update the hidden input
+                        };
+
+                        div.appendChild(img);
+                        div.appendChild(button);
+                        imagePreviewContainer.appendChild(div);
+                    };
                     reader.readAsDataURL(file);
                 }
+
+                updateImageInput();
+            }
+
+            // Function to update the hidden input with the current list of files
+            function updateImageInput() {
+                const imageInputHidden = document.getElementById('image');
+                imageInputHidden.file = fileList;
             }
         </script>
     </x-slot>

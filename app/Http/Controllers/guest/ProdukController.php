@@ -16,9 +16,9 @@ class ProdukController extends Controller
 
 
         if ($search) {
-            $producks = Produck::where('name', 'like', '%' . $search . '%')->orderBy('name', $order)->paginate(20);
+            $producks = Produck::where('deleted', false)->where('name', 'like', '%' . $search . '%')->orderBy('name', $order)->paginate(20);
         } else {
-            $producks = Produck::orderBy('name', $order)->paginate(20);
+            $producks = Produck::where('deleted', false)->orderBy('name', $order)->paginate(20);
         }
         // dd($producks);
         return view('guest.product.index', compact('producks', 'search', 'order'));

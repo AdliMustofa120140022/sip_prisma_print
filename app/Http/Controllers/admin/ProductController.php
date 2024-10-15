@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\DataTables\ProdukDataTable;
 use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
+use App\Models\ImgProduck;
 use App\Models\Produck;
 use App\Models\SubKatagori;
 use Illuminate\Http\Request;
@@ -22,9 +23,7 @@ class ProductController extends Controller
     public function index(ProdukDataTable $dataTable)
 
     {
-        $producks = Produck::all();
-
-        // dd($producks);
+        $producks = Produck::where('deleted', false)->get();
         return view('admin.porduct.index', compact('producks'));
     }
 
@@ -128,7 +127,7 @@ class ProductController extends Controller
         foreach ($request->image as $image) {
             $img_produck_name = FileHelper::uploadFile($image, 'img_produck');
             $Produck->img_produck()->create([
-                'img' => $this->fileUpload($image, 'public/img/produck'),
+                'img' => $img_produck_name
             ]);
         }
 
@@ -236,18 +235,33 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            foreach ($Produck->img_produck as $img) {
-                // unlink(storage_path('app/public/img/produck/' . $img->img));
-                $img->delete();
-            }
 
             foreach ($request->image as $image) {
+                $img_produck_name = FileHelper::uploadFile($image, 'img_produck');
                 $Produck->img_produck()->create([
-                    'img' => $this->fileUpload($image, 'public/img/produck'),
+                    'img' => $img_produck_name
                 ]);
             }
         }
 
         return redirect()->route('admin.product.index')->with('success', 'Produk berhasil diubah');
+    }
+
+    public function deleteImage($id)
+    {
+        $img_produck = ImgProduck::find($id);
+        $img_produck->delete();
+
+        return redirect()->back()->with('success', 'Gambar berhasil dihapus')->withInput()->header('Location', url()->previous() . '#gambarProduk');
+    }
+
+    public function destroy($id)
+    {
+        $produck = Produck::find($id);
+        $produck->update([
+            'deleted' => true
+        ]);
+
+        return redirect()->route('admin.product.index')->with('success', 'Produk berhasil dihapus');
     }
 }

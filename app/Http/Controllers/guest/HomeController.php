@@ -16,7 +16,7 @@ class HomeController extends Controller
         $katagoris = Katagori::all()->sortBy('id');
         $param = $request->query('p', $katagoris->first()->id);
 
-        $producks = Produck::whereHas('sub_katagori', function ($query) use ($param) {
+        $producks = Produck::where('deleted', false)->whereHas('sub_katagori', function ($query) use ($param) {
             $query->where('category_id', $param);
         })->inRandomOrder()
             ->take(6)

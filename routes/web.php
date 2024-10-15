@@ -68,6 +68,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/product/{id}/show', [ProductController::class, 'show'])->name('admin.product.show');
         Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::put('/product/{id}', [ProductController::class, 'update'])->name('admin.product.update');
+        Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+        Route::get('/product/img/{id}/delete', [ProductController::class, 'deleteImage'])->name('admin.product.delete-image');
 
         Route::get('sub-kategori', [SubKatagoriController::class, 'index'])->name('admin.sub-kategori.index');
         Route::post('sub-kategori', [SubKatagoriController::class, 'store'])->name('admin.sub-kategori.store');

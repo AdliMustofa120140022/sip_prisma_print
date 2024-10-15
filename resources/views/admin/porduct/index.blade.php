@@ -98,7 +98,8 @@
                                                         detail
                                                     </a>
 
-                                                    <form action="#" method="POST" class="p-0">
+                                                    <form action="{{ route('admin.product.destroy', $produck->id) }}"
+                                                        method="POST" class="p-0">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"

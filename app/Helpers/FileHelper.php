@@ -8,8 +8,9 @@ class FileHelper
 {
     public static function uploadFile(UploadedFile $file, $path)
     {
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $fileName = time() . '.' . $file->getClientOriginalName();
         $file->storeAs('public/' . $path, $fileName);
+        $timeStamp = time();
         return $fileName;
     }
 

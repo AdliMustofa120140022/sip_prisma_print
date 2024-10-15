@@ -42,8 +42,8 @@
                                     </button>
 
                                     <div class="shrink-0">
-                                        <img class="md:w-32 w-24 rounded-xl aspect-square"
-                                            src="{{ !empty($cart->product->img_produck) && is_array($cart->product->img_produck) ? asset('storage/img/produck/' . $cart->product->img_produck[0]->img) : asset('static/dummy/dummy.png') }}"
+                                        <img class="md:w-32 w-24 rounded-xl aspect-square object-cover"
+                                            src="{{ $cart->product->img_produck->count() > 0 ? asset('storage/img_produck/' . $cart->product->img_produck[0]->img) : asset('static/dummy/dummy.png') }}"
                                             alt="product image" />
                                     </div>
 

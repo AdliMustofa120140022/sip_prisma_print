@@ -256,13 +256,17 @@
 
                     <div class="row">
                         <div id="image-preview-container"
-                            class="img-preview-container d-flex flex-wrap align-items-center gap-3 justify-content-center py-5 ">
+                            class="img-preview-container d-flex flex-wrap align-items-center gap-3 justify-content-center py-5">
+                            {{-- <div class="ratio ratio-1x1 w-20 border rounded rounded-2xl">
+                                <img src="{{ asset('assets/img/1728845781.jpg') }}"
+                                    class="rounded-2xl rounded img-fluid" style="object-fit: cover" alt="">
+                            </div> --}}
                         </div>
-                        <div class="drop-zone w-full d-flex justify-content-center align-items-center rounded rounded-2xl border-dashed border-black "
+                        <div class="drop-zone w-full d-flex justify-content-center align-items-center  rounded-2xl border-dashed border-black "
                             id="drop-zone" style="height: 200px">
                             <span>Drag & Drop hire or click hire to select</span>
                             <input type="file" id="image" name="image[]" accept="image/*" class="d-none"
-                                multiple onchange="previewImages(event)">
+                                multiple>
                         </div>
 
                     </div>
@@ -279,34 +283,35 @@
         </div>
 
     </section>
-    <x-slot name='scripts'>
+    <x-slot name=scripts'>
         <script>
             const session = {!! json_encode($errors->all()) !!};
 
             console.log(session);
 
             const dropZone = document.getElementById('drop-zone');
-            const preview = document.getElementById('preview');
             const imageInput = document.getElementById('image');
             const imagePreviewContainer = document.getElementById('image-preview-container');
+            let fileList = []; // Array to track uploaded files
 
+            // Click to open file dialog
             dropZone.addEventListener('click', () => {
                 imageInput.click();
             });
 
+            // Drag and drop functionality
             dropZone.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 dropZone.classList.add('drop-zone--over');
             });
 
             dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('hover');
+                dropZone.classList.remove('drop-zone--over');
             });
-
 
             dropZone.addEventListener('drop', (event) => {
                 event.preventDefault();
-                dropZone.classList.remove('hover');
+                dropZone.classList.remove('drop-zone--over');
 
                 const files = event.dataTransfer.files;
                 if (files.length > 0) {
@@ -314,6 +319,7 @@
                 }
             });
 
+            // File input change handler
             imageInput.addEventListener('change', (event) => {
                 const files = event.target.files;
                 if (files.length > 0) {
@@ -321,17 +327,56 @@
                 }
             });
 
+            // Handle the uploaded files
             function handleFiles(files) {
-                for (const file of files) {
+                // Convert the file list to an array and store in fileList
+                fileList = [...fileList, ...Array.from(files)];
+
+                // Loop through files and create image previews
+                for (const [index, file] of Array.from(files).entries()) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
+                        const div = document.createElement('div');
+                        div.classList.add('position-relative', 'ratio', 'ratio-1x1', 'w-20', 'border', 'rounded',
+                            'rounded-2xl');
+
                         const img = document.createElement('img');
                         img.src = e.target.result;
-                        img.classList.add('img-fluid', 'w-10', 'rounded', 'rounded-2xl');
-                        imagePreviewContainer.appendChild(img);
-                    }
+                        img.classList.add('rounded-2xl', 'img-fluid');
+                        img.style.objectFit = 'cover';
+                        img.alt = '';
+
+                        const button = document.createElement('button');
+                        button.innerHTML = '×'; // Close button
+                        button.classList.add('btn', 'btn-danger', 'position-absolute', 'top-0', 'end-0', 'm-1',
+                            'rounded-circle');
+                        button.style.padding = '0.2rem';
+                        button.style.fontSize = '0.8rem';
+                        button.style.width = '1.5rem';
+                        button.style.height = '1.5rem';
+                        button.style.lineHeight = '1rem';
+                        button.style.zIndex = '1';
+
+                        button.onclick = function() {
+                            imagePreviewContainer.removeChild(div); // Remove image preview
+                            fileList.splice(index, 1); // Remove file from array
+                            updateImageInput(); // Update the hidden input
+                        };
+
+                        div.appendChild(img);
+                        div.appendChild(button);
+                        imagePreviewContainer.appendChild(div);
+                    };
                     reader.readAsDataURL(file);
                 }
+
+                updateImageInput();
+            }
+
+            // Function to update the hidden input with the current list of files
+            function updateImageInput() {
+                const imageInputHidden = document.getElementById('image');
+                imageInputHidden.file = fileList;
             }
         </script>
     </x-slot>
