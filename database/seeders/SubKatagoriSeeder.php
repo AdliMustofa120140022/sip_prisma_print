@@ -20,8 +20,8 @@ class SubKatagoriSeeder extends Seeder
             'category_id' => 1,
         ]);
 
-        SubKatagori::factory()
-            ->count(10)
-            ->create();
+        // SubKatagori::factory()
+        //     ->count(10)
+        //     ->create();
     }
 }
