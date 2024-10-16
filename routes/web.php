@@ -46,6 +46,10 @@ Route::get('/faq', [FaqController::class, 'index'])->name('guest.faq');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
+    Route::get('/print', function () {
+        return view('user.print_doc');
+    });
+
     Route::prefix('/super')->middleware('superadmin')->group(function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('super.dashboard');
     });
@@ -180,6 +184,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //profile
         Route::get('/profile', [userProfileController::class, 'index'])->name('user.profile.index');
         Route::put('/profile', [userProfileController::class, 'update'])->name('user.profile.update');
+
+        //print
+        Route::get('/print/{transaksi_code}/inv', [App\Http\Controllers\user\PrintController::class, 'print_invoice'])->name('user.print.inv');
     });
 });
 

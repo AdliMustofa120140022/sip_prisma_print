@@ -153,10 +153,6 @@
                         <div class="col-span-2">
                             <p class="text-md font-semibold">QRIS</p>
                         </div>
-                        {{-- <div class="col-span-5">
-                        <img src="{{ asset('storage/payment_metode/' . $transaksi->transaksi_data->payment_metode->qris) }}"
-                            alt="qris" class="w-32 h-32">
-                    </div> --}}
                         <div
                             class="col-span-5 md:col-span-3 card-body d-flex align-items-center justify-content-center">
                             <img src="{{ asset('storage/payment_metode/' . $transaksi->transaksi_data->payment_metode->qr_code) }}"
@@ -171,10 +167,11 @@
                         class="px-6 py-2 bg-blue-600 text-white w-56 rounded-md hover:bg-blue-700">Konfirmasi
                         Pembayaran</button>
 
-                    <a href=""
-                        class=" bg-gray-200 text-black px-4 py-2 w-56 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Download
-                        Invoice</a>
 
+                    <button type="button"
+                        onclick="printContent('{{ route('user.print.inv', $transaksi->transaksi_code) }}')"
+                        class=" bg-gray-200 text-black px-4 py-2 w-56 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Download
+                        Invoice</button>
                 </div>
 
             </form>
@@ -183,5 +180,35 @@
         </div>
 
     </div>
+
+
+    <x-slot name="scripts">
+        <script>
+            function printContent(route) {
+                console.log(route);
+                fetch(route, {
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    })
+                    .then(response => response.text())
+                    .then(html => {
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        iframeDoc.open();
+                        iframeDoc.write(html);
+                        iframeDoc.close();
+                        iframe.onload = () => {
+                            iframe.contentWindow.focus();
+                            iframe.contentWindow.print();
+                            document.body.removeChild(iframe);
+                        };
+
+                    });
+            }
+        </script>
+    </x-slot>
 
 </x-guest-layout>

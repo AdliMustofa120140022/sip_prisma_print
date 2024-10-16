@@ -11,12 +11,6 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $param = $request->query('p', 'kantor');
-
-        $katagoris = Katagori::all()->sortBy('id');
-
-        $producks = Katagori::where('nama', $param)->first()->sub_katagori;
-
-        return view('guest.home', compact('katagoris', 'producks'));
+        return redirect()->route('guest.dashboard');
     }
 }

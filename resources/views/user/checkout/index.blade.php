@@ -167,8 +167,8 @@
                     </div>
                     <div>
                         <label class ="inline-flex items-center">
-                            <input type="radio" name="pembayaran" x-model="paymentMetode" value="transfer_bank"
-                                class="form-radio" />
+                            <input type="radio" name="pembayaran" id="payment" x-model="paymentMetode"
+                                value="transfer_bank" class="form-radio" />
                             <span class="ml-2">Transfer Bank</span>
                         </label>
                         <div x-show="paymentMetode === 'transfer_bank'" class="ml-6 mt-2">
@@ -368,6 +368,7 @@
                         pengiriman.innerText = pengirimanPrice.toLocaleString('id-ID');
                         shipingCostInput.value = pengirimanPrice;
                         document.getElementById('pay_toko').innerHTML = ""
+                        document.getElementById('payment').checked = true;
                         calculateTotalPriceTransaktion();
                     } else {
                         pengirimanPrice = 0;

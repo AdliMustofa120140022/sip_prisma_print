@@ -207,6 +207,7 @@
             var itemSelected = [];
             const totalHargaElement = document.getElementById('total_Harga');
             const itemDetailsInput = document.getElementById('item-details');
+            var isInitialized = false;
 
             function ToggleButton() {
                 var checkoutButton = document.querySelector('[x-ref="checkoutButton"]');
@@ -222,7 +223,6 @@
                 }
             }
 
-            var isInitialized = false;
 
             function renderTotalHarga() {
                 itemDetailsInput.value = JSON.stringify(itemSelected);
@@ -261,7 +261,6 @@
                 itemSelected = itemSelected.filter(item =>
                     item.id !== id
                 );
-
                 renderTotalHarga();
             }
 
@@ -282,7 +281,6 @@
                         }
                         this.updateProductQuantity();
                     },
-
                     decrement() {
                         if (this.quantity > 0) this.quantity--;
                         this.updateProductQuantity();
@@ -298,7 +296,6 @@
                             this.updateProductQuantity();
                         }, 1000);
                     },
-
                     updateProductQuantity() {
                         axios.post(this.updateUrl, {
                                 cart_id: this.cartId,
@@ -331,6 +328,8 @@
                         addSelected(cart.quantity, cart.product.data_produck.harga_satuan, cart.id)
                     }
                 });
+            } else {
+                isInitialized = true
             }
         </script>
 
