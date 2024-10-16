@@ -46,6 +46,23 @@ class PaymentMetodeController extends Controller
         return redirect()->back()->with('success', 'Metode pembayaran berhasil ditambahkan');
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'rekening' => 'nullable',
+        ]);
+
+        $payment_metode = PaymentMetode::find($id);
+        $payment_metode->name = $request->name;
+        $payment_metode->type = $request->type;
+        $payment_metode->rekening = $request->rekening;
+        $payment_metode->save();
+
+        return redirect()->back()->with('success', 'Metode pembayaran berhasil diupdate');
+    }
+
     public function updateQrCode(Request $request, $id)
     {
         $request->validate([

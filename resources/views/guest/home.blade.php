@@ -43,9 +43,6 @@
                             <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
                                 class="w-full h-full rounded-2xl object-cover object-center">
                         </div>
-
-                        {{-- carousel item --}}
-
                     </div>
                 </div>
 

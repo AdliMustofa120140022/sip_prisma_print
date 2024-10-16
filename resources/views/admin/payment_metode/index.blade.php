@@ -72,7 +72,9 @@
                                                     @endif
                                                     @if ($payment_metode->type != 'qris' && $payment_metode->type != 'toko')
                                                         @include('admin.payment_metode.edit')
-                                                        <form action="" method="POST">
+                                                        <form
+                                                            action="{{ route('admin.payment-metode.destroy', $payment_metode->id) }}"
+                                                            method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
