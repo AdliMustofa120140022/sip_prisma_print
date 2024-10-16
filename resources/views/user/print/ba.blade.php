@@ -236,7 +236,6 @@
                         <th>Nama Barang / Jasa</th>
                         <th>Qty</th>
                         <th>Satuan</th>
-                        {{-- <th>Harga Satuan</th> --}}
                         <th>Keterangan</th>
                     </tr>
                 </thead>
@@ -250,9 +249,6 @@
                                 <td><span
                                         class="highlight">{{ $produk_transaksi->produck->data_produck->satuan ?? 'buah' }}</span>
                                 </td>
-                                {{-- <td><span
-                                        class="highlight">{{ $produk_transaksi->produck->data_produck->harga_satuan }}</span>
-                                </td> --}}
                                 <td><span class="highlight">Diterima dalam kondisi lengkap dan baik</span>
                                 </td>
                             @endforeach
@@ -261,8 +257,6 @@
                             <td><span class="highlight">{{ $transaksi->costume_transaksi->product_name }}</span></td>
                             <td><span class="highlight">{{ $transaksi->costume_transaksi->order_quantity }}</span></td>
                             <td><span class="highlight">{{ $transaksi->costume_transaksi->unit ?? 'buah' }}</span></td>
-                            {{-- <td><span class="highlight">
-                                    {{ number_format($transaksi->costume_transaksi->harga, 0, ',', '.') }}</span></td> --}}
                             <td><span class="highlight">Diterima dalam kondisi lengkap dan baik</span></td>
                         @endif
                     </tr>

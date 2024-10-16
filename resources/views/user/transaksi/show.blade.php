@@ -265,12 +265,12 @@
                     @endif
 
                     <!-- Download Berita Acara Serah Terima Button -->
-                    {{-- @if ($transaksi->status == 'selesai') --}}
-                    <button onclick="printContent('{{ route('user.print.ba', $transaksi->transaksi_code) }}')"
-                        class="px-4 py-2 text-wrap text-center text-green-600 bg-green-100 border border-green-400 rounded-md hover:bg-green-200">
-                        Download Berita Acara Serah Terima
-                    </button>
-                    {{-- @endif --}}
+                    @if ($transaksi->status == 'selesai')
+                        <button onclick="printContent('{{ route('user.print.ba', $transaksi->transaksi_code) }}')"
+                            class="px-4 py-2 text-wrap text-center text-green-600 bg-green-100 border border-green-400 rounded-md hover:bg-green-200">
+                            Download Berita Acara Serah Terima
+                        </button>
+                    @endif
                 </div>
 
                 <!-- Pesanan Selesai Button (Full Width) -->
