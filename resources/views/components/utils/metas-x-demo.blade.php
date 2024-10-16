@@ -3,7 +3,7 @@
 <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
 
 <!-- Fonts -->
-{{-- <link rel="dns-prefetch" href="//fonts.bunny.net"> --}}
+<link rel="dns-prefetch" href="//fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 
