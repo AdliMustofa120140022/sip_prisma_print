@@ -7,7 +7,7 @@
     <title>Invoice</title>
 
     <!-- Scripts -->
-    {{-- @vite(['resources/js/app.js']) --}}
+    @vite(['resources/js/app.js'])
     <style>
         @page {
             size: 210mm 280mm;
@@ -71,7 +71,7 @@
         }
 
         .details-table {
-            width: 100%;
+            width: 75%;
             margin-bottom: 20px;
         }
 
@@ -143,6 +143,15 @@
             font-weight: bold;
         }
 
+        .footer-head {
+            width: 100%;
+            text-align: center
+        }
+
+        .footer-head p {
+            margin: 40px 0;
+        }
+
         .footer {
             position: absolute;
             bottom: 20px;
@@ -172,42 +181,53 @@
         </div>
 
         <div class="invoice-info">
-            <h2>INVOICE</h2>
-            <p>Nomor : INV-{{ $transaksi->transaksi_code }}</p>
+            <h2>BERITA ACATA SERAH TERIMA</h2>
+            <p>Nomor : BAST-{{ $transaksi->transaksi_code }}</p>
         </div>
 
+        <p>Pada hari ini, tanggal {{ $transaksi->transaksi_data->shiping_done_time ?? $transaksi->updated_at }}, telah
+            dilakukan serah terima barang antara :</p>
+        <p class="from">PIHAK PERTAMA</p>
         <table class="details-table">
             <tr>
-                <td class="from">Dari :</td>
-                <td class="label">Kepada :</td>
-                <td class="label">Nomor Pesana : </td>
-                <td class="label">Tanggal Pesanan : </td>
+                <td>Nama </td>
+                <td>: NURWIYADI</td>
             </tr>
             <tr>
-                <td>
-                    <p>Percetakan Prima Printing</p>
-                    <p>Jl.Tabak No.09, Madukoro Kec. Kotabumi Utara,
-                        Kab. Lampung Utara,
-                        Lampung, 34552</p>
+                <td>Jabatan</td>
+                <td>: Direktur</td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td>: Percetakan Prima Printing, Jl. Tabak No.09, Madukoro, Kec. Kotabumi Utara,
+                    Kabupaten Lampung Utara, Provinsi Lampung</td>
+            </tr>
+
+        </table>
+        <p class="from">PIHAK KEDUA</p>
+        <table class="details-table">
+            <tr>
+                <td>Nama </td>
+                <td>: {{ $transaksi->transaksi_data->alamat->nama_penerima }}
                 </td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
                 <td>
-                    <p>{{ $transaksi->transaksi_data->alamat->nama_penerima }}</p>
-                    <p>{{ $transaksi->transaksi_data->alamat->kelurahan }},
+                    <p> : {{ $transaksi->transaksi_data->alamat->kelurahan }},
                         {{ $transaksi->transaksi_data->alamat->kecamatan }},
                         {{ $transaksi->transaksi_data->alamat->kabupaten }},
                         {{ $transaksi->transaksi_data->alamat->provinsi }},
                         {{ $transaksi->transaksi_data->alamat->kode_pos }} </p>
                 </td>
-                <td>
-                    <p>{{ $transaksi->transaksi_code }}</p>
-                </td>
-                <td>
-                    <p>{{ $transaksi->created_at }}</p>
-                </td>
             </tr>
+
         </table>
 
-        <p>Rincian Pembelian :</p>
+        <p>PIHAK PERTAMA menyerahkan hasil pesanan dan pengiriman barang kepada PIHAK KEDUA
+            sehubungan dengan transaksi pembelian yang telah disepakati sebelumnya. PIHAK KEDUA
+            menyatakan telah menerima barang tersebut dalam jumlah yang lengkap dan kondisi baik,
+            sesuai dengan rincian berikut : </p>
         <div class="purchase-details">
             <table>
                 <thead>
@@ -216,8 +236,8 @@
                         <th>Nama Barang / Jasa</th>
                         <th>Qty</th>
                         <th>Satuan</th>
-                        <th>Harga Satuan</th>
-                        <th>Jumlah</th>
+                        {{-- <th>Harga Satuan</th> --}}
+                        <th>Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -230,11 +250,10 @@
                                 <td><span
                                         class="highlight">{{ $produk_transaksi->produck->data_produck->satuan ?? 'buah' }}</span>
                                 </td>
-                                <td><span
+                                {{-- <td><span
                                         class="highlight">{{ $produk_transaksi->produck->data_produck->harga_satuan }}</span>
-                                </td>
-                                <td><span class="highlight">Rp.
-                                        {{ number_format($produk_transaksi->produck->data_produck->harga_satuan * $produk_transaksi->jumlah, 0, ',', '.') }}</span>
+                                </td> --}}
+                                <td><span class="highlight">Diterima dalam kondisi lengkap dan baik</span>
                                 </td>
                             @endforeach
                         @else
@@ -242,10 +261,9 @@
                             <td><span class="highlight">{{ $transaksi->costume_transaksi->product_name }}</span></td>
                             <td><span class="highlight">{{ $transaksi->costume_transaksi->order_quantity }}</span></td>
                             <td><span class="highlight">{{ $transaksi->costume_transaksi->unit ?? 'buah' }}</span></td>
-                            <td><span class="highlight">
-                                    {{ number_format($transaksi->costume_transaksi->harga, 0, ',', '.') }}</span></td>
-                            <td><span class="highlight">
-                                    {{ number_format($transaksi->costume_transaksi->harga, 0, ',', '.') }}</span></td>
+                            {{-- <td><span class="highlight">
+                                    {{ number_format($transaksi->costume_transaksi->harga, 0, ',', '.') }}</span></td> --}}
+                            <td><span class="highlight">Diterima dalam kondisi lengkap dan baik</span></td>
                         @endif
                     </tr>
                 </tbody>
@@ -253,49 +271,30 @@
 
         </div>
 
-        <table class="summary">
-            <tr>
-                <td>Subtotal:</td>
-                <td><span class="highlight">Rp.
-                        {{ number_format($transaksi->total_harga - $transaksi->transaksi_data->shiping_cost, 0, ',', '.') }}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>Biaya Pengiriman:</td>
-                <td><span class="highlight">Rp.
-                        {{ number_format($transaksi->transaksi_data->shiping_cost, 0, ',', '.') }}</span></td>
-            </tr>
-            <tr>
-                <td>Total Pembayaran:</td>
-                <td><span class="highlight">Rp. {{ number_format($transaksi->total_harga, 0, ',', '.') }}</span></td>
-            </tr>
-        </table>
 
         <div class="payment-info">
-            <table>
-                <tr>
-                    <td class="label">Metode Pembayaran:</td>
-                    <td><span class="highlight">{{ $transaksi->transaksi_data->payment_metode->type }}</span></td>
-                </tr>
-                <tr>
-                    <td class="label">No. Rekening:</td>
-                    <td><span
-                            class="highlight">{{ $transaksi->transaksi_data->payment_metode->rekening ?? '-' }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Atas Nama:</td>
-                    <td><span
-                            class="highlight">{{ $transaksi->transaksi_data->payment_metode->owner ?? 'Prima Printing' }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Batas Pembayaran:</td>
-                    <td><span class="highlight">1x 24 jam dari tanggal pesanan</span></td>
-                </tr>
-            </table>
-            <p>Mohon upload bukti pembayaran Anda di halaman pembayaran untuk verifikasi.</p>
+            <p>Dengan ditandatanganinya berita acara ini, kedua belah pihak sepakat bahwa seluruh barang
+                yang diserahkan telah sesuai dengan pesanan dan dalam kondisi yang baik
+            </p>
+            <p>Demikian berita acara serah terima ini dibuat dengan sebenar-benarnya untuk digunakan
+                sebagaimana mestinya.</p>
         </div>
+
+        <table class="footer-head">
+            <tr>
+                <td>
+                    <p>PIHAK KEDUA</p>
+                    <br>
+                    <p>{{ $transaksi->transaksi_data->alamat->nama_penerima }}</p>
+                </td>
+                <td>
+                    <p>PIHAK PERTAMA</p>
+                    DTO<br>
+                    <p>NURWIYADI</p>
+                </td>
+            </tr>
+
+        </table>
 
         <div class="footer">
             <p>http://percekatnprimaprinting.com — Waktu Unduh:

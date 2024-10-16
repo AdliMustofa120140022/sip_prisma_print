@@ -143,6 +143,14 @@
             font-weight: bold;
         }
 
+        .footer-head {
+            margin-top: 20px;
+        }
+
+        .footer-head p {
+            margin: 40px 0;
+        }
+
         .footer {
             position: absolute;
             bottom: 20px;
@@ -172,24 +180,15 @@
         </div>
 
         <div class="invoice-info">
-            <h2>INVOICE</h2>
-            <p>Nomor : INV-{{ $transaksi->transaksi_code }}</p>
+            <h2>SURAT PESANAN</h2>
+            <p>Nomor : SP-{{ $transaksi->transaksi_code }}</p>
         </div>
 
         <table class="details-table">
             <tr>
-                <td class="from">Dari :</td>
-                <td class="label">Kepada :</td>
-                <td class="label">Nomor Pesana : </td>
-                <td class="label">Tanggal Pesanan : </td>
+                <td class="from">kepada YTH :</td>
             </tr>
             <tr>
-                <td>
-                    <p>Percetakan Prima Printing</p>
-                    <p>Jl.Tabak No.09, Madukoro Kec. Kotabumi Utara,
-                        Kab. Lampung Utara,
-                        Lampung, 34552</p>
-                </td>
                 <td>
                     <p>{{ $transaksi->transaksi_data->alamat->nama_penerima }}</p>
                     <p>{{ $transaksi->transaksi_data->alamat->kelurahan }},
@@ -198,16 +197,10 @@
                         {{ $transaksi->transaksi_data->alamat->provinsi }},
                         {{ $transaksi->transaksi_data->alamat->kode_pos }} </p>
                 </td>
-                <td>
-                    <p>{{ $transaksi->transaksi_code }}</p>
-                </td>
-                <td>
-                    <p>{{ $transaksi->created_at }}</p>
-                </td>
             </tr>
         </table>
 
-        <p>Rincian Pembelian :</p>
+        <p>Bersama ini kami mengkonfirmasi pesanan Anda dengan rincian sebagai berikut :</p>
         <div class="purchase-details">
             <table>
                 <thead>
@@ -272,29 +265,20 @@
         </table>
 
         <div class="payment-info">
-            <table>
-                <tr>
-                    <td class="label">Metode Pembayaran:</td>
-                    <td><span class="highlight">{{ $transaksi->transaksi_data->payment_metode->type }}</span></td>
-                </tr>
-                <tr>
-                    <td class="label">No. Rekening:</td>
-                    <td><span
-                            class="highlight">{{ $transaksi->transaksi_data->payment_metode->rekening ?? '-' }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Atas Nama:</td>
-                    <td><span
-                            class="highlight">{{ $transaksi->transaksi_data->payment_metode->owner ?? 'Prima Printing' }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Batas Pembayaran:</td>
-                    <td><span class="highlight">1x 24 jam dari tanggal pesanan</span></td>
-                </tr>
-            </table>
+            <p>Pesanan Anda telah kami terima dan pembayaran telah dikonfirmasi melalui bukti pembayaran
+                yang diunggah. Pesanan Anda akan segera diproses, dan kami akan menginformasikan
+                pengiriman setelah pesanan siap.
+            </p>
             <p>Mohon upload bukti pembayaran Anda di halaman pembayaran untuk verifikasi.</p>
+        </div>
+
+        <div class="footer-head">
+            <p>Kotabumi Utara,
+                {{ \Carbon\Carbon::parse($transaksi->transaksi_data->payment_time)->translatedFormat('d F Y H:i') }}
+            </p>
+            Hormat Kami,</p>
+
+            <p> Percetakan Prima Printing</p>
         </div>
 
         <div class="footer">

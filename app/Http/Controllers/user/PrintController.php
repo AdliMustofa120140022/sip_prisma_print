@@ -16,4 +16,18 @@ class PrintController extends Controller
 
         return view('user.print.inv', compact('transaksi'));
     }
+
+    public function print_pesan($transaksi_code)
+    {
+        $transaksi = Transaksi::where('transaksi_code', $transaksi_code)->where('user_id', Auth::id())->first();
+
+        return view('user.print.surat_pesanan', compact('transaksi'));
+    }
+
+    public function print_ba($transaksi_code)
+    {
+        $transaksi = Transaksi::where('transaksi_code', $transaksi_code)->where('user_id', Auth::id())->first();
+
+        return view('user.print.ba', compact('transaksi'));
+    }
 }

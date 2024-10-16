@@ -187,6 +187,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         //print
         Route::get('/print/{transaksi_code}/inv', [App\Http\Controllers\user\PrintController::class, 'print_invoice'])->name('user.print.inv');
+        Route::get('/print/{transaksi_code}/pesan', [App\Http\Controllers\user\PrintController::class, 'print_pesan'])->name('user.print.pesan');
+        Route::get('/print/{transaksi_code}/ba', [App\Http\Controllers\user\PrintController::class, 'print_ba'])->name('user.print.ba');
     });
 });
 
