@@ -22,6 +22,7 @@
                         <div class="card p-3">
                             <form action="{{ route('admin.user.update', $payment_metode->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
 
 
                                 <div class="mb-3">

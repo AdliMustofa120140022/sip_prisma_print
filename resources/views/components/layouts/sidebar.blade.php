@@ -41,7 +41,7 @@
                     href={{ route('admin.sub-kategori.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-solid fa-list fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Kelola Sub Katagori</span>
                 </a>
@@ -52,7 +52,7 @@
                     href={{ route('admin.product.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-solid fa-box fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Kelola Produk</span>
                 </a>
@@ -67,7 +67,7 @@
                     href={{ route('admin.pesanan.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-regular fa-file-lines fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Kelola Pesanan</span>
                 </a>
@@ -77,7 +77,7 @@
                     href={{ route('admin.costume.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-solid fa-pen-ruler fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Kelola Pesanan Kustom</span>
                 </a>
@@ -87,7 +87,7 @@
                     href={{ route('admin.pembayaran.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-solid fa-sack-dollar fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Kelola Pembayaran</span>
                 </a>
@@ -97,7 +97,7 @@
                     href={{ route('admin.desain.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-solid fa-image fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Kelola Desain Pesanan</span>
                 </a>
@@ -107,7 +107,7 @@
                     href={{ route('admin.pengiriman.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-solid fa-truck-fast fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Kelola Pengiriman</span>
                 </a>
@@ -123,7 +123,7 @@
                     href={{ route('admin.export.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-solid fa-chart-line fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Laporan Penjualan</span>
                 </a>
@@ -138,7 +138,7 @@
                     href={{ route('admin.payment-metode.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-regular fa-credit-card fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Metode Pembayaran</span>
                 </a>
@@ -149,7 +149,7 @@
                     href={{ route('admin.user.index') }}>
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
-                        <i class="fa-solid fa-house fs-5 text-gradient  text-white "></i>
+                        <i class="fa-solid fa-user fs-5 text-gradient  text-white "></i>
                     </div>
                     <span class="nav-link-text ms-1 text-black">Kelola Admin</span>
                 </a>
