@@ -14,6 +14,12 @@ class SubKatagoriSeeder extends Seeder
     public function run(): void
     {
 
+        SubKatagori::create([
+            'name' => 'Bener',
+            'description' => 'Bener For acara',
+            'category_id' => 1,
+        ]);
+
         SubKatagori::factory()
             ->count(10)
             ->create();

@@ -15,12 +15,13 @@ class KatagoriSeeder extends Seeder
     {
         //
         $katagoris = [
+            ['nama' => 'Acara'],
+            ['nama' => 'Kantor'],
+            ['nama' => 'Pendidikan'],
             ['nama' => 'Promosi'],
-            ['nama' => 'kantor'],
-            ['nama' => 'acara'],
-            ['nama' => 'pendidikan'],
-            ['nama' => 'retail'],
+            ['nama' => 'Retail'],
             ['nama' => 'personal'],
+            ['nama' => 'Alat Tulis Kantor'],
         ];
 
         Katagori::insert($katagoris);

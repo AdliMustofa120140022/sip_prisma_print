@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sub_katagoris', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->uniqid();
             $table->text('description');
             $table->string('image')->nullable();
             $table->foreignId('category_id')->references('id')->on('katagoris');

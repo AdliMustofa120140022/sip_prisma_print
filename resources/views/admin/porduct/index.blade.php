@@ -19,10 +19,11 @@
                             <a href="{{ route('admin.product.create') }}"
                                 class="btn bg-gradient-primary mt-4 mb-0 px-5 text-white me-3">Tambah
                                 Produk</a>
-                            <button class="btn bg-gradient-info mt-4 mb-0 px-5 text-white me-3">Import
-                                Produk</button>
-                            <a href="#" class="btn bg-gradient-success mt-4 mb-0 px-5 text-white me-3">export
-                                Produk</a>
+                            @include('admin.porduct.import')
+                            {{-- <button class="btn bg-gradient-info mt-4 mb-0 px-5 text-white me-3">Import
+                                Produk</button> --}}
+                            {{-- <a href="#" class="btn bg-gradient-success mt-4 mb-0 px-5 text-white me-3">export
+                                Produk</a> --}}
                         </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">

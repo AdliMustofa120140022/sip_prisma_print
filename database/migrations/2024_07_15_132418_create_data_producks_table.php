@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('data_producks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('prduck_id')->references('id')->on('producks');
-            $table->longText('sepesifiksai');
             $table->integer('stok');
             $table->integer('lebar');
             $table->integer('panjang');
@@ -31,11 +30,10 @@ return new class extends Migration
             $table->integer('harga_satuan');
             $table->integer('harga_grosir')->nullable();
             $table->integer('minimal_grosir')->nullable();
-            $table->date('tanggal_masuk');
+            $table->date('tanggal_masuk')->nullable();
             $table->date('tanggal_kadaluarsa')->nullable();
-            $table->string('lokasi');
-            $table->string('supplier');
-            // $table->timestamps();
+            $table->string('lokasi')->nullable();
+            $table->string('supplier')->nullable();
         });
 
         Schema::create('img_producks', function (Blueprint $table) {
@@ -52,5 +50,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('data_producks');
+        Schema::dropIfExists('img_producks');
     }
 };

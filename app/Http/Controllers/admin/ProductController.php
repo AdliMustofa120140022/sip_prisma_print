@@ -5,10 +5,13 @@ namespace App\Http\Controllers\admin;
 use App\DataTables\ProdukDataTable;
 use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
+use App\Imports\ProdukImport;
 use App\Models\ImgProduck;
 use App\Models\Produck;
 use App\Models\SubKatagori;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class ProductController extends Controller
 {
@@ -263,5 +266,18 @@ class ProductController extends Controller
         ]);
 
         return redirect()->route('admin.product.index')->with('success', 'Produk berhasil dihapus');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new ProdukImport, $file);
+
+        return redirect()->route('admin.product.index')->with('success', 'Produk berhasil diimport');
     }
 }

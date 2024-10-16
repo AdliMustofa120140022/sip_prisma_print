@@ -31,6 +31,10 @@ class AuthenticatedSessionController extends Controller
 
         $intended = $request->session()->get('url.intended', '');
 
+        if ($intended == '/login') {
+            $intended = '';
+        }
+
         if (Auth::user()->role == 'super_admin') {
             if (Str::contains($intended, '/super')) {
                 // dd($intended);
