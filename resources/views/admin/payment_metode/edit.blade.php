@@ -20,7 +20,8 @@
                     <div class="col-md-10">
 
                         <div class="card p-3">
-                            <form action="{{ route('admin.user.update', $payment_metode->id) }}" method="POST">
+                            <form action="{{ route('admin.payment-metode.update', $payment_metode->id) }}"
+                                method="POST">
                                 @csrf
                                 @method('PUT')
 
