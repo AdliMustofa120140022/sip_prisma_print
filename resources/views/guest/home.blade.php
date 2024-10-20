@@ -68,30 +68,34 @@
         </div>
     </section>
 
-    <section class="product-view px-3">
-        <p class="text-xl font-bold uppercase text-center my-5">Tentukan Kebutuhan Cetak Anda</p>
+    <div class="grid grid-cols-5">
+        <section class="col-span-4 product-view px-3">
+            <p class="text-xl font-bold uppercase text-center my-5">Tentukan Kebutuhan Cetak Anda</p>
 
-        <div class="text-nowrap flex md:justify-center items-center overflow-scroll px-8 md:px-0 no-scrollbar">
-            @foreach ($katagoris as $katagori)
-                <a href=" {{ route('guest.dashboard', ['p' => $katagori->id]) }}"
-                    class="hover:bg-blue-600 hover:text-white px-5 py-2 mx-2 md:mx-4 rounded-3xl border border-1 inline-block  text-balance font-bold  {{ $param == $katagori->id ? 'border-blue-500 text-blue-500' : 'text-gray-500' }}">{{ $katagori->nama }}</a>
-            @endforeach
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-5 pt-5">
-            @foreach ($producks as $produck)
-                <x-card-product :produck="$produck" />
-            @endforeach
-        </div>
+            <div class="text-nowrap flex md:justify-center items-center overflow-scroll px-8 md:px-0 no-scrollbar">
+                @foreach ($katagoris as $katagori)
+                    <a href=" {{ route('guest.dashboard', ['p' => $katagori->id]) }}"
+                        class="hover:bg-blue-600 hover:text-white px-5 py-2 mx-2 md:mx-4 rounded-3xl border border-1 inline-block  text-balance font-bold  {{ $param == $katagori->id ? 'border-blue-500 text-blue-500' : 'text-gray-500' }}">{{ $katagori->nama }}</a>
+                @endforeach
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 justify-center items-center gap-5 pt-5">
+                @foreach ($producks as $produck)
+                    <x-card-product :produck="$produck" />
+                @endforeach
+            </div>
 
-        <div class="text-center mt-6">
+            <div class="text-center mt-6">
 
-            <a href="{{ route('guest.product') }}"
-                class="bg-blue-500 text-white px-4 py-2 rounded-xl font-semibold shadow hover:bg-blue-600 focus:outline-nonet">
-                Lihat Semua Produk
-            </a>
-        </div>
+                <a href="{{ route('guest.product') }}"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-xl font-semibold shadow hover:bg-blue-600 focus:outline-nonet">
+                    Lihat Semua Produk
+                </a>
+            </div>
 
-    </section>
+        </section>
+
+        <x-side-navigate />
+    </div>
 
     <x-slot name="scripts">
         <script>

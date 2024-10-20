@@ -198,9 +198,15 @@
                         <p class="text-gray-500">Ketebalan Kertas : {{ $produck->data_produck->ketebalan_kertas }}
                         </p>
                         <p class="text-gray-500">Tinta yang digunakan : {{ $produck->data_produck->tinta }} </p>
+                        <p class="text-gray-500">Minimum pemesanan :
+                            {{ $produck->data_produck->minimal_grosir ?? '100' }} </p>
+                        </p>
+                        <p class="text-gray-500">Estimasi Pengerjaan :
+                            {{ $produck->data_produck->estimasi ?? 'Estimasi Pengerjaan 1-14 Hari' }}
+                        </p>
 
 
-                        <p class="text-lg font-semibold mt-5">Informasi Harga</p>
+                        {{-- <p class="text-lg font-semibold mt-5">Informasi Harga</p>
                         <p class="text-gray-500">Harga Satuan : {{ $produck->data_produck->harga_satuan }} </p>
                         <p class="text-gray-500">Harga Grosir :
                             {{ $produck->data_produck->harga_grosir ?? ' - ' }} </p>
@@ -212,7 +218,7 @@
                         <p class="text-gray-500">Tanggal Kadaluarsa :
                             {{ $produck->data_produck->tanggal_kadaluarsa ?? ' - ' }}
                         </p>
-                        <p class="text-gray-500">Supplier : {{ $produck->data_produck->supplier }} </p>
+                        <p class="text-gray-500">Supplier : {{ $produck->data_produck->supplier }} </p> --}}
 
 
                     </div>
