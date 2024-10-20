@@ -325,7 +325,7 @@
                                     <!-- Modal Footer -->
                                     <div class="flex justify-center mt-6">
                                         <button @click="isOpen = false"
-                                            class="bg-red-500 text-white px-4 py-2 text-wrap rounded-lg mr-2">Close</button>
+                                            class="bg-red-500 text-white px-4 py-2 text-wrap rounded-lg mr-2">Batal</button>
                                         <a href="{{ route('user.transaksi.done', $transaksi->id) }}"
                                             :disabled="!isChecked" class="bg-green-500 text-white px-4 py-2 rounded-lg"
                                             :class="{ 'opacity-50 cursor-not-allowed': !isChecked }">

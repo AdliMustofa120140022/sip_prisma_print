@@ -29,7 +29,7 @@
                         <th class="py-3 px-4 text-left text-wrap">Pesanan</th>
                         <th class="py-3 px-4 text-left text-wrap">Status</th>
                         <th class="py-3 px-4 text-left text-wrap">Status Pembayaran</th>
-                        <th class="py-3 px-4 text-left text-wrap rounded-tr-lg"></th>
+                        <th class="py-3 px-4 text-left text-wrap">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">

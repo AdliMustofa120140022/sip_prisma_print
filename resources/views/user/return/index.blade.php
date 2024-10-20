@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">
-        Pengajuan Return
+        Pengajuan Retur
     </x-slot>
 
     <div class=" w-full">
@@ -8,7 +8,7 @@
             <a href="{{ session()->get('prev_url') !== null ? session()->get('prev_url') : url()->previous() }}">
                 <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Pengajuan Return</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Pengajuan Retur</h2>
         </div>
 
 

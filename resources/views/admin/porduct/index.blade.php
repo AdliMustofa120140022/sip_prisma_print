@@ -36,11 +36,11 @@
                                             Produk</th>
                                         <th
                                             class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
-                                            Katagori Produk
+                                            Kategori Produk
                                         </th>
                                         <th
                                             class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
-                                            Sub Katagori Produk
+                                            Sub Kategori Produk
                                         </th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
                                             Nama Produk

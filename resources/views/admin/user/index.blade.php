@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="title">Pesanana</x-slot>
+    <x-slot name="title">Kelola Admin</x-slot>
     <x-slot name="metas">
 
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
@@ -12,7 +12,7 @@
                 <div class="card mb-4">
                     <div class="d-flex justify-content-between items-center">
                         <div class="card-header pb-0">
-                            <h6>Produk</h6>
+                            <h6>Kelola Admin</h6>
                         </div>
                         <div class="d-flex gap-2">
                             @include('admin.user.create')

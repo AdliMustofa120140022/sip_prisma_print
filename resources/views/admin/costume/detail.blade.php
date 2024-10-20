@@ -37,7 +37,7 @@
                                 <h6 class="border-bottom pb-2 mb-3">Detail Produk</h6>
 
                                 <div class="mb-2">
-                                    <strong>Nama Prodk :</strong> {{ $transaksi->costume_transaksi->product_name }}
+                                    <strong>Nama Produk :</strong> {{ $transaksi->costume_transaksi->product_name }}
                                 </div>
                                 <div class="mb-2">
                                     <strong>Katagori :</strong> {{ $transaksi->costume_transaksi->katagori->nama }}
@@ -92,7 +92,7 @@
                     <div class="col-md-5">
                         <div class="row mt-sm-4 mt-md-0">
                             <div class="card p-3">
-                                <h6 class="border-bottom pb-2 mb-3">Detail Pesanana</h6>
+                                <h6 class="border-bottom pb-2 mb-3">Detail Pesanan</h6>
 
                                 <div class="mb-2">
                                     <strong>Jumlah Pesanan :</strong>
@@ -112,7 +112,7 @@
 
                         <div class="row mt-sm-4 mt-4">
                             <div class="card p-3">
-                                <h6 class="border-bottom pb-2 mb-3">Konfirmasi Pesanan Kostum</h6>
+                                <h6 class="border-bottom pb-2 mb-3">Konfirmasi Pesanan Kustom</h6>
                                 <form action="{{ route('admin.costume.update', $transaksi->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
@@ -121,7 +121,6 @@
                                     <div class="mb-3">
                                         <label for="status" class="form-label">Konfirmasi Pesanan</label>
                                         <select name="status" id="status" class="form-control">
-                                            <option value="">Konformasi pesanan</option>
                                             <option value="approved">Disetujui</option>
                                             <option value="rejected">Ditolak</option>
                                         </select>
@@ -141,7 +140,7 @@
                                     @enderror
                                     <div class="mb-3">
                                         <label for="Catatan" class="form-label">Catatan</label>
-                                        <textarea name="Catatan" id="Catatan" class="form-control" placeholder="Catatam Pembayaran" rows="3"></textarea>
+                                        <textarea name="Catatan" id="Catatan" class="form-control" placeholder="Catatan" rows="3"></textarea>
                                     </div>
                                     @error('Catatan')
                                         <span class="text-danger text-center p-0 m-0">{{ $message }}</span>

@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">
-        alamat
+        Alamat
     </x-slot>
 
 
@@ -10,7 +10,7 @@
             <a href="{{ session()->get('previous_url') !== null ? session()->get('previous_url') : url()->previous() }}">
                 <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Check Out Pesanan</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Alamat Pengiriman</h2>
         </div>
         <div class="bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto">
             {{-- conten --}}
@@ -39,8 +39,12 @@
                     <div class="">
                         <a href="{{ route('user.alamat.edit', $alamat->id) }}" class="text-blue-500 block pb-2">Edit
                             Alamat</a>
-                        <a href="{{ route('user.alamat.default', $alamat->id) }}"
-                            class="text-blue-500 block pb-2">Pilih Jadi Alamat Utama</a>
+                        @if ($alamat->is_default === 1)
+                            <span class="block pb-2">Alamat Utama</span>
+                        @else
+                            <a href="{{ route('user.alamat.default', $alamat->id) }}"
+                                class="text-blue-500 block pb-2">Pilih Jadi Alamat Utama</a>
+                        @endif
                         <form action="{{ route('user.alamat.destroy', $alamat->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

@@ -21,7 +21,7 @@
 
                             <button type="button" class="btn bg-gradient-primary mt-4 mb-0 px-5 text-white me-3"
                                 data-bs-toggle="modal" data-bs-target="#modalAddKatagory">Tambah
-                                Sub Katagori</button>
+                                Sub Kategori</button>
                         </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
@@ -34,7 +34,7 @@
                                         </th>
                                         <th
                                             class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
-                                            Katagori
+                                            Kategori
                                         </th>
                                         <th class="text-info opacity-7"></th>
                                     </tr>

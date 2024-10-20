@@ -51,7 +51,7 @@ class CostumeTransaktionController extends Controller
             'jumlah' => $request->order_quantity,
         ]);
 
-        return redirect()->route('user.transaksi.index')->with('success', 'Pesanan Kostume berhasil dibuat');
+        return redirect()->route('user.transaksi.index')->with('success', 'Pesanan Kutome berhasil dibuat');
     }
 
     public function show($id)

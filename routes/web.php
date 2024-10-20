@@ -65,7 +65,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('admin.dashboard');
 
         //product
-
         Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');
         Route::get('/product/create', [ProductController::class, 'create'])->name('admin.product.create');
         Route::post('/product', [ProductController::class, 'store'])->name('admin.product.store');

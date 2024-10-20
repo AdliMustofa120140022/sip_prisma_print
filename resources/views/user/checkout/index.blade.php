@@ -303,6 +303,9 @@
 
                         decrement() {
                             if (this.quantity > 0) this.quantity--;
+                            if (this.quantity < 1) {
+                                this.quantity = 1;
+                            }
                             this.updateProductQuantity();
                         },
                         triggerDebounceUpdate() {

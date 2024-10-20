@@ -43,7 +43,7 @@
                         class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
                         <i class="fa-solid fa-list fs-5 text-gradient  text-white "></i>
                     </div>
-                    <span class="nav-link-text ms-1 text-black">Kelola Sub Katagori</span>
+                    <span class="nav-link-text ms-1 text-black">Kelola Sub Kategori</span>
                 </a>
             </li>
 

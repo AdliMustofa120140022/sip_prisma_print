@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">
-        buat alamat
+        Buat Alamat
     </x-slot>
 
 

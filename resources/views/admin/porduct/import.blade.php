@@ -30,7 +30,7 @@
 
                         <div class="card-footer">
                             <a href="{{ asset('doc/Template_impor_produk.xlsx') }}" download
-                                class="btn btn-success text-white">Download tempalet</a>
+                                class="btn btn-success text-white">Download tempplate</a>
                             <button type="submit" class="btn btn-dark text-white">Simpan</button>
                         </div>
                     </form>

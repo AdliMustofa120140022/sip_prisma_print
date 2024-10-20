@@ -21,7 +21,7 @@ class ProduckFavController extends Controller
             'produk_id' => $product_id
         ]);
 
-        return redirect()->back()->with('success', 'Product added to favorite successfully');
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke favorit');
         // return response()->json(['message' => 'Added to favorites'], 200);
     }
 
@@ -33,7 +33,7 @@ class ProduckFavController extends Controller
             ->where('produk_id', $product_id)
             ->first();
         $fav->delete();
-        return redirect()->back()->with('success', 'Product removed from favorite successfully');
+        return redirect()->back()->with('success', 'Produk berhasil dihapus dari favorit');
         // return response()->json(['message' => 'Removed from favorites'], 200);
     }
 

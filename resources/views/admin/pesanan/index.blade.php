@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="title">Pesanana</x-slot>
+    <x-slot name="title">Pesanan</x-slot>
     <x-slot name="metas">
 
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
@@ -12,7 +12,7 @@
                 <div class="card mb-4">
                     <div class="d-flex justify-content-between items-center">
                         <div class="card-header pb-0">
-                            <h6>Produk</h6>
+                            <h6>Pesanan</h6>
                         </div>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
@@ -105,26 +105,27 @@
                                             </td>
                                             <td>
                                                 @if ($transaksi->transaksi_data->payment_status == 'unpaid')
-                                                    <span class="badge bg-danger">
+                                                    <span class="text-center font-weight-bold badge bg-danger">
                                                         Belum Dibayar
                                                     </span>
                                                 @elseif ($transaksi->transaksi_data->payment_status == 'pending')
-                                                    <span class="badge bg-warning text-dark">
+                                                    <span
+                                                        class="text-center font-weight-bold badge bg-warning text-dark">
                                                         Menunggu Persetujuan
                                                     </span>
                                                 @elseif ($transaksi->transaksi_data->payment_status == 'approved')
-                                                    <span class="badge bg-success">
+                                                    <span class="text-center font-weight-bold badge bg-success">
                                                         Disetujui
                                                     </span>
                                                 @elseif ($transaksi->transaksi_data->payment_status == 'rejected')
-                                                    <span class="badge bg-danger">
+                                                    <span class="text-center font-weight-bold badge bg-danger">
                                                         Ditolak
                                                     </span>
                                                 @endif
                                             </td>
 
                                             <td class="align-middle">
-                                                <div class="d-flex">
+                                                <div class="d-flex ">
                                                     @include('admin.pesanan.detail')
 
                                                     @if ($transaksi->status == 'payment' || $transaksi->status == 'desain' || $transaksi->status == 'cetak')

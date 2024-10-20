@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name="title">
-        buat alamat
+        Edit Alamat
     </x-slot>
 
 
@@ -13,7 +13,7 @@
         </div>
         <div class=" max-w-5xl mx-auto p-3 border rounded-lg w-full bg-white shadow">
             {{-- <div class="max-w-2xl mx-auto p-6 bg-white shadow rounded-lg"> --}}
-            <h2 class="text-xl text-center font-semibold mb-6">Tambah Alamat Pengiriman</h2>
+            <h2 class="text-xl text-center font-semibold mb-6">Edit Alamat Pengiriman</h2>
             <form action="{{ route('user.alamat.update', $alamat->id) }}" method="POST">
                 @csrf
                 @method('PUT')

@@ -22,16 +22,18 @@ class HomeController extends Controller
 
         $selectedYearCorunt = $request->query('year-c', now()->year);
 
-        $countTransaksi = Transaksi::count();
+        $countTransaksi = Transaksi::whereNotIn('status', ['make'])->count();
 
         $countuser = User::count();
 
         $transaksis = Transaksi::selectRaw('MONTH(created_at) as month, SUM(total_harga) as total')
+            ->whereNotIn('status', ['make'])
             ->whereYear('created_at', $selectedYear)
             ->groupBy('month')
             ->pluck('total', 'month');
 
         $transaksis_count = Transaksi::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->whereNotIn('status', ['make'])
             ->whereYear('created_at', $selectedYear)
             ->groupBy('month')
             ->pluck('total', 'month');
@@ -47,7 +49,6 @@ class HomeController extends Controller
         foreach ($transaksis_count as $month => $total) {
             $monthlyDataCount[$month] = $total;
         }
-        // dd($years, $monthlyData);
 
         return view('admin.dashboard', compact('years', 'selectedYear', 'selectedYearCorunt', 'monthlyData', 'monthlyDataCount', 'countTransaksi', 'countuser'));
     }

@@ -70,11 +70,11 @@
                                     <div class="card p-3">
                                         <h6 class="border-bottom pb-2 mb-3">Informasi Pemesan</h6>
                                         <div class="mb-2">
-                                            <strong>Nama:</strong> Rp.
+                                            <strong>Nama:</strong>
                                             {{ $transaksi->user->name }}
                                         </div>
                                         <div class="mb-2">
-                                            <strong>Alamat:</strong> Rp.
+                                            <strong>Alamat:</strong>
                                             <span class="text-wrap">{{ $transaksi->transaksi_data->alamat->kelurahan }},
                                                 {{ $transaksi->transaksi_data->alamat->kecamatan }},
                                                 {{ $transaksi->transaksi_data->alamat->kabupaten }},
@@ -82,7 +82,7 @@
                                                 {{ $transaksi->transaksi_data->alamat->kode_pos }}</span>
                                         </div>
                                         <div class="mb-2">
-                                            <strong>Nomor HP:</strong> Rp.
+                                            <strong>Nomor HP:</strong>
                                             {{ $transaksi->transaksi_data->alamat->no_hp }}
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@
 
                                             <div class="mb-3">
                                                 <label for="resi" class="form-label">Resi</label>
-                                                <textarea name="resi" id="resi" class="form-control" placeholder="Catatam Pembayaran" rows="3"></textarea>
+                                                <textarea name="resi" id="resi" class="form-control" placeholder="Nomor Resi" rows="3"></textarea>
                                             </div>
                                             @error('resi')
                                                 <span class="text-danger text-center p-0 m-0">{{ $message }}</span>

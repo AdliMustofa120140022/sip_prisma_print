@@ -106,7 +106,7 @@
                                                 Pembayaran</label>
                                             <select name="status_pembayaran" id="status_pembayaran"
                                                 class="form-control">
-                                                <option value="">Konformasi pembayaran</option>
+                                                <option value="">Konfirmasi pembayaran</option>
                                                 <option value="approved">Disetujui</option>
                                                 <option value="rejected">Ditolak</option>
                                             </select>
@@ -117,8 +117,8 @@
                                         @enderror
 
                                         <div class="mb-3">
-                                            <label for="payment_note" class="form-label">payment_note</label>
-                                            <textarea name="payment_note" id="payment_note" class="form-control" placeholder="Catatam Pembayaran" rows="3"></textarea>
+                                            <label for="payment_note" class="form-label">Catatan Pembayaran</label>
+                                            <textarea name="payment_note" id="payment_note" class="form-control" placeholder="Catatan Pembayaran" rows="3"></textarea>
                                         </div>
                                         @error('payment_note')
                                             <span class="text-danger text-center p-0 m-0">{{ $message }}</span>

@@ -44,9 +44,9 @@ class CostumeTransaktionController extends Controller
         }
 
         if ($request->status  == 'approved') {
-            return redirect()->route('admin.pesanan.index')->with('success', 'Pesanan Kostume berhasil diapprove');
+            return redirect()->route('admin.pesanan.index')->with('success', 'Pesanan Kustom berhasil diapprove');
         } else {
-            return redirect()->back()->with('success', 'Pesanan Kostume berhasil direject');
+            return redirect()->back()->with('success', 'Pesanan Kustom berhasil direject');
         }
     }
 }

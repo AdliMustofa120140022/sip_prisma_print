@@ -10,7 +10,7 @@
             <a href="{{ url()->previous() }}">
                 <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Shopping Cart</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Keranjang Belanja</h2>
         </div>
 
         @if (count($carts) == 0)
@@ -283,6 +283,9 @@
                     },
                     decrement() {
                         if (this.quantity > 0) this.quantity--;
+                        if (this.quantity < 1) {
+                            this.quantity = 1;
+                        }
                         this.updateProductQuantity();
                     },
                     triggerDebounceUpdate() {
