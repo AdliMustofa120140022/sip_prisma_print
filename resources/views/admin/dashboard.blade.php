@@ -10,66 +10,91 @@
         <div class="row">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-md-4 col-lg-4 p-3">
-                        <div class="card card-profile  h-100">
-                            <div class="rounded rounded-3 px-4 py-1 border position-  aspect-square ">
-                                <div class="d-flex gap-3">
-                                    <i
-                                        class="fa-regular fa-file-lines fs-1 text-white  p-3 rounded rounded-3 bg-gradient-faded-info"></i>
-                                    <span class="px-1 text-bold text-xl">Pesanan</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-baseline">
-                                    <span class="px-2 text-bold text-4xl">{{ $countTransaksi }}</span>
+                    @if (Auth::user()->role == 'admin')
+                        <div class="col-md-4 col-lg-4 p-3">
+                            <div class="card card-profile  h-100">
+                                <div class="rounded rounded-3 px-4 py-1 border position-  aspect-square ">
+                                    <div class="d-flex gap-3">
+                                        <i
+                                            class="fa-regular fa-file-lines fs-1 text-white  p-3 rounded rounded-3 bg-gradient-faded-info"></i>
+                                        <span class="px-1 text-bold text-xl">Pesanan</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-baseline">
+                                        <span class="px-2 text-bold text-4xl">{{ $countTransaksi }}</span>
 
-                                    <a href="{{ route('admin.pesanan.index') }}"
-                                        class="d-flex  align-items-center gap-3 border-top">
-                                        <span class="text-bold">Kelola data</span>
-                                        <i class="fa-solid fa-chevron-right"></i>
-                                    </a>
+                                        <a href="{{ route('admin.pesanan.index') }}"
+                                            class="d-flex  align-items-center gap-3 border-top">
+                                            <span class="text-bold">Kelola data</span>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-lg-4 p-3">
-                        <div class="card card-profile  h-100">
-                            <div class="rounded rounded-3 px-4 py-1 border position-  aspect-square ">
-                                <div class="d-flex gap-3">
-                                    <i
-                                        class="fa-regular fa-credit-card fs-1 text-white  p-3 rounded rounded-3 bg-gradient-faded-info"></i>
-                                    <span class="px-1 text-bold text-xl">Metode Pembayaran</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-baseline">
-                                    <span class="px-2 text-bold text-4xl" style="color: transparent">0</span>
 
-                                    <a href="{{ route('admin.payment-metode.index') }}"
-                                        class="d-flex  align-items-center gap-3 border-top">
-                                        <span class="text-bold">Kelola data</span>
-                                        <i class="fa-solid fa-chevron-right"></i>
-                                    </a>
+                        <div class="col-md-4 col-lg-4 p-3">
+                            <div class="card card-profile  h-100">
+                                <div class="rounded rounded-3 px-4 py-1 border position-  aspect-square ">
+                                    <div class="d-flex gap-3">
+                                        <i
+                                            class="fa-solid fa-rotate-left fs-1 text-white  p-3 rounded rounded-3 bg-gradient-faded-info"></i>
+                                        <span class="px-1 text-bold text-xl">Pesanan Retur</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-baseline">
+                                        <span class="px-2 text-bold text-4xl">{{ $transaksiRetur }}</span>
+
+                                        <a href="{{ route('admin.return.index') }}"
+                                            class="d-flex  align-items-center gap-3 border-top">
+                                            <span class="text-bold">Kelola data</span>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-lg-4 p-3">
-                        <div class="card card-profile  h-100">
-                            <div class="rounded rounded-3 px-4 py-1 border position-  aspect-square ">
-                                <div class="d-flex gap-3">
-                                    <i
-                                        class="fa-solid fa-user fs-1 text-white  p-3 rounded rounded-3 bg-gradient-faded-info"></i>
-                                    <span class="px-1 text-bold text-xl">User</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-baseline">
-                                    <span class="px-2 text-bold text-4xl">{{ $countuser }}</span>
+                    @elseif (Auth::user()->role == 'super_admin')
+                        <div class="col-md-4 col-lg-4 p-3">
+                            <div class="card card-profile  h-100">
+                                <div class="rounded rounded-3 px-4 py-1 border position-  aspect-square ">
+                                    <div class="d-flex gap-3">
+                                        <i
+                                            class="fa-regular fa-credit-card fs-1 text-white  p-3 rounded rounded-3 bg-gradient-faded-info"></i>
+                                        <span class="px-1 text-bold text-xl">Metode Pembayaran</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-baseline">
+                                        <span class="px-2 text-bold text-4xl" style="color: transparent">0</span>
 
-                                    <a href="{{ route('admin.user.index') }}"
-                                        class="d-flex  align-items-center gap-3 border-top">
-                                        <span class="text-bold">Kelola data</span>
-                                        <i class="fa-solid fa-chevron-right"></i>
-                                    </a>
+                                        <a href="{{ route('admin.payment-metode.index') }}"
+                                            class="d-flex  align-items-center gap-3 border-top">
+                                            <span class="text-bold">Kelola data</span>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="col-md-4 col-lg-4 p-3">
+                            <div class="card card-profile  h-100">
+                                <div class="rounded rounded-3 px-4 py-1 border position-  aspect-square ">
+                                    <div class="d-flex gap-3">
+                                        <i
+                                            class="fa-solid fa-user fs-1 text-white  p-3 rounded rounded-3 bg-gradient-faded-info"></i>
+                                        <span class="px-1 text-bold text-xl">User</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-baseline">
+                                        <span class="px-2 text-bold text-4xl">{{ $countuser }}</span>
+
+                                        <a href="{{ route('admin.user.index') }}"
+                                            class="d-flex  align-items-center gap-3 border-top">
+                                            <span class="text-bold">Kelola data</span>
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="card mb-4">

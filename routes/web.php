@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
+use App\Http\Controllers\user\PrintController;
+use App\Http\Controllers\admin\PaymentMetodeController;
+use App\Http\Controllers\admin\DesainController;
 use App\Http\Controllers\admin\PembayaranController;
 use App\Http\Controllers\admin\PengirimanController;
 use App\Http\Controllers\admin\PesananController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SubKatagoriController;
+use App\Http\Controllers\admin\UserController as AdminUserController;
 use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\guest\FaqController;
 use App\Http\Controllers\guest\HomeController as GuestHomeController;
@@ -24,8 +28,11 @@ use App\Http\Controllers\admin\ReturnController as AdminReturnController;
 use App\Http\Controllers\user\CostumeTransaktionController;
 use App\Http\Controllers\admin\CostumeTransaktionController as adminCostumeTransaktionController;
 use App\Http\Controllers\user\ProfileController as userProfileController;
+use App\Http\Controllers\admin\exportController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\helper\getOngkirController;
 
 
 require __DIR__ . '/auth.php';
@@ -97,32 +104,35 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::post('/pembayaran/{id}/Confirm', [PembayaranController::class, 'paymentConfirm'])->name('admin.pembayaran.confirm');
 
         //desain
-        Route::get('/desain', [App\Http\Controllers\admin\DesainController::class, 'index'])->name('admin.desain.index');
-        Route::get('/desain/{id}', [App\Http\Controllers\admin\DesainController::class, 'show'])->name('admin.desain.show');
-        Route::post('/desain/{id}', [App\Http\Controllers\admin\DesainController::class, 'add'])->name('admin.desain.add');
+        Route::get('/desain', [DesainController::class, 'index'])->name('admin.desain.index');
+        Route::get('/desain/{id}', [DesainController::class, 'show'])->name('admin.desain.show');
+        Route::post('/desain/{id}', [DesainController::class, 'add'])->name('admin.desain.add');
 
         //pengiriman
-        Route::get('/pengiriman', [App\Http\Controllers\admin\PengirimanController::class, 'index'])->name('admin.pengiriman.index');
-        Route::get('/pengiriman/{id}', [App\Http\Controllers\admin\PengirimanController::class, 'show'])->name('admin.pengiriman.show');
-        Route::put('/pengiriman/{id}', [App\Http\Controllers\admin\PengirimanController::class, 'edit'])->name('admin.pengiriman.edit');
+        Route::get('/pengiriman', [PengirimanController::class, 'index'])->name('admin.pengiriman.index');
+        Route::get('/pengiriman/{id}', [PengirimanController::class, 'show'])->name('admin.pengiriman.show');
+        Route::put('/pengiriman/{id}', [PengirimanController::class, 'edit'])->name('admin.pengiriman.edit');
+
+        //return
+        Route::get('return', [AdminReturnController::class, 'index'])->name('admin.return.index');
 
         //user
-        Route::get('/user', [App\Http\Controllers\admin\UserController::class, 'index'])->name('admin.user.index');
-        Route::post('/user', [App\Http\Controllers\admin\UserController::class, 'store'])->name('admin.user.store');
-        Route::put('/user/{id}', [App\Http\Controllers\admin\UserController::class, 'update'])->name('admin.user.update');
-        Route::put('/user/{id}/update-pass', [App\Http\Controllers\admin\UserController::class, 'updatePass'])->name('admin.user.update-pass');
-        Route::delete('/user/{id}', [App\Http\Controllers\admin\UserController::class, 'destroy'])->name('admin.user.destroy');
+        Route::get('/user', [AdminUserController::class, 'index'])->name('admin.user.index');
+        Route::post('/user', [AdminUserController::class, 'store'])->name('admin.user.store');
+        Route::put('/user/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
+        Route::put('/user/{id}/update-pass', [AdminUserController::class, 'updatePass'])->name('admin.user.update-pass');
+        Route::delete('/user/{id}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
 
         //payment metode
-        Route::get('/payment-metode', [App\Http\Controllers\admin\PaymentMetodeController::class, 'index'])->name('admin.payment-metode.index');
-        Route::post('/payment-metode', [App\Http\Controllers\admin\PaymentMetodeController::class, 'store'])->name('admin.payment-metode.store');
-        Route::put('/payment-metode/{id}', [App\Http\Controllers\admin\PaymentMetodeController::class, 'update'])->name('admin.payment-metode.update');
-        Route::put('/payment-metode/{id}/update-qr-code', [App\Http\Controllers\admin\PaymentMetodeController::class, 'updateQrCode'])->name('admin.payment-metode.update-qr-code');
-        Route::delete('/payment-metode/{id}', [App\Http\Controllers\admin\PaymentMetodeController::class, 'destroy'])->name('admin.payment-metode.destroy');
+        Route::get('/payment-metode', [PaymentMetodeController::class, 'index'])->name('admin.payment-metode.index');
+        Route::post('/payment-metode', [PaymentMetodeController::class, 'store'])->name('admin.payment-metode.store');
+        Route::put('/payment-metode/{id}', [PaymentMetodeController::class, 'update'])->name('admin.payment-metode.update');
+        Route::put('/payment-metode/{id}/update-qr-code', [PaymentMetodeController::class, 'updateQrCode'])->name('admin.payment-metode.update-qr-code');
+        Route::delete('/payment-metode/{id}', [PaymentMetodeController::class, 'destroy'])->name('admin.payment-metode.destroy');
 
         //export
-        Route::get('/export', [App\Http\Controllers\admin\exportController::class, 'index'])->name('admin.export.index');
-        Route::post('/export', [App\Http\Controllers\admin\exportController::class, 'export'])->name('admin.export.export');
+        Route::get('/export', [exportController::class, 'index'])->name('admin.export.index');
+        Route::post('/export', [exportController::class, 'export'])->name('admin.export.export');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {
@@ -185,12 +195,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::put('/profile', [userProfileController::class, 'update'])->name('user.profile.update');
 
         //print
-        Route::get('/print/{transaksi_code}/inv', [App\Http\Controllers\user\PrintController::class, 'print_invoice'])->name('user.print.inv');
-        Route::get('/print/{transaksi_code}/pesan', [App\Http\Controllers\user\PrintController::class, 'print_pesan'])->name('user.print.pesan');
-        Route::get('/print/{transaksi_code}/ba', [App\Http\Controllers\user\PrintController::class, 'print_ba'])->name('user.print.ba');
+        Route::get('/print/{transaksi_code}/inv', [PrintController::class, 'print_invoice'])->name('user.print.inv');
+        Route::get('/print/{transaksi_code}/pesan', [PrintController::class, 'print_pesan'])->name('user.print.pesan');
+        Route::get('/print/{transaksi_code}/ba', [PrintController::class, 'print_ba'])->name('user.print.ba');
     });
 });
 
 Route::prefix('/helper')->group(function () {
-    Route::get('/ongkir', [App\Http\Controllers\helper\getOngkirController::class, 'index'])->name('helper.ongkir');
+    Route::get('/ongkir', [getOngkirController::class, 'index'])->name('helper.ongkir');
 });

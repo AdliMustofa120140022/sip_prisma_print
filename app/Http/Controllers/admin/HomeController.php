@@ -24,7 +24,13 @@ class HomeController extends Controller
 
         $countTransaksi = Transaksi::whereNotIn('status', ['make'])->count();
 
-        $countuser = User::count();
+        $transaksiRetur = Transaksi::with('return_transaksi')
+            ->whereHas('return_transaksi', function ($query) {
+                $query->whereNotNull('id'); // Assuming 'id' is the primary key in 'return_transaksi'
+            })
+            ->count();
+
+        $countuser = User::where('role', 'admin')->count();
 
         $transaksis = Transaksi::selectRaw('MONTH(created_at) as month, SUM(total_harga) as total')
             ->whereNotIn('status', ['make'])
@@ -50,6 +56,6 @@ class HomeController extends Controller
             $monthlyDataCount[$month] = $total;
         }
 
-        return view('admin.dashboard', compact('years', 'selectedYear', 'selectedYearCorunt', 'monthlyData', 'monthlyDataCount', 'countTransaksi', 'countuser'));
+        return view('admin.dashboard', compact('years', 'selectedYear', 'selectedYearCorunt', 'monthlyData', 'monthlyDataCount', 'countTransaksi', 'countuser', 'transaksiRetur'));
     }
 }

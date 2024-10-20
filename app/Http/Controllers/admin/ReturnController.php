@@ -4,10 +4,23 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ReturnTransaksi;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class ReturnController extends Controller
 {
+
+    public function index()
+    {
+        $transaksis = Transaksi::with('return_transaksi')
+            ->whereHas('return_transaksi', function ($query) {
+                $query->whereNotNull('id'); // Assuming 'id' is the primary key in 'return_transaksi'
+            })
+            ->get();
+
+        return view('admin.return.index', compact('transaksis'));
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([

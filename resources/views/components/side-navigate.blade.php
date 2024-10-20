@@ -29,6 +29,13 @@
                 <li
                     class=" py-2 ps-5 border-s-4 border-black hover:text-blue-500 hover:border-blue-500 hover:bg-gray-200 rounded-e-md">
                     <a href="{{ route('user.alamat.index') }}" class="flex gap-3 items-center">
+                        <i class="fa-solid fa-pen-ruler"></i>
+                        <span>Buat Pesanan Kustom</span>
+                    </a>
+                </li>
+                <li
+                    class=" py-2 ps-5 border-s-4 border-black hover:text-blue-500 hover:border-blue-500 hover:bg-gray-200 rounded-e-md">
+                    <a href="{{ route('user.alamat.index') }}" class="flex gap-3 items-center">
                         <i class="fa-solid fa-location-arrow"></i>
                         <span>Kelola Alamat</span>
                     </a>

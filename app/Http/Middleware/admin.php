@@ -16,7 +16,7 @@ class admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin') {
+        if (Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'super_admin') {
             return $next($request);
         }
         return redirect()->back()->with('error', 'You are not authorized to access this page');
