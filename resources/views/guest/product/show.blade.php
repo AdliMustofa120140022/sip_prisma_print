@@ -56,8 +56,8 @@
 
                             @if ($produck->img_produck->count() > 0)
                                 @foreach ($produck->img_produck as $img)
-                                    <div @click="toImg({{ $loop->index }})"
-                                        class="rounded-2xl border min-w-20 aspect-square border-gray-300 p-1">
+                                    <div class="rounded-2xl border w-20 aspect-square border-gray-300 p-1"
+                                        @click="toImg({{ $loop->index }})">
                                         <img src="{{ asset('storage/img_produck/' . $img->img) }}" alt="img promoso"
                                             class="rounded-2xl w-full h-full object-cover">
                                     </div>

@@ -270,7 +270,7 @@
                     <div
                         class="img-preview-container d-flex flex-wrap align-items-center gap-3 justify-content-center py-5 ">
                         @foreach ($produck->img_produck as $img_produck)
-                            <div class="position-relative ratio ratio-1x1 w-20 border rounded rounded-2xl">
+                            <div class="position-relative ratio ratio-1x1 w-20 border rounded-2xl">
                                 <img src="{{ asset('storage/img_produck/' . $img_produck->img) }}" alt=""
                                     class="rounded-2xl img-fluid" style="object-fit: cover;">
                                 <a href="{{ route('admin.product.delete-image', $img_produck->id) }}"
