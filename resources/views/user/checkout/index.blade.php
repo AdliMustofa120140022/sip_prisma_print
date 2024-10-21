@@ -72,7 +72,7 @@
                                     @json($produk_transaksi->id),
                                     @json($produk_transaksi->jumlah),
                                     @json($produk_transaksi->produck->data_produck->harga_satuan),
-                                    "{{ route(`user.checkout.update-quantity`) }}",
+                                    "{{ route('user.checkout.update-quantity') }}",
                                     @json($produk_transaksi->produck->data_produck->stok)
                                 )'
                                     x-init='calculateTotalPrice'>
