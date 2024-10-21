@@ -67,7 +67,10 @@
                                     </p>
                                 </div>
 
-                                <div class="px-0 md:px-3" x-data="productCounter(@json($produk_transaksi->id), @json($produk_transaksi->jumlah), @json($produk_transaksi->produck->data_produck->harga_satuan), '{{ route('user.checkout.update-quantity') }}', {{ $produk_transaksi->produck->data_produck->stok }})" x-init='calculateTotalPrice'>
+                                <div class="px-0 md:px-3" x-data=`productCounter(@json($produk_transaksi->id),
+                                    @json($produk_transaksi->jumlah),
+                                    @json($produk_transaksi->produck->data_produck->harga_satuan),"{{ route('user.checkout.update-quantity') }}",
+                                    @json($produk_transaksi->produck->data_produck->stok) )` x-init='calculateTotalPrice'>
                                     <p class="font-bold text-base">Jumlah</p>
                                     <div class="flex items-center">
                                         <button type="button"
