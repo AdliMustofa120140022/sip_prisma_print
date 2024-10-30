@@ -12,11 +12,13 @@ class katagoriController extends Controller
     {
 
         $sub_katagori = SubKatagori::first();
-        $params = 0;
-        if ($sub_katagori) {
-            $params = $request->query('p', $sub_katagori->id);
+        $params = null;
+        if (!$sub_katagori) {
+            return view('guest.katagori.index', compact('params'));
         }
+        $params = $request->query('p', $sub_katagori->id);
         $search = $request->query('search');
+
 
 
         $sub_katagori = SubKatagori::with(['produck' => function ($query) use ($search) {
