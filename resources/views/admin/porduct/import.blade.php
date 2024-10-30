@@ -29,8 +29,9 @@
                         @enderror
 
                         <div class="card-footer">
-                            <a href="{{ asset('doc/Template_impor_produk.xlsx') }}" download
-                                class="btn btn-success text-white">Download tempplate</a>
+                            <a href="{{ asset('public/doc/Template_impor_produk.xlsx') }}"
+                                download='Template_impor_produk.xlsx' class="btn btn-success text-white">Download
+                                tempplate</a>
                             <button type="submit" class="btn btn-dark text-white">Simpan</button>
                         </div>
                     </form>
