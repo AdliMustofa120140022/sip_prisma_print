@@ -26,7 +26,7 @@
 
             @foreach ($alamats as $alamat)
                 <div
-                    class="mb-6 border rounded-lg flex justify-between p-3 {{ $alamat->is_default === 1 ? 'border-blue-300 bg-blue-50 border-2' : '' }}">
+                    class="mb-6 border rounded-lg flex justify-between p-3 {{ $alamat->is_default == 1 ? 'border-blue-300 bg-blue-50 border-2' : '' }}">
                     <div class="">
                         <h2 class="text-lg font-semibold">{{ $alamat->nama_penerima }}</h2>
                         {{-- <p class="text-gray-600">Aldi Mustafa</p> --}}
@@ -39,7 +39,7 @@
                     <div class="">
                         <a href="{{ route('user.alamat.edit', $alamat->id) }}" class="text-blue-500 block pb-2">Edit
                             Alamat</a>
-                        @if ($alamat->is_default === 1)
+                        @if ($alamat->is_default == 1)
                             <span class="block pb-2">Alamat Utama</span>
                         @else
                             <a href="{{ route('user.alamat.default', $alamat->id) }}"
