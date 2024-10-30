@@ -8,7 +8,7 @@
             <a href="{{ url()->previous() }}">
                 <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Detail Pesanan kustom</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Detail Pesanan Kustom</h2>
         </div>
 
 
@@ -109,7 +109,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="length_cm" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Ukuran Panjang (cm)<span class="text-red-600 font-semibold text-lg">*</span>
+                    Ukuran Panjang (mm)<span class="text-red-600 font-semibold text-lg">*</span>
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" step="0.01" id="length_cm" name="length_cm" placeholder="Panjang Produk"
@@ -121,7 +121,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="width_cm" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Ukuran Lebar (cm)<span class="text-red-600 font-semibold text-lg">*</span>
+                    Ukuran Lebar (mm)<span class="text-red-600 font-semibold text-lg">*</span>
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" step="0.01" id="width_cm" name="width_cm" placeholder="Lebar Produk"
@@ -132,7 +132,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="height_gram" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Ukuran Tinggi (cm)<span class="text-red-600 font-semibold text-lg">*</span>
+                    Ukuran Tinggi (mm)<span class="text-red-600 font-semibold text-lg">*</span>
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" step="0.01" id="height_gram" name="height_gram"
@@ -143,7 +143,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="thickness_cm" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Ketebalan (cm)
+                    Ketebalan (gsm)
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" step="0.01" id="thickness_cm" name="thickness_cm"
@@ -154,7 +154,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="sheet_count" class="col-span-1 text-sm font-semibold text-gray-700">
-                    jumlah Lembar
+                    Jumlah Lembar
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" id="sheet_count" placeholder="Jumlah Lebar produk" name="sheet_count"

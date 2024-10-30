@@ -180,7 +180,7 @@
             <tr>
                 <td class="from">Dari :</td>
                 <td class="label">Kepada :</td>
-                <td class="label">Nomor Pesana : </td>
+                <td class="label">Nomor Pesanan : </td>
                 <td class="label">Tanggal Pesanan : </td>
             </tr>
             <tr>

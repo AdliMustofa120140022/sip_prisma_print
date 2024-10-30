@@ -6,7 +6,7 @@
             <a href="{{ url()->previous() }}">
                 <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Detail Prduk</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Detail Produk</h2>
         </div>
 
 
@@ -31,7 +31,7 @@
                                     @else
                                         <div
                                             class="rounded-2xl border-3 border min-w-full aspect-square border-gray-300 p-2 ">
-                                            <img src="{{ asset('static/dummy/dummy.png') }}" alt="img promoso"
+                                            <img src="{{ asset('static/img/default_product.png') }}" alt="img promoso"
                                                 class="object-cover w-full h-full rounded-2xl shadow-lg">
                                         </div>
                                     @endif
@@ -65,7 +65,7 @@
                             @else
                                 <div @click="toImg(0)"
                                     class="rounded-2xl border w-20 aspect-square border-gray-300 p-1">
-                                    <img src="{{ asset('static/dummy/dummy.png') }}" alt="img promoso"
+                                    <img src="{{ asset('static/img/default_product.png') }}" alt="img promoso"
                                         class="rounded-2xl w-full h-full object-cover">
                                 </div>
 
@@ -175,35 +175,37 @@
 
                         <p class="text-lg font-semibold mt-5">Data Porduk</p>
                         <p class="text-gray-500">Nama Produk : {{ $produck->name }}</p>
-                        <p class="text-gray-500">Katagori :{{ $produck->sub_katagori->katagori->nama }}</p>
-                        <p class="text-gray-500">Sub Katagori : {{ $produck->sub_katagori->name }}</p>
-                        <p class="text-gray-500">Deskrisi : {{ $produck->description }}</p>
+                        <p class="text-gray-500">Kategori : {{ $produck->sub_katagori->katagori->nama }}</p>
+                        <p class="text-gray-500">Sub Kategori : {{ $produck->sub_katagori->name }}</p>
+                        {{-- <p class="text-gray-500">Deskrisi : {{ $produck->description }}</p> --}}
 
 
                         <p class="text-lg font-semibold mt-5">Stok Dan Dimensi</p>
                         <p class="text-gray-500">Jumlah Stok : {{ $produck->data_produck->stok }} </p>
-                        <p class="text-gray-500">Ukuruan Lebar : {{ $produck->data_produck->lebar }} cm</p>
-                        <p class="text-gray-500">Ukuruan Panjang : {{ $produck->data_produck->panjang }} cm</p>
-                        <p class="text-gray-500">Ukuruan Tinggi : {{ $produck->data_produck->tinggi }} cm</p>
+                        <p class="text-gray-500">Satuan : {{ $produck->data_produck->satuan ?? 'buah' }} </p>
+                        <p class="text-gray-500">Ukuruan Lebar : {{ $produck->data_produck->lebar }} mm</p>
+                        <p class="text-gray-500">Ukuruan Panjang : {{ $produck->data_produck->panjang }} mm</p>
+                        <p class="text-gray-500">Ukuruan Tinggi : {{ $produck->data_produck->tinggi }} mm</p>
                         <p class="text-gray-500">Berat Satuan : {{ $produck->data_produck->berat }} gram</p>
+                        <p class="text-gray-500">Minimal Pemesanan :
+                            {{ $produck->data_produck->minimal_grosir ?? '10' }} </p>
 
 
                         <p class="text-lg font-semibold mt-5">Sepesifikasi Teknis</p>
                         <p class="text-gray-500">Bahan : {{ $produck->data_produck->bahan }} </p>
                         <p class="text-gray-500">Warna : {{ $produck->data_produck->warna }} </p>
-                        <p class="text-gray-500">Jenis Ctakan : {{ $produck->data_produck->jenis_cetak }} </p>
+                        <p class="text-gray-500">Jenis Cetakan : {{ $produck->data_produck->jenis_cetak }} </p>
                         <p class="text-gray-500">Resolusi Cetakan : {{ $produck->data_produck->resolusi }} </p>
                         <p class="text-gray-500">Finising : {{ $produck->data_produck->finishing }} </p>
                         <p class="text-gray-500">Jenis Kertas : {{ $produck->data_produck->kertas }} </p>
-                        <p class="text-gray-500">Ketebalan Kertas : {{ $produck->data_produck->ketebalan_kertas }}
+                        <p class="text-gray-500">Ketebalan Kertas :
+                            {{ $produck->data_produck->ketebalan_kertas . ' gsm' }}
                         </p>
                         <p class="text-gray-500">Tinta yang digunakan : {{ $produck->data_produck->tinta }} </p>
-                        <p class="text-gray-500">Minimum pemesanan :
-                            {{ $produck->data_produck->minimal_grosir ?? '100' }} </p>
-                        </p>
                         <p class="text-gray-500">Estimasi Pengerjaan :
-                            {{ $produck->data_produck->estimasi ?? 'Estimasi Pengerjaan 1-14 Hari' }}
+                            {{ $produck->data_produck->estimasi ?? '1-14 Hari' }}
                         </p>
+
 
 
                         {{-- <p class="text-lg font-semibold mt-5">Informasi Harga</p>

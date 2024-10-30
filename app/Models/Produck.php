@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,7 +24,8 @@ class Produck extends Model
 
         static::creating(function ($model) {
             $maxId = static::max('id') + 1;
-            $model->prduck_code = 'U-' . str_pad($maxId, 3, '0', STR_PAD_LEFT);
+            $today = Carbon::now()->format('Ymd');
+            $model->prduck_code = 'PP-' . $today . '-' . str_pad($maxId, 4, '0', STR_PAD_LEFT);
         });
     }
 

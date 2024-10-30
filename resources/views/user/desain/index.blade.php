@@ -85,7 +85,7 @@
                             <button type="button" onclick="setuju({{ $loop->iteration }})"
                                 class="px-6 py-2 bg-green-600 text-white w-56 rounded-md hover:bg-green-700">Setuju</button>
                             <button type="button" onclick="tolak({{ $loop->iteration }})"
-                                class="px-6 py-2 bg-red-600 text-white w-56 rounded-md hover:bg-red-700">Total</button>
+                                class="px-6 py-2 bg-red-600 text-white w-56 rounded-md hover:bg-red-700">Tolak</button>
                         </div>
                     </form>
                 @endif

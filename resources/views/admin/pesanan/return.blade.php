@@ -1,6 +1,6 @@
 <button type="button" class="text-secondary font-weight-bold text-decoration-underline pe-3 bg-transparent border-0"
     data-bs-toggle="modal" data-bs-target="#modalReturn{{ $transaksi->id }}">
-    Kelola Retun
+    Kelola Retur
 </button>
 
 
@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="card p-3">
                                 <h6 class="border-bottom pb-2 mb-3">Informasi Retur
-                                    <strong>ALasan return:</strong> {{ $transaksi->return_transaksi->alasan }}
+                                    <p>Alasan Retur:</p> {{ $transaksi->return_transaksi->alasan }}
                             </div>
 
                         </div>
@@ -42,7 +42,7 @@
                 </div>
                 @if ($transaksi->return_transaksi->status != 'approved')
                     <div class="col md-6">
-                        <h6 class="border-bottom pb-2 mb-3 mt-4">Konfirmasi R</h6>
+                        {{-- <h6 class="border-bottom pb-2 mb-3 mt-4">Konfirmasi R</h6> --}}
                         <form action="{{ route('admin.return.update', $transaksi->return_transaksi->id) }}"
                             method="POST">
                             @csrf

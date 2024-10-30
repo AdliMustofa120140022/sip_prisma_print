@@ -4,8 +4,12 @@
     <section class="m-3">
         <div class=" bg-white shadow border-radius-lg p-4">
             <div class="card-header pb-0 text-left bg-transparent">
-                <h3 class="font-weight-bolder text-info text-gradient">Permohonan Bantuan Sosial</h3>
-                <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p>
+                <h3 class="font-weight-bolder text-info text-gradient">
+                    Edit Produk
+                </h3>
+                <p class="mb-0">
+                    Silahkan isi form di bawah ini dengan data yang benar
+                </p>
             </div>
             <form action="{{ route('admin.product.update', $produck->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -57,7 +61,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="stok">Jumlah Stok<span class="text-danger">*</span></label>
-                            <input name="stok" id="stok" type="number" class="form-control"
+                            <input name="stok" id="stok" type="number" step="0.01" class="form-control"
                                 placeholder="Jumlah Stok" aria-label="stok"
                                 value="{{ $produck->data_produck->stok, old('stok') }}">
                             @error('stok')
@@ -66,7 +70,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lebar">Ukuran lebar (mm)<span class="text-danger">*</span></label>
-                            <input name="lebar" id="lebar" type="number" class="form-control"
+                            <input name="lebar" id="lebar" type="number" step="0.01" class="form-control"
                                 placeholder="Ukuran lebar (mm)" aria-label="lebar"
                                 value="{{ $produck->data_produck->lebar, old('lebar') }}">
                             @error('lebar')
@@ -75,7 +79,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="panjang">Ukuran Panjang (mm)<span class="text-danger">*</span></label>
-                            <input name="panjang" id="panjang" type="number" class="form-control"
+                            <input name="panjang" id="panjang" type="number" step="0.01" class="form-control"
                                 placeholder="Ukuran Panjang (mm)" aria-label="panjang"
                                 value="{{ $produck->data_produck->panjang, old('panjang') }}">
                             @error('panjang')
@@ -84,7 +88,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="tinggi">Ukuran Tinggi (mm)<span class="text-danger">*</span></label>
-                            <input name="tinggi" id="tinggi" type="number" class="form-control"
+                            <input name="tinggi" id="tinggi" type="number" step="0.01" class="form-control"
                                 placeholder="Ukuran Tinggi (mm)" aria-label="tinggi"
                                 value="{{ $produck->data_produck->tinggi, old('tinggi') }}">
                             @error('tinggi')
@@ -92,8 +96,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="berat">Berat per Satuan <span class="text-danger">*</span></label>
-                            <input name="berat" id="berat" type="number" class="form-control"
+                            <label for="berat">Berat per Satuan (gram) <span class="text-danger">*</span></label>
+                            <input name="berat" id="berat" type="number" step="0.01" class="form-control"
                                 placeholder="Berat per Satuan " aria-label="berat"
                                 value="{{ $produck->data_produck->berat, old('berat') }}">
                             @error('berat')
@@ -165,8 +169,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="ketebalan_kertas">Ketebalan Kertas<span class="text-danger">*</span></label>
-                            <input name="ketebalan_kertas" id="ketebalan_kertas" type="number" class="form-control"
-                                placeholder="Ketebalan Kertas" aria-label="ketebalan_kertas"
+                            <input name="ketebalan_kertas" id="ketebalan_kertas" type="number" step="0.01"
+                                class="form-control" placeholder="Ketebalan Kertas" aria-label="ketebalan_kertas"
                                 value="{{ $produck->data_produck->ketebalan_kertas, old('ketebalan_kertas') }}">
                             @error('ketebalan_kertas')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
@@ -199,18 +203,18 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="harga_grosir">Harga Grosir</label>
-                            <input name="harga_grosir" id="harga_grosir" type="number" class="form-control"
-                                placeholder="Harga Grosir" aria-label="harga_grosir"
-                                value="{{ $produck->data_produck->harga_grosir, old('harga_grosir') }}">
-                            @error('harga_grosir')
+                            <label for="satuan">Satuan</label>
+                            <input name="satuan" id="satuan" type="text" class="form-control"
+                                placeholder="Satuan" aria-label="satuan"
+                                value="{{ $produck->data_produck->satuan, old('satuan') }}">
+                            @error('satuan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="minimal_grosir">Minimal cetakan (untuk harga grosir)</label>
+                            <label for="minimal_grosir">Minimal Pemesanan</label>
                             <input name="minimal_grosir" id="minimal_grosir" type="number" class="form-control"
-                                placeholder="Minimal cetakan (untuk harga grosir)" aria-label="minimal_grosir"
+                                placeholder="Minimal Pemesanan" aria-label="minimal_grosir"
                                 value="{{ $produck->data_produck->minimal_grosir, old('minimal_grosir') }}">
                             @error('minimal_grosir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>

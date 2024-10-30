@@ -29,8 +29,9 @@ class DataProduck extends Model
         'ketebalan_kertas',
         'tinta',
 
+        'satuan',
         'harga_satuan',
-        'harga_grosir',
+        // 'harga_grosir',
         'minimal_grosir',
 
         'tanggal_masuk',

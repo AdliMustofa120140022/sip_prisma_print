@@ -136,7 +136,7 @@
                 @if (in_array($alamat->kecamatan, ['Kotabumi Utara', 'Sungkai Jaya']))
                     <div class="mt-4">
                         <label class="inline-flex items-center">
-                            <input type="radio" name="pengiriman" value="kuri toko" class="form-radio" />
+                            <input type="radio" name="pengiriman" value="kurir toko" class="form-radio" />
                             <span class="ml-2">Kirim ke alamat (kurir toko)</span>
                         </label>
 

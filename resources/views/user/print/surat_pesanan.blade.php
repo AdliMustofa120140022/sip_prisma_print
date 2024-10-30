@@ -186,7 +186,7 @@
 
         <table class="details-table">
             <tr>
-                <td class="from">kepada YTH :</td>
+                <td class="from">Kepada Yth :</td>
             </tr>
             <tr>
                 <td>
@@ -269,7 +269,7 @@
                 yang diunggah. Pesanan Anda akan segera diproses, dan kami akan menginformasikan
                 pengiriman setelah pesanan siap.
             </p>
-            <p>Mohon upload bukti pembayaran Anda di halaman pembayaran untuk verifikasi.</p>
+            <p>Terima kasih atas kepercayaan anda pada Percetakan Prima Printing.</p>
         </div>
 
         <div class="footer-head">

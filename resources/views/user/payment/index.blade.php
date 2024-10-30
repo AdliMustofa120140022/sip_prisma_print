@@ -12,7 +12,7 @@
             <a href="{{ route('user.transaksi.index') }}">
                 <i class="fa-solid fa-arrow-left text-lg px-3"></i>
             </a>
-            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Pemabyaran</h2>
+            <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Pembayaran</h2>
         </div>
 
         <div class="max-w-5xl mx-auto bg-white py-6 px-5 md:px-14 rounded-lg shadow-md">
@@ -31,7 +31,7 @@
             </div>
             <div class="grid grid-cols-5 py-2">
                 <div class="col-span-2">
-                    <p class="text-md font-semibold">Tanggal pesana</p>
+                    <p class="text-md font-semibold">Tanggal Pesanan</p>
                 </div>
                 <div class="col-span-3">
                     <p class="text-md font-semibold text-blue-950">{{ $transaksi->created_at }}</p>

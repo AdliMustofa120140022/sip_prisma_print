@@ -15,11 +15,11 @@
         <form method="POST" enctype="multipart/form-data" action="{{ route('user.return.store', $transaksi->id) }}"
             class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md">
             @csrf
-            <h1 class="text-xl font-semibold text-center pb-10">Pengajuan Return</h1>
+            <h1 class="text-xl font-semibold text-center pb-10">Pengajuan Retur</h1>
             <h2 class="text-lg font-semibold">Informasi Produk</h2>
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="nama_product" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Tranasksi Code
+                    Nomor Pesanan
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="text" id="nama_product" name="nama_product"
@@ -30,7 +30,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="nama_product" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Upload Bukti Pendukuang
+                    Upload Bukti Pendukung
                 </label>
                 <div x-data="{ fileName: '' }" class="col-span-2 space-y-4">
                     <label class="block">

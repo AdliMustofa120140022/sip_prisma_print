@@ -50,17 +50,17 @@
                                     <strong>Tema :</strong> {{ $transaksi->costume_transaksi->theme }}
                                 </div>
                                 <div class="mb-2">
-                                    <strong>Ukuran Panjang :</strong> {{ $transaksi->costume_transaksi->length_cm }} cm
+                                    <strong>Ukuran Panjang :</strong> {{ $transaksi->costume_transaksi->length_cm }} mm
                                 </div>
                                 <div class="mb-2">
-                                    <strong>Ukuran Lebar :</strong> {{ $transaksi->costume_transaksi->width_cm }} cm
+                                    <strong>Ukuran Lebar :</strong> {{ $transaksi->costume_transaksi->width_cm }} mm
                                 </div>
                                 <div class="mb-2">
                                     <strong>Ukuran Tinggi :</strong> {{ $transaksi->costume_transaksi->height_gram }}
-                                    cm
+                                    mm
                                 </div>
                                 <div class="mb-2">
-                                    <strong>Ketebalan :</strong> {{ $transaksi->costume_transaksi->thickness_cm }} cm
+                                    <strong>Ketebalan :</strong> {{ $transaksi->costume_transaksi->thickness_cm }} gsm
                                 </div>
                                 <div class="mb-2">
                                     <strong>Jumlah Lembar :</strong> {{ $transaksi->costume_transaksi->sheet_count }}

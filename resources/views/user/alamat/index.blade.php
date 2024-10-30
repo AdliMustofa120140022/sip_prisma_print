@@ -26,7 +26,7 @@
 
             @foreach ($alamats as $alamat)
                 <div
-                    class="mb-6 border rounded-lg flex justify-between p-3 {{ $alamat->is_default === 1 ? 'border-blue-300 border-2' : '' }}">
+                    class="mb-6 border rounded-lg flex justify-between p-3 {{ $alamat->is_default === 1 ? 'border-blue-300 bg-blue-50 border-2' : '' }}">
                     <div class="">
                         <h2 class="text-lg font-semibold">{{ $alamat->nama_penerima }}</h2>
                         {{-- <p class="text-gray-600">Aldi Mustafa</p> --}}
@@ -43,7 +43,7 @@
                             <span class="block pb-2">Alamat Utama</span>
                         @else
                             <a href="{{ route('user.alamat.default', $alamat->id) }}"
-                                class="text-blue-500 block pb-2">Pilih Jadi Alamat Utama</a>
+                                class="text-blue-500 block pb-2 cursor-pointer">Pilih Jadi Alamat Utama</a>
                         @endif
                         <form action="{{ route('user.alamat.destroy', $alamat->id) }}" method="POST">
                             @csrf

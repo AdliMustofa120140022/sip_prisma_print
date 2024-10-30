@@ -35,19 +35,21 @@ class ProdukImport implements ToCollection
 
             $produck->data_produck()->create([
                 'stok' => $row[3],
-                'lebar' => $row[4],
+                'satuan' => $row[4],
                 'panjang' => $row[5],
-                'tinggi' => $row[6],
-                'berat' => $row[7],
-                'bahan' => $row[8],
-                'warna' => $row[9],
-                'jenis_cetak' => $row[10],
-                'resolusi' => $row[11],
-                'finishing' => $row[12],
-                'kertas' => $row[13],
-                'ketebalan_kertas' => $row[14],
-                'tinta' => $row[15],
-                'harga_satuan' => $row[16],
+                'lebar' => $row[6],
+                'tinggi' => $row[7],
+                'berat' => $row[8],
+                'bahan' => $row[9],
+                'warna' => $row[10],
+                'jenis_cetak' => $row[11],
+                'resolusi' => $row[12],
+                'finishing' => $row[13],
+                'kertas' => $row[14],
+                'ketebalan_kertas' => $row[15],
+                'tinta' => $row[16],
+                'harga_satuan' => $row[17],
+                'minimal_grosir' => $row[18],
             ]);
         }
     }

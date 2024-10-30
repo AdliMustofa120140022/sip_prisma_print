@@ -153,7 +153,7 @@
                             <div class="card p-3">
                                 <h6 class="border-bottom pb-2 mb-3">Informasi Pemesan</h6>
                                 <div class="mb-2">
-                                    <strong>Nama:</strong> Rp.
+                                    <strong>Nama:</strong>
                                     {{ $transaksi->user->name }}
                                 </div>
                                 <div class="mb-2">
@@ -165,8 +165,10 @@
                                         {{ $transaksi->transaksi_data->alamat->kode_pos }}</span>
                                 </div>
                                 <div class="mb-2">
-                                    <strong>Nomor HP:</strong> Rp.
-                                    {{ $transaksi->transaksi_data->alamat->no_hp }}
+                                    <strong>Nomor HP:</strong>
+                                    {{ $transaksi->transaksi_data->alamat->no_hp }} <a target="_blank"
+                                        href="{{ 'https://wa.me/' . $transaksi->transaksi_data->alamat->no_hp }}"> <i
+                                            class="fa-solid fa-link"></i></a>
                                 </div>
                             </div>
                         </div>

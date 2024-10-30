@@ -4,8 +4,12 @@
     <section class="m-3">
         <div class=" bg-white shadow border-radius-lg p-4">
             <div class="card-header pb-0 text-left bg-transparent">
-                <h3 class="font-weight-bolder text-info text-gradient">Permohonan Bantuan Sosial</h3>
-                <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p>
+                <h3 class="font-weight-bolder text-info text-gradient">
+                    Detail Produk
+                </h3>
+                {{-- <p class="mb-0">
+
+                </p> --}}
             </div>
             <form action="" method="POST" enctype="multipart/form-data">
 
@@ -56,8 +60,8 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="stok">Jumlah Stok<span class="text-danger">*</span></label>
-                            <input disabled name="stok" id="stok" type="number" class="form-control"
-                                placeholder="Jumlah Stok" aria-label="stok"
+                            <input disabled name="stok" id="stok" type="number" step="0.01"
+                                class="form-control" placeholder="Jumlah Stok" aria-label="stok"
                                 value="{{ $produck->data_produck->stok, old('stok') }}">
                             @error('stok')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
@@ -65,8 +69,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lebar">Ukuran lebar (mm)<span class="text-danger">*</span></label>
-                            <input disabled name="lebar" id="lebar" type="number" class="form-control"
-                                placeholder="Ukuran lebar (mm)" aria-label="lebar"
+                            <input disabled name="lebar" id="lebar" type="number" step="0.01"
+                                class="form-control" placeholder="Ukuran lebar (mm)" aria-label="lebar"
                                 value="{{ $produck->data_produck->lebar, old('lebar') }}">
                             @error('lebar')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
@@ -74,8 +78,8 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="panjang">Ukuran Panjang (mm)<span class="text-danger">*</span></label>
-                            <input disabled name="panjang" id="panjang" type="number" class="form-control"
-                                placeholder="Ukuran Panjang (mm)" aria-label="panjang"
+                            <input disabled name="panjang" id="panjang" type="number" step="0.01"
+                                class="form-control" placeholder="Ukuran Panjang (mm)" aria-label="panjang"
                                 value="{{ $produck->data_produck->panjang, old('panjang') }}">
                             @error('panjang')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
@@ -83,17 +87,17 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="tinggi">Ukuran Tinggi (mm)<span class="text-danger">*</span></label>
-                            <input disabled name="tinggi" id="tinggi" type="number" class="form-control"
-                                placeholder="Ukuran Tinggi (mm)" aria-label="tinggi"
+                            <input disabled name="tinggi" id="tinggi" type="number" step="0.01"
+                                class="form-control" placeholder="Ukuran Tinggi (mm)" aria-label="tinggi"
                                 value="{{ $produck->data_produck->tinggi, old('tinggi') }}">
                             @error('tinggi')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="berat">Berat per Satuan <span class="text-danger">*</span></label>
-                            <input disabled name="berat" id="berat" type="number" class="form-control"
-                                placeholder="Berat per Satuan " aria-label="berat"
+                            <label for="berat">Berat per Satuan (gram)<span class="text-danger">*</span></label>
+                            <input disabled name="berat" id="berat" type="number" step="0.01"
+                                class="form-control" placeholder="Berat per Satuan " aria-label="berat"
                                 value="{{ $produck->data_produck->berat, old('berat') }}">
                             @error('berat')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
@@ -165,7 +169,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="ketebalan_kertas">Ketebalan Kertas<span class="text-danger">*</span></label>
                             <input disabled name="ketebalan_kertas" id="ketebalan_kertas" type="number"
-                                class="form-control" placeholder="Ketebalan Kertas" aria-label="ketebalan_kertas"
+                                step="0.01" class="form-control" placeholder="Ketebalan Kertas"
+                                aria-label="ketebalan_kertas"
                                 value="{{ $produck->data_produck->ketebalan_kertas, old('ketebalan_kertas') }}">
                             @error('ketebalan_kertas')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
@@ -198,19 +203,18 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="harga_grosir">Harga Grosir</label>
-                            <input disabled name="harga_grosir" id="harga_grosir" type="number"
-                                class="form-control" placeholder="Harga Grosir" aria-label="harga_grosir"
-                                value="{{ $produck->data_produck->harga_grosir, old('harga_grosir') }}">
-                            @error('harga_grosir')
+                            <label for="satuan">Satuan</label>
+                            <input disabled name="satuan" id="satuan" type="number" class="form-control"
+                                placeholder="Harga Grosir" aria-label="satuan"
+                                value="{{ $produck->data_produck->satuan, old('satuan') }}">
+                            @error('satuan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="minimal_grosir">Minimal cetakan (untuk harga grosir)</label>
+                            <label for="minimal_grosir">Minimal Pemesanan</label>
                             <input disabled name="minimal_grosir" id="minimal_grosir" type="number"
-                                class="form-control" placeholder="Minimal cetakan (untuk harga grosir)"
-                                aria-label="minimal_grosir"
+                                class="form-control" placeholder="Minimal Pemesanan" aria-label="minimal_grosir"
                                 value="{{ $produck->data_produck->minimal_grosir, old('minimal_grosir') }}">
                             @error('minimal_grosir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>

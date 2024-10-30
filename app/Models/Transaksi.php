@@ -28,7 +28,7 @@ class Transaksi extends Model
         static::creating(function ($model) {
             $maxId = static::max('id') + 1;
             $today = Carbon::now()->format('Ymd');
-            $model->transaksi_code = 'PP-' . $today . str_pad($maxId, 4, '0', STR_PAD_LEFT);
+            $model->transaksi_code = 'PP-' . $today . '-' . str_pad($maxId, 4, '0', STR_PAD_LEFT);
         });
     }
 

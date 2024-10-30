@@ -16,7 +16,7 @@
             action="{{ route('user.checkout.update_produck_transaksi', $produk_transaksi->id) }}"
             class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md">
             @csrf
-            <h1 class="text-xl font-semibold text-center pb-10">Buat Pesanan Sesuai Katalog</h1>
+            <h1 class="text-xl font-semibold text-center pb-10">Upload File Pendukung</h1>
             <h2 class="text-lg font-semibold">Informasi Produk</h2>
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="nama_product" class="col-span-1 text-sm font-semibold text-gray-700">
@@ -67,7 +67,7 @@
                             <span class="text-gray-500 text-xs">Unggah dokumen pendukung</span>
                         </div>
                     </label>
-                    <p class="text-xs text-gray-500 mt-1">Maksimal ukuran file 100MB. Jika tidak bisa diunggah,
+                    <p class="text-xs text-gray-500 mt-1">Maksimal ukuran file 10MB. Jika tidak bisa diunggah,
                         gunakan link Google Drive</p>
                     @error('doc_pendukung')
                         <p class="text-red-500 text-xs">{{ $message }}</p>

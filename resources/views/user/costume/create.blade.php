@@ -15,7 +15,7 @@
         <form method="POST" enctype="multipart/form-data" action="{{ route('user.costume.store') }}"
             class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md">
             @csrf
-            <h1 class="text-xl font-semibold text-center pb-10">Buat Pesanan Kustome</h1>
+            <h1 class="text-xl font-semibold text-center pb-10">Buat Pesanan Kustom</h1>
             <h2 class="text-lg font-semibold">Informasi Produk</h2>
 
             <div class="grid grid-cols-3 gap-8 py-2">
@@ -83,7 +83,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="length_cm" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Ukuran Panjang (cm)<span class="text-red-600 font-semibold text-lg">*</span>
+                    Ukuran Panjang (mm)<span class="text-red-600 font-semibold text-lg">*</span>
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" step="0.01" id="length_cm" name="length_cm" placeholder="Panjang Produk"
@@ -97,7 +97,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="width_cm" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Ukuran Lebar (cm)<span class="text-red-600 font-semibold text-lg">*</span>
+                    Ukuran Lebar (mm)<span class="text-red-600 font-semibold text-lg">*</span>
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" step="0.01" id="width_cm" name="width_cm" placeholder="Lebar Produk"
@@ -111,7 +111,7 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="height_gram" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Ukuran Tinggi (cm)<span class="text-red-600 font-semibold text-lg">*</span>
+                    Ukuran Tinggi (mm)<span class="text-red-600 font-semibold text-lg">*</span>
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" step="0.01" id="height_gram" name="height_gram"
@@ -125,12 +125,12 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="thickness_cm" class="col-span-1 text-sm font-semibold text-gray-700">
-                    Ketebalan (cm)
+                    Ketebalan (gsm)
                 </label>
                 <div class="col-span-2 space-y-4">
                     <input type="number" step="0.01" id="thickness_cm" name="thickness_cm"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4 "
-                        placeholder="berat Produk" value="{{ old('thickness_cm') }}">
+                        placeholder="Ketebalan" value="{{ old('thickness_cm') }}">
                 </div>
             </div>
             @error('thickness_cm')
@@ -140,10 +140,10 @@
 
             <div class="grid grid-cols-3 gap-8 py-2">
                 <label for="sheet_count" class="col-span-1 text-sm font-semibold text-gray-700">
-                    jumlah Lembar
+                    Jumlah Lembar (jika ada)
                 </label>
                 <div class="col-span-2 space-y-4">
-                    <input type="number" id="sheet_count" placeholder="Jumlah Lebar produk" name="sheet_count"
+                    <input type="number" id="sheet_count" placeholder="Jumlah Lembar" name="sheet_count"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4 "
                         value="{{ old('sheet_count') }}">
                 </div>
@@ -187,7 +187,7 @@
                 <div class="col-span-2 space-y-4">
                     <input type="text" id="print_type" name="print_type"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4 "
-                        placeholder="Jeni Cetakan" value="{{ old('print_type') }}">
+                        placeholder="Jenis Cetakan" value="{{ old('print_type') }}">
                 </div>
             </div>
             @error('print_type')
@@ -227,7 +227,7 @@
                     Tinta Yang Digunakan<span class="text-red-600 font-semibold text-lg">*</span>
                 </label>
                 <div class="col-span-2 space-y-4">
-                    <input type="text" id="ink_type" name="ink_type" placeholder="Jenis Titna Cetak"
+                    <input type="text" id="ink_type" name="ink_type" placeholder="Jenis Tinta"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4 "
                         value="{{ old('ink_type') }}">
                 </div>
@@ -280,7 +280,7 @@
 
 
 
-            <x-utils.btn-submit text="Buat Pesanan kostume" />
+            <x-utils.btn-submit text="Buat Pesanan Kustom" />
 
         </form>
     </div>

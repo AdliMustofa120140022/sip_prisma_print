@@ -28,12 +28,13 @@ return new class extends Migration
             $table->float('ketebalan_kertas');
             $table->string('tinta');
             $table->integer('harga_satuan');
-            $table->integer('harga_grosir')->nullable();
+            // $table->integer('harga_grosir')->nullable();
             $table->integer('minimal_grosir')->nullable();
             $table->date('tanggal_masuk')->nullable();
             $table->date('tanggal_kadaluarsa')->nullable();
             $table->string('lokasi')->nullable();
             $table->string('supplier')->nullable();
+            $table->string('satuan')->nullable();
         });
 
         Schema::create('img_producks', function (Blueprint $table) {

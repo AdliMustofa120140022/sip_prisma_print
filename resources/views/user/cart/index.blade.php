@@ -23,27 +23,19 @@
                 <div class="mx-auto w-full flex-none lg:max-w-[70%] xl:max-w-[70%]">
                     <div class="space-y-6">
                         @foreach ($carts as $cart)
-                            <div x-data="CartCounter({{ $cart->id }}, {{ $cart->quantity }}, {{ $cart->product->data_produck->harga_satuan }}, '{{ route('user.cart.update') }}', {{ $cart->product->data_produck->stok }})"
+                            <div x-data="CartCounter({{ $cart->id }}, {{ $cart->quantity }}, {{ $cart->product->data_produck->harga_satuan }}, '{{ route('user.cart.update') }}', {{ $cart->product->data_produck->stok }}, {{ $cart->product->data_produck->minimal_grosir ?? 1 }}, {{ request()->query('cart_id') == $cart->id ? 'true' : 'false' }})"
                                 class="rounded-xl border border-gray-200 bg-white md:px-6 px-3 py-3 shadow-sm">
                                 <div class="flex  items-start justify-between md:gap-6 gap-3 space-y-0">
 
-                                    {{-- <button x-data="{ selected: @json(request()->query('cart_id')) === @json($cart->id) ? true : false }" type="button" --}}
-                                    <button x-data="{
-                                        selected: {{ request()->query('cart_id') == $cart->id ? 'true' : 'false' }},
-                                        disabled: {{ $cart->quantity >= $cart->product->data_produck->stok ? 'true' : 'false' }}
-                                    }" type="button"
-                                        class=" h-6 aspect-square border rounded-sm" :disabled="disabled"
-                                        @click="
-                                selected = !selected;
-                                selected ? addSelected(quantity, productPrice, @json($cart->id)) : removeSelected(@json($cart->id));
-                                ">
-                                        <i x-show='selected' class="fa-solid fa-check text-blue-600"></i>
-                                        <i x-show='!selected' class="fa-solid"></i>
+                                    <button type="button" class="h-6 aspect-square border rounded-sm"
+                                        :disabled="disabled" @click="toggleSelection()">
+                                        <i x-show="selected" class="fa-solid fa-check text-blue-600"></i>
+                                        <i x-show="!selected" class="fa-solid"></i>
                                     </button>
 
                                     <div class="shrink-0">
                                         <img class="md:w-32 w-24 rounded-xl aspect-square object-cover"
-                                            src="{{ $cart->product->img_produck->count() > 0 ? asset('storage/img_produck/' . $cart->product->img_produck[0]->img) : asset('static/dummy/dummy.png') }}"
+                                            src="{{ $cart->product->img_produck->count() > 0 ? asset('storage/img_produck/' . $cart->product->img_produck[0]->img) : asset('static/img/default_product.png') }}"
                                             alt="product image" />
                                     </div>
 
@@ -51,6 +43,9 @@
                                         <p class="text-2xl font-bold text-gray-900">{{ $cart->product->name }}</p>
                                         <p class="text-base font-medium text-gray-800">
                                             Estimasi Pengerjaan 1-14 Hari
+                                        </p>
+                                        <p class="text-base font-light text-red-500" x-show="minimal">
+                                            Minimal Pemesanan {{ $cart->product->data_produck->minimal_grosir ?? 1 }}
                                         </p>
 
                                         <div class="flex items-center gap-4">
@@ -89,7 +84,7 @@
                                                     <!-- Input quantity -->
                                                     <input type="number" min="1" x-model="quantity"
                                                         @input="triggerDebounceUpdate()"
-                                                        class="w-16 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
+                                                        class="w-24 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 "
                                                         required />
 
                                                     <!-- Tombol Plus -->
@@ -151,14 +146,14 @@
 
                 <div class="mx-auto mt-6 max-w-lg min-w-96 flex-1 space-y-6 lg:mt-0 lg:w-full">
                     <div class="space-y-4 rounded-lg border bg-white p-4 shadow-sm sm:p-6">
-                        <p class="text-xl font-semibold text-gray-900  ">Order summary</p>
+                        <p class="text-xl font-semibold text-gray-900  ">Ringkasan Pesanan</p>
 
                         <div class="space-y-4">
                             <div class="space-y-2">
                                 <dl class="flex items-center justify-between gap-4">
                                     <dt class="text-base font-normal text-gray-500">Sub Total
                                     </dt>
-                                    <dd class="text-base font-medium text-gray-900  ">RP. <span
+                                    <dd class="text-base font-medium text-gray-900  ">Rp. <span
                                             id="total_Harga">0</span>
                                     </dd>
                                 </dl>
@@ -265,14 +260,23 @@
             }
 
             document.addEventListener('alpine:init', () => {
-                Alpine.data('CartCounter', (cartId, initialQuantity = 1, productPrice, updateUrl, stockAvailable) => ({
+                Alpine.data('CartCounter', (cartId, initialQuantity = 1, productPrice, updateUrl, stockAvailable,
+                    minialOrder, selected = false) => ({
                     cartId: cartId,
                     productPrice: productPrice,
                     quantity: initialQuantity,
                     updateUrl: updateUrl,
                     totalPrice: initialQuantity * productPrice,
                     stok: stockAvailable,
+                    minimalOrder: minialOrder,
                     debounceTimer: null,
+                    selected: selected,
+                    disabled: false,
+                    minimal: false,
+
+                    init() {
+                        this.updateDisabledBtn();
+                    },
 
                     increment() {
                         this.quantity++;
@@ -299,7 +303,21 @@
                             this.updateProductQuantity();
                         }, 1000);
                     },
+                    updateDisabledBtn() {
+                        this.minimal = this.quantity < this.minimalOrder;
+                        this.disabled = this.quantity >= this.stok || this.quantity < this.minimalOrder;
+                        if (this.disabled == true) {
+                            this.selected = false;
+                            removeSelected(this.cartId);
+                        }
+                    },
+                    toggleSelection() {
+                        this.selected = !this.selected;
+                        this.selected ? addSelected(this.quantity, this.productPrice, this.cartId) :
+                            removeSelected(this.cartId);
+                    },
                     updateProductQuantity() {
+                        this.updateDisabledBtn();
                         axios.post(this.updateUrl, {
                                 cart_id: this.cartId,
                                 quantity: this.quantity
