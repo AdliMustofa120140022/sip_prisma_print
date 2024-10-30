@@ -47,7 +47,7 @@ class ProduckFactory extends Factory
                 'ketebalan_kertas' => 0.1,
                 'tinta' => 'Art Paper',
                 'harga_satuan' => 10000,
-                'harga_grosir' => 9000,
+                'satuan' => 'Pcs',
                 'minimal_grosir' => 10,
                 'tanggal_masuk' => now(),
                 'lokasi' => 'Gudang',
