@@ -141,9 +141,8 @@
                                                                                     <p class="text-danger p-0 m-0">
                                                                                         {{ $message }}</p>
                                                                                 @enderror
-
-                                                                                {{-- </div>
-                                                                            <div class="col-md-6 mb-3">
+                                                                            </div>
+                                                                            {{-- <div class="col-md-6 mb-3">
                                                                                 <label for="image">Gambar</label>
                                                                                 <input name="image" id="image"
                                                                                     type="file" class="form-control"
@@ -156,15 +155,15 @@
                                                                             </div> --}}
 
 
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button"
-                                                                                    class="btn bg-gradient-secondary"
-                                                                                    data-bs-dismiss="modal">Close</button>
-                                                                                <button type="submit"
-                                                                                    class="btn bg-gradient-primary">Save
-                                                                                    changes</button>
-                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn bg-gradient-secondary"
+                                                                                data-bs-dismiss="modal">Close</button>
+                                                                            <button type="submit"
+                                                                                class="btn bg-gradient-primary">Save
+                                                                                changes</button>
+                                                                        </div>
                                                                     </form>
                                                                 </div>
 
