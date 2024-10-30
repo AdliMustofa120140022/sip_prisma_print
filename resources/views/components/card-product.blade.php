@@ -6,7 +6,7 @@
             <img class="w-full h-32 md:h-36 lg:h-48 object-cover"
                 src="{{ asset('storage/img_produck/' . $produck->img_produck[0]->img) }}" alt="Product Image">
         @else
-            <img class="w-full h-32 md:h-36 lg:h-48 object-cover" src="{{ asset('static/dummy/dummy.png') }}"
+            <img class="w-full h-32 md:h-36 lg:h-48 object-cover" src="{{ asset('static/img/default_product.png') }}"
                 alt="Product Image">
         @endif
 

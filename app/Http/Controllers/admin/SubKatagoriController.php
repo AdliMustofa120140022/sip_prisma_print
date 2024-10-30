@@ -33,15 +33,11 @@ class SubKatagoriController extends Controller
         $request->validate([
             'name' => 'required',
             'katagori_id' => 'required',
-            'description' => 'required',
-            'image' => 'required | image | max:10048',
+            'description' => 'nullable',
+            // 'image' => 'required | image | max:10048',
         ], [
             'name.required' => 'Nama harus diisi',
             'katagori_id.required' => 'Katagori harus diisi',
-            'description.required' => 'Deskripsi harus diisi',
-            'image.required' => 'Gambar harus diisi',
-            'image.image' => 'File harus berupa gambar',
-            'image.max' => 'Ukuran gambar maksimal 10MB',
         ]);
 
 
@@ -49,7 +45,7 @@ class SubKatagoriController extends Controller
             'name' => $request->name,
             'category_id' => $request->katagori_id,
             'description' => $request->description,
-            'image' => $this->fileUpload($request, 'image', 'public/img/sub-katagori'),
+            // 'image' => $this->fileUpload($request, 'image', 'public/img/sub-katagori'),
         ]);
 
         return redirect()->route('admin.sub-kategori.index')->with('success', 'Sub Katagori berhasil ditambahkan');
@@ -60,20 +56,17 @@ class SubKatagoriController extends Controller
         $request->validate([
             'name' => 'required',
             'katagori_id' => 'required',
-            'description' => 'required',
-            'image' => ' image | max:2048',
+            'description' => 'nullable',
         ], [
             'name.required' => 'Nama harus diisi',
             'katagori_id.required' => 'Katagori harus diisi',
-            'description.required' => 'Deskripsi harus diisi',
-            'image.image' => 'File harus berupa gambar',
         ]);
 
         SubKatagori::find($id)->update([
             'name' => $request->name,
             'category_id' => $request->katagori_id,
             'description' => $request->description,
-            'image' => $request->image ? $this->fileUpload($request, 'image', 'public/img/sub-katagori') : SubKatagori::find($id)->image
+            // 'image' => $request->image ? $this->fileUpload($request, 'image', 'public/img/sub-katagori') : SubKatagori::find($id)->image
         ]);
 
         return redirect()->route('admin.sub-kategori.index')->with('success', 'Sub Katagori berhasil diubah');

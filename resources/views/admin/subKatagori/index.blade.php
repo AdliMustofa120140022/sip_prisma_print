@@ -142,7 +142,7 @@
                                                                                         {{ $message }}</p>
                                                                                 @enderror
 
-                                                                            </div>
+                                                                                {{-- </div>
                                                                             <div class="col-md-6 mb-3">
                                                                                 <label for="image">Gambar</label>
                                                                                 <input name="image" id="image"
@@ -153,18 +153,18 @@
                                                                                     <p class="text-danger p-0 m-0">
                                                                                         {{ $message }}</p>
                                                                                 @enderror
+                                                                            </div> --}}
+
+
                                                                             </div>
-
-
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button"
-                                                                                class="btn bg-gradient-secondary"
-                                                                                data-bs-dismiss="modal">Close</button>
-                                                                            <button type="submit"
-                                                                                class="btn bg-gradient-primary">Save
-                                                                                changes</button>
-                                                                        </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                    class="btn bg-gradient-secondary"
+                                                                                    data-bs-dismiss="modal">Close</button>
+                                                                                <button type="submit"
+                                                                                    class="btn bg-gradient-primary">Save
+                                                                                    changes</button>
+                                                                            </div>
                                                                     </form>
                                                                 </div>
 
@@ -203,8 +203,8 @@
         </div>
     </section>
 
-    <div class="modal fade" id="modalAddKatagory" tabindex="-1" role="dialog"
-        aria-labelledby="modalAddKatagoryLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAddKatagory" tabindex="-1" role="dialog" aria-labelledby="modalAddKatagoryLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -231,7 +231,7 @@
 
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="description">Deskirpsi<span class="text-danger">*</span></label>
+                                <label for="description">Deskirpsi</label>
                                 <textarea name="description" id="description" type="text" class="form-control" placeholder="Deskripsi"
                                     aria-label="description">{{ old('description') }}</textarea>
                                 @error('description')
@@ -253,14 +253,14 @@
                                 @enderror
 
                             </div>
-                            <div class="col-md-6 mb-3">
+                            {{-- <div class="col-md-6 mb-3">
                                 <label for="image">Gambar<span class="text-danger">*</span></label>
                                 <input name="image" id="image" type="file" class="form-control"
                                     placeholder="Gambar" aria-label="image" value="{{ old('image') }}">
                                 @error('image')
                                     <p class="text-danger p-0 m-0">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div> --}}
 
 
                         </div>

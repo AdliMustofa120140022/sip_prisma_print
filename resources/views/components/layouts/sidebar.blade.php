@@ -123,6 +123,19 @@
                         <span class="nav-link-text ms-1 text-black">Kelola Retur</span>
                     </a>
                 </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pengaturan Sistem</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link rounded-3  {{ Request::routeIs('admin.benner*') ? 'bg-gray-300' : '' }} "
+                        href={{ route('admin.benner.index') }}>
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
+                            <i class="fa-solid fa-panorama fs-5 text-gradient  text-white "></i>
+                        </div>
+                        <span class="nav-link-text ms-1 text-black">Silider Home</span>
+                    </a>
+                </li>
             @endif
 
             @if (Auth::user()->role == 'super_admin')
@@ -135,6 +148,7 @@
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-dark">
                             <i class="fa-solid fa-chart-line fs-5 text-gradient  text-white "></i>
+
                         </div>
                         <span class="nav-link-text ms-1 text-black">Laporan Penjualan</span>
                     </a>

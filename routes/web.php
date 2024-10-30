@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\BennerHomeController;
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
 use App\Http\Controllers\user\PrintController;
 use App\Http\Controllers\admin\PaymentMetodeController;
@@ -133,6 +134,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //export
         Route::get('/export', [exportController::class, 'index'])->name('admin.export.index');
         Route::post('/export', [exportController::class, 'export'])->name('admin.export.export');
+
+        //benner home
+        Route::get('/benner', [BennerHomeController::class, 'index'])->name('admin.benner.index');
+        Route::put('/benner/{id}', [BennerHomeController::class, 'update'])->name('admin.benner.update');
+        Route::delete('/benner/{id}', [BennerHomeController::class, 'destroy'])->name('admin.benner.destroy');
     });
 
     Route::prefix('/user')->middleware('user')->group(function () {

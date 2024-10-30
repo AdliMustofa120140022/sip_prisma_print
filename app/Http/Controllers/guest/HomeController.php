@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\guest;
 
 use App\Http\Controllers\Controller;
+use App\Models\BennerHome;
 use App\Models\Katagori;
 use App\Models\Produck;
 use Illuminate\Http\Request;
@@ -22,7 +23,9 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        return view('guest.home', compact('katagoris', 'producks', 'param'));
+        $benner_homes = BennerHome::whereNotNull('img')->get();
+
+        return view('guest.home', compact('katagoris', 'producks', 'benner_homes', 'param'));
     }
 
     public function about()

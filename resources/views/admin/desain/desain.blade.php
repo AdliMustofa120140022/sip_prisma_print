@@ -174,18 +174,6 @@
                                                     <label for="desain_produk" class="form-label">Desain Produk</label>
                                                     <div class="col-span-2 space-y-4">
                                                         <input type="file" name="desain_produk" class="form-control">
-                                                        {{-- <label class="w-100">
-                                                            <input type="file" name="desain_produk"
-                                                                id="docPendukung{{ $produk_transaksi->id }}"
-                                                                class="d-none">
-                                                            <div class="d-flex justify-content-between align-items-center p-2 border rounded bg-light cursor-pointer"
-                                                                onclick="document.getElementById('docPendukung{{ $produk_transaksi->id }}').click()">
-                                                                <span id="fileName{{ $produk_transaksi->id }}">Pilih
-                                                                    file</span>
-                                                                <span class="text-muted text-xs">Unggah Desain
-                                                                    Produk</span>
-                                                            </div>
-                                                        </label> --}}
                                                         <p class="text-muted text-xs mt-1">Maksimal ukuran file 300MB
                                                         </p>
                                                     </div>

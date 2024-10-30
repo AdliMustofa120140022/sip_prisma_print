@@ -19,30 +19,23 @@
     <section class="promosi">
         <div class="container mx-auto pb-10">
             <div x-data="carousel()" x-init="startAutoSlide()" class="relative">
-                <!-- Carousel Items -->
                 <div class="overflow-hidden relative">
                     <div id="carousel" x-ref="carousel"" class="flex transition-transform duration-500 ease-in-out ">
                         {{-- carousel item --}}
-                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
-                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
-                                class="w-full h-full rounded-2xl object-cover object-center">
-                        </div>
-                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
-                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
-                                class="w-full h-full rounded-2xl object-cover object-center">
-                        </div>
-                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
-                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
-                                class="w-full h-full rounded-2xl object-cover object-center">
-                        </div>
-                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
-                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
-                                class="w-full h-full rounded-2xl object-cover object-center">
-                        </div>
-                        <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
-                            <img src="{{ asset('static/img/test-item.png') }}" alt="Slide 1"
-                                class="w-full h-full rounded-2xl object-cover object-center">
-                        </div>
+                        @if ($benner_homes->count() > 0)
+                            @foreach ($benner_homes as $benner_home)
+                                <div
+                                    class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
+                                    <img src="{{ asset('storage/benner/' . $benner_home->img) }}" alt="Slide 1"
+                                        class="w-full h-full rounded-2xl object-cover object-center">
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
+                                <img src="{{ asset('static/img/default_benner.png') }}" alt="Slide 1"
+                                    class="w-full h-full rounded-2xl object-cover object-center">
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -60,7 +53,11 @@
                 <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
                     <template x-for="(item, index) in Array.from({ length: items })" :Key="index">
                         <button @click="goto(index)"
-                            :class="{ 'bg-gray-500': index === currentIndex, 'bg-gray-200': index !== currentIndex }"
+                            :class="{
+                                'bg-gray-500': index === currentIndex,
+                                'bg-gray-200': index !==
+                                    currentIndex
+                            }"
                             class="w-3 h-3 rounded-full"></button>
                     </template>
                 </div>
