@@ -276,6 +276,9 @@
 
                     init() {
                         this.updateDisabledBtn();
+                        if (this.selected) {
+                            addSelected(this.quantity, this.productPrice, this.cartId);
+                        }
                     },
 
                     increment() {
@@ -306,7 +309,7 @@
                     updateDisabledBtn() {
                         this.minimal = this.quantity < this.minimalOrder;
                         this.disabled = this.quantity >= this.stok || this.quantity < this.minimalOrder;
-                        if (this.disabled == true) {
+                        if (this.disabled) {
                             this.selected = false;
                             removeSelected(this.cartId);
                         }
