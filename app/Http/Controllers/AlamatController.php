@@ -39,6 +39,16 @@ class AlamatController extends Controller
             'kode_pos' => 'required',
             'label' => 'required',
             'catatan' => 'nullable',
+        ], [
+            'nama_penerima.required' => 'Nama penerima tidak boleh kosong',
+            'no_hp.required' => 'Nomor HP tidak boleh kosong',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'kelurahan.required' => 'Kelurahan tidak boleh kosong',
+            'kecamatan.required' => 'Kecamatan tidak boleh kosong',
+            'kabupaten.required' => 'Kabupaten tidak boleh kosong',
+            'provinsi.required' => 'Provinsi tidak boleh kosong',
+            'kode_pos.required' => 'Kode Pos tidak boleh kosong',
+            'label.required' => 'Label tidak boleh kosong',
         ]);
 
         if ($request->is_default) {

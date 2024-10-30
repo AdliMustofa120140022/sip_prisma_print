@@ -38,6 +38,20 @@ class CostumeTransaktionController extends Controller
             'order_quantity'    => 'required|integer|min:1',
             'unit'              => 'required|string|max:50',
             'usage_deadline'    => 'nullable|date|after_or_equal:today',
+        ], [
+            'product_name.required' => 'Nama produk tidak boleh kosong',
+            'category_id.required' => 'Kategori tidak boleh kosong',
+            'theme.required' => 'Tema tidak boleh kosong',
+            'length_cm.required' => 'Panjang tidak boleh kosong',
+            'width_cm.required' => 'Lebar tidak boleh kosong',
+            'height_gram.required' => 'Tinggi tidak boleh kosong',
+            'material.required' => 'Bahan tidak boleh kosong',
+            'color.required' => 'Warna tidak boleh kosong',
+            'print_type.required' => 'Jenis cetak tidak boleh kosong',
+            'finishing.required' => 'Finishing tidak boleh kosong',
+            'ink_type.required' => 'Tinta tidak boleh kosong',
+            'order_quantity.required' => 'Jumlah pesanan tidak boleh kosong',
+            'unit.required' => 'Satuan tidak boleh kosong',
         ]);
 
 
