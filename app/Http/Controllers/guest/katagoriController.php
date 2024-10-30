@@ -12,7 +12,10 @@ class katagoriController extends Controller
     {
 
         $sub_katagori = SubKatagori::first();
-        $params = $request->query('p', $sub_katagori->id);
+        $params = null;
+        if ($sub_katagori->count() > 0) {
+            $params = $request->query('p', $sub_katagori->id);
+        }
         $search = $request->query('search');
 
 
