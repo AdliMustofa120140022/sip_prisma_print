@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
-    <title>{{ $title }} - Percetakan Prima Printing</title>
+    @if (isset($title))
+        <title>{{ $title }} - Percetakan Prima Printing</title>
+    @else
+        <title>Percetakan Prima Printing</title>
+    @endif
+    <x-utils.meta-seo />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -17,7 +21,6 @@
         {{ $head }}
     @endif
     <x-utils.user-metas-x-demo />
-    <x-utils.meta-seo />
 
 </head>
 
