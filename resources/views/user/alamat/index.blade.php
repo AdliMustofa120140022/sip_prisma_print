@@ -1,8 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title">
-        Alamat
-    </x-slot>
-
+    <x-slot name="title">Alamat Pengiriman</x-slot>
 
     <div class=" w-full">
         <div class="flex gap-3 items-center">
@@ -13,7 +10,7 @@
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl">Alamat Pengiriman</h2>
         </div>
         <div class="bg-white p-8 rounded-lg shadow-md max-w-5xl mx-auto">
-            {{-- conten --}}
+            {{-- content --}}
             <a href="{{ route('user.alamat.create') }}"
                 class="px-6 py-2 text-white bg-green-600 rounded-md  inline-flex justify-center items-center mb-6">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +26,7 @@
                     class="mb-6 border rounded-lg flex justify-between p-3 {{ $alamat->is_default == 1 ? 'border-blue-300 bg-blue-50 border-2' : '' }}">
                     <div class="">
                         <h2 class="text-lg font-semibold">{{ $alamat->nama_penerima }}</h2>
-                        {{-- <p class="text-gray-600">Aldi Mustafa</p> --}}
+                        {{-- <p class="text-gray-600">Adli Mustofa</p> --}}
                         <p class="text-gray-600">{{ $alamat->no_hp }}</p>
                         <p class="text-gray-600">{{ $alamat->kelurahan }}, {{ $alamat->kecamatan }},
                             {{ $alamat->kabupaten }}, {{ $alamat->provinsi }}, {{ $alamat->kode_pos }}</p>
@@ -40,7 +37,7 @@
                         <a href="{{ route('user.alamat.edit', $alamat->id) }}" class="text-blue-500 block pb-2">Edit
                             Alamat</a>
                         @if ($alamat->is_default == 1)
-                            <span class="block pb-2">Alamat Utama</span>
+                            <span class="text-black-500 block pb-2">Alamat Utama</span>
                         @else
                             <a href="{{ route('user.alamat.default', $alamat->id) }}"
                                 class="text-blue-500 block pb-2 cursor-pointer">Pilih Jadi Alamat Utama</a>
@@ -58,6 +55,4 @@
             @endforeach
         </div>
     </div>
-
-
 </x-guest-layout>

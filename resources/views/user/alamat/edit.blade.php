@@ -1,8 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title">
-        Edit Alamat
-    </x-slot>
-
+    <x-slot name="title">Edit Alamat</x-slot>
 
     <div class=" w-full">
         <div class="flex gap-3 items-center">
@@ -32,9 +29,13 @@
 
                     <label class="block mb-2 font-semibold text-gray-700">Nomor WhatsApp</label>
                     <div class="flex mb-4">
-                        <select class="p-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500">
-                            <option>ID +62</option>
-                        </select>
+                        <div class="relative">
+                            <div
+                                class=" block   p-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500">
+                                <span class="text-nowrap">ID +62</span>
+                            </div>
+                        </div>
+                     
                         <input type="text" id="no_hp" name="no_hp" placeholder="Nomor WhatsApp"
                             value="{{ $alamat->no_hp }}"
                             class="w-full p-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500">
@@ -47,7 +48,6 @@
                 <!-- Informasi Alamat -->
                 <div class="mb-6">
                     <h3 class="text-lg font-semibold mb-2">Informasi Alamat</h3>
-
 
                     <label class="block mb-2 font-semibold text-gray-700">Provinsi</label>
                     <select id="provinsi" name="provinsi" onchange="getKabupaten()"
@@ -127,7 +127,7 @@
                         <label :class="selected === 'kantor' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'"
                             class="px-6 py-2 rounded-lg cursor-pointer">
                             <input type="radio" name="label" value="kantor" checked={selected===kantor}
-                                class="hidden" @click="selected = 'kantor'">
+                                class="hidden" @click="selected = 'Kantor'">
                             Kantor
                         </label>
 
@@ -135,16 +135,17 @@
                         <label :class="selected === 'rumah' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'"
                             class="px-6 py-2 rounded-lg cursor-pointer">
                             <input type="radio" name="label" value="rumah" checked={selected===rumah}
-                                class="hidden" @click="selected = 'rumah'">
+                                class="hidden" @click="selected = 'Rumah'">
                             Rumah
                         </label>
-                        <!-- Radio Button for Rumah -->
+
+                        <!-- Radio Button for Lainnya -->
                         <label
                             :class="selected === 'lainnya' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'"
                             class="px-6 py-2 rounded-lg cursor-pointer">
                             <input type="radio" name="label" value="lainnya" checked={selected===lainnya}
-                                class="hidden" @click="selected = 'lainnya'">
-                            Liannya
+                                class="hidden" @click="selected = 'Lainnya'">
+                            Lainnya
                         </label>
                     </div>
                     @error('label')
@@ -162,9 +163,7 @@
                     <button type="submit"
                         class=" py-3 px-10 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600">Simpan</button>
                 </div>
-
             </form>
-
         </div>
     </div>
 
@@ -186,7 +185,7 @@
                                 `<option value="${prov.text}" data-id="${prov.id}">${prov.text}</option>`;
                         });
                     })
-                    .catch(error => console.error('Error fetching provinces:', error));
+                    .catch(error => console.error('Kesalahan saat mengambil data provinces:', error));
             }
 
             function getKabupaten() {
@@ -204,7 +203,7 @@
                                 `<option value="${kota.text}" data-id="${kota.id}">${kota.text}</option>`;
                         });
                     })
-                    .catch(error => console.error('Error fetching kabupaten:', error));
+                    .catch(error => console.error('Kesalahan saat mengambil data kabupaten:', error));
             }
 
             function getKecamatan() {
@@ -222,7 +221,7 @@
                                 `<option value="${kec.text}" data-id="${kec.id}">${kec.text}</option>`;
                         });
                     })
-                    .catch(error => console.error('Error fetching kecamatan:', error));
+                    .catch(error => console.error('Kesalahan saat mengambil data kecamatan:', error));
             }
 
             function getKelurahan() {
@@ -240,7 +239,7 @@
                                 `<option value="${kel.text}" data-id="${kel.id}">${kel.text}</option>`;
                         });
                     })
-                    .catch(error => console.error('Error fetching kelurahan:', error));
+                    .catch(error => console.error('Kesalahan saat mengambil data kelurahan:', error));
             }
 
             function getPosCode() {
@@ -268,10 +267,8 @@
                         postCode.innerHTML += '<option value="other">Other</option>';
 
                     })
-                    .catch(error => console.error('Error fetching kelurahan:', error));
+                    .catch(error => console.error('Kesalahan saat mengambil data kelurahan:', error));
             }
         </script>
-
     </x-slot>
-
 </x-guest-layout>
