@@ -1,5 +1,4 @@
 <x-guest-layout>
-    <x-slot name="title"></x-slot>
 
     <x-slot name="head">
         <style>
