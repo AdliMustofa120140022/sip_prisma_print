@@ -138,7 +138,6 @@
                     </div>
                 </div>
 
-
                 <div class="" x-data="{ tab: 'deskripsi' }">
                     <div class="flex border-b">
                         <button @click="tab = 'deskripsi'"
@@ -149,9 +148,7 @@
                             class="px-4 py-2 focus:outline-none">Rincian Produk</button>
                     </div>
 
-
                     <!-- Add your content here -->
-
                     <div x-show="tab === 'deskripsi'"
                         class="border border-gray-300 rounded-lg p-5 my-3 transition-all duration-300 ease-in-out"
                         x-transition:enter="transition transform ease-out duration-300"
@@ -159,8 +156,7 @@
                         x-transition:leave="transition transform ease-in duration-200"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
 
-
-                        <p class="text-lg font-semibold">Deskrisi Porduk</p>
+                        <p class="text-lg font-semibold">Deskripsi Produk</p>
                         <p class="text-gray-500">{{ $produck->description }}</p>
 
                     </div>
@@ -171,42 +167,34 @@
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                         x-transition:leave="transition transform ease-in duration-200"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
-                        <p class="text-lg font-semibold">Sepesifikasi Produk</p>
+                        <p class="text-lg font-semibold">Spesifikasi Produk</p>
 
                         <p class="text-lg font-semibold mt-5">Data Porduk</p>
                         <p class="text-gray-500">Nama Produk : {{ $produck->name }}</p>
                         <p class="text-gray-500">Kategori : {{ $produck->sub_katagori->katagori->nama }}</p>
                         <p class="text-gray-500">Sub Kategori : {{ $produck->sub_katagori->name }}</p>
-                        {{-- <p class="text-gray-500">Deskrisi : {{ $produck->description }}</p> --}}
-
+                        {{-- <p class="text-gray-500">Deskripsi : {{ $produck->description }}</p> --}}
 
                         <p class="text-lg font-semibold mt-5">Stok Dan Dimensi</p>
                         <p class="text-gray-500">Jumlah Stok : {{ $produck->data_produck->stok }} </p>
                         <p class="text-gray-500">Satuan : {{ $produck->data_produck->satuan ?? 'buah' }} </p>
-                        <p class="text-gray-500">Ukuruan Lebar : {{ $produck->data_produck->lebar }} mm</p>
-                        <p class="text-gray-500">Ukuruan Panjang : {{ $produck->data_produck->panjang }} mm</p>
-                        <p class="text-gray-500">Ukuruan Tinggi : {{ $produck->data_produck->tinggi }} mm</p>
+                        <p class="text-gray-500">Ukuran Panjang : {{ $produck->data_produck->panjang }} mm</p>
+                        <p class="text-gray-500">Ukuran Lebar : {{ $produck->data_produck->lebar }} mm</p>
+                        <p class="text-gray-500">Ukuran Tinggi : {{ $produck->data_produck->tinggi }} mm</p>
                         <p class="text-gray-500">Berat Satuan : {{ $produck->data_produck->berat }} gram</p>
                         <p class="text-gray-500">Minimal Pemesanan :
                             {{ $produck->data_produck->minimal_grosir ?? '10' }} </p>
 
-
-                        <p class="text-lg font-semibold mt-5">Sepesifikasi Teknis</p>
+                        <p class="text-lg font-semibold mt-5">Spesifikasi Teknis</p>
                         <p class="text-gray-500">Bahan : {{ $produck->data_produck->bahan }} </p>
                         <p class="text-gray-500">Warna : {{ $produck->data_produck->warna }} </p>
                         <p class="text-gray-500">Jenis Cetakan : {{ $produck->data_produck->jenis_cetak }} </p>
                         <p class="text-gray-500">Resolusi Cetakan : {{ $produck->data_produck->resolusi }} </p>
-                        <p class="text-gray-500">Finising : {{ $produck->data_produck->finishing }} </p>
+                        <p class="text-gray-500">Finishing : {{ $produck->data_produck->finishing }} </p>
                         <p class="text-gray-500">Jenis Kertas : {{ $produck->data_produck->kertas }} </p>
-                        <p class="text-gray-500">Ketebalan Kertas :
-                            {{ $produck->data_produck->ketebalan_kertas . ' gsm' }}
-                        </p>
+                        <p class="text-gray-500">Ketebalan Kertas : {{ $produck->data_produck->ketebalan_kertas }} gsm </p>
                         <p class="text-gray-500">Tinta yang digunakan : {{ $produck->data_produck->tinta }} </p>
-                        <p class="text-gray-500">Estimasi Pengerjaan :
-                            {{ $produck->data_produck->estimasi ?? '1-14 Hari' }}
-                        </p>
-
-
+                        <p class="text-gray-500">Estimasi Pengerjaan : {{ $produck->data_produck->estimasi ?? '1-14 Hari' }} </p>
 
                         {{-- <p class="text-lg font-semibold mt-5">Informasi Harga</p>
                         <p class="text-gray-500">Harga Satuan : {{ $produck->data_produck->harga_satuan }} </p>
@@ -215,13 +203,11 @@
                         <p class="text-gray-500">Minimum Pembelian Grosir :
                             {{ $produck->data_produck->minimal_grosir ?? ' - ' }} </p>
 
-
                         <p class="text-lg font-semibold mt-5">Informasi Harga</p>
                         <p class="text-gray-500">Tanggal Kadaluarsa :
                             {{ $produck->data_produck->tanggal_kadaluarsa ?? ' - ' }}
                         </p>
                         <p class="text-gray-500">Supplier : {{ $produck->data_produck->supplier }} </p> --}}
-
 
                     </div>
                 </div>
@@ -269,7 +255,6 @@
             function presImage($src) {
                 console.log($src);
             }
-
 
             function modalHandler() {
                 return {

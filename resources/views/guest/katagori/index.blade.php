@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title">Katagori</x-slot>
+    <x-slot name="title">Kategori</x-slot>
 
     @if (!$params)
         <div class="text-center">

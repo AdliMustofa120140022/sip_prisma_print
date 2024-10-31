@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title"> Product</x-slot>
+    <x-slot name="title"> Produk </x-slot>
 
     <section class="container mx-auto px-4 md:px-0">
         {{-- <x-product-sidebar :param='$params' /> --}}
@@ -19,7 +19,7 @@
                         <path d="M3 16L7 20M7 20L11 16M7 20V4M11 4H21M11 8H18M11 12H15" stroke="#707070"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <span class="font-semibold text-gray-700">Sort</span>
+                    <span class="font-semibold text-gray-700">Sortir</span>
                 </button>
                 <div x-show="openShort"
                     class="z-50 px-3 translate-y-1 -translate-x-0 text-sm text-gray-600 absolute bg-gray-200 rounded-xl border border-gray-300 shadow text-center transition-all duration-300 ease-in-out"
@@ -31,12 +31,12 @@
                         <a href="{{ route('guest.product', ['order' => 'asc']) }}"
                             class="flex items-center gap-2 my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">
                             <i class="fa-solid fa-arrow-up"></i>
-                            <span>Asc</span>
+                            <span>A-Z</span>
                         </a>
                         <a href="{{ route('guest.product', ['order' => 'desc']) }}"
                             class=" flex items-center gap-2 my-2 py-2 px-4 bg-slate-100 rounded-full hover:bg-slate-300">
                             <i class="fa-solid fa-arrow-down"></i>
-                            <span>Dsc</span>
+                            <span>Z-A</span>
                         </a>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <input type="text" name="order" value="{{ $order }}" readonly class="hidden">
                         <i class="fa-solid fa-magnifying-glass h-5 w-5 absolute left-3 top-2.5 text-gray-400"></i>
                         <button type="submit"
-                            class="bg-blue-500 border text-white font-semibold border-gray-300 rounded-full px-4 py-2">cari</button>
+                            class="bg-blue-500 border text-white font-semibold border-gray-300 rounded-full px-4 py-2">Cari</button>
                     </form>
                 </div>
             </div>
