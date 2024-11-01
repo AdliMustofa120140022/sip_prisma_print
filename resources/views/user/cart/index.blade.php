@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title">Cart</x-slot>
+    <x-slot name="title">Keranjang Belanja</x-slot>
 
     <x-slot name="head">
         <meta name="csrf-token" content="{{ csrf_token() }}">
