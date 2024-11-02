@@ -186,7 +186,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/transaksi/{id}/show', [TransaksiController::class, 'show'])->name('user.transaksi.show');
         Route::get('/transaksi/{id}/done', [TransaksiController::class, 'done'])->name('user.transaksi.done');
 
-
         //return
         Route::get('/return/{id}/create', [ReturnController::class, 'create'])->name('user.return.create');
         Route::post('/return/{id}/store', [ReturnController::class, 'store'])->name('user.return.store');

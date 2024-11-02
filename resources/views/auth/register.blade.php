@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <x-slot name="title">Register</x-slot>
+    <x-slot name="title">Registrasi Akun</x-slot>
 
     <x-slot name="head">
         <style>
@@ -23,8 +23,7 @@
                     <div class="card card-plain mt-6 w-80 mx-auto overflow-scroll">
                         <div class="card-header pb-0 text-left bg-transparent">
                             <h3 class="font-weight-bolder text-dark text-gradient">Daftar</h3>
-                            <p class="mb-0">Belum punya akun? Daftar dan nikmati kemudahan berbelanja online bersama
-                                kami.</p>
+                            <p class="mb-0">Belum punya akun? Daftar dan nikmati kemudahan berbelanja online bersama kami.</p>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('register') }}" method="POST" role="form">
@@ -63,11 +62,11 @@
                                 @error('password')
                                     <p class="text-danger text-center p-0 m-0">{{ $message }}</p>
                                 @enderror
-                                <label>Password Konfirmasi</label>
+                                <label>Konfirmasi Password</label>
                                 <div class="mb-3">
                                     <div class="form-control d-flex justify-content-between align-items-center p-0">
                                         <input type="password" name="password_confirmation" id="password_confirmation"
-                                            class="form-control border-0" placeholder="Password Konfirmasi"
+                                            class="form-control border-0" placeholder="Konfirmasi Password"
                                             aria-label="password_confirmation"
                                             aria-describedby="password_confirmation-addon" required>
                                         <button type="button" onclick="toggleShowPassword('password_confirmation')"
@@ -80,7 +79,6 @@
                                     <p class="text-danger text-center p-0 m-0">{{ $message }}</p>
                                 @enderror
 
-
                                 <div class="text-center">
                                     <button type="submit"
                                         class="btn bg-dark w-100 mt-4 mb-0 text-white">Daftar</button>
@@ -88,24 +86,21 @@
                             </form>
 
                             <p class="mb-4 text-sm mt-4">
-                                Sudah memiliki akun ?
+                                Sudah memiliki akun?
                                 <a href="{{ route('login') }}"
                                     class="text-dark text-gradient font-weight-bold">Login</a>
                             </p>
                             <p class="mb-4 text-sm">
                                 <a href="{{ route('guest.dashboard') }}"
-                                    class="text-dark text-gradient font-weight-bold">Kembali Ke Halaman Utama</a>
+                                    class="text-dark text-gradient font-weight-bold">Kembali ke Halaman Utama</a>
                             </p>
-
                         </div>
                     </div>
                 </div>
-
             </div>
             {{-- </div> --}}
         </div>
     </section>
-
 
     {{-- </section> --}}
 
@@ -126,5 +121,4 @@
             }
         </script>
     </x-slot>
-
 </x-auth-layout>

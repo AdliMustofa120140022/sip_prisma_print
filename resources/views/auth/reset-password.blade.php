@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <x-slot name="title">new password</x-slot>
+    <x-slot name="title">Reset Password</x-slot>
 
     <x-slot name="head">
     </x-slot>
@@ -46,7 +46,7 @@
                                 <div class="mb-3">
                                     <div class="form-control d-flex justify-content-between align-items-center p-0">
                                         <input type="password" name="password_confirmation" id="password_confirmation"
-                                            class="form-control border-0" placeholder="Password Konfirmasi"
+                                            class="form-control border-0" placeholder="Konfirmasi Password"
                                             aria-label="password_confirmation"
                                             aria-describedby="password_confirmation-addon" required>
                                         <button type="button" onclick="toggleShowPassword('password_confirmation')"
@@ -62,33 +62,28 @@
                                 @enderror
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-dark w-100 mt-4 mb-0 text-white">Reset
-                                        Password</button>
+                                    <button type="submit" class="btn bg-dark w-100 mt-4 mb-0 text-white">Reset Password</button>
                                 </div>
                             </form>
 
                             <p class="mb-4 text-sm mt-4">
-                                Kembali Ke
+                                Kembali ke
                                 <a href="{{ route('login') }}"
                                     class="text-dark text-gradient font-weight-bold">Login</a>
                             </p>
                             <p class="mb-4 text-sm">
                                 <a href="{{ route('guest.dashboard') }}"
-                                    class="text-dark text-gradient font-weight-bold">Kembali Ke Halaman Utama</a>
+                                    class="text-dark text-gradient font-weight-bold">Kembali ke Halaman Utama</a>
                             </p>
-
                         </div>
                     </div>
                 </div>
-
             </div>
             {{-- </div> --}}
         </div>
     </section>
 
-
     {{-- </section> --}}
-
     <x-slot name='scripts'>
         <script>
             function toggleShowPassword(target) {
@@ -106,5 +101,4 @@
             }
         </script>
     </x-slot>
-
 </x-auth-layout>

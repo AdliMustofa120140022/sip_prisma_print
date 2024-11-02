@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <x-slot name="title">login</x-slot>
+    <x-slot name="title">Login</x-slot>
 
     <x-slot name="head">
         <style>
@@ -62,29 +62,26 @@
                             </form>
 
                             <p class="mb-4 text-sm mt-4">
-                                Belum memiliki akun ?
+                                Belum memiliki akun?
                                 <a href="{{ route('register') }}"
                                     class="text-dark text-gradient font-weight-bold">Daftar di sini </a>
                             </p>
                             <p class="mb-4 text-sm">
-                                Lupa Passoword ?
+                                Lupa Passoword?
                                 <a href="{{ route('password.request') }}"
                                     class="text-dark text-gradient font-weight-bold">Reset Password </a>
                             </p>
                             <p class="mb-4 text-sm">
                                 <a href="{{ route('guest.dashboard') }}"
-                                    class="text-dark text-gradient font-weight-bold">Kembali Ke Halaman Utama</a>
+                                    class="text-dark text-gradient font-weight-bold">Kembali ke Halaman Utama</a>
                             </p>
-
                         </div>
                     </div>
                 </div>
-
             </div>
             {{-- </div> --}}
         </div>
     </section>
-
 
     <x-slot name='scripts'>
         <script>
@@ -103,5 +100,4 @@
             }
         </script>
     </x-slot>
-
 </x-auth-layout>

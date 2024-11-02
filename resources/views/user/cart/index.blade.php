@@ -139,8 +139,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-
                     </div>
                 </div>
 
@@ -160,9 +158,7 @@
                             </div>
                         </div>
 
-
                         <div id="checkout-form" class="flex items-center justify-center gap-2">
-
                             <form action="{{ route('user.checkout.store') }}" method="POST" x-data="{ loading: false }"
                                 @submit="loading = true">
                                 @csrf
@@ -181,19 +177,13 @@
                                         Loading...
                                     </button>
                                 </template>
-
                             </form>
-
-
                         </div>
                     </div>
-
                 </div>
             </div>
         @endif
-
     </div>
-
 
     <x-slot name="scripts">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -217,7 +207,6 @@
                     checkoutButton.classList.add('bg-gray-300');
                 }
             }
-
 
             function renderTotalHarga() {
                 itemDetailsInput.value = JSON.stringify(itemSelected);
@@ -356,8 +345,5 @@
                 isInitialized = true
             }
         </script>
-
     </x-slot>
-
-
 </x-guest-layout>

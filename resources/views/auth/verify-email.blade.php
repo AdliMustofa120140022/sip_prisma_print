@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <x-slot name="title">Verivy Email</x-slot>
+    <x-slot name="title">Verifikasi Email</x-slot>
 
     <x-slot name="head">
     </x-slot>
@@ -16,7 +16,7 @@
                 <div class="col-md-6 d-flex flex-column ">
                     <div class="card card-plain mt-8 w-80 mx-auto">
                         <div class="card-header pb-0 text-left bg-transparent">
-                            <h3 class="font-weight-bolder text-dark text-gradient">Email Verifiksi</h3>
+                            <h3 class="font-weight-bolder text-dark text-gradient">Email Verifikasi/</h3>
                         </div>
                         <div class="card-body">
 
@@ -34,26 +34,23 @@
                             </form>
 
                             <p class="mb-4 text-sm mt-4">
-                                Kembali Ke
+                                Kembali ke
                                 <a href="{{ route('login') }}"
                                     class="text-dark text-gradient font-weight-bold">Login</a>
                             </p>
                             <p class="mb-4 text-sm">
                                 <a href="{{ route('guest.dashboard') }}"
-                                    class="text-dark text-gradient font-weight-bold">Kembali Ke Halaman Utama</a>
+                                    class="text-dark text-gradient font-weight-bold">Kembali ke Halaman Utama</a>
                             </p>
                         </div>
                     </div>
                 </div>
-
             </div>
             {{-- </div> --}}
         </div>
     </section>
 
-
     {{-- </section> --}}
-
     <x-slot name='scripts'>
         <script>
             function toggleShowPassword(target) {
@@ -71,5 +68,4 @@
             }
         </script>
     </x-slot>
-
 </x-auth-layout>

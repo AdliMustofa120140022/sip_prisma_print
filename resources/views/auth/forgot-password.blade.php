@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <x-slot name="title">login</x-slot>
+    <x-slot name="title">Lupa Password</x-slot>
 
     <x-slot name="head">
     </x-slot>
@@ -46,27 +46,23 @@
                             </form>
 
                             <p class="mb-4 text-sm mt-4">
-                                Kembali Ke
+                                Kembali ke
                                 <a href="{{ route('login') }}"
                                     class="text-dark text-gradient font-weight-bold">Login</a>
                             </p>
                             <p class="mb-4 text-sm">
                                 <a href="{{ route('guest.dashboard') }}"
-                                    class="text-dark text-gradient font-weight-bold">Kembali Ke Halaman Utama</a>
+                                    class="text-dark text-gradient font-weight-bold">Kembali ke Halaman Utama</a>
                             </p>
-
                         </div>
                     </div>
                 </div>
-
             </div>
             {{-- </div> --}}
         </div>
     </section>
 
-
     {{-- </section> --}}
-
     <x-slot name='scripts'>
         <script>
             function toggleShowPassword(target) {
@@ -84,5 +80,4 @@
             }
         </script>
     </x-slot>
-
 </x-auth-layout>
