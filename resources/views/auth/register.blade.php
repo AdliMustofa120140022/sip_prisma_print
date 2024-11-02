@@ -23,7 +23,7 @@
                     <div class="card card-plain mt-6 w-80 mx-auto overflow-scroll">
                         <div class="card-header pb-0 text-left bg-transparent">
                             <h3 class="font-weight-bolder text-dark text-gradient">Daftar</h3>
-                            <p class="mb-0">Belum punya akun? Daftar dan nikmati kemudahan berbelanja online bersama kami.</p>
+                            <p class="mb-0">Belum punya akun? Daftar sekarang dan nikmati kemudahan berbelanja online bersama kami.</p>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('register') }}" method="POST" role="form">
@@ -103,7 +103,6 @@
     </section>
 
     {{-- </section> --}}
-
     <x-slot name='scripts'>
         <script>
             function toggleShowPassword(target) {

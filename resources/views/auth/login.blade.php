@@ -23,7 +23,7 @@
                     <div class="card card-plain mt-8 w-80 mx-auto">
                         <div class="card-header pb-0 text-left bg-transparent">
                             <h3 class="font-weight-bolder text-dark text-gradient">Masuk</h3>
-                            <p class="mb-0">Selamat datang kembali, Silahkan masuk untuk melanjutkan belanja</p>
+                            <p class="mb-0">Selamat datang kembali! Silakan masuk untuk melanjutkan belanja</p>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('login') }}" method="POST" role="form">
@@ -49,7 +49,7 @@
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe"
                                         checked="">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                    <label class="form-check-label" for="rememberMe">Ingat saya</label>
                                 </div>
                                 @error('email')
                                     <p class="text-danger text-center p-0 m-0">Kombinasi Email dan Password salah
@@ -67,9 +67,9 @@
                                     class="text-dark text-gradient font-weight-bold">Daftar di sini </a>
                             </p>
                             <p class="mb-4 text-sm">
-                                Lupa Passoword?
+                                Lupa passoword?
                                 <a href="{{ route('password.request') }}"
-                                    class="text-dark text-gradient font-weight-bold">Reset Password </a>
+                                    class="text-dark text-gradient font-weight-bold">Reset password </a>
                             </p>
                             <p class="mb-4 text-sm">
                                 <a href="{{ route('guest.dashboard') }}"

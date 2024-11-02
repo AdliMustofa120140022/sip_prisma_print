@@ -16,7 +16,7 @@
                 <div class="col-md-6 d-flex flex-column ">
                     <div class="card card-plain mt-8 w-80 mx-auto">
                         <div class="card-header pb-0 text-left bg-transparent">
-                            <h3 class="font-weight-bolder text-dark text-gradient">Email Verifikasi/</h3>
+                            <h3 class="font-weight-bolder text-dark text-gradient">Email Verifikasi</h3>
                         </div>
                         <div class="card-body">
 
