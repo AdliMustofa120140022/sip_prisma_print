@@ -15,7 +15,7 @@
         </style>
     </x-slot>
 
-    <section class="promosi">
+    <section class="slider">
         <div class="container mx-auto pb-10">
             <div x-data="carousel()" x-init="startAutoSlide()" class="relative">
                 <div class="overflow-hidden relative">
@@ -25,13 +25,13 @@
                             @foreach ($benner_homes as $benner_home)
                                 <div
                                     class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
-                                    <img src="{{ asset('storage/benner/' . $benner_home->img) }}" alt="Slide 1"
+                                    <img src="{{ asset('storage/benner/' . $benner_home->img) }}" alt="Banner Slider Produk Percetakan Prima Printing | Percetakan Kotabumi | Percetakan Prokimal | Percetakan Sungkai Jaya - Solusi Cetak untuk Acara, Kantor, Pendidikan, Promosi, Retail, Kebutuhan Personal, dan Alat Tulis Kantor"
                                         class="w-full h-full rounded-2xl object-cover object-center">
                                 </div>
                             @endforeach
                         @else
                             <div class="min-w-full rounded-2xl border-3 border aspect-[10/5] md:aspect-[10/3] w-full">
-                                <img src="{{ asset('static/img/default_benner.png') }}" alt="Slide 1"
+                                <img src="{{ asset('static/img/default_benner.png') }}" alt="Banner Slider Produk Percetakan Prima Printing | Percetakan Kotabumi | Percetakan Prokimal | Percetakan Sungkai Jaya - Solusi Cetak untuk Acara, Kantor, Pendidikan, Promosi, Retail, Kebutuhan Personal, dan Alat Tulis Kantor"
                                     class="w-full h-full rounded-2xl object-cover object-center">
                             </div>
                         @endif
@@ -87,9 +87,7 @@
                     Lihat Semua Produk
                 </a>
             </div>
-
         </section>
-
         <x-side-navigate />
     </div>
 
@@ -105,7 +103,7 @@
                     startAutoSlide() {
                         this.autoSlideInterval = setInterval(() => {
                             this.next();
-                        }, 3000); // Change slides every 3 seconds
+                        }, 8000); // Change slides every 8 seconds
                     },
                     prev() {
                         this.currentIndex = (this.currentIndex === 0) ? this.items - 1 : this.currentIndex - 1;
