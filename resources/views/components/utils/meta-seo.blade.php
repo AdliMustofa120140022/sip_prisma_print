@@ -2,7 +2,7 @@
  <meta name="description"
      content="Percetakan Prima Printing adalah layanan percetakan profesional yang menawarkan berbagai solusi cetak berkualitas tinggi, termasuk kartu nama, brosur, banner, dan lainnya dengan harga terjangkau dan layanan cepat.">
  <meta name="keywords"
-     content="Percetakan Prima Printing, Percetakan Kotabumi,g Percetakan, Prima Printing, Cetak Kartu Nama, Cetak Brosur, Cetak Banner, Layanan Percetakan, Percetakan Profesional, Cetak Online, percetakan, cetak cepat, cetak murah, kartu nama, brosur, spanduk, packaging, Prima Printing">
+     content="Percetakan Prima Printing, Percetakan Kotabumi, Percetakan, Prima Printing, Cetak Kartu Nama, Cetak Brosur, Cetak Banner, Layanan Percetakan, Percetakan Profesional, Cetak Online, percetakan, cetak cepat, cetak murah, kartu nama, brosur, spanduk, packaging, Prima Printing">
  <meta name="author" content="Prima Printing">
  <meta name="robots" content="index, follow">
 
