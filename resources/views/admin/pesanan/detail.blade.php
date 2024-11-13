@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalDetailLabel{{ $transaksi->id }}">
-                    Update Status Pesanan</h5>
+                    Detail Status Pesanan</h5>
                 <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -33,27 +33,27 @@
                                     <strong>Status Transaksi:</strong>
                                     @if ($transaksi->status == 'payment')
                                         <span class=" text-warning text-center font-weight-bold">
-                                            Prses Pembayaran
+                                            Proses Pembayaran
                                         </span>
                                     @elseif($transaksi->status == 'desain')
                                         <span class=" text-primary text-center font-weight-bold">
-                                            Desain
+                                            Proses Desain
                                         </span>
                                     @elseif($transaksi->status == 'cetak')
                                         <span class=" text-primary text-center font-weight-bold">
-                                            cetak
+                                            Proses Cetak
                                         </span>
                                     @elseif($transaksi->status == 'kirim')
                                         <span class=" text-primary text-center font-weight-bold">
-                                            kirim
+                                            Proses Pengiriman
                                         </span>
                                     @elseif($transaksi->status == 'selesai')
                                         <span class=" text-succes text-center font-weight-bold">
-                                            selesai
+                                            Pesanan Selesai
                                         </span>
                                     @elseif($transaksi->status == 'gagal')
                                         <span class=" text-danger text-center font-weight-bold">
-                                            gagal
+                                            Pesanan Gagal
                                         </span>
                                     @endif
                                 </div>
@@ -130,7 +130,7 @@
                                     @endforeach
                                 @else
                                     <div class="mb-2">
-                                        <strong>(Kostum)</strong>
+                                        <strong>(Pesanan Kustom)</strong>
                                         <strong>{{ $transaksi->costume_transaksi->product_name }}</strong> - Rp.
                                         {{ number_format($transaksi->costume_transaksi->price, 0, ',', '.') }}
                                         x
@@ -157,7 +157,7 @@
                                     {{ $transaksi->user->name }}
                                 </div>
                                 <div class="mb-2">
-                                    <strong>Alamat:</strong> Rp.
+                                    <strong>Alamat:</strong> 
                                     <span class="text-wrap">{{ $transaksi->transaksi_data->alamat->kelurahan }},
                                         {{ $transaksi->transaksi_data->alamat->kecamatan }},
                                         {{ $transaksi->transaksi_data->alamat->kabupaten }},
