@@ -33,27 +33,27 @@
                                     <strong>Status Transaksi:</strong>
                                     @if ($transaksi->status == 'payment')
                                         <span class=" text-warning text-center font-weight-bold">
-                                            Prses Pembayaran
+                                            Proses Pembayaran
                                         </span>
                                     @elseif($transaksi->status == 'desain')
                                         <span class=" text-primary text-center font-weight-bold">
-                                            Desain
+                                            Proses Desain
                                         </span>
                                     @elseif($transaksi->status == 'cetak')
                                         <span class=" text-primary text-center font-weight-bold">
-                                            cetak
+                                            Proses Cetak
                                         </span>
                                     @elseif($transaksi->status == 'kirim')
                                         <span class=" text-primary text-center font-weight-bold">
-                                            kirim
+                                            Proses Pengiriman
                                         </span>
                                     @elseif($transaksi->status == 'selesai')
                                         <span class=" text-succes text-center font-weight-bold">
-                                            selesai
+                                            Pesanan Selesai
                                         </span>
                                     @elseif($transaksi->status == 'gagal')
                                         <span class=" text-danger text-center font-weight-bold">
-                                            gagal
+                                            Pesanan Gagal
                                         </span>
                                     @endif
                                 </div>
@@ -87,7 +87,7 @@
                                     {{ $transaksi->transaksi_data->metode_pengiriman }}
                                 </div>
                                 <div class="mb-2">
-                                    <strong>resi:</strong>
+                                    <strong>Resi:</strong>
                                     {{ $transaksi->transaksi_data->resi ?? '-' }}
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                     @endforeach
                                 @else
                                     <div class="mb-2">
-                                        <strong>(Kostum)</strong>
+                                        <strong>(Pesanan Kustom)</strong>
                                         <strong>{{ $transaksi->costume_transaksi->product_name }}</strong> - Rp.
                                         {{ number_format($transaksi->costume_transaksi->price, 0, ',', '.') }}
                                         x
@@ -148,11 +148,11 @@
                             <div class="card p-3">
                                 <h6 class="border-bottom pb-2 mb-3">Informasi Pemesan</h6>
                                 <div class="mb-2">
-                                    <strong>Nama:</strong> Rp.
+                                    <strong>Nama:</strong>
                                     {{ $transaksi->user->name }}
                                 </div>
                                 <div class="mb-2">
-                                    <strong>Alamat:</strong> Rp.
+                                    <strong>Alamat:</strong>
                                     <span class="text-wrap">{{ $transaksi->transaksi_data->alamat->kelurahan }},
                                         {{ $transaksi->transaksi_data->alamat->kecamatan }},
                                         {{ $transaksi->transaksi_data->alamat->kabupaten }},
@@ -160,7 +160,7 @@
                                         {{ $transaksi->transaksi_data->alamat->kode_pos }}</span>
                                 </div>
                                 <div class="mb-2">
-                                    <strong>Nomor HP:</strong> Rp.
+                                    <strong>Nomor HP:</strong>
                                     {{ $transaksi->transaksi_data->alamat->no_hp }}
                                 </div>
                             </div>
@@ -168,33 +168,33 @@
 
                         <div class="row mt-sm-4 mt-4">
                             <div class="card p-3">
-                                <h6 class="border-bottom pb-2 mb-3">Update Status Pesana</h6>
+                                <h6 class="border-bottom pb-2 mb-3">Update Status Pesanan</h6>
                                 <form action="{{ route('admin.pesanan.update', $transaksi->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('put')
                                     @csrf
-                                    <label for="update_status">Update Statut</label>
+                                    <label for="update_status">Update Status</label>
                                     <select name="update_status" id="update_status" class="form-control mb-4">
                                         <option value="payment"
                                             {{ $transaksi->status == 'payment' ? 'selected' : '' }}>
                                             Proses Pembayaran
                                         </option>
                                         <option value="desain" {{ $transaksi->status == 'desain' ? 'selected' : '' }}>
-                                            Desain
+                                            Proses Desain
                                         </option>
                                         <option value="cetak" {{ $transaksi->status == 'cetak' ? 'selected' : '' }}>
-                                            Cetak
+                                            Proses Cetak
                                         </option>
                                         <option value="kirim" {{ $transaksi->status == 'kirim' ? 'selected' : '' }}>
-                                            Kirim
+                                            Proses Pengiriman
                                         </option>
                                         <option value="selesai"
                                             {{ $transaksi->status == 'selesai' ? 'selected' : '' }}>
-                                            Selesai
+                                            Pesanan Selesai
                                         </option>
                                         <option value="gagal" {{ $transaksi->status == 'gagal' ? 'selected' : '' }}>
-                                            Gagal
+                                            Pesanan Gagal
                                         </option>
                                     </select>
 

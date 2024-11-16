@@ -1,7 +1,5 @@
 <x-guest-layout>
-    <x-slot name="title">
-        Tentang kami
-    </x-slot>
+    <x-slot name="title">Tentang Kami</x-slot>
 
     <x-slot name="head">
 

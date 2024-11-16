@@ -79,27 +79,27 @@
                                                     </p>
                                                 @elseif($transaksi->status == 'desain')
                                                     <p class=" text-primary text-center font-weight-bold">
-                                                        Desain
+                                                        Prose Desain
                                                     </p>
                                                 @elseif($transaksi->status == 'cetak')
                                                     <p class=" text-primary text-center font-weight-bold">
-                                                        cetak
+                                                        Proses Cetak
                                                     </p>
                                                 @elseif($transaksi->status == 'kirim')
                                                     <p class=" text-primary text-center font-weight-bold">
-                                                        kirim
+                                                        Proses Pengiriman
                                                     </p>
                                                 @elseif($transaksi->status == 'return')
                                                     <p class=" text-primary text-center font-weight-bold">
-                                                        return
+                                                        Retur Pesanan
                                                     </p>
                                                 @elseif($transaksi->status == 'selesai')
                                                     <p class=" text-succes text-center font-weight-bold">
-                                                        selesai
+                                                        Pesanan Selesai
                                                     </p>
                                                 @elseif($transaksi->status == 'gagal')
                                                     <p class=" text-danger text-center font-weight-bold">
-                                                        gagal
+                                                        Pesanan Gagal
                                                     </p>
                                                 @endif
                                             </td>
