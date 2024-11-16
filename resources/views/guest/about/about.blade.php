@@ -2,12 +2,7 @@
     <x-slot name="title">Tentang Kami</x-slot>
 
     <x-slot name="head">
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-         <style>
-        .animate__animated {
-            animation-iteration-count: 1; /* Animasi hanya dijalankan sekali */
-        }
-    </style>
+
     </x-slot>
 
     <div class=" w-full">
@@ -21,23 +16,23 @@
         <div class="max-w-5xl mx-auto bg-white p-6 rounded-lg ">
 
             <div class="max-w-4xl mx-auto  rounded-lg p-8">
-                <h1 class="text-2xl font-bold text-center mb-6 animate__animated animate__fadeInUp">PROFIL PERCETAKAN PRIMA PRINTING</h1>
+                <h1 class="text-2xl font-bold text-center mb-6">PROFIL PERCETAKAN PRIMA PRINTING</h1>
 
-                <p class="mb-6 text-justify animate__animated animate__fadeInUp">
+                <p class="mb-6 text-justify">
                     Prima Printing adalah perusahaan percetakan terkemuka yang berkomitmen untuk menyediakan solusi
-                    cetak kustom berkualitas tinggi bagi pelanggan kami. Berdiri sejak 2000, kami telah berkembang
+                    cetak kustom berkualitas tinggi bagi pelanggan kami. Berdiri sejak 2004, kami telah berkembang
                     menjadi salah satu pilihan utama dalam industri percetakan, melayani berbagai kebutuhan cetak mulai
-                    dari brosur, flyer, poster, kartu nama, hingga buku, kalender, dan merchandise.
+                    dari undangan, banner, urawan, brosur, flyer, poster, kartu nama, yasin, kalender, dan merchandise.
                 </p>
 
-                <h2 class="text-xl font-semibold mb-4 text-center animate__animated animate__fadeInUp">Visi</h2>
-                <p class="mb-6 text-justify animate__animated animate__fadeInUp">
+                <h2 class="text-xl font-semibold mb-4 text-center">Visi</h2>
+                <p class="mb-6 text-justify">
                     Menjadi penyedia layanan cetak kustom terdepan di Indonesia, dengan fokus pada kualitas, inovasi,
                     dan kepuasan pelanggan.
                 </p>
 
-                <h2 class="text-xl font-semibold mb-4 text-center animate__animated animate__fadeInUp">Misi</h2>
-                <ol class="list-decimal list-outside li space-y-2 mb-6 ms-4 animate__animated animate__fadeInUp">
+                <h2 class="text-xl font-semibold mb-4 text-center">Misi</h2>
+                <ol class="list-decimal list-outside li space-y-2 mb-6 ms-4">
                     <li class="pl-3">
                         Kualitas Unggul: Menghasilkan produk cetak dengan standar kualitas tertinggi.
                     </li>
@@ -54,7 +49,7 @@
                     </li>
                 </ol>
 
-                <h2 class="text-xl font-semibold mb-4 text-center animate__animated animate__fadeInUp">Keunggulan Kami</h2>
+                <h2 class="text-xl font-semibold mb-4 text-center">Keunggulan Kami</h2>
                 <ul class="list-disc list-outside space-y-2 mb-6 ms-4">
                     <li class="pl-3">Teknologi Terbaru: Menggunakan peralatan cetak terkini untuk hasil maksimal.</li>
                     <li class="pl-3">Tim Profesional: Tenaga ahli yang siap membantu mewujudkan ide kreatif Anda.</li>
@@ -64,16 +59,16 @@
                         pelanggan.</li>
                 </ul>
 
-                <p class="mb-6 text-justify animate__animated animate__fadeInUp">
+                <p class="mb-6 text-justify">
                     Prima Printing selalu siap melayani Anda dengan solusi cetak yang sesuai dengan kebutuhan Anda.
                 </p>
 
-                <h2 id=contak class="text-xl font-semibold mb-4 animate__animated animate__fadeInUp">Hubungi Kami</h2>
-                <div class="mb-6 animate__animated animate__fadeInUp">
+                <h2 id=contak class="text-xl font-semibold mb-4">Hubungi Kami</h2>
+                <div class="mb-6">
                     <p>Alamat 1:</p>
                     <p>Jl. Tabak No.09, Madukoro, Kec. Kotabumi Utara, Kabupaten Lampung Utara, Lampung 34552</p>
                     <p>Email: <a target="_blank" href="mailto:perc.primaprinting@gmail.com"
-                            class>perc.primaprinting@gmail.com</a></p>
+                            class="text-blue-500">perc.primaprinting@gmail.com</a></p>
                     <p>Telepon: <a href="https://wa.me/+628127964966" target="_blank" class="">0812-7964-966</a>
                     </p>
                     <a href="https://maps.app.goo.gl/Z5n8kQQseJQeqUo27" target="_blank" class="text-blue-500">Lihat di
@@ -84,7 +79,7 @@
                     <p>Alamat 2:</p>
                     <p>Pasar Cempaka, Cempaka, Kec. Sungkai Jaya, Kabupaten Lampung Utara, Lampung 34552</p>
                     <p>Email: <a target="_blank" href="mailto:perc.primaprinting@gmail.com"
-                            class>perc.primaprinting@gmail.com</a></p>
+                            class="text-blue-500">perc.primaprinting@gmail.com</a></p>
                     <p>Telepon: <a href="https://wa.me/+6282374873888" target="_blank" class="">0823-7487-3888</a>
                     </p>
                     <a href="https://maps.app.goo.gl/V92Z2EnrH15sW3WR8" target="_blank" class="text-blue-500">Lihat di
