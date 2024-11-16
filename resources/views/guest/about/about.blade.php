@@ -23,7 +23,7 @@
             <div class="max-w-4xl mx-auto  rounded-lg p-8">
                 <h1 class="text-2xl font-bold text-center mb-6 animate__animated animate__fadeInUp">PROFIL PERCETAKAN PRIMA PRINTING</h1>
 
-                <p class="mb-6 text-justify animate__animated animate__fadeInRight">
+                <p class="mb-6 text-justify animate__animated animate__fadeInDown animate__delay-1s">
                     Prima Printing adalah perusahaan percetakan terkemuka yang berkomitmen untuk menyediakan solusi
                     cetak kustom berkualitas tinggi bagi pelanggan kami. Berdiri sejak 2000, kami telah berkembang
                     menjadi salah satu pilihan utama dalam industri percetakan, melayani berbagai kebutuhan cetak mulai
