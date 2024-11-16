@@ -2,7 +2,12 @@
     <x-slot name="title">Tentang Kami</x-slot>
 
     <x-slot name="head">
-
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+         <style>
+        .animate__animated {
+            animation-iteration-count: 1; /* Animasi hanya dijalankan sekali */
+        }
+    </style>
     </x-slot>
 
     <div class=" w-full">
