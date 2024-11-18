@@ -20,9 +20,9 @@
 
                 <p class="mb-6 text-justify">
                     Prima Printing adalah perusahaan percetakan terkemuka yang berkomitmen untuk menyediakan solusi
-                    cetak kustom berkualitas tinggi bagi pelanggan kami. Berdiri sejak 2000, kami telah berkembang
+                    cetak kustom berkualitas tinggi bagi pelanggan kami. Berdiri sejak 2004, kami telah berkembang
                     menjadi salah satu pilihan utama dalam industri percetakan, melayani berbagai kebutuhan cetak mulai
-                    dari brosur, flyer, poster, kartu nama, hingga buku, kalender, dan merchandise.
+                    dari undangan, banner, urawan, brosur, flyer, poster, kartu nama, yasin, kalender, dan merchandise.
                 </p>
 
                 <h2 class="text-xl font-semibold mb-4 text-center">Visi</h2>
