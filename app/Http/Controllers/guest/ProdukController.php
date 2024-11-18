@@ -26,7 +26,8 @@ class ProdukController extends Controller
 
     public function show($id)
     {
-        $producks  = Produck::inRandomOrder()->limit(8)->get();
+        $producks  = Produck::where('deleted', false)
+            ->inRandomOrder()->limit(8)->get();
         $produck = Produck::find($id);
         return view('guest.product.show', compact('produck', 'producks'));
     }
