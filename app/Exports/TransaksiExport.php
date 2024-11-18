@@ -47,18 +47,25 @@ class TransaksiExport implements FromCollection, WithHeadings
                 return $produkTransaksi->produck->name ?? 'N/A';
             })->implode(', ');
 
-            if ($transaksi->tansaktion_type == 'costume') {
-                $namaProduk = $transaksi->costume_transaksi->product_name ?? 'N/A';
-            }
-
 
             $jumlahProduk = $transaksi->produk_transaksi->map(function ($produkTransaksi) {
                 return $produkTransaksi->jumlah ?? 'N/A';
             })->implode(', ');
 
             if ($transaksi->tansaktion_type == 'costume') {
+                $namaProduk = $transaksi->costume_transaksi->product_name ?? 'N/A';
+                $subKategoryProduk = 'costume';
+                $kategoryProduk = 'costume';
                 $jumlahProduk = $transaksi->costume_transaksi->order_quantity ?? 'N/A';
             }
+
+            $kategoryProduk = $transaksi->produk_transaksi->map(function ($produkTransaksi) {
+                return $produkTransaksi->produck->sub_katagori->katagori->name ?? 'N/A';
+            })->implode(', ');
+
+            $subKategoryProduk = $transaksi->produk_transaksi->map(function ($produkTransaksi) {
+                return $produkTransaksi->produck->sub_katagori->name ?? 'N/A';
+            })->implode(', ');
 
             $metodePembayaran = $transaksi->transaksi_data->payment_metode->name ?? 'N/A';
             $metodePengiriman = $transaksi->transaksi_data->metode_pengiriman ?? 'N/A';
@@ -82,6 +89,8 @@ class TransaksiExport implements FromCollection, WithHeadings
                 'Nama Pembeli' => $transaksi->user->name ?? 'N/A',
                 'Email Pembeli' => $transaksi->user->email ?? 'N/A',
                 'Nama Produk' => $namaProduk,
+                'Kategori Produk' => $kategoryProduk,
+                'Sub Kategori produk' => $subKategoryProduk,
                 'Jumlah Produk' => $jumlahProduk,
                 'Harga Total' => $transaksi->total_harga ?? 'N/A',
                 'Metode Pembayaran' => $metodePembayaran,
@@ -112,6 +121,8 @@ class TransaksiExport implements FromCollection, WithHeadings
             'Nama Pembeli',
             'Email Pembeli',
             'Nama Produk',
+            'Kategori Produk',
+            'Sub Kategori produk',
             'Jumlah Produk',
             'Harga Total',
             'Metode Pembayaran',

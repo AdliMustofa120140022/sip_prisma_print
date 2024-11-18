@@ -4,14 +4,17 @@ namespace App\Http\Controllers\user;
 
 use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
+use App\Mail\MailNewTransaction;
 use App\Models\Alamat;
 use App\Models\Cart;
 use App\Models\PaymentMetode;
 use App\Models\ProdukTransaksi;
 use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class CheckOutController extends Controller
 {
@@ -167,6 +170,12 @@ class CheckOutController extends Controller
         $transaksi->update([
             'total_harga' => $totalharga
         ]);
+
+        $userAdmin = User::where('role', 'admin')->get();
+        foreach ($userAdmin as $admin) {
+            Mail::to($admin->email)->send(new MailNewTransaction($transaksi));
+        }
+
 
         return redirect()->route('user.checkout.index', $transaksi->transaksi_code);
     }

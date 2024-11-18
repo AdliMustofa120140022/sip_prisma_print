@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Transaksi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,12 +14,16 @@ class MailNewTransaction extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subject;
+    public $transaksi;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(Transaksi $transaksi)
     {
-        //
+        $this->transaksi = $transaksi;
+        $this->subject = 'Mail New Transaction';
     }
 
     /**
@@ -27,7 +32,7 @@ class MailNewTransaction extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mail New Transaction',
+            subject: $this->subject,
         );
     }
 
