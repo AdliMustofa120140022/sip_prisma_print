@@ -70,7 +70,7 @@
                                                     @if ($transaksi->tansaktion_type == 'costume')
                                                         {{ number_format($transaksi->costume_transaksi->harga, 0, ',', '.') }}
                                                     @else
-                                                        {{ number_format($produk_transaksi->produck->harga_satuan, 0, ',', '.') }}
+                                                        {{ number_format($produk_transaksi->produck->data_produck->harga_satuan, 0, ',', '.') }}
                                                     @endif
 
                                                 </div>

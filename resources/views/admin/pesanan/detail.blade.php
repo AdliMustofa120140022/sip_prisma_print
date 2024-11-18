@@ -123,7 +123,7 @@
                                     @foreach ($transaksi->produk_transaksi as $produk_transaksi)
                                         <div class="mb-2">
                                             <strong>{{ $produk_transaksi->produck->name }}</strong> - Rp.
-                                            {{ number_format($produk_transaksi->produck->harga_satuan, 0, ',', '.') }}
+                                            {{ number_format($produk_transaksi->produck->data_produck->harga_satuan, 0, ',', '.') }}
                                             x
                                             {{ $produk_transaksi->jumlah }}
                                         </div>
@@ -157,7 +157,7 @@
                                     {{ $transaksi->user->name }}
                                 </div>
                                 <div class="mb-2">
-                                    <strong>Alamat:</strong> 
+                                    <strong>Alamat:</strong>
                                     <span class="text-wrap">{{ $transaksi->transaksi_data->alamat->kelurahan }},
                                         {{ $transaksi->transaksi_data->alamat->kecamatan }},
                                         {{ $transaksi->transaksi_data->alamat->kabupaten }},
