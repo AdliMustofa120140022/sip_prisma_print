@@ -226,7 +226,7 @@
                                                     Silahkan Priksa Dasboard Untuk Detail Lebih Lanjut
                                                 </p>
 
-                                                <p style="margin-bottom: 0">
+                                                {{-- <p style="margin-bottom: 0">
                                                     Alamat pengiriman:
                                                 </p>
                                                 <p
@@ -242,7 +242,7 @@
                                                     {{ $transaksi->transaksi_data->alamat->kabupaten }},
                                                     {{ $transaksi->transaksi_data->alamat->provinsi }},
                                                     {{ $transaksi->transaksi_data->alamat->kode_pos }}
-                                                </p>
+                                                </p> --}}
                                             </div>
                                             <table
                                                 style="
