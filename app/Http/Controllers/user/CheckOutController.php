@@ -171,12 +171,6 @@ class CheckOutController extends Controller
             'total_harga' => $totalharga
         ]);
 
-        $userAdmin = User::where('role', 'admin')->get();
-        foreach ($userAdmin as $admin) {
-            Mail::to($admin->email)->send(new MailNewTransaction($transaksi));
-        }
-
-
         return redirect()->route('user.checkout.index', $transaksi->transaksi_code);
     }
 
@@ -261,6 +255,13 @@ class CheckOutController extends Controller
             'shiping_cost' => $shiping_cost,
             'payment_metode_id' => $payment_metode,
         ]);
+
+
+        $userAdmin = User::where('role', 'admin')->get();
+        foreach ($userAdmin as $admin) {
+            Mail::to($admin->email)->send(new MailNewTransaction($transaksi));
+        }
+
 
         return redirect()->route('user.payment.index', $transaksi->transaksi_code)->with('success', 'Transaksi berhasil');
     }
