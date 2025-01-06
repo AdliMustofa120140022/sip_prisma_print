@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::prefix('/admin')->middleware('admin')->group(function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('admin.dashboard');
+        Route::get('/print-chart', [AdminHomeController::class, 'printChart'])->name('admin.print.chart');
 
         //product
         Route::get('/product', [ProductController::class, 'index'])->name('admin.product.index');

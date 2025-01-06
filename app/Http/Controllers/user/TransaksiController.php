@@ -15,7 +15,9 @@ class TransaksiController extends Controller
     public function index()
     {
 
-        $transaksis = Transaksi::where('user_id', Auth::id())->get();
+        $transaksis = Transaksi::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('user.transaksi.index', compact('transaksis'));
     }
 

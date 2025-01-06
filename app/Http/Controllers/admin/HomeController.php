@@ -58,4 +58,41 @@ class HomeController extends Controller
 
         return view('admin.dashboard', compact('years', 'selectedYear', 'selectedYearCorunt', 'monthlyData', 'monthlyDataCount', 'countTransaksi', 'countuser', 'transaksiRetur'));
     }
+
+    public function printChart(Request $request)
+    {
+        $years = Transaksi::selectRaw('YEAR(created_at) year')
+            ->groupBy('year')
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+
+        $selectedYear = $request->query('year', now()->year);
+
+
+        $transaksis = Transaksi::selectRaw('MONTH(created_at) as month, SUM(total_harga) as total')
+            ->whereNotIn('status', ['make'])
+            ->whereYear('created_at', $selectedYear)
+            ->groupBy('month')
+            ->pluck('total', 'month');
+
+        $transaksis_count = Transaksi::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->whereNotIn('status', ['make'])
+            ->whereYear('created_at', $selectedYear)
+            ->groupBy('month')
+            ->pluck('total', 'month');
+
+
+        $monthlyData = array_fill(1, 12, 0); // [1 => 0, 2 => 0, ..., 12 => 0]
+        $monthlyDataCount = array_fill(1, 12, 0); // [1 => 0, 2 => 0, ..., 12 => 0]
+
+
+        foreach ($transaksis as $month => $total) {
+            $monthlyData[$month] = $total;
+        }
+        foreach ($transaksis_count as $month => $total) {
+            $monthlyDataCount[$month] = $total;
+        }
+
+        return view('admin.print', compact('years', 'selectedYear', 'monthlyData', 'monthlyDataCount'));
+    }
 }

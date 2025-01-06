@@ -32,54 +32,60 @@ class CheckOutController extends Controller
             return redirect()->back()->with('error', 'Tmabhkan Alamat terlebih dahulu');
         }
 
+        $shippingCosts = 50000;
+
         $payment_metodes = PaymentMetode::all();
         try {
-            $responseCity = Http::withHeaders([
-                'key' => config('app.rajaongkir.api_key'),
-            ])->get('https://api.rajaongkir.com/starter/city');
+            //API RajaOngkir to counting ongkir
 
-            $data = $responseCity->json();
+            // $responseCity = Http::withHeaders([
+            //     'key' => config('app.rajaongkir.api_key'),
+            // ])->get('https://api.rajaongkir.com/starter/city');
 
-            $listCity = $data['rajaongkir']['results'];
+            // $data = $responseCity->json();
 
-            $filteredCity = array_filter($listCity, function ($city) use ($alamat) {
-                if ($city['type'] == 'Kabupaten') {
-                    $kabupatenName = str_replace('Kabupaten', '', $alamat->kabupaten);
-                } else {
-                    $kabupatenName = str_replace('Kota', '', $alamat->kabupaten);
-                }
-                return strtolower($city['city_name']) == strtolower(trim($kabupatenName));
-            });
+            // $listCity = $data['rajaongkir']['results'];
 
-            $cityId = null;
+            // $filteredCity = array_filter($listCity, function ($city) use ($alamat) {
+            //     if ($city['type'] == 'Kabupaten') {
+            //         $kabupatenName = str_replace('Kabupaten', '', $alamat->kabupaten);
+            //     } else {
+            //         $kabupatenName = str_replace('Kota', '', $alamat->kabupaten);
+            //     }
+            //     return strtolower($city['city_name']) == strtolower(trim($kabupatenName));
+            // });
 
-            if (!empty($filteredCity)) {
-                $city = reset($filteredCity);
-                $cityId = $city['city_id'];
-            }
+            // $cityId = null;
 
-            $total_weight = 0;
-            if ($transaksi->tansaktion_type != 'costume') {
-                foreach ($transaksi->produk_transaksi as $produk_transaksi) {
-                    $produck_weight = $produk_transaksi->produck->data_produck->berat * $produk_transaksi->jumlah;
-                    $total_weight += $produck_weight;
-                }
-            }
+            // if (!empty($filteredCity)) {
+            //     $city = reset($filteredCity);
+            //     $cityId = $city['city_id'];
+            // }
 
-            if ($total_weight < 2000) {
-                $total_weight = 2000;
-            }
+            // $total_weight = 0;
+            // if ($transaksi->tansaktion_type != 'costume') {
+            //     foreach ($transaksi->produk_transaksi as $produk_transaksi) {
+            //         $produck_weight = $produk_transaksi->produck->data_produck->berat * $produk_transaksi->jumlah;
+            //         $total_weight += $produck_weight;
+            //     }
+            // }
 
-            $responseCost = Http::withHeaders([
-                'key' => config('app.rajaongkir.api_key'),
-            ])->post('https://api.rajaongkir.com/starter/cost', [
-                'origin' => config('app.rajaongkir.origin_city_id'),
-                'destination' => $cityId,
-                'weight' => $total_weight,
-                'courier' => 'jne',
-            ]);
-            $costData = $responseCost->json();
-            $shippingCosts = $costData['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'];
+            // if ($total_weight < 2000) {
+            //     $total_weight = 2000;
+            // }
+
+            // $responseCost = Http::withHeaders([
+            //     'key' => config('app.rajaongkir.api_key'),
+            // ])->post('https://api.rajaongkir.com/starter/cost', [
+            //     'origin' => config('app.rajaongkir.origin_city_id'),
+            //     'destination' => $cityId,
+            //     'weight' => $total_weight,
+            //     'courier' => 'jne',
+            // ]);
+            // $costData = $responseCost->json();
+            // $shippingCosts = $costData['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'];
+
+
 
             return view('user.checkout.index', compact('transaksi', 'alamat', 'shippingCosts', 'payment_metodes'));
         } catch (\Exception $e) {

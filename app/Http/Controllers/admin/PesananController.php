@@ -11,7 +11,9 @@ class PesananController extends Controller
     public function index()
     {
 
-        $transaksis = Transaksi::where('status', '!=', 'make')->get();;
+        $transaksis = Transaksi::where('status', '!=', 'make')
+            ->orderBy('created_at', 'desc')
+            ->get();;
         return view('admin.pesanan.index', compact('transaksis'));
     }
 

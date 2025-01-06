@@ -33,6 +33,44 @@
                 </div>
             @endif
 
+            <ul class="flex gap-10 justify-around my-4">
+                <li class="py-2 px-1  rounded-sm ">
+                    <h2 class="text-sm font-bold">Tanggal Pembelian</h2>
+                    <div class="col-span-2 space-y-4">
+                        <span>{{ $transaksi->created_at }}</span>
+                    </div>
+
+                </li>
+                <li class="py-2 px-1 rounded-lg ">
+                    <h2 class="text-sm font-bold">Tanggal Pembayaran</h2>
+                    <div class="col-span-2 space-y-4">
+                        <span>{{ $transaksi->transaksi_data->payment_time ?? '-' }}</span>
+                    </div>
+
+                </li>
+                <li class="py-2 px-1 rounded-lg ">
+                    <h2 class="text-sm font-bold">Tanggal Desain</h2>
+                    <div class="col-span-2 space-y-4">
+                        <span>{{ $transaksi->transaksi_data->desain_time ?? '-' }}</span>
+                    </div>
+
+                </li>
+                <li class="py-2 px-1 rounded-lg ">
+                    <h2 class="text-sm font-bold">Tanggal Pengiriman</h2>
+                    <div class="col-span-2 space-y-4">
+                        <span>{{ $transaksi->transaksi_data->shiping_time ?? '-' }}</span>
+                    </div>
+
+                </li>
+                <li class="py-2 px-1 rounded-lg ">
+                    <h2 class="text-sm font-bold">Transkaski Selesai</h2>
+                    <div class="col-span-2 space-y-4">
+                        <span>{{ $transaksi->transaksi_data->shiping_done_time ?? '-' }}</span>
+                    </div>
+
+                </li>
+            </ul>
+
             @if ($transaksi->status == 'return' || $transaksi->return_transaksi != null)
                 <div class="border-b-4 mt-4 py-3 p px-10">
                     <h2 class="text-xl font-bold">Pengajuan Return</h2>

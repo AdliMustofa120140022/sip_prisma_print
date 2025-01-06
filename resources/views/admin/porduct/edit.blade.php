@@ -334,6 +334,7 @@
             dropZone.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 dropZone.classList.add('drop-zone--over');
+
             });
 
             dropZone.addEventListener('dragleave', () => {
@@ -345,6 +346,7 @@
                 dropZone.classList.remove('drop-zone--over');
 
                 const files = event.dataTransfer.files;
+
                 if (files.length > 0) {
                     handleFiles(files);
                 }
@@ -360,8 +362,11 @@
 
             // Handle the uploaded files
             function handleFiles(files) {
+
                 // Convert the file list to an array and store in fileList
                 fileList = [...fileList, ...Array.from(files)];
+
+                // console.log(fileList);
 
                 // Loop through files and create image previews
                 for (const [index, file] of Array.from(files).entries()) {
@@ -407,7 +412,7 @@
             // Function to update the hidden input with the current list of files
             function updateImageInput() {
                 const imageInputHidden = document.getElementById('image');
-                imageInputHidden.file = fileList;
+                imageInputHidden.files = fileList;
             }
         </script>
     </x-slot>

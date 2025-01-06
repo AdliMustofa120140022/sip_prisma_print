@@ -52,7 +52,6 @@
                                 </div>
                             </div>
                         </div>
-
                     @elseif (Auth::user()->role == 'super_admin')
                         <div class="col-md-4 col-lg-4 p-3">
                             <div class="card card-profile  h-100">
@@ -99,7 +98,7 @@
                 </div>
 
                 <div class="card mb-4">
-                    <div class="row">
+                    <div class="row" id="printableArea">
                         <div class="col-5">
                             <div class="card-title row justify-content-end">
                                 <div class="col-6">
@@ -145,7 +144,11 @@
                             <canvas id="myBarChartCount" width="100" height="50"></canvas>
                         </div>
                     </div>
-
+                    <div class="card-footer">
+                        <a href="{{ route('admin.print.chart') }}" class="btn btn-primary">Print</a>
+                        {{-- <button class="btn btn-primary"
+                            onclick="printContent('{{ route('admin.print.chart') }}')">Print</button> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -219,6 +222,77 @@
                     }
                 }
             });
+
+            // function printContent(route) {
+            //     console.log(route);
+
+            //     fetch(route, {
+            //             headers: {
+            //                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            //             }
+            //         })
+            //         .then(response => response.text())
+            //         .then(html => {
+            //             // console.log(html);
+
+            //             // Create a temporary container to parse the HTML
+            //             const tempContainer = document.createElement('div');
+            //             tempContainer.innerHTML = html;
+
+            //             // Process all canvas elements in the fetched HTML
+            //             // const canvasElements = tempContainer.querySelectorAll('canvas');
+            //             // canvasElements.forEach(canvas => {
+            //             //     const chartImage = new Image();
+            //             //     chartImage.src = canvas.toDataURL('image/png'); // Convert canvas to image
+            //             //     chartImage.style.display = 'block';
+            //             //     chartImage.style.margin = '0 auto';
+
+            //             //     // Replace canvas with the image
+            //             //     canvas.parentNode.replaceChild(chartImage, canvas);
+            //             // });
+
+            //             // Create an iframe for printing
+            //             const iframe = document.createElement('iframe');
+            //             iframe.style.display = 'none';
+            //             document.body.appendChild(iframe);
+            //             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+            //             iframeDoc.open();
+            //             iframeDoc.write(tempContainer.innerHTML); // Write the HTML content
+
+            //             console.log(iframeDoc);
+
+
+
+            //             // Append required scripts to the iframe for rendering JavaScript
+            //             // const scripts = tempContainer.querySelectorAll('script');
+            //             // scripts.forEach(script => {
+            //             //     const newScript = iframeDoc.createElement('script');
+            //             //     if (script.src) {
+            //             //         // For external scripts
+            //             //         newScript.src = script.src;
+            //             //     } else {
+            //             //         // For inline scripts
+            //             //         newScript.textContent = script.innerHTML;
+            //             //     }
+
+            //             //     console.log(newScript);
+
+            //             //     console.log(iframeDoc);
+            //             //     iframeDoc.body.appendChild(newScript);
+            //             // });
+
+            //             iframeDoc.close();
+
+            //             iframe.onload = () => {
+            //                 setTimeout(() => {
+            //                     iframe.contentWindow.focus();
+            //                     iframe.contentWindow.print();
+            //                     document.body.removeChild(iframe);
+            //                 }, 1000); // Delay to ensure scripts are executed before printing
+            //             };
+            //         });
+            // }
         </script>
     </x-slot>
 </x-app-layout>

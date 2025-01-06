@@ -4,6 +4,12 @@
 
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
         {{-- <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script> --}}
+
+        <style>
+            .blue {
+                background: #0015ff43;
+            }
+        </style>
     </x-slot>
 
     <section class="m-3">
@@ -48,8 +54,11 @@
                                     @foreach ($transaksis as $transaksi)
                                         <tr>
                                             <td>
-                                                <p class=" ps-3 text-secondary  font-weight-bold">
-                                                    {{ $loop->iteration }}
+                                                <p class="ps-3 text-secondary  font-weight-bold ">
+                                                    <span
+                                                        class="p-2 {{ $transaksi->transaksi_data->payment_status == 'pending' ? 'bg-gradient-faded-info-vertical' : '' }} rounded rounded-2">
+                                                        {{ $loop->iteration }}
+                                                    </span>
                                                 </p>
                                             </td>
                                             <td>

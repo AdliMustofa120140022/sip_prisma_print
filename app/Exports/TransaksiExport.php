@@ -4,9 +4,10 @@ namespace App\Exports;
 
 use App\Models\Transaksi;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class TransaksiExport implements FromCollection, WithHeadings
+class TransaksiExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
 
     protected $startDate;
@@ -60,7 +61,7 @@ class TransaksiExport implements FromCollection, WithHeadings
             }
 
             $kategoryProduk = $transaksi->produk_transaksi->map(function ($produkTransaksi) {
-                return $produkTransaksi->produck->sub_katagori->katagori->name ?? 'N/A';
+                return $produkTransaksi->produck->sub_katagori->katagori->nama ?? 'N/A';
             })->implode(', ');
 
             $subKategoryProduk = $transaksi->produk_transaksi->map(function ($produkTransaksi) {
