@@ -409,10 +409,10 @@
                 updateImageInput();
             }
 
-            // Function to update the hidden input with the current list of files
             function updateImageInput() {
-                const imageInputHidden = document.getElementById('image');
-                imageInputHidden.files = fileList;
+                const dataTransfer = new DataTransfer();
+                fileList.forEach(file => dataTransfer.items.add(file));
+                imageInput.files = dataTransfer.files;
             }
         </script>
     </x-slot>

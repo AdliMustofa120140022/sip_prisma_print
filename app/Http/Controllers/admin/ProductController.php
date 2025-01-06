@@ -95,7 +95,7 @@ class ProductController extends Controller
         ]);
 
 
-        dd($request->all());
+        // dd($request->all());
 
 
         $Produck = Produck::create([
@@ -206,7 +206,6 @@ class ProductController extends Controller
             'image.*.mimes' => 'File harus berupa gambar dengan format jpeg, png, jpg, gif',
             'image.*.max' => 'Ukuran gambar maksimal 10MB',
         ]);
-
         $Produck = Produck::find($id);
         $Produck->update([
             'name' => $request->name,
