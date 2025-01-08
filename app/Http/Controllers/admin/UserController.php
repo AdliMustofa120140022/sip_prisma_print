@@ -24,6 +24,12 @@ class UserController extends Controller
             'role' => 'required',
         ]);
 
+        $cekUser = User::where('email', $request->email)->first();
+
+        if ($cekUser) {
+            return redirect()->back()->with('error', 'Email sudah terdaftar, silahkan gunakan email lain');
+        }
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
