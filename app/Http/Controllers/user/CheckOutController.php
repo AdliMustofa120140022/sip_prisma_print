@@ -154,7 +154,7 @@ class CheckOutController extends Controller
         $alamat = Alamat::where('user_id', Auth::id())->where('is_default', 1)->first();
 
         if (!$alamat) {
-            return redirect()->back()->with('error', 'Tmabhkan Alamat terlebih dahulu');
+            return redirect()->back()->with('error', 'Tambhkan Alamat terlebih dahulu');
         }
 
         if (empty($items)) {
