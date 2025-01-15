@@ -156,6 +156,10 @@ class CheckOutController extends Controller
         if (!$alamat) {
             return redirect()->back()->with('error', 'Tmabhkan Alamat terlebih dahulu');
         }
+
+        if (empty($items)) {
+            return redirect()->back()->with('error', 'Tidak ada produk yang dipilih');
+        }
         $totalharga = 0;
         $transaksi = Transaksi::create([
             'user_id' => Auth::id(),
